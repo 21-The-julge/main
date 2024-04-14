@@ -6,9 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "husky install",
-    "format": "prettier --cache --write .",
-    "lint": "eslint --cache ."
+    "lint": "next lint",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "next": "14.2.1",

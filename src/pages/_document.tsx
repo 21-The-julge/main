@@ -8,6 +8,7 @@ export default function Document() {
         <Main />
         <NextScript />
         <div></div>
+        <div></div>
       </body>
     </Html>
   );

@@ -9,6 +9,7 @@ export default function Document() {
         <NextScript />
         <div></div>
         <div></div>
+        <div></div>
       </body>
     </Html>
   );

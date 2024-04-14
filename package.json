@@ -11,9 +11,14 @@
     "postInstall": "husky install"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.29.2",
+    "classnames": "^2.5.1",
     "next": "14.2.1",
+    "node-sass": "^9.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

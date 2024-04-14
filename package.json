@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "postinstall": "husky install",
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache ."
   },
   "dependencies": {
     "next": "14.2.1",
@@ -26,6 +28,7 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "typescript": "^5"
   }

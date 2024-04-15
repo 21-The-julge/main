@@ -1,0 +1,25 @@
+@import "/src/styles/colors.scss";
+@import "/src/styles/mixin.scss";
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2rem;
+
+  @include tablet {
+    &.isSignIn {
+      gap: 1.2rem;
+    }
+  }
+  @include mobile {
+    gap: 1.6rem;
+  }
+}

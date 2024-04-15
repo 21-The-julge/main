@@ -9,7 +9,7 @@
     "format": "prettier --write --cache .",
     "lint": "eslint --cache .",
     "postInstall": "husky install",
-    "lint:fix": "eslint ./**/*.{js,jsx,ts,tsx} --cache --fix"
+    "lint:fix": "eslint ./**/*.{ts,tsx} --cache --fix"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.29.2",
@@ -26,8 +26,11 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-next": "14.2.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",

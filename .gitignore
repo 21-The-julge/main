@@ -26,7 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+# .env*.local 나중에 main에 merge할 때는 주석 제거
 
 # vercel
 .vercel

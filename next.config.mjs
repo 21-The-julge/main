@@ -19,6 +19,12 @@ const nextConfig = {
     });
     return config;
   },
+  // next js에서 global.scss 사용하는법
+  // 이거 안하면 typeScript 때문에 안되는듯?
+  sassOptions: {
+    includePaths: ["styles"],
+    prependData: `@import "src/styles/globals.scss";`,
+  },
 };
 
 export default nextConfig;

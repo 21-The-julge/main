@@ -8,11 +8,17 @@
   justify-content: space-between;
   align-items: center;
   gap: 4rem;
+  margin-left: 8rem;
 
   font-family: Spoqa Han Sans Neo;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 2rem;
+  white-space: nowrap;
+  a {
+    color: black;
+    text-decoration: none;
+  }
 
   @include tablet {
     &.isSignIn {
@@ -21,5 +27,6 @@
   }
   @include mobile {
     gap: 1.6rem;
+    margin-left: 0;
   }
 }

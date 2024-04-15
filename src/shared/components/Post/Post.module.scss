@@ -15,61 +15,54 @@
     width: 100%;
     height: 100%;
     position: relative;
-
-    .imgOverlay {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      inset: 0;
-      background-color: rgba($color-black, 0.5);
-      border-radius: 1.2rem;
-      color: $color-gray-30;
-      text-align: center;
-      font-size: 2.8rem;
-      font-weight: 700;
-      z-index: 1;
-    }
   }
 
+  .restaurantName {
+    color: $color-black;
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .clockContainer,
+  .locationContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $color-gray-50;
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2.2rem;
+  }
+  .restaurantContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
   .contentContainer {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+  }
+  .priceContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-black;
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.048rem;
+  }
+}
 
-    .restaurantContent {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-
-      .restaurantName {
-        color: $color-black;
-        font-family: "Spoqa Han Sans Neo";
-        font-size: 2rem;
-        font-weight: 700;
-      }
-
-      .clockContainer,
-      .locationContainer {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        color: $color-gray-50;
-        font-family: "Spoqa Han Sans Neo";
-        font-size: 1.4rem;
-        font-weight: 400;
-        line-height: 2.2rem;
-      }
-    }
-    .priceContent {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: $color-black;
-      font-family: "Spoqa Han Sans Neo";
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: 0.048rem;
-    }
+.closed,
+.isPast {
+  .restaurantName,
+  .clockContainer,
+  .locationContainer,
+  .priceContent {
+    color: $color-gray-30;
   }
 }

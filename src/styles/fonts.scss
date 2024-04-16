@@ -27,6 +27,14 @@
   line-height: 2.2rem;
 }
 
+@mixin sopoqa-14-700 {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.2rem;
+}
+
 @mixin sopoqa-16-400 {
   font-family: "SpoqaHanSansNeo-Regular";
   font-size: 1.6rem;
@@ -41,6 +49,23 @@
   font-style: normal;
   font-weight: 700;
   line-height: 2rem;
+}
+
+@mixin sopoqa-20-700 {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.4rem;
+}
+
+@mixin sopoqa-24-700 {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.4rem;
+  letter-spacing: 0.048rem;
 }
 
 @mixin sopoqa-28-700 {

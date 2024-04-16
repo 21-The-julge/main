@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-const instance = axios.create({
+const axiosInstance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
   headers: {
     "Content-type": "application/json",
   },
 });
 
-export default instance;
+export default axiosInstance;

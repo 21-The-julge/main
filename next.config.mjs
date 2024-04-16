@@ -19,6 +19,10 @@ const nextConfig = {
     });
     return config;
   },
+  sassOptions: {
+    includePaths: ["styles"],
+    prependData: `@import "src/styles/globals.scss";`,
+  },
 };
 
 export default nextConfig;

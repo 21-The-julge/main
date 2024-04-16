@@ -10,6 +10,7 @@ $duration: 0.3s;
   border: 0.1rem solid $color;
   background: $color-white;
   transition: $duration;
+
   &:hover {
     background: $color;
     color: $color-white;
@@ -21,8 +22,8 @@ $duration: 0.3s;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: .8rem;
-  border-radius: .6rem;
+  gap: 0.8rem;
+  border-radius: 0.6rem;
 }
 
 /* 배경색 */
@@ -30,8 +31,9 @@ $duration: 0.3s;
   color: $color-white;
   background: $color-primary;
   transition: $duration;
+
   &:hover {
-    background: $color-primary;
+    background: $color-red-40;
     color: $color-white;
   }
 }
@@ -40,6 +42,7 @@ $duration: 0.3s;
   &.primary {
     @include outlineColor($color-primary);
   }
+  
   &.secondary {
     @include outlineColor($color-blue-20);
   }
@@ -47,13 +50,21 @@ $duration: 0.3s;
 
 /* 크기 */
 .large {
-  @include size(30.5rem, 1.4rem 0);
+  @include size(35rem, 1.4rem 0);
   @include sopoqa-16-700;
+
+  &:disabled {
+    @include size(33.5rem, 1.4rem 0);
+  }
 }
 
 .medium {
   @include size(10.8rem, 1rem 0);
   @include sopoqa-14-700;
+
+  &:disabled {
+    @include size(9.5rem, 1rem 0);
+  }
 }
 
 .small {

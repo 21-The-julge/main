@@ -52,6 +52,14 @@
 }
 
 //pretendard
+@mixin pretendard-14-500 {
+  font-family: "Pretendard-Regular";
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 @mixin pretendard-16-400 {
   font-family: "Pretendard-Regular";
   font-size: 1.6rem;

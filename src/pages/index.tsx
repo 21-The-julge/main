@@ -1,4 +1,4 @@
-import Post from "@/shared/components/Post/Post";
+import { Post } from "@/shared/components/index";
 import { useEffect, useState } from "react";
 import styles from "@/pages/index.module.scss";
 import instance from "./api/axiosInstance";

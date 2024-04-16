@@ -17,11 +17,12 @@ const nextConfig = {
       issuer: /.[jt]sx?$/,
       use: ["@svgr/webpack"],
     });
+
     return config;
   },
   sassOptions: {
     includePaths: ["styles"],
-    prependData: `@import "src/styles/globals.scss";`,
+    additionalData: `@import "src/styles/globals.scss";`,
   },
 };
 

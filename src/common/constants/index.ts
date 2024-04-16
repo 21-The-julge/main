@@ -1,6 +1,6 @@
-export const CATAGORY: string[] = ["한식", "중식", "일식", "양식", "분식", "카페", "편의점", "기타"];
+export const CATEGORY = ["한식", "중식", "일식", "양식", "분식", "카페", "편의점", "기타"] as const;
 
-export const ADRESS: string[] = [
+export const ADRESS = [
   "서울시 종로구",
   "서울시 중구",
   "서울시 용산구",
@@ -26,18 +26,18 @@ export const ADRESS: string[] = [
   "서울시 강남구",
   "서울시 송파구",
   "서울시 강동구",
-];
+] as const;
 
-export const PLACEHOLDER: { [key: string]: string } = {
+export const PLACEHOLDER = {
   SEARCH: "가게 이름으로 찾아보세요",
   EMAIL: "이메일을 입력해주세요",
   PASSWORD: "비밀번호를 8자리 이상으로 입력해주세요",
   NAME: "식당 이름을 입력해주세요",
-  ADDRESS2: "상세주소를 입력해주세요",
+  DETAIL_ADDRESS: "상세주소를 입력해주세요",
   DESCRIPTION: "식당 설명을 입력해주세요",
-};
+} as const;
 
-export const MESSAGE: { [key: string]: string } = {
+export const MESSAGE = {
   SUCCESS: "등록이 완료되었습니다.",
   FAIL: "등록이 실패되었습니다.",
   EDIT: "수정이 완료되었습니다.",
@@ -46,4 +46,5 @@ export const MESSAGE: { [key: string]: string } = {
 
   ACCEPT: "신청을 승인하시겠어요?",
   REJECT: "신청을 거절하시겠어요?",
-};
+  NOTIFICATION: "알림이 없습니다.",
+} as const;

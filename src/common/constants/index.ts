@@ -1,6 +1,6 @@
 export const CATEGORY = ["한식", "중식", "일식", "양식", "분식", "카페", "편의점", "기타"] as const;
 
-export const ADRESS = [
+export const ADDRESS = [
   "서울시 종로구",
   "서울시 중구",
   "서울시 용산구",

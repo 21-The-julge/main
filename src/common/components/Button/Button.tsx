@@ -14,7 +14,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-export default function Button({ children, type, size, variant, color, disabled, onClick }: ButtonProps) {
+export default function Button({ children, type, size, variant, color, disabled, onClick, ...rest }: ButtonProps) {
   return (
     <button
       // eslint-disable-next-line react/button-has-type
@@ -22,6 +22,7 @@ export default function Button({ children, type, size, variant, color, disabled,
       disabled={disabled}
       className={cn("button", size, variant, color)}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </button>

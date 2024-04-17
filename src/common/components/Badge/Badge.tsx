@@ -10,7 +10,7 @@ interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   className?: string; // 사용자가 추가할 수 있는 클래스 이름
 }
-
+// 모바일 prop을 둔 이유 filter에서는 모바일 디자인을 안쓰는것 같아서
 export default function Badge({
   color,
   close = false,

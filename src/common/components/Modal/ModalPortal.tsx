@@ -1,15 +1,19 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-export default function Portal({ children }: { children: ReactElement }) {
-  const [mounted, setMounted] = useState<boolean>(false);
+interface ModalPortalProps {
+  children: ReactNode;
+}
+
+export default function Portal({ children }: ModalPortalProps) {
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
 
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined" || !mounted) return null;
 
-  return mounted ? createPortal(children, document.getElementById("modal-root") as HTMLElement) : null;
+  return createPortal(children, document.getElementById("modal-root") as HTMLElement);
 }

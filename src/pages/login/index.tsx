@@ -1,9 +1,5 @@
-import Input from "@/common/components/Input/Input";
+import InputField from "@/common/components/InputField/InputField";
 
 export default function LoginPage() {
-  return (
-    <div>
-      <Input type="text" size="md" placeholder="김보경" />
-    </div>
-  );
+  return <InputField name="이메일" type="email" placeholder="입력" size="md" />;
 }

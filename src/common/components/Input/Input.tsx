@@ -4,17 +4,20 @@ import styles from "./Input.module.scss";
 const cn = classNames.bind(styles);
 
 interface InputProps {
-  type: "text" | "email" | "password";
-  size: "sm" | "md" | "lg" | "xl" | "full";
+  type?: "text" | "email" | "password";
+  size?: "sm" | "md" | "full";
   placeholder?: string;
+  name: string;
 }
 
-export default function Input({ type, size, placeholder }: InputProps) {
+export default function Input({ type, size, placeholder, name }: InputProps) {
   const className: string = cn("default", size);
 
-  return <input className={className} type={type} placeholder={placeholder} />;
+  return <input id={name} name={name} className={className} type={type} placeholder={placeholder} />;
 }
-// component 정의 후 defaultProps 설정
+
 Input.defaultProps = {
   placeholder: "",
+  size: "md",
+  type: "text",
 };

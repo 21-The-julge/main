@@ -4,7 +4,7 @@ import styles from "./Button.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface Props {
+interface ButtonProps {
   children: ReactNode;
   type: "submit" | "button" | "reset";
   size: "large" | "medium" | "small";
@@ -14,7 +14,7 @@ interface Props {
   onClick: () => void;
 }
 
-export default function Button({ children, type, size, variant, color, disabled, onClick }: Props) {
+export default function Button({ children, type, size, variant, color, disabled, onClick }: ButtonProps) {
   return (
     <button
       // eslint-disable-next-line react/button-has-type
@@ -28,4 +28,4 @@ export default function Button({ children, type, size, variant, color, disabled,
   );
 }
 
-Button.defaultProps = { variant: "solid", color: "primary", disabled: false } as Partial<Props>;
+Button.defaultProps = { variant: "solid", color: "primary", disabled: false } as Partial<ButtonProps>;

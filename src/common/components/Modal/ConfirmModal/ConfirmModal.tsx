@@ -5,12 +5,12 @@ import { useEffect, useRef } from "react";
 const cn = classNames.bind(styles);
 
 interface ConfirmModalProps {
-  text: string;
+  message: string;
   className: string;
   onClick: () => void;
 }
 
-export default function ConfirmModal({ text, className, onClick }: ConfirmModalProps) {
+export default function ConfirmModal({ message, className, onClick }: ConfirmModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function ConfirmModal({ text, className, onClick }: ConfirmModalP
   }, [onClick]);
   return (
     <div className={cn(className, "modalContainer")} ref={modalRef}>
-      <p className={cn("text")}>{text}</p>
+      <p className={cn("text")}>{message}</p>
       <button onClick={onClick} className={cn("buttonPosition")} type="button">
         확인
       </button>

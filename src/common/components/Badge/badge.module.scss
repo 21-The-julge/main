@@ -2,20 +2,36 @@
 @import "/src/styles/mixin.scss";
 .badge {
   display: flex;
+  width: auto;
+  max-width: fit-content;
   padding: 0.6rem 1rem;
   justify-content: center;
   align-items: center;
   border-radius: 2rem;
-  gap: 4px;
+  gap: 0.4rem;
   //폰트
+  font-family: "Spoqa Han Sans Neo";
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  border-radius: 2rem;
 }
-.close {
-  width: 1.6rem;
-  height: 1.6rem;
-  fill: none;
+.mobile {
+  @include mobile {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+}
+.blue {
+  background: $color-blue-10;
+  color: $color-blue-20;
+}
+.green {
+  background: $color-green-10;
+  color: $color-green-20;
+}
+.red {
+  color: $color-red-40;
+  background: $color-red-10;
 }

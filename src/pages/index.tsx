@@ -1,25 +1,25 @@
 import { TOAST_TEXT } from "@/common/components/Toast/constants/ToastText";
-import setToast from "@/common/components/Toast/utils/setToast";
+import openToast from "@/common/components/Toast/utils/openToast";
 import React from "react";
 
 export default function Home() {
   return (
     <div>
-      <button type="button" onClick={() => setToast(TOAST_TEXT.success, "ㅇㅇㅇㅇ!")}>
+      <button type="button" onClick={() => openToast(TOAST_TEXT.success, "ㅇㅇㅇㅇ!")}>
         success
       </button>
       <hr />
-      <button type="button" onClick={() => setToast(TOAST_TEXT.error, "ㅇㅇㅇㅇ!")}>
+      <button type="button" onClick={() => openToast(TOAST_TEXT.error, "ㅇㅇㅇㅇ!")}>
         error
       </button>
       <hr />
 
-      <button type="button" onClick={() => setToast(TOAST_TEXT.info, "ㅇㅇㅇㅇ!")}>
+      <button type="button" onClick={() => openToast(TOAST_TEXT.info, "ㅇㅇㅇㅇ!")}>
         info
       </button>
       <hr />
 
-      <button type="button" onClick={() => setToast(TOAST_TEXT.warn, "ㅇㅇㅇㅇ!")}>
+      <button type="button" onClick={() => openToast(TOAST_TEXT.warn, "ㅇㅇㅇㅇ!")}>
         warn
       </button>
     </div>

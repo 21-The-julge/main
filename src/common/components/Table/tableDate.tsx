@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
-const NEXT_PUBLIC_API_BASE_URL = "https://bootcamp-api.codeit.kr/api/0-1/the-julge";
-
-async function getUserApplications(userId: string, token: string) {
-  try {
-    const response = await axios.get(`${NEXT_PUBLIC_API_BASE_URL}/users/${userId}/applications`, {
-      headers: {
-        Authorization: `Bearer ${token}`, // 토큰을 헤더에 포함시킴
-      },
-    });
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.error("API 요청 중 오류 발생:", error);
-    return null;
-  }
-}
-
+import { EmployeeData } from "@/common/components/Table/testData";
 interface ShopItem {
   id: string;
   name: string;
@@ -68,11 +51,27 @@ interface ApiResponse {
   items: Array<{ item: ApplicationItem; links: Link[] }>;
   links: Link[];
 }
+
+const NEXT_PUBLIC_API_BASE_URL = "https://bootcamp-api.codeit.kr/api/0-1/the-julge";
+
+export async function getUserApplications(userId: string, token: string) {
+  try {
+    const response = await axios.get(`${NEXT_PUBLIC_API_BASE_URL}/users/${userId}/applications`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // 토큰을 헤더에 포함시킴
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("API 요청 중 오류 발생:", error);
+    return null;
+  }
+}
+
 // 필요한 데이터를 정제
-function EmployeeData(data: ApiResponse) {
+export function UserApplicationData(data: ApiResponse): EmployeeData[] {
   // ApiResponse의 items 배열을 순회하며 필요한 데이터 추출
-  return data.items.map(({ item }) => {
-    // item은 ApplicationItem 타입
+  const userApplicationData = data.items.map(({ item }) => {
     return {
       name: item.shop.item.name,
       startsAt: item.notice.item.startsAt,
@@ -81,7 +80,9 @@ function EmployeeData(data: ApiResponse) {
       status: item.status,
     };
   });
+  return userApplicationData;
 }
+
 // 이건 데이터 시각적으로 보기위해서 임의로 만든겁니다.(넘어가셔도되요)
 export default function DataTest() {
   const [data, setData] = useState(null);
@@ -92,7 +93,7 @@ export default function DataTest() {
   useEffect(() => {
     async function fetchData() {
       const ApiResult = await getUserApplications(testUserId, testToken);
-      const userTableDate = await EmployeeData(ApiResult);
+      const userTableDate = await UserApplicationData(ApiResult);
       setData(ApiResult);
       console.log(userTableDate);
     }

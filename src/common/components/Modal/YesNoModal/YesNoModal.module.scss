@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3.2rem;
-  background-color: white;
+  background-color: $color-white;
   border-radius: 1.2rem;
 
   .messageContainer {
@@ -14,15 +14,9 @@
     gap: 1.6rem;
   }
   .text {
-    color: var(--The-julge-black, #111322);
+    color: $color-black;
     text-align: center;
-
-    /* The julge/body 1 - regular */
-    font-family: "Spoqa Han Sans Neo";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px; /* 162.5% */
+    @include sopoqa-16-400;
   }
   .buttonContainer {
     display: flex;
@@ -31,13 +25,13 @@
   .leftButton,
   .rightButton {
     display: flex;
-    width: 80px;
-    padding: 10px 20px;
+    width: 8rem;
+    padding: 1rem 2rem;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    border-radius: 6px;
-    border: 1px solid var(--The-julge-primary, #ea3c12);
-    background: var(--The-julge-white, #fff);
+    gap: 0.8rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-red-40;
+    background: $color-white;
   }
 }

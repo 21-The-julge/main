@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classNames from "classnames/bind";
-import YesNoModal from "@/common/components/Modal/YesNoModal/YesNoModal";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
+import AlertModal from "@/common/components/Modal/AlertModal/AlertModal";
 
 import styles from "@/common/components/Modal/Modal.module.scss";
 import Portal from "./ModalPortal";
@@ -22,5 +22,5 @@ export default function Modal({ children }: ModalProps) {
 }
 
 Modal.Confirm = ConfirmModal;
-Modal.YesNo = YesNoModal;
+Modal.Alert = AlertModal;
 Modal.Warn = WarnModal;

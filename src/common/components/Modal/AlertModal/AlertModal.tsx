@@ -1,12 +1,12 @@
 import classNames from "classnames/bind";
-import styles from "@/common/components/Modal/YesNoModal/YesNoModal.module.scss";
+import styles from "@/common/components/Modal/AlertModal/AlertModal.module.scss";
 import { useRef } from "react";
 import Check from "@/images/ic_check.svg";
 import useOutSideClick from "../hooks/useOutsideClick";
 
 const cn = classNames.bind(styles);
 
-interface YesNoModalProps {
+interface AlertModalProps {
   message: string;
   className: string;
   leftButtononClick: () => void;
@@ -15,14 +15,14 @@ interface YesNoModalProps {
   rightButtonText: string;
 }
 
-export default function YesNoModal({
+export default function AlertModal({
   message,
   className,
   leftButtononClick,
   rightButtononClick,
   leftButtonText,
   rightButtonText,
-}: YesNoModalProps) {
+}: AlertModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useOutSideClick(modalRef, leftButtononClick);

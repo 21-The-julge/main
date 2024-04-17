@@ -23,7 +23,7 @@ export default function Home() {
       {isModalOpen && (
         <div>
           <Modal>
-            <Modal.YesNo
+            <Modal.Alert
               message="신청을 취소하시겠어요?"
               className={styles.test}
               leftButtononClick={handleleftButtononClick}

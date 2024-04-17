@@ -10,11 +10,11 @@ interface InputFieldProps {
   placeholder?: string;
   size?: "sm" | "md" | "full";
   color?: "white" | "gray";
+  isError?: true | false;
 }
 
-export default function InputField({ name, type, placeholder, size, color }: InputFieldProps) {
-  const className: string = cn("default", size, color);
-  const errorMessage: string = cn("errorMessage", "red");
+export default function InputField({ name, type, placeholder, size, color, isError }: InputFieldProps) {
+  const className: string = cn("default", size, color, isError && "error");
 
   return (
     <div className={styles.inputField}>
@@ -24,7 +24,7 @@ export default function InputField({ name, type, placeholder, size, color }: Inp
         <Input name={name} type={type} placeholder={placeholder} size={size} />
       </div>
       {/* <PreffixIcon /> */}
-      <span className={errorMessage}>잘못된 이메일 입니다.</span>
+      <span className={styles.errorMessage}>잘못된 이메일 입니다.</span>
     </div>
   );
 }
@@ -35,4 +35,5 @@ InputField.defaultProps = {
   size: "md",
   type: "text",
   color: "white",
+  isError: true,
 };

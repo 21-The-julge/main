@@ -57,9 +57,15 @@
 
 .default {
   border: none;
+  outline: none;
   @include sopoqa-16-400;
 
   &::placeholder {
     color: $color-gray-40;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
   }
 }

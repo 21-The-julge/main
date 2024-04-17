@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/WarnModal/WarnModal.module.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Warn from "@/images/ic_warn.svg";
+import useOutSideClick from "../hooks/useOutsideClick";
 
 const cn = classNames.bind(styles);
 
@@ -14,18 +15,7 @@ interface WarnModalProps {
 export default function WarnModal({ message, className, onClick }: WarnModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClick();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClick]);
+  useOutSideClick(modalRef, onClick);
 
   return (
     <div className={cn(className, "modalContainer")} ref={modalRef}>

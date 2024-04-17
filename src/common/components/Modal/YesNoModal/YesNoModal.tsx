@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/YesNoModal/YesNoModal.module.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Check from "@/images/ic_check.svg";
+import useOutSideClick from "../hooks/useOutsideClick";
 
 const cn = classNames.bind(styles);
 
@@ -24,18 +25,7 @@ export default function YesNoModal({
 }: YesNoModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        leftButtononClick();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [leftButtononClick]);
+  useOutSideClick(modalRef, leftButtononClick);
 
   return (
     <div className={cn(className, "modalContainer")} ref={modalRef}>

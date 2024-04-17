@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/ConfirmModal/confirmModal.module.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import useOutSideClick from "../hooks/useOutsideClick";
 
 const cn = classNames.bind(styles);
 
@@ -13,18 +14,8 @@ interface ConfirmModalProps {
 export default function ConfirmModal({ message, className, onClick }: ConfirmModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClick();
-      }
-    };
+  useOutSideClick(modalRef, onClick);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClick]);
   return (
     <div className={cn(className, "modalContainer")} ref={modalRef}>
       <p className={cn("text")}>{message}</p>

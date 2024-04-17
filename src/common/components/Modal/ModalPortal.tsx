@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-function Portal({ children }: { children: ReactElement }) {
+export default function Portal({ children }: { children: ReactElement }) {
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -13,5 +13,3 @@ function Portal({ children }: { children: ReactElement }) {
 
   return mounted ? createPortal(children, document.getElementById("modal-root") as HTMLElement) : null;
 }
-
-export default Portal;

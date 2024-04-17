@@ -3,7 +3,7 @@ import { ToastText } from "@/common/components/Toast/constants/ToastText";
 
 type TostType = keyof ToastText;
 
-export default function setToast(type: TostType, text: string): void {
+export default function setToast(type: TostType, text: string) {
   toast[type](text, {
     position: "bottom-center", // 위치
     autoClose: 3000, // 시간

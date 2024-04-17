@@ -16,7 +16,7 @@ interface ModalProps {
 export default function Modal({ children }: ModalProps) {
   return (
     <Portal>
-      <div className={cn("background")}>{children}</div>
+      <div className={cn("dimmed")}>{children}</div>
     </Portal>
   );
 }

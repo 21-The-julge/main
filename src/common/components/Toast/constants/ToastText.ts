@@ -1,14 +1,14 @@
-interface ToastTextType {
+interface ToastText {
   success: "success";
   error: "error";
   warn: "warn";
   info: "info";
 }
-const ToastText: ToastTextType = {
+const TOAST_TEXT: ToastText = {
   success: "success",
   error: "error",
   warn: "warn",
   info: "info",
 };
 
-export default ToastText;
+export default TOAST_TEXT;

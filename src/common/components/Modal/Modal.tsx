@@ -9,11 +9,11 @@ import WarnModal from "./WarnModal/WarnModal";
 
 const cn = classNames.bind(styles);
 
-type Props = {
+interface ModalProps {
   children: ReactNode;
-};
+}
 
-export default function Modal({ children }: Props) {
+export default function Modal({ children }: ModalProps) {
   return (
     <Portal>
       <div className={cn("background")}>{children}</div>

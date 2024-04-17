@@ -4,12 +4,12 @@ import ArrowUp from "@/images/ic_arrowUp.svg";
 
 const cn = classNames.bind(styles);
 
-type HighPriceRateBadgeProps = {
+interface HighPriceRateBadgeProps {
   closed: boolean;
   isPast: boolean;
   hourlyPay: number;
   originalHourlyPay: number;
-};
+}
 
 export default function HighPriceRateBadge({ closed, isPast, hourlyPay, originalHourlyPay }: HighPriceRateBadgeProps) {
   const percentage = Number((((hourlyPay - originalHourlyPay) / originalHourlyPay) * 100).toFixed());

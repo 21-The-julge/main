@@ -3,10 +3,10 @@ import styles from "@/shared/components/Post/NoticeMessage/NoticeMessage.module.
 
 const cn = classNames.bind(styles);
 
-type NoticeMessageProps = {
+interface NoticeMessageProps {
   isPast: boolean;
   closed: boolean;
-};
+}
 
 export default function NoticeMessage({ isPast, closed }: NoticeMessageProps) {
   return (

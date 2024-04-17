@@ -9,7 +9,7 @@ import HighPriceRateBadge from "./HighPriceRateBadge/HighPriceRateBadge";
 
 const cn = classNames.bind(styles);
 
-type Props = {
+interface PostProps {
   imageUrl: string;
   startsAt: string;
   workhour: number;
@@ -18,7 +18,7 @@ type Props = {
   name: string;
   address1: string;
   originalHourlyPay: number;
-};
+}
 
 export default function Post({
   imageUrl,
@@ -29,7 +29,7 @@ export default function Post({
   name,
   address1,
   originalHourlyPay,
-}: Props) {
+}: PostProps) {
   const currentDate = new Date();
   const endDate = new Date(startsAt);
   const isPast = currentDate > endDate;

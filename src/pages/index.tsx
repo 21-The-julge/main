@@ -5,7 +5,7 @@ import React from "react";
 export default function Home() {
   return (
     <div>
-      <button type="button" onClick={() => openToast(TOAST_TEXT.success, "ㅇㅇㅇㅇ!")}>
+      <button type="button" onClick={() => openToast(TOAST_TEXT.success, "ㅇㅇㅇㅇ!", 1000)}>
         success
       </button>
       <hr />

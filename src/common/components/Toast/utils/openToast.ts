@@ -3,10 +3,10 @@ import { ToastText } from "@/common/components/Toast/constants/ToastText";
 
 type TostType = keyof ToastText;
 
-export default function openToast(type: TostType, text: string) {
+export default function openToast(type: TostType, text: string, time: number = 3000) {
   toast[type](text, {
     position: "bottom-center", // 위치
-    autoClose: 3_000, // 시간
+    autoClose: time, // 시간
     hideProgressBar: false, // 로딩 바
     closeOnClick: true, // 클릭 -> 닫기
     pauseOnHover: false, // 마우스 오버 시간 멈추기

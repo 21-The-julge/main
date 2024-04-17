@@ -26,10 +26,10 @@ export default function Home() {
             <Modal.Alert
               message="신청을 취소하시겠어요?"
               className={styles.test}
-              leftButtononClick={handleleftButtononClick}
-              rightButtononClick={handlerightButtononClick}
-              leftButtonText="아니오"
-              rightButtonText="취소"
+              cancelButtonOnClick={handleleftButtononClick}
+              confirmButtonOnClick={handlerightButtononClick}
+              cancelButtonText="아니오"
+              confirmButtonText="취소"
             />
             {/* <Modal.Confirm message="등록이 완료되었습니다." className={styles.test} onClick={handleClickConfirm} />
             <Modal.Warn

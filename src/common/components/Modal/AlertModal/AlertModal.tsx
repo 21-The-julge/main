@@ -9,23 +9,23 @@ const cn = classNames.bind(styles);
 interface AlertModalProps {
   message: string;
   className: string;
-  leftButtononClick: () => void;
-  rightButtononClick: () => void;
-  leftButtonText: string;
-  rightButtonText: string;
+  cancelButtonOnClick: () => void;
+  confirmButtonOnClick: () => void;
+  cancelButtonText: string;
+  confirmButtonText: string;
 }
 
 export default function AlertModal({
   message,
   className,
-  leftButtononClick,
-  rightButtononClick,
-  leftButtonText,
-  rightButtonText,
+  cancelButtonOnClick,
+  confirmButtonOnClick,
+  cancelButtonText,
+  confirmButtonText,
 }: AlertModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useOutSideClick(modalRef, leftButtononClick);
+  useOutSideClick(modalRef, cancelButtonOnClick);
 
   return (
     <div className={cn(className, "modalContainer")} ref={modalRef}>
@@ -34,11 +34,11 @@ export default function AlertModal({
         <p className={cn("text")}>{message}</p>
       </div>
       <div className={cn("buttonContainer")}>
-        <button onClick={leftButtononClick} type="button" className={cn("leftButton")}>
-          {leftButtonText}
+        <button onClick={cancelButtonOnClick} type="button" className={cn("leftButton")}>
+          {cancelButtonText}
         </button>
-        <button onClick={rightButtononClick} type="button" className={cn("rightButton")}>
-          {rightButtonText}
+        <button onClick={confirmButtonOnClick} type="button" className={cn("rightButton")}>
+          {confirmButtonText}
         </button>
       </div>
     </div>

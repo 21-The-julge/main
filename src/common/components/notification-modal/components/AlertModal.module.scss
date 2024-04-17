@@ -1,0 +1,105 @@
+@import "/src/styles/globals.scss";
+
+.container {
+  background-color: $color-red-10;
+
+  width: 37.5rem;
+  height: 81.2rem;
+  padding: 4rem 2rem;
+
+  position: absolute;
+  top: 6rem;
+  right: 17rem;
+  z-index: $zindex-popover;
+}
+
+.notification {
+  background-color: $color-red-10;
+  width: 100%;
+  padding-bottom: 1.6rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  @include sopoqa-28-700;
+  font-size: 2rem;
+  line-height: 2.4rem;
+
+  .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+.contents {
+  width: 100%;
+  height: 71.2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.6rem;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.card {
+  background-color: $color-white;
+
+  width: 33.5rem;
+  min-height: 10.5rem;
+  padding: 1.6rem 1.2rem;
+  gap: 0.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid $color-gray-20;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  @include sopoqa-14-400;
+
+  .icon {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  .text_container {
+    width: 29.8rem;
+    height: 4.4rem;
+  }
+  .date {
+    color: $color-gray-40;
+  }
+}
+
+@include tablet {
+  .container {
+    width: 36.8rem;
+    height: 41.9rem;
+    padding: 2.4rem 2rem;
+    border-radius: 1rem;
+
+    right: 3.2rem;
+
+    box-shadow: 0 0.2rem 0.8rem 0 $color-shadow;
+  }
+  .contents {
+    height: 33.1rem;
+  }
+  .card {
+    width: 32.8rem;
+    min-height: 10.5rem;
+  }
+}
+
+@include mobile {
+  .container {
+    width: 100%;
+    height: 41.9rem;
+    padding: 1.6rem 2rem;
+    border-radius: 1rem;
+
+    inset: 0;
+    overflow: scroll;
+  }
+}

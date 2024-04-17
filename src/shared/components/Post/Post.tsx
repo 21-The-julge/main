@@ -36,31 +36,31 @@ export default function Post({
 
   return (
     <div className={cn("postContainer", { closed, isPast })}>
-      <div className={styles.imgContainer}>
+      <div className={cn("imgContainer")}>
         <NoticeMessage isPast={isPast} closed={closed} />
         <Image style={{ objectFit: "cover" }} src={imageUrl} alt="식당 공고" fill />
       </div>
-      <div className={styles.contentContainer}>
-        <div className={styles.restaurantContent}>
-          <p className={styles.restaurantName}>{name}</p>
-          <div className={styles.clockContainer}>
+      <div className={cn("contentContainer")}>
+        <div className={cn("restaurantContent")}>
+          <p className={cn("restaurantName")}>{name}</p>
+          <div className={cn("clockContainer")}>
             {closed || isPast ? (
-              <Clock className={styles.clock} fill="#cbc9cf" />
+              <Clock className={cn("clock")} fill="#cbc9cf" />
             ) : (
-              <Clock className={styles.clock} fill="orange" />
+              <Clock className={cn("clock")} fill="orange" />
             )}
             <p>{getFullDate(endDate, workhour)}</p>
           </div>
-          <div className={styles.locationContainer}>
+          <div className={cn("locationContainer")}>
             {closed || isPast ? (
-              <Location className={styles.location} fill="#cbc9cf" />
+              <Location className={cn("location")} fill="#cbc9cf" />
             ) : (
-              <Location className={styles.location} fill="orange" />
+              <Location className={cn("location")} fill="orange" />
             )}
             {address1}
           </div>
         </div>
-        <div className={styles.priceContent}>
+        <div className={cn("priceContent")}>
           <p>{hourlyPay?.toLocaleString()}원</p>
           <HighPriceRateBadge
             closed={closed}

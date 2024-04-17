@@ -5,6 +5,7 @@ import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 
 import styles from "@/common/components/Modal/Modal.module.scss";
 import Portal from "./ModalPortal";
+import WarnModal from "./WarnModal/WarnModal";
 
 const cn = classNames.bind(styles);
 
@@ -22,3 +23,4 @@ export default function Modal({ children }: Props) {
 
 Modal.Confirm = ConfirmModal;
 Modal.YesNo = YesNoModal;
+Modal.Warn = WarnModal;

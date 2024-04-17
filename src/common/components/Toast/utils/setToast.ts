@@ -1,6 +1,7 @@
 import { Bounce, toast } from "react-toastify";
+import { ToastText } from "@/common/components/Toast/constants/ToastText";
 
-type TostType = "info" | "success" | "warn" | "error";
+type TostType = keyof ToastText;
 
 export default function setToast(type: TostType, text: string): void {
   toast[type](text, {

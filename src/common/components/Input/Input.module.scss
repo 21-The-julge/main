@@ -58,4 +58,8 @@
 .default {
   border: none;
   @include sopoqa-16-400;
+
+  &::placeholder {
+    color: $color-gray-40;
+  }
 }

@@ -1,0 +1,28 @@
+.inputField {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .label {
+    @include sopoqa-16-400;
+  }
+
+  .errorMessage {
+    @include sopoqa-12-400;
+  }
+
+  .red {
+    color: $color-red-40;
+  }
+}
+
+.default {
+  padding: 1rem 1.25rem;
+
+  border-radius: 0.375rem;
+  border: 0.0625rem solid $color-gray-30;
+  background: $color-white;
+
+  width: 100vw;
+  max-width: 21.875rem;
+}

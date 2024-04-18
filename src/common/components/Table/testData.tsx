@@ -1,4 +1,4 @@
-interface EmployeeData {
+export interface EmployeeData {
   name: string; // 상점 이름
   startsAt: string; // 근무 시작 시간
   workhour: number; // 근무 시간(시간 단위)

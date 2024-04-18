@@ -4,22 +4,20 @@ import { EmployeeData, employeeColumns, employees, employerColumns, employers } 
 import { UserApplicationData, getUserApplications } from "./tableDate";
 
 export default function UserApplicationsTable() {
-  const [data, setData] = useState<EmployeeData[]>([
-    {
-      name: "상점 이름",
-      startsAt: "근무 시작 시간",
-      workhour: 0, //"근무 시간(시간 단위)",
-      originalHourlyPay: 0, //"원래 시간당 급여",
-      status: "pending",
-    },
-  ]);
+  const [data, setData] = useState<EmployeeData[]>();
 
-  const UserApplicationTableData = {
-    name: "상점 이름",
-    startsAt: "2023-07-26T15:00:00.000Z",
-    workhour: 2, //"근무 시간(시간 단위)",
-    originalHourlyPay: 10000, //"원래 시간당 급여",
-    status: "pending",
+  const transformData = (data: EmployeeData[]): TransformedJobEntry[] => {
+    return data.map((entry) => {
+      const startTime = parseISO(entry.startsAt);
+      const endTime = addHours(startTime, entry.workhour);
+      const dateFormat = `${format(startTime, "yyyy-MM-dd HH:mm")}~${format(endTime, "HH:mm")}`;
+      return {
+        name: entry.name,
+        date: dateFormat,
+        originalHourlyPay: entry.originalHourlyPay,
+        status: entry.status,
+      };
+    });
   };
 
   useEffect(() => {

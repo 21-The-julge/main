@@ -1,0 +1,8 @@
+.suffixIcon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(-50%, -50%);
+  @include sopoqa-16-400;
+  color: $color-black;
+}

@@ -22,10 +22,6 @@
     max-width: 33.5rem;
   }
 
-  .label {
-    @include sopoqa-16-400;
-  }
-
   .error {
     border: 1px solid $color-red-40;
   }

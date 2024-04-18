@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
-import { PrefixIcon, SuffixIcon, ErrorMessage } from "./index";
-import Input from "../Input/Input";
+import { PrefixIcon, SuffixIcon, ErrorMessage, Label } from "./index";
+import Input from "./Input/Input";
 
 const cn = classNames.bind(styles);
 
@@ -43,12 +43,7 @@ export default function InputField({
 
   return (
     <div className={styles.inputField}>
-      {label && (
-        <label htmlFor={name} className={styles.label}>
-          {label}
-        </label>
-      )}
-
+      {label && <Label name={name} label={label} />}
       <div className={className}>
         {prefix && <PrefixIcon prefix={prefix} />}
         <Input
@@ -63,7 +58,6 @@ export default function InputField({
         />
         {unit && <SuffixIcon suffix={unit} />}
       </div>
-
       {isError && <ErrorMessage errorMessage={errorMessage} />}
     </div>
   );

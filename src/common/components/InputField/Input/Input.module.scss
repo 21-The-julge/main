@@ -1,0 +1,38 @@
+.default {
+  border: none;
+  outline: none;
+  @include sopoqa-16-400;
+
+  &::placeholder {
+    color: $color-gray-40;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.sm {
+  @include sopoqa-12-400;
+}
+
+.white {
+  background: $color-white;
+}
+
+.gray {
+  background: $color-gray-10;
+}
+
+@include tablet {
+  .sm {
+    @include sopoqa-14-400;
+  }
+}
+
+@include desktop {
+  .sm {
+    @include sopoqa-14-400;
+  }
+}

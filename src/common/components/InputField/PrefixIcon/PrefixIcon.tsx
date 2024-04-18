@@ -6,5 +6,5 @@ interface PrefixIconProp {
 }
 
 export default function PrefixIcon({ prefix }: PrefixIconProp) {
-  return prefix === "search" && <SearchIcon width={20} height={20} />;
+  return prefix === "search" && <SearchIcon width="20" height="20" stroke="#A4A1AA" />;
 }

@@ -5,7 +5,7 @@ import styles from "./Input.module.scss";
 const cn = classNames.bind(styles);
 
 interface InputProps {
-  type: "text" | "email" | "password" | "dropdown" | "search" | "number" | "time";
+  type: "text" | "email" | "password" | "dropdown" | "search";
   size?: "sm" | "md" | "full";
   placeholder?: string;
   name: string;

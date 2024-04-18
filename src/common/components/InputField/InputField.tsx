@@ -8,7 +8,7 @@ const cn = classNames.bind(styles);
 
 interface InputFieldProps {
   name: string;
-  type?: "text" | "email" | "password" | "dropdown" | "search" | "number" | "time";
+  type?: "text" | "email" | "password" | "dropdown" | "search";
   placeholder?: string;
   size?: "sm" | "md" | "full";
   color?: "white" | "gray";
@@ -38,6 +38,7 @@ export default function InputField({
   onChange,
   border = "solid",
   errorMessage,
+  ...rest
 }: InputFieldProps) {
   const className: string = cn("default", size, color, isError && "error", border);
 
@@ -55,6 +56,7 @@ export default function InputField({
           disabled={disabled}
           value={value}
           onChange={onChange}
+          {...rest}
         />
         {unit && <SuffixIcon suffix={unit} />}
       </div>

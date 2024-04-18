@@ -22,6 +22,11 @@
     max-width: 33.5rem;
   }
 
+  .full {
+    padding: 1rem 1.25rem;
+    width: 100vw;
+  }
+
   .error {
     border: 1px solid $color-red-40;
   }

@@ -2,7 +2,8 @@ import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/ConfirmModal/confirmModal.module.scss";
 import { useRef } from "react";
 import Modal from "@/common/components/Modal/Modal";
-import useOutSideClick from "../hooks/useOutsideClick";
+import useOutSideClick from "@/common/components/Modal/hooks/useOutsideClick";
+import Button from "@/common/components/Button/Button";
 
 const cn = classNames.bind(styles);
 
@@ -21,9 +22,9 @@ export default function ConfirmModal({ message, className, onClick }: ConfirmMod
     <Modal>
       <div className={cn(className, "modalContainer")} ref={modalRef}>
         <p className={cn("text")}>{message}</p>
-        <button onClick={onClick} className={cn("buttonPosition")} type="button">
+        <Button onClick={onClick} size="medium">
           확인
-        </button>
+        </Button>
       </div>
     </Modal>
   );

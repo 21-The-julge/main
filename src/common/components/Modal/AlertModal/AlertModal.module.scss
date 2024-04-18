@@ -21,6 +21,8 @@
   .buttonContainer {
     display: flex;
     gap: 0.8rem;
+    width: 100%;
+    justify-content: center;
   }
   .leftButton,
   .rightButton {

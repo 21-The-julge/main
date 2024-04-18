@@ -3,7 +3,8 @@ import styles from "@/common/components/Modal/AlertModal/AlertModal.module.scss"
 import { useRef } from "react";
 import Check from "@/images/ic_check.svg";
 import Modal from "@/common/components/Modal/Modal";
-import useOutSideClick from "../hooks/useOutsideClick";
+import useOutSideClick from "@/common/components/Modal/hooks/useOutsideClick";
+import Button from "@/common/components/Button/Button";
 
 const cn = classNames.bind(styles);
 
@@ -32,16 +33,16 @@ export default function AlertModal({
     <Modal>
       <div className={cn(className, "modalContainer")} ref={modalRef}>
         <div className={cn("messageContainer")}>
-          <Check width={16} height={16} />
+          <Check width={20} height={20} />
           <p className={cn("text")}>{message}</p>
         </div>
         <div className={cn("buttonContainer")}>
-          <button onClick={cancelButtonOnClick} type="button" className={cn("leftButton")}>
+          <Button onClick={cancelButtonOnClick} variant="outline" color="primary" size="small">
             {cancelButtonText}
-          </button>
-          <button onClick={confirmButtonOnClick} type="button" className={cn("rightButton")}>
+          </Button>
+          <Button onClick={confirmButtonOnClick} size="small">
             {confirmButtonText}
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

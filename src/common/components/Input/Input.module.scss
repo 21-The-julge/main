@@ -70,10 +70,26 @@
   }
 }
 
+.sm {
+  @include sopoqa-12-400;
+}
+
 .white {
   background: $color-white;
 }
 
 .gray {
   background: $color-gray-10;
+}
+
+@include tablet {
+  .sm {
+    @include sopoqa-14-400;
+  }
+}
+
+@include desktop {
+  .sm {
+    @include sopoqa-14-400;
+  }
 }

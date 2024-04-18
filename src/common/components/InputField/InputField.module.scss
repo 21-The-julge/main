@@ -4,15 +4,22 @@
   gap: 0.5rem;
 
   .default {
-    padding: 1rem 1.25rem;
-
+    position: relative;
+    width: 100vw;
+    display: flex;
+    align-items: center;
     border-radius: 0.375rem;
     border: 0.0625rem solid $color-gray-30;
+  }
 
-    width: 100vw;
-    max-width: 21.875rem;
+  .md {
+    padding: 1rem 1.25rem;
+    max-width: 35rem;
+  }
 
-    position: relative;
+  .sm {
+    padding: 0.5rem;
+    max-width: 33.5rem;
   }
 
   .label {
@@ -23,16 +30,29 @@
     border: 1px solid $color-red-40;
   }
 
-  .errorMessage {
-    @include sopoqa-12-400;
-    color: $color-red-40;
-  }
-
   .white {
     background: $color-white;
   }
 
   .gray {
     background: $color-gray-10;
+  }
+
+  .none {
+    border: none;
+  }
+
+  @include tablet {
+    .sm {
+      gap: 0.625rem;
+      padding: 0.625rem;
+    }
+  }
+
+  @include desktop {
+    .sm {
+      gap: 0.625rem;
+      padding: 0.625rem;
+    }
   }
 }

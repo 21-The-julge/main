@@ -1,7 +1,7 @@
-function getDate(data: Date) {
-  const year = data.getFullYear().toString();
-  const month = (data.getMonth() + 1).toString().padStart(2, "0");
-  const day = data.getDay().toString().padStart(2, "0");
+function getDate(date: Date) {
+  const year = date.getFullYear().toString();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDay().toString().padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }

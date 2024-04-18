@@ -21,12 +21,12 @@ export default function HighPriceRateBadge({ closed, isPast, hourlyPay, original
   } else {
     color = "red40";
   }
+  if (percentage <= 0) return null;
+
   return (
-    percentage > 0 && (
-      <div className={cn("badge", { closed, isPast }, isPast || color)}>
-        <span className={cn("percentage")}>기존 시급보다 {percentage}%</span>
-        <ArrowUp className={cn("svg")} width={20} height={20} fill="white" />
-      </div>
-    )
+    <div className={cn("badge", { closed, isPast }, isPast || color)}>
+      <span className={cn("percentage")}>기존 시급보다 {percentage}%</span>
+      <ArrowUp className={cn("svg")} width={20} height={20} fill="white" />
+    </div>
   );
 }

@@ -26,6 +26,10 @@
     @include sopoqa-20-700;
   }
 
+  .img {
+    object-fit: cover;
+  }
+
   .clockContainer,
   .locationContainer {
     display: flex;

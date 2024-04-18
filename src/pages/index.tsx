@@ -26,15 +26,11 @@ type Res = {
   };
 };
 
-type Props = {
-  item: Res[];
-};
-
 export default function Home() {
-  const [userData, setUserData] = useState<Props["item"]>([]);
+  const [userData, setUserData] = useState<Res[]>([]);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await instance.get(`notices`);
+      const response = await instance.get("notices");
       setUserData(response.data.items);
     };
     fetchData();
@@ -52,7 +48,7 @@ export default function Home() {
             hourlyPay={data.item.hourlyPay}
             closed={data.item.closed}
             name={data.item.shop?.item?.name}
-            address1={data.item.shop?.item?.address1}
+            address={data.item.shop?.item?.address1}
             originalHourlyPay={data.item.shop?.item?.originalHourlyPay}
           />
         </div>

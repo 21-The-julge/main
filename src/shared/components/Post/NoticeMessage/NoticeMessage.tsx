@@ -9,11 +9,12 @@ interface NoticeMessageProps {
 }
 
 export default function NoticeMessage({ isPast, closed }: NoticeMessageProps) {
+  const isClosed = (closed && isPast) || (closed && !isPast);
+  const isPasted = isPast && !closed;
   return (
     <>
-      {closed && isPast && <div className={cn("imgOverlay")}>마감 완료</div>}
-      {isPast && !closed && <div className={cn("imgOverlay")}>지난 공고</div>}
-      {closed && !isPast && <div className={cn("imgOverlay")}>마감 완료</div>}
+      {isClosed && <div className={cn("imgOverlay")}>마감 완료</div>}
+      {isPasted && <div className={cn("imgOverlay")}>지난 공고</div>}
     </>
   );
 }

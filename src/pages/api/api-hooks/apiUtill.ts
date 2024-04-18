@@ -1,16 +1,18 @@
 import { useState } from "react";
-import axiosInstance from "../axiosInstance.js";
+import { axiosInstance, axiosInstanceToken } from "../axiosInstance.js";
 
 interface Error {
   message: string;
 }
-export async function GetData(url: string) {
+
+export async function GetData(url: string, requiredToken = false) {
   const [response, setResponse] = useState();
   const [error, setError] = useState({ message: "" });
   const [isLoading, setIsLoading] = useState(true);
 
   try {
-    const result = await axiosInstance.get(url);
+    const axios = requiredToken ? axiosInstanceToken : axiosInstance;
+    const result = await axios.get(url);
     setResponse(result.data);
   } catch (err) {
     setError(err as Error);
@@ -21,13 +23,14 @@ export async function GetData(url: string) {
   return { response, error, isLoading };
 }
 
-export async function PostData(url: string, data: object) {
+export async function PostData(url: string, data: object, requiredToken = false) {
   const [response, setResponse] = useState();
   const [error, setError] = useState({ message: "" });
   const [isLoading, setIsLoading] = useState(true);
 
   try {
-    const result = await axiosInstance.post(url, data);
+    const axios = requiredToken ? axiosInstanceToken : axiosInstance;
+    const result = await axios.post(url, data);
     setResponse(result.data);
   } catch (err) {
     setError(err as Error);
@@ -38,13 +41,14 @@ export async function PostData(url: string, data: object) {
   return { response, error, isLoading };
 }
 
-export async function PutData(url: string, data: object) {
+export async function PutData(url: string, data: object, requiredToken = false) {
   const [response, setResponse] = useState();
   const [error, setError] = useState({ message: "" });
   const [isLoading, setIsLoading] = useState(true);
 
   try {
-    const result = await axiosInstance.put(url, data);
+    const axios = requiredToken ? axiosInstanceToken : axiosInstance;
+    const result = await axios.put(url, data);
     setResponse(result.data);
   } catch (err) {
     setError(err as Error);

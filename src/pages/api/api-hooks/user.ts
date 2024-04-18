@@ -12,6 +12,6 @@ export async function GetUserData(url: string) {
 }
 // 내 정보 수정 PUT 요청 api
 export async function PutUserData(url: string, data: object) {
-  const { response, error, isLoading } = await PutData(url, data);
+  const { response, error, isLoading } = await PutData(url, data, true);
   return { response, error, isLoading };
 }

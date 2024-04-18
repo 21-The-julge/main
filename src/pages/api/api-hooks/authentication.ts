@@ -19,7 +19,6 @@ interface Response {
 
 export default async function PostSignIn(url: string, data: object) {
   const { response, error, isLoading } = await PostData(url, data);
-
   if (response) {
     const responseItem: Response = response;
     const { token } = responseItem.item;

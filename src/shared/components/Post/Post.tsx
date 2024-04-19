@@ -19,6 +19,7 @@ interface PostProps {
   name: string;
   address: string;
   originalHourlyPay: number;
+  className: string;
 }
 
 export default function Post({
@@ -30,13 +31,14 @@ export default function Post({
   name,
   address,
   originalHourlyPay,
+  className,
 }: PostProps) {
   const currentDate = new Date();
   const endDate = new Date(startsAt);
   const isPast = currentDate > endDate;
 
   return (
-    <div className={cn("postContainer", { closed, isPast })}>
+    <div className={cn("postContainer", className, { closed, isPast })}>
       <div className={cn("imgContainer")}>
         <NoticeMessage isPast={isPast} closed={closed} />
         <Image className={cn("img")} src={imageUrl} alt="식당 공고" fill />

@@ -1,11 +1,12 @@
 import { ChangeEvent } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./Input.module.scss";
 
 const cn = classNames.bind(styles);
 
 interface InputProps {
-  type: "text" | "email" | "password" | "dropdown" | "search";
+  type: "text" | "email" | "password" | "search";
   size?: "sm" | "md" | "full";
   placeholder?: string;
   name: string;
@@ -26,7 +27,7 @@ export default function Input({
   onChange,
   ...rest
 }: InputProps) {
-  const className: string = cn("default", size, color);
+  const className = cn("default", size, color);
 
   return (
     <input

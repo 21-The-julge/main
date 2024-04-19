@@ -1,18 +1,18 @@
 import { ChangeEvent } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
-import { PrefixIcon, SuffixIcon, ErrorMessage, Label } from "./index";
-import Input from "./Input/Input";
+
+import { PrefixIcon, SuffixIcon, ErrorMessage, Label, Input } from "./index";
 
 const cn = classNames.bind(styles);
 
 interface InputFieldProps {
+  type?: "text" | "email" | "password" | "search";
   name: string;
-  type?: "text" | "email" | "password" | "dropdown" | "search";
   placeholder?: string;
   size?: "sm" | "md" | "full";
   color?: "white" | "gray";
-  isError?: true | false;
   label?: string;
   disabled?: true | false;
   unit?: string;
@@ -20,6 +20,7 @@ interface InputFieldProps {
   value?: string;
   onChange?: (e: ChangeEvent) => void;
   border?: "solid" | "none";
+  isError?: true | false;
   errorMessage?: string;
 }
 
@@ -37,10 +38,10 @@ export default function InputField({
   value,
   onChange,
   border = "solid",
-  errorMessage,
+  errorMessage = "",
   ...rest
 }: InputFieldProps) {
-  const className: string = cn("default", size, color, isError && "error", border);
+  const className = cn("default", size, color, isError && "error", border);
 
   return (
     <div className={styles.inputField}>
@@ -60,7 +61,7 @@ export default function InputField({
         />
         {unit && <SuffixIcon suffix={unit} />}
       </div>
-      {isError && <ErrorMessage errorMessage={errorMessage} />}
+      {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
 }

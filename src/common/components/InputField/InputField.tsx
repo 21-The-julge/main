@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
 
-import { PrefixIcon, SuffixIcon, ErrorMessage, Label, Input } from "./index";
+import { PrefixElement, SuffixElement, ErrorMessage, Label, Input } from "./index";
 
 const cn = classNames.bind(styles);
 
@@ -40,13 +40,13 @@ export default function InputField({
   border = "solid",
   errorMessage = "",
 }: InputFieldProps) {
-  const className = cn("default", size, color, isError && "error", border);
+  const className = cn("default", size, color, border, { error: isError });
 
   return (
-    <div className={styles.inputField}>
+    <div className={cn("inputField")}>
       {label && <Label htmlFor={name} label={label} />}
       <div className={className}>
-        {prefix && <PrefixIcon prefix={prefix} />}
+        {prefix && <PrefixElement element={prefix} />}
         <Input
           name={name}
           type={type}
@@ -57,7 +57,7 @@ export default function InputField({
           value={value}
           onChange={onChange}
         />
-        {unit && <SuffixIcon suffix={unit} />}
+        {unit && <SuffixElement element={unit} />}
       </div>
       {isError && <ErrorMessage message={errorMessage} />}
     </div>

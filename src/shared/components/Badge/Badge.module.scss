@@ -9,6 +9,7 @@
   gap: 0.4rem;
   @include sopoqa-14-700;
 }
+
 .responsive {
   @include mobile {
     @include sopoqa-12-400;

@@ -5,7 +5,7 @@ import CloseIcon from "@/images/ic_close.svg";
 
 interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   color: "blue" | "green" | "red";
-  styleMode?: "fixed" | "responsive";
+  isResponsive: boolean;
   hasCloseIcon?: boolean;
   onClick?: () => void;
   className?: string;
@@ -15,13 +15,13 @@ const cn = classNames.bind(styles);
 export default function Badge({
   color,
   hasCloseIcon = false,
-  styleMode,
+  isResponsive,
   children,
   onClick,
   className,
   ...props
 }: BadgeProps) {
-  const badgeClass = cn("badge", color, { responsive: styleMode === "responsive" }, className);
+  const badgeClass = cn("badge", color, { responsive: isResponsive }, className);
   return (
     <div className={badgeClass} {...props}>
       {children}
@@ -29,4 +29,3 @@ export default function Badge({
     </div>
   );
 }
-//

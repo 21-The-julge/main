@@ -10,7 +10,8 @@ export default function ShopRegister() {
   const router = useRouter();
 
   const handleClick = () => {
-    return router.push(`/`); // 가게 정보 등록 페이지로 이동해야함. + 등록한 가게가 있으면 모달 띄우기
+    router.push("/");
+    // TODO: 가게 정보 등록 페이지로 이동해야함. + 등록한 가게가 있으면 모달 띄우기
   };
 
   return (

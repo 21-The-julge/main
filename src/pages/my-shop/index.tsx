@@ -1,5 +1,5 @@
 import ShopRegister from "@/page-layout/MyShopLayout/component/ShopRegister/ShopRegister";
-import styles from "@/pages/myshop/myshop.module.scss";
+import styles from "@/pages/my-shop/myshop.module.scss";
 import classNames from "classnames/bind";
 
 const cn = classNames.bind(styles);

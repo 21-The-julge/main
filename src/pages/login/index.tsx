@@ -1,5 +1,6 @@
-import InputField from "@/common/components/InputField/InputField";
+import Dropdown from "@/common/components/Dropdown/Dropdown";
+import { BUSINESS_OPTIONS } from "@/common/constants";
 
 export default function LoginPage() {
-  return <InputField name="시급" label="시급" placeholder="입력" type="text" unit="원" />;
+  return <Dropdown options={BUSINESS_OPTIONS} />;
 }

@@ -54,3 +54,5 @@ export const ERROR_MESSAGE = {
   SHORT_PASSWORD: "8자 이상 입력해 주세요.",
   INCORRECT_PASSWORD: "비밀번호가 일치하지 않습니다.",
 } as const;
+
+export const BUSINESS_OPTIONS = ["한식", "중식", "일식", "양식", "분식", "카페", "편의점", "기타"];

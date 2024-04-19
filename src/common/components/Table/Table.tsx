@@ -3,8 +3,6 @@ import classNames from "classnames/bind";
 import styles from "./Table.module.scss";
 import Button from "@/common/components/Button/Button";
 
-const cn = classNames.bind(styles);
-
 interface TableProps {
   columns: Array<{
     header: string;
@@ -14,10 +12,13 @@ interface TableProps {
   position?: "employee" | "employer";
 }
 
+const cn = classNames.bind(styles);
+
 export default function Table({ columns, data, position }: TableProps) {
   const [tableData, setTableData] = useState(data);
 
-  // 버튼 클릭 이벤트
+  // 버튼 클릭 후 발생되는 이벤트 // 함수의 인덱스를 map함수의 index로 넣어야해서 handleClick 함수대신 이렇게 표현했는데 맞는지 살짝 헷갈리네요
+  // {() => handleStatusChange(index, "rejected")}
   const handleStatusChange = (index: number, buttonStatus: string) => {
     const newData = [...tableData];
     newData[index].status = buttonStatus;

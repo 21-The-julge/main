@@ -13,17 +13,20 @@
     align-items: center;
     gap: 1.6rem;
   }
+
   .text {
     color: $color-black;
     text-align: center;
     @include sopoqa-16-400;
   }
+
   .buttonContainer {
     display: flex;
     gap: 0.8rem;
     width: 100%;
     justify-content: center;
   }
+
   .leftButton,
   .rightButton {
     display: flex;

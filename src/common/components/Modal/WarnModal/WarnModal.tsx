@@ -3,7 +3,7 @@ import styles from "@/common/components/Modal/WarnModal/WarnModal.module.scss";
 import { useRef } from "react";
 import Warn from "@/images/ic_warn.svg";
 import Modal from "@/common/components/Modal/Modal";
-import useOutSideClick from "@/common/components/Modal/hooks/useOutsideClick";
+import useOutsideClick from "@/common/components/Modal/hooks/useOutsideClick";
 import Button from "@/common/components/Button/Button";
 
 const cn = classNames.bind(styles);
@@ -17,11 +17,11 @@ interface WarnModalProps {
 export default function WarnModal({ message, className, onClick }: WarnModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useOutSideClick(modalRef, onClick);
+  useOutsideClick(modalRef, onClick);
 
   return (
     <Modal>
-      <div className={cn(className, "modalContainer")} ref={modalRef}>
+      <div className={cn("modalContainer", className)} ref={modalRef}>
         <div className={cn("messageContainer")}>
           <Warn width={20} height={20} />
           <p className={cn("text")}>{message}</p>

@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/Modal.module.scss";
-import Portal from "./ModalPortal";
+import ModalPortal from "./ModalPortal";
 
 const cn = classNames.bind(styles);
 
@@ -11,8 +11,8 @@ interface ModalProps {
 
 export default function Modal({ children }: ModalProps) {
   return (
-    <Portal>
+    <ModalPortal>
       <div className={cn("dimmed")}>{children}</div>
-    </Portal>
+    </ModalPortal>
   );
 }

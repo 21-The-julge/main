@@ -1,47 +1,65 @@
-import { useState, useEffect } from "react";
-import Table from "./Table"; // './Table'은 이전에 정의한 Table 컴포넌트의 경로입니다.
-import { EmployeeData, employeeColumns, employees, employerColumns, employers } from "./testData";
-import { UserApplicationData, getUserApplications } from "./tableDate";
+import Table from "./Table";
+import { useState } from "react";
+import { parseISO, format, addHours } from "date-fns";
+import { employeeTableData } from "@/common/components/Table/testData";
 
-export default function UserApplicationsTable() {
-  const [data, setData] = useState<EmployeeData[]>();
-
-  const transformData = (data: EmployeeData[]): TransformedJobEntry[] => {
-    return data.map((entry) => {
-      const startTime = parseISO(entry.startsAt);
-      const endTime = addHours(startTime, entry.workhour);
-      const dateFormat = `${format(startTime, "yyyy-MM-dd HH:mm")}~${format(endTime, "HH:mm")}`;
-      return {
-        name: entry.name,
-        date: dateFormat,
-        originalHourlyPay: entry.originalHourlyPay,
-        status: entry.status,
-      };
-    });
-  };
-
-  useEffect(() => {
-    async function fetchData() {
-      const testUserId = "b86138e5-686d-4b12-a52e-1e5fdd442dea";
-      const testToken =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiODYxMzhlNS02ODZkLTRiMTItYTUyZS0xZTVmZGQ0NDJkZWEiLCJpYXQiOjE3MTMyMjEwNTR9.GSbfEfJCXcIHEvn-3qE9BDCnSmTCfSZncNV7zDxOhfY";
-      const ApiResult = await getUserApplications(testUserId, testToken);
-      const userTableDate = await UserApplicationData(ApiResult);
-      setData(userTableDate);
-      console.log(userTableDate);
-    }
-    fetchData();
-  }, []);
-  return <Table columns={employerColumns} data={employers} />;
+// Data 변경 하기전
+interface EmployeeTableData {
+  name: string; // 상점 이름
+  startsAt: string; // 근무 시작 시간
+  workhour: number; // 근무 시간(시간 단위)
+  originalHourlyPay: number; // 원래 시간당 급여
+  status: "pending" | "accepted" | "rejected" | "canceled"; // 지원 상태
+}
+// table에 들어갈 최종 데이터 타입
+interface EmployeeDataForm {
+  name: string;
+  date: string;
+  originalHourlyPay: number;
+  status: string;
+}
+// table header 타입과 접근하는 colum 내용
+interface TableHeader {
+  header: string;
+  accessor: string;
 }
 
-/*
+export default function UserApplicationsTable() {
+  // 여기는 페이지 네이션 관련코드입니다
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 5;
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-  const currentData = data.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
-  const handlePageChange = (page) => {
+  const rowsPageNum = 5;
+  const totalPagesNum = Math.ceil(employeeTableData.length / rowsPageNum);
+  const currentData = employeeTableData.slice((currentPage - 1) * rowsPageNum, currentPage * rowsPageNum);
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-*/
+  // 시간 정제하는 코드에요
+  const timeFormDate = (startsAt: string, workhour: number): string => {
+    const startTime = parseISO(startsAt);
+    const endTime = addHours(startTime, workhour);
+    const date = `${format(startTime, "yyyy-MM-dd HH:mm")}~${format(endTime, "HH:mm")}`;
+    return date;
+  };
+  const statusFormDate = (status: string): string => {
+    let color;
+    if (status === "accepted") {
+      color = "blue";
+    } else if (status === "rejected") {
+      color = "red";
+    } else {
+      color = "green";
+    }
+    return color;
+    // <Badge color={color} hasCloseIcon=false> 이값으로 리턴할것입니다.
+  };
+  const employeeHeaders: TableHeader[] = [
+    { header: "상점 이름", accessor: "name" },
+    { header: "일자", accessor: "date" },
+    { header: "시간당 급여", accessor: "originalHourlyPay" },
+    { header: "지원 상태", accessor: "status" },
+  ];
+
+  return <Table columns={employeeHeaders} data={employeeTableData} position="employer" />;
+  // <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+  // 위에는 예시일뿐이고 여기에 페이지 네이션 컴포넌트 들어가면 됩니다.
+}

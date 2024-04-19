@@ -1,7 +1,7 @@
 import { Bounce, toast } from "react-toastify";
-import { ToastType } from "@/common/components/Toast/constants/toastType";
+import TOAST_TYPE from "@/common/components/Toast/constants/toastType";
 
-type OpenToastType = keyof ToastType;
+type OpenToastType = keyof typeof TOAST_TYPE;
 
 export default function openToast(type: OpenToastType, text: string, time = 3000) {
   toast[type](text, {

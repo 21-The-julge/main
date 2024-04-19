@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import Gnb from "@/common/components/gnb/Gnb";
+import Footer from "@/common/components/footer/Footer";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -6,8 +8,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ko">
-      <body>{children}</body>
-    </html>
+    <div>
+      <Gnb />
+      <main>{children}</main>
+      <Footer />
+    </div>
   );
 }

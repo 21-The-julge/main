@@ -1,9 +1,6 @@
-@import "/src/styles/globals.scss";
-
 .container {
   width: 2.4rem;
   height: 2.4rem;
-  font-size: 0.5rem;
   gap: 4rem;
 }
 @include mobile {

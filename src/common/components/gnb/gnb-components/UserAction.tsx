@@ -1,32 +1,28 @@
 import classNames from "classnames/bind";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { AlertResponseData } from "../../notification-modal/types";
 import styles from "./UserAction.module.scss";
 
 import NotificationModal from "../../notification-modal/NotificationModal";
 
 const cn = classNames.bind(styles);
 
-interface GnbProps {
+interface UserActionProps {
   isLoggedIn: boolean;
-  emplyoer: boolean;
-  isNotification: boolean;
-  count: number;
+  type: "employer" | "employee";
+  notificationData: AlertResponseData | null;
 }
 
-export default function UserAction({ isLoggedIn, emplyoer, isNotification, count }: GnbProps) {
-  const router = useRouter();
-
+export default function UserAction({ isLoggedIn, type, notificationData }: UserActionProps) {
   const handleLogout = () => {
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=" + new Date().toUTCString() + ";path=/`);
-    });
-    router.push("/");
+    sessionStorage.clear();
+    window.location.href = "/";
   };
+  const isEmployer = type === "employer";
 
   const loggedInSection = (
     <>
-      {emplyoer ? (
+      {isEmployer ? (
         <Link href="/my-shop">
           <div>내 가게</div>
         </Link>
@@ -37,7 +33,7 @@ export default function UserAction({ isLoggedIn, emplyoer, isNotification, count
       )}
       {/* eslint-disable-next-line */}
       <div onClick={handleLogout}>로그아웃</div>
-      <NotificationModal isNotification={isNotification} count={count} />
+      <NotificationModal notificationData={notificationData} />
     </>
   );
 
@@ -52,7 +48,5 @@ export default function UserAction({ isLoggedIn, emplyoer, isNotification, count
     </>
   );
 
-  return (
-    <div className={cn(styles.container, { isLoggedIn })}>{isLoggedIn ? loggedInSection : notLoggedInSection}</div>
-  );
+  return <div className={cn("container", { isLoggedIn })}>{isLoggedIn ? loggedInSection : notLoggedInSection}</div>;
 }

@@ -22,9 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  @include sopoqa-28-700;
-  font-size: 2rem;
-  line-height: 2.4rem;
+  @include sopoqa-20-700;
 
   .icon {
     width: 2.4rem;
@@ -53,10 +51,6 @@
   border-radius: 0.5rem;
   border: 1px solid $color-gray-20;
 
-  font-family: Spoqa Han Sans Neo;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 2.2rem;
   @include sopoqa-14-400;
 
   .icon {

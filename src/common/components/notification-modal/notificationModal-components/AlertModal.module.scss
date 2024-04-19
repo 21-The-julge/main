@@ -65,6 +65,13 @@
     color: $color-gray-40;
   }
 }
+.blue {
+  color: $color-blue-20;
+}
+
+.red {
+  color: $color-red-40;
+}
 
 @include tablet {
   .container {

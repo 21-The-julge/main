@@ -24,15 +24,17 @@ export default function UserAction({ isLoggedIn, type, notificationData }: UserA
     <>
       {isEmployer ? (
         <Link href="/my-shop">
-          <div>내 가게</div>
+          <div className={cn("text-button")}>내 가게</div>
         </Link>
       ) : (
         <Link href="/my-profile">
-          <div>내 프로필</div>
+          <div className={cn("text-button")}>내 프로필</div>
         </Link>
       )}
       {/* eslint-disable-next-line */}
-      <div onClick={handleLogout}>로그아웃</div>
+      <div className={cn("text-button")} onClick={handleLogout}>
+        로그아웃
+      </div>
       <NotificationModal notificationData={notificationData} />
     </>
   );
@@ -40,10 +42,10 @@ export default function UserAction({ isLoggedIn, type, notificationData }: UserA
   const notLoggedInSection = (
     <>
       <Link href="/signin">
-        <div>로그인</div>
+        <div className={cn("text-button")}>로그인</div>
       </Link>
       <Link href="/signup">
-        <div>회원가입</div>
+        <div className={cn("text-button")}>회원가입</div>
       </Link>
     </>
   );

@@ -12,6 +12,49 @@ export interface AlertModalProps {
   notificationData: AlertResponseData | null;
 }
 
+function EmpoyerAlertCards({
+  shopName = "HS 과일주스",
+  workhour = "2023-01-14 15:00~18:00",
+  alertCreatedAt = 3,
+  canceled = false,
+}) {
+  const alertColor = canceled ? " #FF4040" : "#0080FF";
+  const alertText = canceled ? "공고에 지원이 취소되었습니다." : "새로운 지원자가 나타났습니다.";
+  return (
+    <div className={cn("card")}>
+      <IC_SEARCH className={cn("icon")} fill={alertColor} />
+      <div className={cn("text-container")}>
+        {shopName}({workhour})
+        <br />
+        {alertText}
+      </div>
+      <div className={cn("date")}>{alertCreatedAt}분 전 </div>
+    </div>
+  );
+}
+
+function EmployeeAlertCards({
+  shopName = "수리 에스프레소 샵",
+  workhour = "2023-01-14 15:00~18:00",
+  alertCreatedAt = 3,
+  rejected = false,
+}) {
+  const alertColor = rejected ? " #FF4040" : "#0080FF";
+  const alertText = rejected ? "거절" : "승인";
+  const alertTextColor = rejected ? "red" : "blue";
+  return (
+    <div className={cn("card")}>
+      <IC_SEARCH className={cn("icon")} fill={alertColor} />
+      <div className={cn("text-container")}>
+        {shopName}({workhour})
+        <br />
+        공고 지원이 <span className={cn(alertTextColor)}>{alertText}</span>되었어요.
+      </div>
+      <div className={cn("date")}>{alertCreatedAt} </div>
+    </div>
+  );
+}
+
 export default function AlertModal({ handleToggleModal, notificationData }: AlertModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,20 +89,8 @@ export default function AlertModal({ handleToggleModal, notificationData }: Aler
         <IC_CLOSE className={cn("icon")} fill="#000" onClick={handleToggleModal} />
       </div>
       <div className={cn("contents")}>
-        <div className={cn("card")}>
-          <IC_SEARCH className={cn("icon")} fill=" #0080FF" />
-          <div className={cn("text-container")}>
-            HS 과일주스(2023-01-14 15:00~18:00) 공고 지원이 <span>승인</span>되었어요.
-          </div>
-          <div className={cn("date")}>3분 전 </div>
-        </div>
-        <div className={cn("card")}>
-          <IC_SEARCH className={cn("icon")} fill=" #FF4040" />
-          <div className={cn("text-container")}>
-            수리 에스프레소 샵(2023-01-14 15:00~18:00) 공고 지원이 <span>거절</span>되었어요.
-          </div>
-          <div className={cn("date")}>3분 전 </div>
-        </div>
+        <EmpoyerAlertCards />
+        <EmployeeAlertCards />
       </div>
     </div>
   );

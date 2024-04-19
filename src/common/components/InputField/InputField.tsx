@@ -9,20 +9,19 @@ const cn = classNames.bind(styles);
 
 interface InputFieldProps {
   type?: "text" | "email" | "password" | "search";
-  name: string;
+  name?: string;
   placeholder?: string;
   size?: "sm" | "md";
   color?: "white" | "gray";
   label?: string;
-  disabled?: true | false;
+  disabled?: boolean;
   unit?: string;
   prefix?: string;
   value?: string;
-  onChange?: (e: ChangeEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   border?: "solid" | "none";
-  isError?: true | false;
+  isError?: boolean;
   errorMessage?: string;
-  width?: string;
 }
 
 export default function InputField({
@@ -40,14 +39,12 @@ export default function InputField({
   onChange,
   border = "solid",
   errorMessage = "",
-  width,
-  ...rest
 }: InputFieldProps) {
-  const className = cn("default", size, color, isError && "error", border, width);
+  const className = cn("default", size, color, isError && "error", border);
 
   return (
     <div className={styles.inputField}>
-      {label && <Label name={name} label={label} />}
+      {label && <Label htmlFor={name} label={label} />}
       <div className={className}>
         {prefix && <PrefixIcon prefix={prefix} />}
         <Input
@@ -59,7 +56,6 @@ export default function InputField({
           disabled={disabled}
           value={value}
           onChange={onChange}
-          {...rest}
         />
         {unit && <SuffixIcon suffix={unit} />}
       </div>

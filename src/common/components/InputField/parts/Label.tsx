@@ -4,13 +4,13 @@ import styles from "./Label.module.scss";
 const cn = classNames.bind(styles);
 
 interface LabelProps {
-  name: string;
+  htmlFor?: string;
   label: string;
 }
 
-export default function Label({ name, label }: LabelProps) {
+export default function Label({ htmlFor, label }: LabelProps) {
   return (
-    <label htmlFor={name} className={cn("label")}>
+    <label htmlFor={htmlFor} className={cn("label")}>
       {label}
     </label>
   );

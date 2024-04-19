@@ -9,11 +9,11 @@ interface InputProps {
   type: "text" | "email" | "password" | "search";
   size?: "sm" | "md";
   placeholder?: string;
-  name: string;
+  name?: string;
   color?: "white" | "gray";
-  disabled?: true | false;
+  disabled?: boolean;
   value?: string | number;
-  onChange?: (e: ChangeEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
@@ -25,7 +25,6 @@ export default function Input({
   disabled = false,
   value,
   onChange,
-  ...rest
 }: InputProps) {
   const className = cn("default", size, color);
 
@@ -39,7 +38,6 @@ export default function Input({
       disabled={disabled}
       value={value}
       onChange={onChange}
-      {...rest}
     />
   );
 }

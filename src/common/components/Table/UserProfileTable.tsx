@@ -24,7 +24,7 @@ interface TableHeader {
   accessor: string;
 }
 
-export default function UserApplicationsTable() {
+export default function UserProfileTable() {
   // 여기는 페이지 네이션 관련코드입니다
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPageNum = 5;

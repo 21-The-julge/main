@@ -1,0 +1,29 @@
+.modalContainer {
+  background-color: $color-white;
+  z-index: $zindex-modal;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .text {
+    margin-top: 5rem;
+    color: $color-black;
+    text-align: center;
+    @include pretendard-18-500;
+  }
+
+  .buttonPosition {
+    display: flex;
+    width: 13.8rem;
+    height: 4.2rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8rem;
+    background: $color-red-40;
+    color: $color-white;
+    text-align: center;
+    @include pretendard-14-500;
+  }
+}

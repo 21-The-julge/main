@@ -1,9 +1,9 @@
 import { Bounce, toast } from "react-toastify";
-import { ToastText } from "@/common/components/Toast/constants/ToastText";
+import { ToastType } from "@/common/components/Toast/constants/toastType";
 
-type TostType = keyof ToastText;
+type OpenToastType = keyof ToastType;
 
-export default function openToast(type: TostType, text: string, time: number = 3000) {
+export default function openToast(type: OpenToastType, text: string, time = 3000) {
   toast[type](text, {
     position: "bottom-center", // 위치
     autoClose: time, // 시간

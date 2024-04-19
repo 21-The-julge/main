@@ -8,20 +8,20 @@ import { PrefixElement, SuffixElement, ErrorMessage, Label, Input } from "./inde
 const cn = classNames.bind(styles);
 
 interface InputFieldProps {
-  type?: "text" | "email" | "password" | "search";
   name?: string;
+  type?: "text" | "email" | "password" | "search";
+  value?: string;
   placeholder?: string;
-  size?: "sm" | "md";
-  color?: "white" | "gray";
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   disabled?: boolean;
-  unit?: string;
-  prefix?: string;
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  border?: "solid" | "none";
+  unit?: "원" | "시급";
+  prefix?: "search";
   isError?: boolean;
   errorMessage?: string;
+  size?: "sm" | "md";
+  color?: "white" | "gray";
+  border?: "solid" | "none";
 }
 
 export default function InputField({

@@ -3,7 +3,7 @@ import styles from "./SuffixElement.module.scss";
 
 const cn = classNames.bind(styles);
 interface SuffixElementProps {
-  element: string;
+  element: "원" | "시급";
 }
 
 export default function SuffixElement({ element }: SuffixElementProps) {

@@ -11,7 +11,7 @@ interface InputFieldProps {
   type?: "text" | "email" | "password" | "search";
   name: string;
   placeholder?: string;
-  size?: "sm" | "md" | "full";
+  size?: "sm" | "md";
   color?: "white" | "gray";
   label?: string;
   disabled?: true | false;
@@ -22,6 +22,7 @@ interface InputFieldProps {
   border?: "solid" | "none";
   isError?: true | false;
   errorMessage?: string;
+  width?: string;
 }
 
 export default function InputField({
@@ -39,9 +40,10 @@ export default function InputField({
   onChange,
   border = "solid",
   errorMessage = "",
+  width,
   ...rest
 }: InputFieldProps) {
-  const className = cn("default", size, color, isError && "error", border);
+  const className = cn("default", size, color, isError && "error", border, width);
 
   return (
     <div className={styles.inputField}>

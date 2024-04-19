@@ -1,5 +1,9 @@
+// import classNames from "classnames/bind";
 // import styles from "./PrefixIcon.module.scss";
+
 import SearchIcon from "@/images/ic_search.svg";
+
+// const cn = classNames.bind(styles);
 
 interface PrefixIconProp {
   prefix: string;

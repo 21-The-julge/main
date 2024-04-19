@@ -7,7 +7,7 @@ const cn = classNames.bind(styles);
 
 interface InputProps {
   type: "text" | "email" | "password" | "search";
-  size?: "sm" | "md" | "full";
+  size?: "sm" | "md";
   placeholder?: string;
   name: string;
   color?: "white" | "gray";

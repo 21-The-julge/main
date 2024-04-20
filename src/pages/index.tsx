@@ -2,7 +2,7 @@ import { Post } from "@/shared/components/index";
 import { useEffect, useState } from "react";
 import styles from "@/pages/index.module.scss";
 import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
-import instance from "./api/axiosInstance";
+import instance from "../shared/apis/axiosInstance";
 
 type Res = {
   item: {

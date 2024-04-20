@@ -59,8 +59,8 @@ export default function Filter() {
         <FieldSet label="시작일">
           <Controller
             name="startDate"
-            render={({ field: { onChange } }) => (
-              <StartDatePicker startDate={new Date()} onChange={(date: Date) => onChange(formatRFC3339(date))} />
+            render={({ field: { value, onChange } }) => (
+              <StartDatePicker startDate={new Date(value)} onChange={(date: Date) => onChange(formatRFC3339(date))} />
             )}
             control={control}
           />

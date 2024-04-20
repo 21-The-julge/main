@@ -11,10 +11,9 @@
     color: black;
     text-decoration: none;
   }
-}
-
-.text-button {
-  white-space: nowrap;
+  button {
+    white-space: nowrap;
+  }
 }
 @include tablet {
   .container {
@@ -28,5 +27,9 @@
   .container {
     gap: 1.6rem;
     margin-left: 0;
+    button {
+      @include sopoqa-14-700;
+      line-height: 1.68rem;
+    }
   }
 }

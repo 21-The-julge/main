@@ -1,6 +1,6 @@
 .badge {
   display: flex;
-  padding: 1.2rem;
+  padding: 1rem 0rem;
   align-items: center;
   border-radius: 2rem;
   background: $color-red-40;
@@ -9,6 +9,10 @@
     color: $color-white;
     text-align: center;
     @include sopoqa-14-700;
+
+    @include mobile {
+      @include sopoqa-12-400;
+    }
   }
 
   &.red20 {

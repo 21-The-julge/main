@@ -27,7 +27,7 @@ export default function AddressSelector({ value, setAddress }: AddressSelectorPr
     <div className={cn("container")}>
       <div className={cn("selectBoxWrapper")}>
         <ul className={cn("selectBox")}>
-          {ADDRESSES.map((address: string) => (
+          {ADDRESSES.map((address) => (
             <li key={address} role="presentation" className={cn("item")} onClick={() => handleAdd(address)}>
               {address}
             </li>
@@ -36,10 +36,10 @@ export default function AddressSelector({ value, setAddress }: AddressSelectorPr
       </div>
 
       <ul className={cn("badgeBox")}>
-        {value.map((e) => (
-          <li key={e}>
-            {e}
-            <span role="presentation" onClick={() => handleDelete(e)}>
+        {value.map((address) => (
+          <li key={address}>
+            {address}
+            <span role="presentation" onClick={() => handleDelete(address)}>
               x
             </span>
           </li>

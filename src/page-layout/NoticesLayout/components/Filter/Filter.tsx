@@ -12,7 +12,7 @@ import styles from "./Filter.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface FilterKeywords {
+interface FieldValues {
   address: string[];
   startDate: string;
   pay: number | null;
@@ -25,7 +25,7 @@ export default function Filter() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FilterKeywords>({
+  } = useForm<FieldValues>({
     defaultValues: {
       address: [],
       startDate: formatRFC3339(new Date()),
@@ -33,7 +33,7 @@ export default function Filter() {
     },
   });
 
-  const onSubmit: SubmitHandler<FilterKeywords> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     // TODO: API 호출
     console.log(data);
   };
@@ -49,7 +49,7 @@ export default function Filter() {
         <FieldSet label="위치">
           <Controller
             name="address"
-            render={({ field: { onChange, value } }) => <AddressSelector value={value} setAddress={onChange} />}
+            render={({ field: { value, onChange } }) => <AddressSelector value={value} setAddress={onChange} />}
             control={control}
           />
         </FieldSet>
@@ -71,17 +71,26 @@ export default function Filter() {
         <FieldSet label="금액">
           <div className={cn("pay")}>
             <div className={cn("payInput")}>
-              <input placeholder="입력" {...register("pay", { min: 0, pattern: /^\d+$/ })} />
+              <input
+                placeholder="입력"
+                {...register("pay", {
+                  min: 0,
+                  pattern: {
+                    value: /^\d+$/,
+                    message: "숫자만 입력해주세요",
+                  },
+                })}
+              />
               <span>이상부터</span>
             </div>
 
-            {errors.pay && <p>숫자만 입력해주세요</p>}
+            <p>{errors.pay?.message}</p>
           </div>
         </FieldSet>
 
         <div className={cn("buttons")}>
           <div>
-            <Button type="button" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
+            <Button type="reset" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
               초기화
             </Button>
           </div>

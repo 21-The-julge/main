@@ -2,14 +2,14 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
 
+registerLocale("ko", ko);
+
 interface StartDatePickerProps {
   startDate: Date | null;
   onChange: (date: Date) => void;
 }
 
 export default function StartDatePicker({ startDate, onChange }: StartDatePickerProps) {
-  registerLocale("ko", ko);
-
   return (
     <DatePicker
       selected={startDate}

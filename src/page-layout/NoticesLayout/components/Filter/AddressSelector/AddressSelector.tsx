@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 
-import { ADDRESS } from "@/common/constants";
+import { ADDRESSES } from "@/common/constants";
 import remove from "../../../utils/remove";
 
 import styles from "./AddressSelector.module.scss";
@@ -34,7 +34,7 @@ export default function AddressSelector({ value, setAddress }: AddressSelectorPr
     <div className={cn("container")}>
       <div className={cn("selectBoxWrapper")}>
         <ul className={cn("selectBox")}>
-          {ADDRESS.map((address: string) => (
+          {ADDRESSES.map((address: string) => (
             <li key={address} role="presentation" className={cn("item")} onClick={() => handleAdd(address)}>
               {address}
             </li>

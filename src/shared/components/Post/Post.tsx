@@ -41,7 +41,15 @@ export default function Post({
     <div className={cn("postContainer", className, { closed, isPast })}>
       <div className={cn("imgContainer")}>
         <NoticeMessage isPast={isPast} closed={closed} />
-        <Image className={cn("img")} src={imageUrl} alt="식당 공고" fill />
+        <Image
+          className={cn("img")}
+          src={imageUrl}
+          alt="식당 공고"
+          fill
+          placeholder="blur"
+          sizes="(max-width: 757px) 145px, (max-width: 1024px) 300px, 300px"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+        />
       </div>
       <div className={cn("contentContainer")}>
         <div className={cn("restaurantContent")}>

@@ -33,7 +33,12 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
   return (
     <div className={cn("shopContainer")}>
       <div className={cn("img")}>
-        <Image fill src={myShopData?.imageUrl} alt="내 가게" />
+        <Image
+          fill
+          src={myShopData?.imageUrl}
+          alt="내 가게"
+          sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
+        />
       </div>
       <div className={cn("myShopInfoContainer")}>
         <div className={cn("contentContainer")}>

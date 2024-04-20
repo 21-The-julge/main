@@ -1,9 +1,7 @@
 import axiosInstance from "@/pages/api/axiosInstance";
 import { Post } from "@/shared/components";
-import classNames from "classnames/bind";
+import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
 import { useEffect, useState } from "react";
-
-const cn = classNames;
 
 interface PostContainerProps {
   className: string;
@@ -27,7 +25,7 @@ interface ApiData {
 }
 
 export default function PostContainer({ className, key, myShopDataId }: PostContainerProps) {
-  const [apiData, setApiData] = useState({} as ApiData);
+  const [apiData, setApiData] = useState<ApiData>({} as ApiData);
 
   const getMyShopInfo = async () => {
     try {
@@ -42,6 +40,13 @@ export default function PostContainer({ className, key, myShopDataId }: PostCont
     getMyShopInfo();
   }, []);
 
+  if (apiData.startsAt === undefined) {
+    return (
+      <div key={key}>
+        <PostSkeleton className={className} />
+      </div>
+    );
+  }
   return (
     <div key={key}>
       <Post

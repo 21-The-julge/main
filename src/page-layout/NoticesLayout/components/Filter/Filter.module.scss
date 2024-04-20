@@ -30,16 +30,22 @@
   fill: $color-black;
 }
 
-.payInput {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
+.pay {
+  .payInput {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
 
-  @include sopoqa-16-400;
+    @include sopoqa-16-400;
 
-  input {
-    width: 16.9rem;
-    padding: 1.6rem 2rem;
+    input {
+      width: 16.9rem;
+      padding: 1.6rem 2rem;
+    }
+  }
+
+  p {
+    position: absolute;
   }
 }
 

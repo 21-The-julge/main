@@ -69,9 +69,12 @@ export default function Filter() {
         <div className={cn("divider")} />
 
         <FieldSet label="금액">
-          <div className={cn("payInput")}>
-            <input placeholder="입력" {...register("pay", { min: 0, pattern: /^\d+$/ })} />
-            <span>이상부터</span>
+          <div className={cn("pay")}>
+            <div className={cn("payInput")}>
+              <input placeholder="입력" {...register("pay", { min: 0, pattern: /^\d+$/ })} />
+              <span>이상부터</span>
+            </div>
+
             {errors.pay && <p>숫자만 입력해주세요</p>}
           </div>
         </FieldSet>

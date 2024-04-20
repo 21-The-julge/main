@@ -5,11 +5,13 @@ import PostContainer from "./PostContainer/PostContainer";
 const cn = classNames.bind(styles);
 
 interface RegistseredMyShopProps {
-  myShopData: {
-    item: {
-      id: string;
-    };
-  }[];
+  myShopData:
+    | {
+        item: {
+          id: string;
+        };
+      }[]
+    | null;
 }
 
 export default function RegistseredMyShop({ myShopData }: RegistseredMyShopProps) {

@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
-import axiosInstance from "@/pages/api/axiosInstance";
+import { useState } from "react";
 import Registser from "./Register/Register";
 import RegistseredMyShop from "./RegisteredMyShop/RegisteredMyshop";
 
-export default function RegisterdShop() {
-  const [apiData, setApiData] = useState([]);
-  const getMyShopInfo = async () => {
-    try {
-      const response = await axiosInstance.get("/shops/ae78c3af-a075-4586-bee2-21c8da59d6b2/notices");
-      setApiData(response.data.items);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+interface RegisterdShopProps {
+  myShopData:
+    | {
+        item: {
+          id: string;
+        };
+      }[]
+    | null;
+}
 
-  useEffect(() => {
-    getMyShopInfo();
-  }, []);
+export default function RegisterdShop({ myShopData }: RegisterdShopProps) {
+  const [apiData, setApiData] = useState<RegisterdShopProps["myShopData"]>(myShopData);
 
-  return apiData ? <RegistseredMyShop myShopData={apiData} /> : <Registser />;
+  return apiData ? <RegistseredMyShop myShopData={myShopData} /> : <Registser />;
 }

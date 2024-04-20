@@ -13,7 +13,7 @@ interface MyShopProps {
     address1: string;
     description: string;
     imageUrl: string;
-  };
+  } | null;
 }
 
 export default function MyShop({ myShopData }: MyShopProps) {
@@ -22,6 +22,7 @@ export default function MyShop({ myShopData }: MyShopProps) {
       <div className={cn("registerContiner")}>
         <p className={cn("myShop")}>내 가게</p>
         {myShopData ? <ShowMyShop myShopData={myShopData} /> : <RegisterMyShop />}
+        {/* <RegisterMyShop /> */}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 
 import { ADDRESSES } from "@/common/constants";
@@ -14,21 +13,15 @@ interface AddressSelectorProps {
 }
 
 export default function AddressSelector({ value, setAddress }: AddressSelectorProps) {
-  const [badges, setBadge] = useState<string[]>([]);
-
   const handleAdd = (badge: string) => {
-    if (!badges.includes(badge)) {
-      setBadge((prev) => [...prev, badge]);
+    if (!value.includes(badge)) {
+      setAddress([...value, badge]);
     }
   };
 
   const handleDelete = (badge: string) => {
-    setBadge((pre) => remove<string>(pre, badge));
+    setAddress(remove<string>(value, badge));
   };
-
-  useEffect(() => {
-    setAddress(badges);
-  }, [badges]);
 
   return (
     <div className={cn("container")}>

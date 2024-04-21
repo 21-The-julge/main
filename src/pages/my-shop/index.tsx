@@ -2,6 +2,7 @@ import ShowMyShop from "@/page-layout/MyShopLayout/component/MyShop/MyShop";
 import styles from "@/pages/my-shop/myshop.module.scss";
 import classNames from "classnames/bind";
 import RegisterdShop from "@/page-layout/MyShopLayout/component/RegisteredShop/RegisterdShop";
+import PostContainerProps from "@/page-layout/MyShopLayout/type";
 import axiosInstance from "../api/axiosInstance";
 
 const cn = classNames.bind(styles);
@@ -14,24 +15,6 @@ interface ApiData {
 interface MyRegisterResponse {
   item: {
     id: string;
-  };
-}
-
-interface PostContainerProps {
-  item: {
-    startsAt: string;
-    workhour: number;
-    hourlyPay: number;
-    closed: boolean;
-    id: string;
-    shop: {
-      item: {
-        address1: string;
-        imageUrl: string;
-        name: string;
-        originalHourlyPay: number;
-      };
-    };
   };
 }
 

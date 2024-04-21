@@ -1,30 +1,13 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/RegisteredShop/RegisteredMyShop/RegisteredMyShop.module.scss";
 import { useState } from "react";
+import ApiData from "@/page-layout/MyShopLayout/type";
 import PostContainer from "./PostContainer/PostContainer";
 
 const cn = classNames.bind(styles);
 
 interface RegistseredMyShopProps {
   myShopData: ApiData[];
-}
-
-interface ApiData {
-  item: {
-    startsAt: string;
-    workhour: number;
-    hourlyPay: number;
-    closed: boolean;
-    id: string;
-    shop: {
-      item: {
-        address1: string;
-        imageUrl: string;
-        name: string;
-        originalHourlyPay: number;
-      };
-    };
-  };
 }
 
 export default function RegistseredMyShop({ myShopData }: RegistseredMyShopProps) {

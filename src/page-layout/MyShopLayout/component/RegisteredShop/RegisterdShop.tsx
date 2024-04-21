@@ -1,24 +1,9 @@
+import ApiData from "../../type";
 import Registser from "./Register/Register";
 import RegistseredMyShop from "./RegisteredMyShop/RegisteredMyshop";
 
 interface RegisterdShopProps {
-  myShopData: {
-    item: {
-      startsAt: string;
-      workhour: number;
-      hourlyPay: number;
-      closed: boolean;
-      id: string;
-      shop: {
-        item: {
-          address1: string;
-          imageUrl: string;
-          name: string;
-          originalHourlyPay: number;
-        };
-      };
-    };
-  }[];
+  myShopData: ApiData[];
 }
 
 export default function RegisterdShop({ myShopData }: RegisterdShopProps) {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import LOGO from "@/images/logo.svg";
 import styles from "./Gnb.module.scss";
 
-import UserAction from "./Gnb-components/UserAction";
+import UserAction from "./GnbComponents/UserAction";
 
 const cn = classNames.bind(styles);
 

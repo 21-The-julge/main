@@ -3,7 +3,7 @@ import Link from "next/link";
 import GetAuth from "@/shared/hooks/getAuth";
 import styles from "./UserAction.module.scss";
 
-import NotificationModal from "../../Notification-modal/NotificationModal";
+import NotificationModal from "../../NotificationModal/NotificationModal";
 
 const cn = classNames.bind(styles);
 

@@ -4,7 +4,7 @@ import IC_NOTIFICATION from "@/images/ic_notification.svg";
 import GetNotificationData from "@/shared/hooks/getNotificationData";
 import styles from "./NotificationModal.module.scss";
 
-import AlertModal from "./notificationModal-components/AlertCardModal";
+import AlertModal from "./NotificationModalComponents/AlertCardModal";
 
 const cn = classNames.bind(styles);
 

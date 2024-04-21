@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
+import CloseIcon from "@/images/ic_close.svg";
 import classNames from "classnames/bind";
 import styles from "./Badge.module.scss";
-import CloseIcon from "@/images/ic_close.svg";
 
 interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   color: "blue" | "green" | "red";

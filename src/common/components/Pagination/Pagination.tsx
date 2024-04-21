@@ -15,13 +15,14 @@ interface PaginationProps {
 const cn = classNames.bind(styles);
 
 export default function Pagination({ currentPage, totalPages, onPageChange, pageNumberLimit = 7 }: PaginationProps) {
-  const currentPageGroup = Math.ceil(currentPage / pageNumberLimit);
-  const currentFirstPageIndex = (currentPageGroup - 1) * pageNumberLimit + 1;
-  const currentLastPageIndex = Math.min(currentFirstPageIndex + pageNumberLimit - 1, totalPages);
+  const currentPageGroup = Math.ceil(currentPage / pageNumberLimit); // 현재 페이지가 속한 페이지 그룹 Ex) (1~7)1그룹 (8~14)2그룹
+  const currentGroupFirstIndex = (currentPageGroup - 1) * pageNumberLimit + 1;
+  const currentGroupLastIndex = Math.min(currentGroupFirstIndex + pageNumberLimit - 1, totalPages);
 
+  // 현재 페이지 그룹에 속한 페이지 번호 배열 생성
   const pages = Array.from(
-    { length: currentLastPageIndex - currentFirstPageIndex + 1 },
-    (_, i) => currentFirstPageIndex + i,
+    { length: currentGroupLastIndex - currentGroupFirstIndex + 1 },
+    (_, i) => currentGroupFirstIndex + i,
   );
 
   const moveNextGroup = () => {

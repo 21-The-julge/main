@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+// pagination prop값을 리턴하는 use 커스텀 훅
+
 export default function usePagination(
   totalDataNum: number,
   itemsPageNum: number,

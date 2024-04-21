@@ -42,7 +42,7 @@ $duration: 0.3s;
   &.primary {
     @include outlineColor($color-primary);
   }
-  
+
   &.secondary {
     @include outlineColor($color-blue-20);
   }

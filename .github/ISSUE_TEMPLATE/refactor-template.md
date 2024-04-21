@@ -3,8 +3,7 @@ name: refactor template
 about: 리펙토링 진행
 title: "[refactor] "
 labels: refactor
-assignees: ''
-
+assignees: ""
 ---
 
 ## 😁어떤 변경인가요?

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Gnb from "@/common/components/gnb/Gnb";
-import Footer from "@/common/components/footer/Footer";
+import Gnb from "@/common/components/Gnb/Gnb";
+import Footer from "@/common/components/Footer/Footer";
 
 interface RootLayoutProps {
   children: ReactNode;

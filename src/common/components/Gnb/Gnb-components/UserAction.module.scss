@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  margin-left: 8rem;
+
+  @include sopoqa-16-700;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  button {
+    white-space: nowrap;
+  }
+}
+@include tablet {
+  .container {
+    &.isSignIn {
+      gap: 1.2rem;
+    }
+  }
+}
+
+@include mobile {
+  .container {
+    gap: 1.6rem;
+    margin-left: 0;
+    button {
+      @include sopoqa-14-700;
+      line-height: 1.68rem;
+    }
+  }
+}

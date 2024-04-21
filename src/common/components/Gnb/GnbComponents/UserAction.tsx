@@ -14,16 +14,8 @@ export default function UserAction() {
 
   const loggedInSection = (
     <>
-      {isEmployer ? (
-        <Link href="/my-shop" className={cn("button")}>
-          내 가게
-        </Link>
-      ) : (
-        <Link href="/my-profile" className={cn("button")}>
-          내 프로필
-        </Link>
-      )}
-      <Link href="/" onClick={handleLogout} className={cn("button")}>
+      {isEmployer ? <Link href="/my-shop">내 가게</Link> : <Link href="/my-profile">내 프로필</Link>}
+      <Link href="/" onClick={handleLogout}>
         로그아웃
       </Link>
       <NotificationModal />
@@ -32,12 +24,8 @@ export default function UserAction() {
 
   const notLoggedInSection = (
     <>
-      <Link href="/signin" className={cn("button")}>
-        로그인
-      </Link>
-      <Link href="/signup" className={cn("button")}>
-        회원가입
-      </Link>
+      <Link href="/signin">로그인</Link>
+      <Link href="/signup">회원가입</Link>
     </>
   );
 

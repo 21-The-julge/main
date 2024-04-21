@@ -9,14 +9,16 @@ interface DropdownProps {
 
 export default function Dropdown({ options }: DropdownProps) {
   return (
-    <select className={cn("dropdown")}>
-      {options.map((option) => {
-        return (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        );
-      })}
-    </select>
+    <div className={cn("selectBox")}>
+      <select className={cn("select")}>
+        {options.map((option) => {
+          return (
+            <option className={cn("option")} key={option} value={option}>
+              {option}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 }

@@ -1,19 +1,26 @@
-import { useState } from "react";
 import Registser from "./Register/Register";
 import RegistseredMyShop from "./RegisteredMyShop/RegisteredMyshop";
 
 interface RegisterdShopProps {
-  myShopData:
-    | {
+  myShopData: {
+    item: {
+      startsAt: string;
+      workhour: number;
+      hourlyPay: number;
+      closed: boolean;
+      id: string;
+      shop: {
         item: {
-          id: string;
+          address1: string;
+          imageUrl: string;
+          name: string;
+          originalHourlyPay: number;
         };
-      }[]
-    | null;
+      };
+    };
+  }[];
 }
 
 export default function RegisterdShop({ myShopData }: RegisterdShopProps) {
-  const [apiData, setApiData] = useState<RegisterdShopProps["myShopData"]>(myShopData);
-
-  return apiData ? <RegistseredMyShop myShopData={myShopData} /> : <Registser />;
+  return myShopData ? <RegistseredMyShop myShopData={myShopData} /> : <Registser />;
 }

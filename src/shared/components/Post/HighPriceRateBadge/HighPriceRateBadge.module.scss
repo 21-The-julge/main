@@ -1,0 +1,60 @@
+.badge {
+  display: flex;
+  padding: 1.2rem;
+  align-items: center;
+  border-radius: 2rem;
+  background: $color-red-40;
+
+  .percentage {
+    color: $color-white;
+    text-align: center;
+    @include sopoqa-14-700;
+  }
+
+  &.red20 {
+    background-color: $color-red-20;
+  }
+  &.red30 {
+    background-color: $color-red-30;
+  }
+  &.red40 {
+    background-color: $color-red-40;
+  }
+  @include mobile {
+    background-color: $color-white;
+    padding: 0;
+    &.red20,
+    &.red30,
+    &.red40 {
+      background-color: $color-white;
+    }
+
+    .svg {
+      fill: $color-red-40;
+    }
+
+    .percentage {
+      color: $color-red-40;
+    }
+  }
+}
+
+.closed,
+.isPast {
+  background: $color-gray-20;
+  .percentage {
+    color: $color-white;
+  }
+  @include mobile {
+    background-color: $color-white;
+    padding: 0;
+
+    .svg {
+      fill: $color-gray-20;
+    }
+
+    .percentage {
+      color: $color-gray-20;
+    }
+  }
+}

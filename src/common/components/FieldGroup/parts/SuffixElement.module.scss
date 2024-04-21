@@ -5,4 +5,5 @@
   transform: translate(-50%, -50%);
   @include sopoqa-16-400;
   color: $color-black;
+  pointer-events: none;
 }

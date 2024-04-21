@@ -1,5 +1,5 @@
 // import { InputField } from "@/common/components";
-import Dropdown from "@/common/components/Dropdown/Dropdown";
+import Dropdown from "@/common/components/FieldGroup/Dropdown/Dropdown";
 import { BUSINESS_OPTIONS } from "@/common/constants";
 
 export default function LoginPage() {

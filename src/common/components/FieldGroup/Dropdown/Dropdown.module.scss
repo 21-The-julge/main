@@ -1,0 +1,31 @@
+.dropdownBox {
+  width: 35rem;
+  position: relative;
+  @include pretendard-16-400;
+
+  .dropdown {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    width: 100%;
+
+    border-radius: 0.375rem;
+    border: 0.0625rem solid $color-gray-30;
+    background: $color-white;
+  }
+
+  .optionsBox {
+    position: absolute;
+    border: 0.0625rem solid $color-gray-30;
+    width: 100%;
+
+    .option {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-red-20;
+      }
+    }
+  }
+}

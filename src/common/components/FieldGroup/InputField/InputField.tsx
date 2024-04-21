@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
 
-import { PrefixElement, SuffixElement, ErrorMessage, Label, Input } from "./index";
+import { PrefixElement, SuffixElement, ErrorMessage, Label, Input } from "../parts/index";
 
 const cn = classNames.bind(styles);
 

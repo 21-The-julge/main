@@ -19,11 +19,11 @@ export default function Badge({
   children,
   onClick,
   className,
-  ...props
+  ...rest
 }: BadgeProps) {
   const badgeClass = cn("badge", color, { responsive: isResponsive }, className);
   return (
-    <div className={badgeClass} {...props}>
+    <div className={badgeClass} {...rest}>
       {children}
       {hasCloseIcon && <CloseIcon width="16" height="16" fill="#EA3C12" onClick={onClick} />}
     </div>

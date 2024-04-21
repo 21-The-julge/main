@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { CSSProperties, ChangeEvent } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
@@ -20,16 +20,21 @@ interface InputFieldProps {
   prefix?: "search";
   isError?: boolean;
   errorMessage?: string;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "free";
   color?: "white" | "gray";
   border?: "solid" | "none";
+  className?: string;
+}
+
+interface ClassNameCSSProperties extends CSSProperties {
+  "--width"?: string;
 }
 
 export default function InputField({
   name,
   type = "text",
   placeholder,
-  size = "md",
+  size,
   color = "white",
   isError = false,
   label,
@@ -41,13 +46,17 @@ export default function InputField({
   onChange,
   border = "solid",
   errorMessage = "",
+  className,
 }: InputFieldProps) {
-  const className = cn("default", size, color, border, { error: isError });
+  const combinedClassName = cn("default", size, color, border, { error: isError });
+  const style: ClassNameCSSProperties = {
+    "--width": className || "100vw",
+  };
 
   return (
     <div className={cn("inputField")}>
       {label && <Label htmlFor={name} label={label} />}
-      <div className={className}>
+      <div className={combinedClassName} style={style}>
         {prefix && <PrefixElement element={prefix} />}
         <Input
           name={name}

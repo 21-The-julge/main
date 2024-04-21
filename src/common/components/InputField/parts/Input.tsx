@@ -7,7 +7,7 @@ const cn = classNames.bind(styles);
 
 interface InputProps {
   type: "text" | "email" | "password" | "search";
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "free";
   placeholder?: string;
   name?: string;
   color?: "white" | "gray";
@@ -19,7 +19,7 @@ interface InputProps {
 
 export default function Input({
   type = "text",
-  size = "md",
+  size,
   placeholder,
   name,
   color = "white",

@@ -3,9 +3,24 @@
   flex-direction: column;
   gap: 0.5rem;
 
+  .error {
+    border: 0.0625rem solid $color-red-40;
+  }
+
+  .white {
+    background: $color-white;
+  }
+
+  .gray {
+    background: $color-gray-10;
+  }
+
+  .none {
+    border: none;
+  }
+
   .default {
     position: relative;
-    width: 100vw;
     display: flex;
     align-items: center;
     gap: 0.625rem;
@@ -23,20 +38,9 @@
     max-width: 33.5rem;
   }
 
-  .error {
-    border: 0.0625rem solid $color-red-40;
-  }
-
-  .white {
-    background: $color-white;
-  }
-
-  .gray {
-    background: $color-gray-10;
-  }
-
-  .none {
-    border: none;
+  .free {
+    padding: 1rem 1.25rem;
+    width: calc(var(--width) * 1rem);
   }
 
   @include tablet {

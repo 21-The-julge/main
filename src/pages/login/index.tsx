@@ -10,7 +10,7 @@ export default function LoginPage() {
       unit="원"
       prefix="search"
       required
-      className="30"
+      className="50"
       size="free"
     />
   );

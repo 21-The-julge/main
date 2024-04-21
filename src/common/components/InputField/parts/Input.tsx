@@ -14,17 +14,19 @@ interface InputProps {
   disabled?: boolean;
   value?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
 }
 
 export default function Input({
   type = "text",
   size = "md",
-  placeholder = "",
+  placeholder,
   name,
   color = "white",
-  disabled = false,
+  disabled,
   value,
   onChange,
+  required,
 }: InputProps) {
   const className = cn("default", size, color);
 
@@ -37,6 +39,7 @@ export default function Input({
       placeholder={placeholder}
       disabled={disabled}
       value={value}
+      required={required}
       onChange={onChange}
     />
   );

@@ -14,6 +14,7 @@ interface InputFieldProps {
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  required?: boolean;
   disabled?: boolean;
   unit?: "원" | "시급";
   prefix?: "search";
@@ -27,12 +28,13 @@ interface InputFieldProps {
 export default function InputField({
   name,
   type = "text",
-  placeholder = "",
+  placeholder,
   size = "md",
   color = "white",
   isError = false,
   label,
-  disabled = false,
+  disabled,
+  required,
   unit,
   prefix,
   value,
@@ -51,6 +53,7 @@ export default function InputField({
           name={name}
           type={type}
           placeholder={placeholder}
+          required={required}
           size={size}
           color={color}
           disabled={disabled}

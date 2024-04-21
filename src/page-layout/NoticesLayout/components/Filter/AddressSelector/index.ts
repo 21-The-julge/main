@@ -1,3 +1,1 @@
-import AddressSelector from "./AddressSelector";
-
-export default AddressSelector;
+export { default } from "./AddressSelector";

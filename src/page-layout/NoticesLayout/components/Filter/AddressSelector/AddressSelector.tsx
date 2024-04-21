@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 
 import { ADDRESSES } from "@/common/constants";
-import remove from "../../../utils/remove";
+import remove from "../../../../../shared/utils/remove";
 
 import styles from "./AddressSelector.module.scss";
 

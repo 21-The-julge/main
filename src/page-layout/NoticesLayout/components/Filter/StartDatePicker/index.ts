@@ -1,3 +1,1 @@
-import StartDatePicker from "./StartDatePicker";
-
-export default StartDatePicker;
+export { default } from "./StartDatePicker";

@@ -90,7 +90,7 @@ export default function Filter() {
 
         <div className={cn("buttons")}>
           <div>
-            <Button type="reset" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
+            <Button type="button" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
               초기화
             </Button>
           </div>

@@ -15,10 +15,11 @@ export default function CreateCards({ name, startsAt, createdAt, result }: Creat
   const alertColor = result === "accepted" ? "#0080FF" : " #FF4040";
   const alertText = result === "accepted" ? "승인" : "거절";
   const alertTextColor = result === "accepted" ? "blue" : "red";
+
   return (
     <div className={cn("card")}>
       <IC_SEARCH className={cn("icon")} fill={alertColor} />
-      <div className={cn("text-container")}>
+      <div className={cn("textContainer")}>
         {name}({startsAt})
         <br />
         공고 지원이 <span className={cn(alertTextColor)}>{alertText}</span>되었어요.

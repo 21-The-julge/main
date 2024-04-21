@@ -12,13 +12,13 @@ export default function NotificationModal() {
   const { iconColor, alertCount } = GetNotificationData();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggleModal = () => {
-    setIsOpen(!isOpen);
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
   };
   return (
     <>
-      <IC_NOTIFICATION className={cn("container")} fill={iconColor} onClick={handleToggleModal} />
-      {isOpen && <AlertModal handleToggleModal={handleToggleModal} alertCount={alertCount} />}
+      <IC_NOTIFICATION className={cn("container")} fill={iconColor} onClick={onToggleModal} />
+      {isOpen && <AlertModal onToggleModal={onToggleModal} alertCount={alertCount} />}
     </>
   );
 }

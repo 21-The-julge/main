@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Item, AlertResponseData } from "@/common/components/Notification-modal/types";
+import { Item, AlertResponseData } from "@/common/components/NotificationModal/types";
 
 const testResponse: AlertResponseData | null = {
   offset: 0,
@@ -50,7 +50,7 @@ const testResponse: AlertResponseData | null = {
 };
 
 const notificationData = testResponse;
-export default function GetNotificationData() {
+export default function GetAlertCardModalData() {
   const [hasNotification, setHasNotification] = useState(false);
   const [items, setItems] = useState<Item[]>([]);
 

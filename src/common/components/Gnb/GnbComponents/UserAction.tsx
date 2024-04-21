@@ -12,41 +12,31 @@ export default function UserAction() {
 
   const isEmployer = type === "employer";
 
-  const EmployerSection = (
-    <Link href="/my-shop">
-      <button type="button">내 가게</button>
-    </Link>
-  );
-
-  const UserSection = (
-    <Link href="/my-profile">
-      <button type="button">내 프로필</button>
-    </Link>
-  );
-
-  const LogoutSection = (
-    <Link href="/">
-      <button type="button" onClick={handleLogout}>
-        로그아웃
-      </button>
-    </Link>
-  );
-
   const loggedInSection = (
     <>
-      {isEmployer ? EmployerSection : UserSection}
-      {LogoutSection}
+      {isEmployer ? (
+        <Link href="/my-shop" className={cn("button")}>
+          내 가게
+        </Link>
+      ) : (
+        <Link href="/my-profile" className={cn("button")}>
+          내 프로필
+        </Link>
+      )}
+      <Link href="/" onClick={handleLogout} className={cn("button")}>
+        로그아웃
+      </Link>
       <NotificationModal />
     </>
   );
 
   const notLoggedInSection = (
     <>
-      <Link href="/signin">
-        <button type="button">로그인</button>
+      <Link href="/signin" className={cn("button")}>
+        로그인
       </Link>
-      <Link href="/signup">
-        <button type="button">회원가입</button>
+      <Link href="/signup" className={cn("button")}>
+        회원가입
       </Link>
     </>
   );

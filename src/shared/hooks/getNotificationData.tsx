@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AlertResponseData } from "@/common/components/Notification-modal/types";
+import { AlertResponseData } from "@/common/components/NotificationModal/types";
 
 const testResponse: AlertResponseData | null = {
   offset: 0,

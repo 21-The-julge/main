@@ -1,58 +1,70 @@
-import React from "react";
+import LeftArrowIcon from "@/images/ic_arrow_left.svg";
+import LeftArrowDoubleIcon from "@/images/ic_arrow_double_left.svg";
+import RightArrowIcon from "@/images/ic_arrow_right.svg";
+import RightArrowDoubleIcon from "@/images/ic_arrow_double_right.svg";
+import classNames from "classnames/bind";
+import styles from "./Pagination.module.scss";
 
-// Props 타입 정의
 interface PaginationProps {
-  currentPage: number; // 현재 페이지 번호
-  totalPages: number; // 전체 페이지 수
-  onPageChange: (page: number) => void; // 페이지 번호 클릭 시 실행할 함수
-  pageSize: number; // 페이지당 아이템 수
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  pageNumberLimit?: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange, pageSize }) => {
-  const pageNumberLimit = 7; // 한 그룹당 최대 페이지 번호 수
-  const maxPageNumberGroup = Math.ceil(totalPages / pageNumberLimit); // 전체 페이지 그룹 수 계산
-  const currentPageGroup = Math.ceil(currentPage / pageNumberLimit); // 현재 페이지 그룹
+const cn = classNames.bind(styles);
 
-  const firstPageIndex = (currentPageGroup - 1) * pageNumberLimit + 1; // 현재 그룹의 첫 페이지 번호
-  const lastPageIndex = Math.min(firstPageIndex + pageNumberLimit - 1, totalPages); // 현재 그룹의 마지막 페이지 번호
+export default function Pagination({ currentPage, totalPages, onPageChange, pageNumberLimit = 7 }: PaginationProps) {
+  const currentPageGroup = Math.ceil(currentPage / pageNumberLimit);
+  const currentFirstPageIndex = (currentPageGroup - 1) * pageNumberLimit + 1;
+  const currentLastPageIndex = Math.min(currentFirstPageIndex + pageNumberLimit - 1, totalPages);
 
-  const pages = Array.from({ length: lastPageIndex - firstPageIndex + 1 }, (_, i) => firstPageIndex + i); // 현재 페이지 그룹의 페이지 번호 배열 생성
+  const pages = Array.from(
+    { length: currentLastPageIndex - currentFirstPageIndex + 1 },
+    (_, i) => currentFirstPageIndex + i,
+  );
 
-  const goToNextGroup = () => {
-    // 다음 페이지 그룹으로 이동
-    const nextGroupFirstPage = currentPageGroup * pageNumberLimit + 1;
-    if (nextGroupFirstPage <= totalPages) {
-      onPageChange(nextGroupFirstPage);
+  const moveNextGroup = () => {
+    const nextGroupPage = currentPageGroup * pageNumberLimit + 1;
+    if (nextGroupPage <= totalPages) {
+      onPageChange(nextGroupPage);
     }
   };
 
-  const goToPreviousGroup = () => {
-    // 이전 페이지 그룹으로 이동
-    const previousGroupFirstPage = (currentPageGroup - 2) * pageNumberLimit + 1;
-    if (previousGroupFirstPage > 0) {
-      onPageChange(previousGroupFirstPage);
+  const movePrevGroup = () => {
+    const prevGroupPage = (currentPageGroup - 2) * pageNumberLimit + 1;
+    if (prevGroupPage > 0) {
+      onPageChange(prevGroupPage);
     }
   };
 
   return (
-    <div>
-      {currentPageGroup > 1 && <button onClick={goToPreviousGroup}>{"<<"} // 이전 그룹으로 이동 버튼</button>}
-      {pages.map((page) => (
-        <button
-          key={page}
-          style={{ fontWeight: currentPage === page ? "bold" : "normal" }} // 현재 페이지는 굵게 표시
-          onClick={() => onPageChange(page)} // 해당 페이지 번호 클릭 시 핸들러
-        >
-          {page}
+    <div className={cn("pagination")}>
+      <button onClick={() => onPageChange(1)}>
+        <LeftArrowDoubleIcon className={cn("buttonArrow")} />
+      </button>
+      {currentPageGroup > 0 && (
+        <button onClick={movePrevGroup}>
+          <LeftArrowIcon className={cn("buttonArrow")} />
         </button>
-      ))}
-      {currentPageGroup < maxPageNumberGroup && (
-        <button onClick={goToNextGroup}>{">>"} // 다음 그룹으로 이동 버튼</button>
       )}
-      <button onClick={() => onPageChange(1)}>First // 첫 페이지로 이동</button>
-      <button onClick={() => onPageChange(totalPages)}>Last // 마지막 페이지로 이동</button>
+      <div className={cn("buttonPageFrame")}>
+        {pages.map((page) => (
+          <button
+            className={cn("buttonPage", { active: currentPage === page })}
+            key={page}
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+      <button onClick={moveNextGroup}>
+        <RightArrowIcon className={cn("buttonArrow")} />
+      </button>
+      <button onClick={() => onPageChange(totalPages)}>
+        <RightArrowDoubleIcon className={cn("buttonArrow")} />
+      </button>
     </div>
   );
-};
-
-export default Pagination;
+}

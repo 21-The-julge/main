@@ -1,8 +1,8 @@
-export * from "./alerts";
-export * from "./applications";
-export * from "./notices";
+export * from "./useAlerts";
+export * from "./useApplications";
+export * from "./useNotices";
 export * from "./users";
-export * from "./shops";
+export * from "./useShops";
 
-export { default as PostSignIn } from "./authentications";
-export { default as PostPresignedURL } from "./images";
+export { default as PostSignIn } from "./useAuthentications";
+export { default as PostPresignedURL } from "./useImages";

@@ -51,10 +51,12 @@ export async function PutApplicationData({ shopId, noticeId, applicationId, data
 }
 
 // 4. 유저의 지원 목록 조회 GET 요청
-export async function GetUserApplicationsData({ offset, limit }: GetUserApplicationsDataProps) {
-  const userId = sessionStorage.getItem("userId");
+export async function GetUserApplicationsData(params?: GetUserApplicationsDataProps) {
+  const { offset, limit } = params || {};
 
+  const userId = sessionStorage.getItem("userId");
   const urlString = `/users/${userId}/applications?${createQueryParams({ offset, limit })}`;
+
   const { response, error, isLoading } = await GetData({ url: urlString });
   return { response, error, isLoading };
 }

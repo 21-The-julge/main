@@ -1,4 +1,5 @@
-import { createQueryParams, GetData, PostData, PutData } from "./apiUtills";
+import createQueryParams from "./apiUtills";
+import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 
 interface GetNoticesDataParams {
   offset?: number;
@@ -22,8 +23,8 @@ export async function GetNoticesData({
 }: GetNoticesDataParams) {
   const urlString = `notices?${createQueryParams({ offset, limit, address, keyword, startsAtGte, hourlyPayGte, sort })}/`;
 
-  const { response, error, isLoading } = await GetData({ url: urlString });
-  return { response, error, isLoading };
+  const { data } = await axiosInstance.get(urlString);
+  return data;
 }
 
 interface GetShopNoticesDataParams {
@@ -36,23 +37,26 @@ interface GetShopNoticesDataParams {
 export async function GetShopNoticesData({ shopId, offset, limit }: GetShopNoticesDataParams) {
   const urlString = `shops/${shopId}/notices?${createQueryParams({ offset, limit })}/`;
 
-  const { response, error, isLoading } = await GetData({ url: urlString });
-  return { response, error, isLoading };
+  const { data } = await axiosInstance.get(urlString);
+  return data;
 }
 
 interface PostNoticeDataParams {
-  hourlyPay: number;
-  startsAt: string; // 양식: 2023-12-23T00:00:00Z
-  workhour: number;
-  description: string;
+  shopId: string;
+  bodyData: {
+    hourlyPay: number;
+    startsAt: string; // 양식: 2023-12-23T00:00:00Z
+    workhour: number;
+    description: string;
+  };
 }
 
 // 3. 가게 공고 등록 POST 요청
-export async function PostNoticeData(shopId: string, data: PostNoticeDataParams) {
+export async function PostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
   const urlString = `/shops/${shopId}/notices`;
 
-  const { response, error, isLoading } = await PostData({ url: urlString, requiredToken: true, bodyData: data });
-  return { response, error, isLoading };
+  const { data } = await axiosInstanceToken.post(urlString, bodyData);
+  return data;
 }
 
 interface GetSpecificShopNoticeDataParams {
@@ -64,14 +68,14 @@ interface GetSpecificShopNoticeDataParams {
 export async function GetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificShopNoticeDataParams) {
   const urlString = `/shops/${shopId}/notices/${noticeId}`;
 
-  const { response, error, isLoading } = await GetData({ url: urlString, requiredToken: false });
-  return { response, error, isLoading };
+  const { data } = await axiosInstance.get(urlString);
+  return data;
 }
 
 interface PutNoticeDataParams {
   shopId: string;
   noticeId: string;
-  data: {
+  bodyData: {
     hourlyPay: number;
     startsAt: string;
     workhour: number;
@@ -80,9 +84,9 @@ interface PutNoticeDataParams {
 }
 
 // 5. 가게의 특정 공고 수정 PUT 요청 api
-export async function PutNoticeData({ shopId, noticeId, data }: PutNoticeDataParams) {
+export async function PutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
   const urlString = `/shops/${shopId}/notices/${noticeId}`;
 
-  const { response, error, isLoading } = await PutData({ url: urlString, requiredToken: true, bodyData: data });
-  return { response, error, isLoading };
+  const { data } = await axiosInstanceToken.put(urlString, bodyData);
+  return data;
 }

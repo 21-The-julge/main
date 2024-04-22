@@ -1,4 +1,4 @@
-import { GetData, PostData, PutData } from "./apiUtills";
+import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 
 interface PostSignUpProps {
   eamil: string;
@@ -14,19 +14,21 @@ interface PutUserDataProps {
 }
 
 // 1. 회원가입 POST 요청
-export async function PostSignUp(data: PostSignUpProps) {
-  const { response, error, isLoading } = await PostData({ url: "/users", requiredToken: false, bodyData: data });
-  return { response, error, isLoading };
+export async function PostSignUp(bodyData: PostSignUpProps) {
+  const { data } = await axiosInstance.post("/users", bodyData);
+  return data;
 }
 // 2. 내 정보 조회 GET 요청
 export async function GetUserData() {
   const userId = sessionStorage.getItem("userId");
-  const { response, error, isLoading } = await GetData({ url: `/user${userId}`, requiredToken: false });
-  return { response, error, isLoading };
+
+  const { data } = await axiosInstance.get(`/users/${userId}`);
+  return data;
 }
 // 3. 내 정보 수정 PUT 요청
-export async function PutUserData(data: PutUserDataProps) {
+export async function PutUserData(bodyData: PutUserDataProps) {
   const userId = sessionStorage.getItem("userId");
-  const { response, error, isLoading } = await PutData({ url: `/user/${userId}`, requiredToken: true, bodyData: data });
-  return { response, error, isLoading };
+
+  const { data } = await axiosInstanceToken.put(`/users/${userId}`, bodyData);
+  return data;
 }

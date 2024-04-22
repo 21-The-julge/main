@@ -1,0 +1,93 @@
+.postContainer {
+  display: flex;
+  padding: 1.6rem;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $color-gray-20;
+  background: $color-white;
+  width: 100%;
+  height: 100%;
+
+  .clock,
+  .location {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .imgContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .restaurantName {
+    color: $color-black;
+    @include sopoqa-20-700;
+  }
+
+  .img {
+    object-fit: cover;
+  }
+
+  .clockContainer,
+  .locationContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $color-gray-50;
+    @include sopoqa-14-400;
+  }
+  .restaurantContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .priceContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-black;
+    @include sopoqa-24-700;
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  @include mobile {
+    padding: 1.2rem;
+    gap: 1.2rem;
+    .restaurantName {
+      font-size: 1.6rem;
+    }
+
+    .clockContainer,
+    .locationContainer {
+      font-size: 1.2rem;
+    }
+    .priceContent {
+      font-size: 1.8rem;
+    }
+
+    .clock,
+    .location {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}
+
+.closed,
+.isPast {
+  .restaurantName,
+  .clockContainer,
+  .locationContainer,
+  .priceContent {
+    color: $color-gray-30;
+  }
+}

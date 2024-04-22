@@ -1,0 +1,13 @@
+.imgOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  background-color: rgba($color-black, 0.5);
+  border-radius: 1.2rem;
+  color: $color-gray-30;
+  text-align: center;
+  @include sopoqa-28-700;
+  z-index: $zindex-fixed;
+}

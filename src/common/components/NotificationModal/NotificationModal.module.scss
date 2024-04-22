@@ -1,0 +1,11 @@
+.container {
+  width: 2.4rem;
+  height: 2.4rem;
+  gap: 4rem;
+}
+@include mobile {
+  .container {
+    width: 2rem;
+    height: 2rem;
+  }
+}

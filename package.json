@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@tanstack/react-query-devtools": "^5.31.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-datepicker": "^6.2.0",

@@ -33,9 +33,8 @@ export default function Filter() {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = () => {
     // TODO: API 호출
-    console.log(data);
   };
 
   return (

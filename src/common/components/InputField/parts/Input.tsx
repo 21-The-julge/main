@@ -6,14 +6,15 @@ import styles from "./Input.module.scss";
 const cn = classNames.bind(styles);
 
 interface InputProps {
-  type: "text" | "email" | "password" | "search";
-  size?: "sm" | "md" | "free";
-  placeholder?: string;
   name?: string;
-  color?: "white" | "gray";
-  disabled?: boolean;
-  value?: string | number;
+  type: "text" | "email" | "password" | "search";
+  value?: string | number | readonly string[];
+  placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+  size?: "sm" | "md";
+  color?: "white" | "gray";
+  readOnly?: boolean;
   required?: boolean;
 }
 
@@ -27,6 +28,7 @@ export default function Input({
   value,
   onChange,
   required,
+  readOnly,
 }: InputProps) {
   const className = cn("default", size, color);
 
@@ -41,6 +43,7 @@ export default function Input({
       value={value}
       required={required}
       onChange={onChange}
+      readOnly={readOnly}
     />
   );
 }

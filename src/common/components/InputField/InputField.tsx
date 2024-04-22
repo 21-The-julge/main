@@ -24,7 +24,7 @@ interface InputFieldProps {
   color?: "white" | "gray";
   border?: "solid" | "none";
   className?: string;
-}
+} // input interface랑 비슷한데 extend로 뽑을까요?
 
 interface ClassNameCSSProperties extends CSSProperties {
   "--width"?: string;

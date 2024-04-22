@@ -1,17 +1,3 @@
-import InputField from "@/common/components/InputField/InputField";
-
 export default function LoginPage() {
-  return (
-    <InputField
-      name="시급"
-      label="시급"
-      placeholder="입력"
-      type="text"
-      unit="원"
-      prefix="search"
-      required
-      className="50"
-      size="free"
-    />
-  );
+  return <div>로그인페이지</div>;
 }

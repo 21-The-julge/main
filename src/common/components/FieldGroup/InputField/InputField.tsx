@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { CSSProperties, ChangeEvent } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
@@ -14,6 +14,7 @@ interface InputFieldProps {
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  required?: boolean;
   disabled?: boolean;
   unit?: "원" | "시급";
   prefix?: "search";
@@ -22,35 +23,46 @@ interface InputFieldProps {
   size?: "sm" | "md";
   color?: "white" | "gray";
   border?: "solid" | "none";
+  className?: string;
+} // input interface랑 비슷한데 extend로 뽑을까요?
+
+interface ClassNameCSSProperties extends CSSProperties {
+  "--width"?: string;
 }
 
 export default function InputField({
   name,
   type = "text",
-  placeholder = "",
-  size = "md",
+  placeholder,
+  size,
   color = "white",
   isError = false,
   label,
-  disabled = false,
+  disabled,
+  required,
   unit,
   prefix,
   value,
   onChange,
   border = "solid",
   errorMessage = "",
+  className,
 }: InputFieldProps) {
-  const className = cn("default", size, color, border, { error: isError });
+  const combinedClassName = cn("default", size, color, border, { error: isError });
+  const style: ClassNameCSSProperties = {
+    "--width": className || "100vw",
+  };
 
   return (
     <div className={cn("inputField")}>
       {label && <Label htmlFor={name} label={label} />}
-      <div className={className}>
+      <div className={combinedClassName} style={style}>
         {prefix && <PrefixElement element={prefix} />}
         <Input
           name={name}
           type={type}
           placeholder={placeholder}
+          required={required}
           size={size}
           color={color}
           disabled={disabled}

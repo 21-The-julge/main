@@ -20,7 +20,7 @@ interface InputFieldProps {
   prefix?: "search";
   isError?: boolean;
   errorMessage?: string;
-  size?: "sm" | "md" | "free";
+  size?: "sm" | "md";
   color?: "white" | "gray";
   border?: "solid" | "none";
   className?: string;

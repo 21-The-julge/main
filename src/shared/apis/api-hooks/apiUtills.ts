@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { axiosInstance, axiosInstanceToken } from "../axiosInstance.js";
+import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 
 interface ApiParams {
   url: string;

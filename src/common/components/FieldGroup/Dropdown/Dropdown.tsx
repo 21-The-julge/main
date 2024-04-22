@@ -1,52 +1,58 @@
 import { useState } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
-import { SuffixElement } from "../parts";
+
+import { Input, Label, SuffixElement } from "../parts";
 
 const cn = classNames.bind(styles);
 
 interface DropdownProps {
   options: string[];
+  onClick: (option: string) => void;
+  label?: string;
+  name: string;
+  required?: boolean;
+  placeholder?: string;
 }
 
-export default function Dropdown({ options }: DropdownProps) {
+export default function Dropdown({ options, onClick, label, name, required, placeholder }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0] || "");
+  const [selectedOption, setSelectedOption] = useState("");
 
-  const handleDropdownButtonClick = () => {
+  const handleDropdownClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
     setIsOpen((prevIsOpen) => !prevIsOpen);
+
+    onClick(option);
   };
-  // // React.-event에서 React를 지우면 에러가 납니다
-  // const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, option: string) => {
-  //   if (e.key === "Enter" || e.key === "Space") {
-  //     handleOptionSelect(option);
-  //   }
-  // };
 
   return (
     <div className={cn("dropdownBox")}>
-      <button className={cn("dropdown")} type="button" onClick={handleDropdownButtonClick}>
-        {selectedOption}
+      {label && <Label htmlFor={name} label={label} required={required} />}
+      <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
+        <Input
+          name={name}
+          type="text"
+          value={selectedOption}
+          required
+          readOnly
+          placeholder={placeholder}
+          cursor="pointer"
+        />
+        <SuffixElement element="triangle" isOpen={isOpen} />
       </button>
-      <SuffixElement element="triangle" isOpen={isOpen} />
       {isOpen && (
         <div className={cn("optionsBox")}>
           {options.map((option) => {
             return (
-              <div
-                className={cn("option")}
-                key={option}
-                onClick={() => handleOptionSelect(option)}
-                role="button"
-                tabIndex={0}
-              >
+              <button className={cn("option")} key={option} onClick={() => handleOptionSelect(option)} type="button">
                 {option}
-              </div>
+              </button>
             );
           })}
         </div>

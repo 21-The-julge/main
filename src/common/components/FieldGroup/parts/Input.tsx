@@ -12,8 +12,11 @@ interface InputProps {
   name?: string;
   color?: "white" | "gray";
   disabled?: boolean;
-  value?: string | number;
+  value?: string | number | readonly string[];
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  readOnly?: boolean;
+  required?: boolean;
+  cursor?: string;
 }
 
 export default function Input({
@@ -25,8 +28,11 @@ export default function Input({
   disabled = false,
   value,
   onChange,
+  readOnly,
+  required,
+  cursor,
 }: InputProps) {
-  const className = cn("default", size, color);
+  const className = cn("default", size, color, cursor);
 
   return (
     <input
@@ -38,6 +44,8 @@ export default function Input({
       disabled={disabled}
       value={value}
       onChange={onChange}
+      readOnly={readOnly}
+      required={required}
     />
   );
 }

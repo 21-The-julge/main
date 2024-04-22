@@ -2,7 +2,7 @@
   border: none;
   outline: none;
   @include sopoqa-16-400;
-  width: 90%;
+  width: 100%;
 
   &::placeholder {
     color: $color-gray-40;
@@ -24,6 +24,12 @@
 
 .gray {
   background: $color-gray-10;
+}
+
+.pointer {
+  cursor: pointer;
+  user-select: none;
+  --webkit-user-select: none;
 }
 
 @include tablet {

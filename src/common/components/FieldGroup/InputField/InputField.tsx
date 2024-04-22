@@ -10,7 +10,7 @@ const cn = classNames.bind(styles);
 interface InputFieldProps {
   name?: string;
   type?: "text" | "email" | "password" | "search";
-  value?: string;
+  value?: string | number;
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   label?: string;

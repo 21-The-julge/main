@@ -1,27 +1,39 @@
+$option-height: 5.8rem;
+
 .dropdownBox {
   width: 35rem;
   position: relative;
-  @include pretendard-16-400;
+  @include sopoqa-16-400;
 
   .dropdown {
     display: flex;
     align-items: center;
     padding: 1rem 1.25rem;
     width: 100%;
+    height: $option-height;
 
     border-radius: 0.375rem;
     border: 0.0625rem solid $color-gray-30;
-    background: $color-white;
+
+    user-select: none;
+    cursor: pointer;
   }
 
   .optionsBox {
     position: absolute;
     border: 0.0625rem solid $color-gray-30;
     width: 100%;
+    height: calc($option-height * 4);
+    overflow: scroll;
 
     .option {
       padding: 1rem 1.25rem;
+      height: $option-height;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
 
       &:hover {
         background-color: $color-red-20;

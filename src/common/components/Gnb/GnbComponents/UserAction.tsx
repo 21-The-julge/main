@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import GetAuth from "@/shared/hooks/getAuth";
@@ -9,6 +10,10 @@ const cn = classNames.bind(styles);
 
 export default function UserAction() {
   const { isLoggedIn, type, handleLogout } = GetAuth();
+  const [isUserLoggedIn, setUserLoggedIn] = useState(isLoggedIn);
+  useEffect(() => {
+    setUserLoggedIn(isLoggedIn);
+  }, [isLoggedIn]);
 
   const isEmployer = type === "employer";
 
@@ -29,5 +34,5 @@ export default function UserAction() {
     </>
   );
 
-  return <div className={cn("container")}>{isLoggedIn ? loggedInSection : notLoggedInSection}</div>;
+  return <div className={cn("container")}>{isUserLoggedIn ? loggedInSection : notLoggedInSection}</div>;
 }

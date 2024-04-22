@@ -11,12 +11,18 @@ export default function GetAuth() {
 
   useEffect(() => {
     updateToken();
+    window.addEventListener("storage", updateToken);
+
+    return () => {
+      window.removeEventListener("storage", updateToken);
+    };
   }, []);
 
   const isLoggedIn = Boolean(token);
 
   const handleLogout = () => {
     sessionStorage.clear();
+    updateToken();
   };
 
   return { isLoggedIn, type, handleLogout };

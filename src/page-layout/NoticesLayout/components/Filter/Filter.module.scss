@@ -1,0 +1,69 @@
+.container {
+  position: absolute;
+  width: 39rem;
+  padding: 2.4rem 2rem;
+  border-radius: 1rem;
+  border: 0.1rem solid $color-gray-20;
+  background-color: $color-white;
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(120, 116, 134, 0.25);
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  @include sopoqa-20-700;
+}
+
+.divider {
+  border: 0.1rem solid $color-gray-10;
+}
+
+.closeIcon {
+  fill: $color-black;
+}
+
+.pay {
+  .payInput {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    @include sopoqa-16-400;
+
+    input {
+      width: 16.9rem;
+      padding: 1.6rem 2rem;
+    }
+  }
+
+  p {
+    position: absolute;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 0.8rem;
+
+  div:nth-child(1) {
+    flex-grow: 1;
+  }
+
+  div:nth-child(2) {
+    flex-grow: 3;
+  }
+}
+
+@include mobile {
+  .container {
+    width: 100%;
+  }
+}

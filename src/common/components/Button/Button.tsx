@@ -12,7 +12,7 @@ interface ButtonProps {
   color?: "primary" | "secondary";
   className?: string;
   disabled?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function Button({

@@ -1,9 +1,3 @@
-import Input from "@/common/components/Input/Input";
-
 export default function LoginPage() {
-  return (
-    <div>
-      <Input />
-    </div>
-  );
+  return <div>로그인페이지</div>;
 }

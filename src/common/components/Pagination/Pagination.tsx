@@ -41,29 +41,31 @@ export default function Pagination({ currentPage, totalPages, onPageChange, page
 
   return (
     <div className={cn("pagination")}>
-      <button onClick={() => onPageChange(1)}>
+      <button type="button" aria-label="처음 페이지로" onClick={() => onPageChange(1)}>
         <LeftArrowDoubleIcon className={cn("buttonArrow")} />
       </button>
       {currentPageGroup > 0 && (
-        <button onClick={movePrevGroup}>
+        <button type="button" aria-label="이전 페이지 그룹" onClick={movePrevGroup}>
           <LeftArrowIcon className={cn("buttonArrow")} />
         </button>
       )}
       <div className={cn("buttonPageFrame")}>
         {pages.map((page) => (
           <button
+            type="button"
             className={cn("buttonPage", { active: currentPage === page })}
             key={page}
+            aria-label={`페이지 ${page}로 이동`}
             onClick={() => onPageChange(page)}
           >
             {page}
           </button>
         ))}
       </div>
-      <button onClick={moveNextGroup}>
+      <button type="button" aria-label="다음 페이지 그룹" onClick={moveNextGroup}>
         <RightArrowIcon className={cn("buttonArrow")} />
       </button>
-      <button onClick={() => onPageChange(totalPages)}>
+      <button type="button" aria-label="마지막 페이지로" onClick={() => onPageChange(totalPages)}>
         <RightArrowDoubleIcon className={cn("buttonArrow")} />
       </button>
     </div>

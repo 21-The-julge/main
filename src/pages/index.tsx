@@ -1,3 +1,5 @@
+import RootLayout from "@/shared/components/RootLayout/RootLayout";
+
 export default function Home() {
-  <div>메인페이지</div>;
+  return <RootLayout>메인페이지</RootLayout>;
 }

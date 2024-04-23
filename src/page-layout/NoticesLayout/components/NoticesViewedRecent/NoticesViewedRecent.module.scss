@@ -14,8 +14,14 @@
     @include sopoqa-28-700;
   }
 }
+.postFrame {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 280px;
+  height: 317px;
+}
 .post {
-  width: 100%;
-  height: 100%;
-  fill: 0;
+  width: 280px;
+  height: 317px;
 }

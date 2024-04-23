@@ -1,8 +1,50 @@
-.frame {
+.noticeDetailInfo {
   display: flex;
   width: 100%;
   padding: 60px 238px;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  background: $color-gray-5;
+}
+.font {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  > h1 {
+    color: $color-black;
+
+    @include sopoqa-28-700;
+  }
+  > h2 {
+    color: $color-primary;
+    @include sopoqa-16-700;
+  }
+}
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.imgFrame {
+  display: inline-flex;
+  padding: 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 12px;
+  border: 1px solid $color-gray-20;
+  background: $color-white;
+}
+
+.detail {
+  display: flex;
+  width: 100%;
+  padding: 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 12px;
+  background: $color-gray-10;
 }

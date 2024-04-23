@@ -1,1 +1,1 @@
-export { default } from "./Filter/Filter";
+export { default } from "./AllNotices/AllNotices";

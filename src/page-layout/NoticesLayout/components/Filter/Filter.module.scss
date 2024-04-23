@@ -6,6 +6,7 @@
   border: 0.1rem solid $color-gray-20;
   background-color: $color-white;
   box-shadow: 0 0.2rem 0.8rem 0 rgba(120, 116, 134, 0.25);
+  z-index: 10000;
 }
 
 .content {
@@ -28,6 +29,7 @@
 
 .closeIcon {
   fill: $color-black;
+  cursor: pointer;
 }
 
 .pay {

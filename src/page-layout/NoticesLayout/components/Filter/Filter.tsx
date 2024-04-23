@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { formatRFC3339 } from "date-fns/formatRFC3339";
 import classNames from "classnames/bind";
@@ -14,17 +13,18 @@ import styles from "./Filter.module.scss";
 const cn = classNames.bind(styles);
 
 interface FilterProps {
-  onClose: MouseEventHandler<HTMLButtonElement>;
   className: string;
+  onClose: () => void;
+  onFilter: (filter: FieldValues) => void;
 }
 
 interface FieldValues {
   address: string[];
-  startDate: string;
-  pay: number | null;
+  startsAtGte: string;
+  hourlyPayGte: string;
 }
 
-export default function Filter({ onClose, className }: FilterProps) {
+export default function Filter({ className, onClose, onFilter }: FilterProps) {
   const {
     register,
     reset,
@@ -34,13 +34,14 @@ export default function Filter({ onClose, className }: FilterProps) {
   } = useForm<FieldValues>({
     defaultValues: {
       address: [],
-      startDate: formatRFC3339(new Date()),
-      pay: null,
+      startsAtGte: formatRFC3339(new Date()),
+      hourlyPayGte: "",
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = () => {
-    // TODO: API 호출
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    onFilter(data);
+    onClose();
   };
 
   return (
@@ -63,7 +64,7 @@ export default function Filter({ onClose, className }: FilterProps) {
 
         <FieldSet label="시작일">
           <Controller
-            name="startDate"
+            name="startsAtGte"
             render={({ field: { value, onChange } }) => (
               <StartDatePicker startDate={new Date(value)} onChange={(date: Date) => onChange(formatRFC3339(date))} />
             )}
@@ -78,7 +79,7 @@ export default function Filter({ onClose, className }: FilterProps) {
             <div className={cn("payInput")}>
               <input
                 placeholder="입력"
-                {...register("pay", {
+                {...register("hourlyPayGte", {
                   min: 0,
                   pattern: {
                     value: /^\d+$/,
@@ -89,7 +90,7 @@ export default function Filter({ onClose, className }: FilterProps) {
               <span>이상부터</span>
             </div>
 
-            <p>{errors.pay?.message}</p>
+            <p>{errors.hourlyPayGte?.message}</p>
           </div>
         </FieldSet>
 

@@ -9,14 +9,25 @@ const cn = classNames.bind(styles);
 
 interface DropdownProps {
   options: string[];
-  onClick: (option: string) => void;
+  onClick?: (option: string) => void;
   label?: string;
   name: string;
   required?: boolean;
   placeholder?: string;
+  size?: "sm" | "md";
+  color?: "white" | "gray";
 }
 
-export default function Dropdown({ options, onClick, label, name, required, placeholder }: DropdownProps) {
+export default function Dropdown({
+  options,
+  onClick,
+  label,
+  name,
+  required,
+  placeholder,
+  size = "md",
+  color = "white",
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -28,13 +39,17 @@ export default function Dropdown({ options, onClick, label, name, required, plac
     setSelectedOption(option);
     setIsOpen((prevIsOpen) => !prevIsOpen);
 
-    onClick(option);
+    if (onClick) {
+      onClick(option);
+    }
   };
+
+  const className = cn("dropdown", size, color);
 
   return (
     <div className={cn("dropdownBox")}>
       {label && <Label htmlFor={name} label={label} required={required} />}
-      <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
+      <button aria-label={name} className={className} onClick={handleDropdownClick} type="button">
         <Input
           name={name}
           type="text"
@@ -43,6 +58,7 @@ export default function Dropdown({ options, onClick, label, name, required, plac
           readOnly
           placeholder={placeholder}
           cursor="pointer"
+          color={color}
         />
         <SuffixElement element="triangle" isOpen={isOpen} />
       </button>

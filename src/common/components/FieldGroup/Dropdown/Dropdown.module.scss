@@ -1,33 +1,26 @@
-$option-height: 5.8rem;
+$option-height: 6rem;
 
 .dropdownBox {
-  width: 35rem;
+  width: 100%;
   position: relative;
   @include sopoqa-16-400;
 
   .dropdown {
     display: flex;
     align-items: center;
-    padding: 1rem 1.25rem;
-    width: 100%;
-    height: $option-height;
-
-    border-radius: 0.375rem;
-    border: 0.0625rem solid $color-gray-30;
-
     user-select: none;
     cursor: pointer;
   }
 
   .optionsBox {
     position: absolute;
-    border: 0.0625rem solid $color-gray-30;
+    border: 0.1rem solid $color-gray-30;
     width: 100%;
     height: calc($option-height * 4);
     overflow: scroll;
 
     .option {
-      padding: 1rem 1.25rem;
+      padding: 1.6rem 2rem;
       height: $option-height;
       cursor: pointer;
       display: flex;
@@ -39,5 +32,47 @@ $option-height: 5.8rem;
         background-color: $color-red-20;
       }
     }
+  }
+
+  .sm {
+    padding: 1.2rem;
+    height: calc($option-height * 0.5);
+
+    width: 100%;
+    max-width: 10.6rem;
+
+    .dropdownBox,
+    .option {
+      max-width: 10.6rem;
+    }
+
+    .options {
+      border: 0.1rem solid $color-gray-20;
+      box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .md {
+    padding: 1.6rem 2rem;
+    height: $option-height;
+
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-gray-30;
+
+    width: 100%;
+    max-width: 35rem;
+
+    .dropdownBox,
+    .option {
+      max-width: 35rem;
+    }
+  }
+
+  .white {
+    background-color: $color-white;
+  }
+
+  .gray {
+    background-color: $color-gray-10;
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
@@ -16,6 +16,11 @@ interface DropdownProps {
   placeholder?: string;
   size?: "sm" | "md";
   color?: "white" | "gray";
+  className?: string;
+}
+
+interface ClassNameCSSProperties extends CSSProperties {
+  "--width"?: string;
 }
 
 export default function Dropdown({
@@ -27,6 +32,7 @@ export default function Dropdown({
   placeholder,
   size = "md",
   color = "white",
+  className,
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -44,12 +50,15 @@ export default function Dropdown({
     }
   };
 
-  const className = cn("dropdown", size, color);
+  const combinedClassName = cn("dropdownBox", size, color);
+  const style: ClassNameCSSProperties = {
+    "--width": className || "100vw",
+  };
 
   return (
-    <div className={cn("dropdownBox")}>
+    <div className={combinedClassName} style={style}>
       {label && <Label htmlFor={name} label={label} required={required} />}
-      <button aria-label={name} className={className} onClick={handleDropdownClick} type="button">
+      <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
         <Input
           name={name}
           type="text"

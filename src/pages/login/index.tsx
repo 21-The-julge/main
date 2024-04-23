@@ -9,8 +9,8 @@ export default function LoginPage() {
 
   return (
     <>
-      <InputField unit="시급" className="100" />
-      <Dropdown label="분류" name="123" options={BUSINESS_OPTIONS} required placeholder="입력" />
+      <InputField unit="시급" size="md" className="30rem" />
+      <Dropdown label="분류" name="123" options={BUSINESS_OPTIONS} required placeholder="입력" className="30rem" />
     </>
   );
 }

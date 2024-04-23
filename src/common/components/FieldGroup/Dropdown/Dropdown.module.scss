@@ -1,78 +1,89 @@
 $option-height: 6rem;
 
 .dropdownBox {
-  width: 100%;
   position: relative;
-  @include sopoqa-16-400;
+  width: calc(var(--width));
 
   .dropdown {
     display: flex;
     align-items: center;
     user-select: none;
     cursor: pointer;
+    width: 100%;
   }
 
   .optionsBox {
     position: absolute;
-    border: 0.1rem solid $color-gray-30;
+    border: none;
     width: 100%;
-    height: calc($option-height * 4);
     overflow: scroll;
+    background: none;
+    box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
 
     .option {
-      padding: 1.6rem 2rem;
-      height: $option-height;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
+      border: 0.1rem solid $color-gray-20;
+      border-radius: 0.6rem;
 
       &:hover {
         background-color: $color-red-20;
       }
     }
   }
+}
 
-  .sm {
-    padding: 1.2rem;
-    height: calc($option-height * 0.5);
-
-    width: 100%;
-    max-width: 10.6rem;
-
-    .dropdownBox,
-    .option {
-      max-width: 10.6rem;
-    }
-
-    .options {
-      border: 0.1rem solid $color-gray-20;
-      box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  .md {
-    padding: 1.6rem 2rem;
-    height: $option-height;
-
-    border-radius: 0.6rem;
-    border: 0.1rem solid $color-gray-30;
-
-    width: 100%;
-    max-width: 35rem;
-
-    .dropdownBox,
-    .option {
-      max-width: 35rem;
-    }
-  }
-
-  .white {
+.white {
+  .dropdown {
     background-color: $color-white;
   }
+}
 
-  .gray {
+.gray {
+  .dropdown {
     background-color: $color-gray-10;
+  }
+}
+
+.md {
+  max-width: 35rem;
+  @include sopoqa-16-400;
+
+  .dropdown {
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-gray-30;
+    padding: 1.6rem 2rem;
+    height: $option-height;
+  }
+
+  .optionsBox {
+    height: calc($option-height * 4);
+
+    .option {
+      padding: 1.6rem 2rem;
+      height: $option-height;
+    }
+  }
+}
+
+.sm {
+  max-width: 10.6rem;
+  @include sopoqa-14-400;
+
+  .dropdown {
+    border: none;
+    padding: 0.8rem;
+    height: calc($option-height * 0.5);
+  }
+
+  .optionsBox {
+    height: calc($option-height * 2);
+
+    .option {
+      height: calc($option-height * 0.5);
+    }
   }
 }

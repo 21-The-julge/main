@@ -3,11 +3,11 @@ import styles from "./FieldGroup.module.scss";
 
 import { Label } from "./parts";
 import { InputField, Dropdown, Textarea } from "./index";
-import { DropdownProps, InputFieldProps } from "./type";
+import { DropdownProps, InputFieldProps, TextareaProps } from "./type";
 
 const cn = classNames.bind(styles);
 
-interface FieldGroupProps extends InputFieldProps, DropdownProps {
+interface FieldGroupProps extends InputFieldProps, DropdownProps, TextareaProps {
   field: "input" | "dropdown" | "textarea";
 }
 
@@ -31,6 +31,7 @@ export default function FieldGroup({
   options,
   onClick,
   className,
+  onTextareaChange,
 }: FieldGroupProps) {
   const commonProps = {
     name,
@@ -54,6 +55,10 @@ export default function FieldGroup({
       options,
       onClick,
     }),
+    ...(field === "textarea" && {
+      rows: 4,
+      onTextareaChange,
+    }),
   };
 
   const renderField = () => {
@@ -63,7 +68,7 @@ export default function FieldGroup({
       case "dropdown":
         return <Dropdown {...commonProps} />;
       case "textarea":
-        return <Textarea />;
+        return <Textarea {...commonProps} />;
       default:
         return null;
     }

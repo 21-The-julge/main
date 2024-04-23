@@ -29,6 +29,15 @@ export interface DropdownProps {
   className?: string;
 }
 
+export interface TextareaProps {
+  rows?: number;
+  name?: string;
+  value?: string | number;
+  required?: boolean;
+  placeholder?: string;
+  onTextareaChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
 export interface ClassNameCSSProperties extends CSSProperties {
   "--width"?: string;
 }

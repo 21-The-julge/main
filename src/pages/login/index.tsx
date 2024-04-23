@@ -13,9 +13,9 @@ export default function LoginPage() {
       <InputField unit="시급" size="md" className="30rem" />
       <Dropdown name="123" options={BUSINESS_OPTIONS} placeholder="입력" className="30rem" />
 
-      <FieldGroup field="input" type="search" label="김보경" name="김보경" />
+      <FieldGroup field="input" type="search" label="김보경" name="김보경" unit="원" />
       <FieldGroup field="dropdown" label="김가은" name="김가은" />
-      <FieldGroup field="textarea" />
+      <FieldGroup label="김보경" name="김보경" required field="textarea" placeholder="입력" />
     </>
   );
 }

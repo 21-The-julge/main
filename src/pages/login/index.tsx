@@ -1,5 +1,6 @@
 import { InputField } from "@/common/components";
 import Dropdown from "@/common/components/FieldGroup/Dropdown/Dropdown";
+import FieldGroup from "@/common/components/FieldGroup/FieldGroup";
 import { BUSINESS_OPTIONS } from "@/common/constants";
 
 export default function LoginPage() {
@@ -10,9 +11,10 @@ export default function LoginPage() {
   return (
     <>
       <InputField unit="시급" size="md" className="30rem" />
-      <Dropdown label="분류" name="123" options={BUSINESS_OPTIONS} required placeholder="입력" className="30rem" />
+      <Dropdown name="123" options={BUSINESS_OPTIONS} placeholder="입력" className="30rem" />
+
+      <FieldGroup field="input" label="김보경" name="김보경" />
+      <FieldGroup field="dropdown" label="김가은" name="김가은" />
     </>
   );
 }
-
-// 김모경 사랑해 ㅑ

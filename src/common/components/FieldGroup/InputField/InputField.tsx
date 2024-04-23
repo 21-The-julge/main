@@ -1,43 +1,41 @@
-import { CSSProperties, ChangeEvent } from "react";
-
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
 
-import { PrefixElement, SuffixElement, ErrorMessage, Label, Input } from "../parts/index";
+import { PrefixElement, SuffixElement, ErrorMessage, Input } from "../parts/index";
+import { ClassNameCSSProperties, InputFieldProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-interface InputFieldProps {
-  name?: string;
-  type?: "text" | "email" | "password" | "search";
-  value?: string | number;
-  placeholder?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
-  required?: boolean;
-  disabled?: boolean;
-  unit?: "원" | "시급";
-  prefix?: "search";
-  isError?: boolean;
-  errorMessage?: string;
-  size?: "sm" | "md";
-  color?: "white" | "gray";
-  border?: "solid" | "none";
-  className?: string;
-} // input interface랑 비슷한데 extends로 뽑을까요?
+// interface InputFieldProps {
+//   name?: string;
+//   type?: "text" | "email" | "password" | "search";
+//   value?: string | number;
+//   placeholder?: string;
+//   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+//   label?: string;
+//   required?: boolean;
+//   disabled?: boolean;
+//   unit?: "원" | "시급";
+//   prefix?: "search";
+//   isError?: boolean;
+//   errorMessage?: string;
+//   size?: "sm" | "md";
+//   color?: "white" | "gray";
+//   border?: "solid" | "none";
+//   className?: string;
+// } // input interface랑 비슷한데 extends로 뽑을까요?
 
-interface ClassNameCSSProperties extends CSSProperties {
-  "--width"?: string;
-}
+// interface ClassNameCSSProperties extends CSSProperties {
+//   "--width"?: string;
+// }
 
 export default function InputField({
   name,
   type = "text",
   placeholder,
-  size,
+  size = "md",
   color = "white",
   isError = false,
-  label,
   disabled,
   required,
   unit,
@@ -55,7 +53,6 @@ export default function InputField({
 
   return (
     <div className={cn("inputField")}>
-      {label && <Label htmlFor={name} label={label} />}
       <div className={combinedClassName} style={style}>
         {prefix && <PrefixElement element={prefix} />}
         <Input

@@ -1,34 +1,31 @@
-import { CSSProperties, useState } from "react";
+import { useState } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
 
-import { Input, Label, SuffixElement } from "../parts";
+import { Input, SuffixElement } from "../parts";
+import { ClassNameCSSProperties, DropdownProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-interface DropdownProps {
-  options: string[];
-  onClick?: (option: string) => void;
-  label?: string;
-  name: string;
-  required?: boolean;
-  placeholder?: string;
-  size?: "sm" | "md";
-  color?: "white" | "gray";
-  className?: string;
-}
+// interface DropdownProps {
+//   options?: string[];
+//   onClick?: (option: string) => void;
+//   name?: string;
+//   placeholder?: string;
+//   size?: "sm" | "md";
+//   color?: "white" | "gray";
+//   className?: string;
+// }
 
-interface ClassNameCSSProperties extends CSSProperties {
-  "--width"?: string;
-}
+// interface ClassNameCSSProperties extends CSSProperties {
+//   "--width"?: string;
+// }
 
 export default function Dropdown({
   options,
   onClick,
-  label,
   name,
-  required,
   placeholder,
   size = "md",
   color = "white",
@@ -57,7 +54,7 @@ export default function Dropdown({
 
   return (
     <div className={combinedClassName} style={style}>
-      {label && <Label htmlFor={name} label={label} required={required} />}
+      {/* {label && <Label htmlFor={name} label={label} required={required} />} */}
       <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
         <Input
           name={name}
@@ -73,7 +70,7 @@ export default function Dropdown({
       </button>
       {isOpen && (
         <div className={cn("optionsBox")}>
-          {options.map((option) => {
+          {options?.map((option) => {
             return (
               <button className={cn("option")} key={option} onClick={() => handleOptionSelect(option)} type="button">
                 {option}

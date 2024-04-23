@@ -4,23 +4,20 @@ import { GetAlertsData } from "@/shared/apis/api-hooks";
 export default function GetNotificationData() {
   const [alertCount, setAlertCount] = useState(0);
   const [iconColor, setIconColor] = useState("");
-  const [data, setData] = useState(null);
+  const [notificationData, setNotificationData] = useState(null);
+  const { data, error, isLoading } = GetAlertsData({ offset: 0, limit: 10 });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await GetAlertsData();
-      setData(result);
-      if (result) {
-        setAlertCount(result.count);
-        if (result.count > 0) {
-          setIconColor("#EA3C12");
-        }
-      } else {
-        setAlertCount(0);
-        setIconColor("none");
+    setNotificationData(data);
+    if (data) {
+      setAlertCount(data.count);
+      if (data.count > 0) {
+        setIconColor("#EA3C12");
       }
-    };
-    fetchData();
-  }, []);
-  return { data, iconColor, alertCount };
+    } else {
+      setAlertCount(0);
+      setIconColor("none");
+    }
+  }, [data]);
+  return { notificationData, error, isLoading, iconColor, alertCount };
 }

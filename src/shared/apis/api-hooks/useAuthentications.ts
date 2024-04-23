@@ -1,22 +1,19 @@
+import { useMutation } from "@tanstack/react-query";
 import { axiosInstance } from "../axiosInstance";
-
-interface PostSignInParams {
-  email: string;
-  password: string;
-}
+import { PostSignInParams } from "./apiType";
 
 // 로그인 POST 요청 - 세션 스토리지에 token, userId 저장
 export default async function PostSignIn(bodyData: PostSignInParams) {
-  const { data } = await axiosInstance.post("/token", bodyData);
-
-  if (!data) {
-    return data;
-  }
-
-  const { token } = data.item;
-  const { id } = data.item.user.item;
-  sessionStorage.setItem("token", token);
-  sessionStorage.setItem("userId", id);
-
-  return data;
+  return useMutation({
+    mutationKey: ["PostSignIn", bodyData],
+    mutationFn: async () => {
+      const { data } = await axiosInstance.post("/token", bodyData);
+      if (!data) {
+        return data;
+      }
+      sessionStorage.setItem("token", data.item.token);
+      sessionStorage.setItem("userId", data.item.user.item.id);
+      return data;
+    },
+  });
 }

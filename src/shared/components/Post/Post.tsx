@@ -5,20 +5,21 @@ import getFullDate from "@/shared/utils/getDate";
 import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
 import addComma from "@/shared/components/Post/utils/addComma";
+import NoImg from "@/images/noImg.svg";
 import NoticeMessage from "./NoticeMessage/NoticeMessage";
 import HighPriceRateBadge from "./HighPriceRateBadge/HighPriceRateBadge";
 
 const cn = classNames.bind(styles);
 
 interface PostProps {
-  imageUrl: string;
+  imageUrl?: string;
   startsAt: string;
   workhour: number;
   hourlyPay: number;
   closed: boolean;
-  name: string;
-  address: string;
-  originalHourlyPay: number;
+  name?: string;
+  address?: string;
+  originalHourlyPay?: number;
   className: string;
 }
 
@@ -43,7 +44,7 @@ export default function Post({
         <NoticeMessage isPast={isPast} closed={closed} />
         <Image
           className={cn("img")}
-          src={imageUrl}
+          src={imageUrl || NoImg}
           alt="식당 공고"
           fill
           placeholder="blur"

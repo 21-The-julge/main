@@ -1,41 +1,22 @@
-import { PostData } from "./apiUtills";
+import { axiosInstance } from "../axiosInstance";
 
 interface PostSignInParams {
   email: string;
   password: string;
 }
 
-interface PostSignInResponse {
-  item: {
-    token: string;
-    user: {
-      item: {
-        id: string;
-        email: string;
-        type: string;
-      };
-      href: string;
-    };
-  };
-  links: [];
-}
-
 // 로그인 POST 요청 - 세션 스토리지에 token, userId 저장
-export default async function PostSignIn(data: PostSignInParams) {
-  const { response, error, isLoading } = await PostData<PostSignInResponse>({
-    url: "/token",
-    requiredToken: false,
-    bodyData: data,
-  });
+export default async function PostSignIn(bodyData: PostSignInParams) {
+  const { data } = await axiosInstance.post("/token", bodyData);
 
-  if (!response) {
-    return { response, error, isLoading };
+  if (!data) {
+    return data;
   }
 
-  const { token } = response.item;
-  const { id } = response.item.user.item;
+  const { token } = data.item;
+  const { id } = data.item.user.item;
   sessionStorage.setItem("token", token);
   sessionStorage.setItem("userId", id);
 
-  return { response, error, isLoading };
+  return data;
 }

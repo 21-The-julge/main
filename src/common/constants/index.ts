@@ -48,3 +48,9 @@ export const MESSAGES = {
   REJECT: "신청을 거절하시겠어요?",
   NOTIFICATION: "알림이 없습니다.",
 } as const;
+
+export const ERROR_MESSAGE = {
+  INCORRECT_EMAIL: "잘못된 이메일입니다.",
+  SHORT_PASSWORD: "8자 이상 입력해 주세요.",
+  INCORRECT_PASSWORD: "비밀번호가 일치하지 않습니다.",
+} as const;

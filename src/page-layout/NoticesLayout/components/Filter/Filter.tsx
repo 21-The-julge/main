@@ -39,9 +39,8 @@ export default function Filter({ onClose, className }: FilterProps) {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = () => {
     // TODO: API 호출
-    console.log(data);
   };
 
   return (
@@ -96,7 +95,7 @@ export default function Filter({ onClose, className }: FilterProps) {
 
         <div className={cn("buttons")}>
           <div>
-            <Button type="reset" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
+            <Button type="button" size="medium" variant="outline" className="fullWidth" onClick={() => reset()}>
               초기화
             </Button>
           </div>

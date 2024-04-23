@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { formatRFC3339 } from "date-fns/formatRFC3339";
 import classNames from "classnames/bind";
@@ -12,13 +13,18 @@ import styles from "./Filter.module.scss";
 
 const cn = classNames.bind(styles);
 
+interface FilterProps {
+  onClose: MouseEventHandler<HTMLButtonElement>;
+  className: string;
+}
+
 interface FieldValues {
   address: string[];
   startDate: string;
   pay: number | null;
 }
 
-export default function Filter() {
+export default function Filter({ onClose, className }: FilterProps) {
   const {
     register,
     reset,
@@ -39,11 +45,11 @@ export default function Filter() {
   };
 
   return (
-    <div className={cn("container")}>
+    <div className={cn("container", className)}>
       <form onSubmit={handleSubmit(onSubmit)} className={cn("content")}>
         <div className={cn("header")}>
           <h2>상세 필터</h2>
-          <CloseIcon width={24} height={24} className={cn("closeIcon")} />
+          <CloseIcon width={24} height={24} className={cn("closeIcon")} onClick={onClose} />
         </div>
 
         <FieldSet label="위치">

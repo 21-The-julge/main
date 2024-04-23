@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./FieldGroup.module.scss";
 
-import { InputField, Dropdown } from "./index";
 import { Label } from "./parts";
+import { InputField, Dropdown, Textarea } from "./index";
 import { DropdownProps, InputFieldProps } from "./type";
 
 const cn = classNames.bind(styles);
@@ -62,6 +62,8 @@ export default function FieldGroup({
         return <InputField {...commonProps} />;
       case "dropdown":
         return <Dropdown {...commonProps} />;
+      case "textarea":
+        return <Textarea />;
       default:
         return null;
     }

@@ -15,7 +15,7 @@ export default function LoginPage() {
 
       <FieldGroup field="input" type="search" label="김보경" name="김보경" />
       <FieldGroup field="dropdown" label="김가은" name="김가은" />
-      <FieldGroup field="input" />
+      <FieldGroup field="textarea" />
     </>
   );
 }

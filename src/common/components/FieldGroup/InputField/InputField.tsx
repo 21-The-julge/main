@@ -6,29 +6,6 @@ import { ClassNameCSSProperties, InputFieldProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-// interface InputFieldProps {
-//   name?: string;
-//   type?: "text" | "email" | "password" | "search";
-//   value?: string | number;
-//   placeholder?: string;
-//   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-//   label?: string;
-//   required?: boolean;
-//   disabled?: boolean;
-//   unit?: "원" | "시급";
-//   prefix?: "search";
-//   isError?: boolean;
-//   errorMessage?: string;
-//   size?: "sm" | "md";
-//   color?: "white" | "gray";
-//   border?: "solid" | "none";
-//   className?: string;
-// } // input interface랑 비슷한데 extends로 뽑을까요?
-
-// interface ClassNameCSSProperties extends CSSProperties {
-//   "--width"?: string;
-// }
-
 export default function InputField({
   name,
   type = "text",

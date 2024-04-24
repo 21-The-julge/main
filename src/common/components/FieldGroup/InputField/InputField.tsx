@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
 
-import { PrefixElement, SuffixElement, ErrorMessage, Input } from "../parts/index";
+import { PrefixElement, ErrorMessage, Input, SuffixUnit } from "../parts/index";
 import { ClassNameCSSProperties, InputFieldProps } from "../type";
 
 const cn = classNames.bind(styles);
@@ -43,7 +43,7 @@ export default function InputField({
           value={value}
           onChange={onChange}
         />
-        {unit && <SuffixElement element={unit} />}
+        {unit && <SuffixUnit unit={unit} />}
       </div>
       {isError && <ErrorMessage message={errorMessage} />}
     </div>

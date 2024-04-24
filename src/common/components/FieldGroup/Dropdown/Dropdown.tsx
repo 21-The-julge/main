@@ -5,7 +5,7 @@ import useOutsideClick from "@/common/hooks/useOutsideClick";
 import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
 
-import { Input, SuffixElement } from "../parts";
+import { Input, SuffixIcon } from "../parts";
 import { ClassNameCSSProperties, DropdownProps } from "../type";
 
 const cn = classNames.bind(styles);
@@ -55,7 +55,7 @@ export default function Dropdown({
           cursor="pointer"
           color={color}
         />
-        <SuffixElement element="triangle" isOpen={isOpen} />
+        <SuffixIcon icon="triangle" isOpen={isOpen} />
       </button>
       {isOpen && (
         <div className={cn("optionsBox")}>

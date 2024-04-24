@@ -1,34 +1,17 @@
+import { ApiData } from "@/page-layout/MyShopLayout/type";
 import { Post } from "@/shared/components";
 import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
 
 interface PostContainerProps {
-  className: string;
   myShopData: ApiData;
 }
 
-interface ApiData {
-  item: {
-    id: string;
-    hourlyPay: number;
-    startsAt: string;
-    workhour: number;
-    description: string;
-    closed: boolean;
-    // 추가
-    imageUrl?: string;
-    name?: string;
-    address1?: string;
-    originalHourlyPay?: number;
-  };
-}
-
-export default function PostContainer({ className, myShopData }: PostContainerProps) {
+export default function PostContainer({ myShopData }: PostContainerProps) {
   if (myShopData?.item?.startsAt === undefined) {
-    return <PostSkeleton className={className} />;
+    return <PostSkeleton />;
   }
   return (
     <Post
-      className={className}
       imageUrl={myShopData?.item?.imageUrl}
       startsAt={myShopData?.item?.startsAt}
       workhour={myShopData?.item?.workhour}

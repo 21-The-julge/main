@@ -1,17 +1,19 @@
-export default interface ApiData {
+export interface RegisterdShop {
+  lastRef: (node?: Element | null | undefined) => void;
+  myShopData: ApiData[];
+}
+
+export interface ApiData {
   item: {
+    id: string;
+    hourlyPay: number;
     startsAt: string;
     workhour: number;
-    hourlyPay: number;
+    description: string;
     closed: boolean;
-    id: string;
-    shop: {
-      item: {
-        address1: string;
-        imageUrl: string;
-        name: string;
-        originalHourlyPay: number;
-      };
-    };
+    imageUrl?: string;
+    name?: string;
+    address1?: string;
+    originalHourlyPay?: number;
   };
 }

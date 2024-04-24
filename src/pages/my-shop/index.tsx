@@ -1,13 +1,10 @@
 import ShowMyShop from "@/page-layout/MyShopLayout/component/MyShop/MyShop";
-import styles from "@/pages/my-shop/myshop.module.scss";
-import classNames from "classnames/bind";
 import RegisterdShop from "@/page-layout/MyShopLayout/component/RegisteredShop/RegisterdShop";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import useGetMessages from "@/page-layout/MyShopLayout/hooks/useGetShopData";
 import { axiosInstance } from "@/shared/apis/axiosInstance";
-
-const cn = classNames.bind(styles);
+import RootLayout from "@/shared/components/RootLayout/RootLayout";
 
 interface Item {
   address1: string;
@@ -63,7 +60,6 @@ export default function MyShop({ shopData }: ApiData) {
   const registerdShopList = data?.pages;
   const [array, setArray] = useState<DataArray>([]);
 
-  // eslint-disable-next-line no-restricted-syntax
   if (registerdShopList !== undefined) {
     for (let i = 0; i < registerdShopList?.length; i += 1) {
       // eslint-disable-next-line no-restricted-syntax
@@ -76,8 +72,6 @@ export default function MyShop({ shopData }: ApiData) {
     }
   }
 
-  const height = shopData ? "" : "apply";
-
   useEffect(() => {
     setArray((prev) => [...prev, ...(data?.pages[data.pages.length - 1].result ?? [])]);
   }, [data]);
@@ -86,16 +80,12 @@ export default function MyShop({ shopData }: ApiData) {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage]);
-
-  console.log(array);
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
-    <div className={cn("container", height)}>
-      <div style={{ height: 70, backgroundColor: "red" }} />
+    <RootLayout>
       <ShowMyShop myShopData={shopData} />
       {shopData ? <RegisterdShop lastRef={ref} myShopData={array} /> : null}
-      <div style={{ height: 70, backgroundColor: "red" }} />
-    </div>
+    </RootLayout>
   );
 }

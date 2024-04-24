@@ -13,8 +13,7 @@ interface HighPriceRateBadgeProps {
 
 export default function HighPriceRateBadge({ closed, isPast, hourlyPay, originalHourlyPay }: HighPriceRateBadgeProps) {
   if (originalHourlyPay === undefined) {
-    // eslint-disable-next-line no-param-reassign
-    originalHourlyPay = 0;
+    return null;
   }
   const percentage = Number((((hourlyPay - originalHourlyPay) / originalHourlyPay) * 100).toFixed());
   let color;

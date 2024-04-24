@@ -4,15 +4,6 @@ import { TextareaProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-// interface TextareaProps {
-//   rows: number;
-//   name?: string;
-//   value?: string;
-//   required?: boolean;
-//   placeholder?: string;
-//   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-// }
-
 export default function Textarea({ name, value, required, placeholder, onTextareaChange, rows }: TextareaProps) {
   return (
     <div className={cn("textareaBox")}>

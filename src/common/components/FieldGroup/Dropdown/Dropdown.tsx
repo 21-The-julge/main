@@ -8,20 +8,6 @@ import { ClassNameCSSProperties, DropdownProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-// interface DropdownProps {
-//   options?: string[];
-//   onClick?: (option: string) => void;
-//   name?: string;
-//   placeholder?: string;
-//   size?: "sm" | "md";
-//   color?: "white" | "gray";
-//   className?: string;
-// }
-
-// interface ClassNameCSSProperties extends CSSProperties {
-//   "--width"?: string;
-// }
-
 export default function Dropdown({
   options,
   onClick,

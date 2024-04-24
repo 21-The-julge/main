@@ -1,83 +1,83 @@
-import { ChangeEventHandler } from "react";
+import { useState, ChangeEvent } from "react";
 import classNames from "classnames/bind";
-import { Button } from "@/common/components";
-import { Post } from "@/shared/components";
-import type { FilterValue } from "@/pages/notices";
+import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
-import Filter from "../Filter";
+import type { FilterValue } from "../../type";
+
+import FilterBar from "../FilterBar";
+import NoticeList from "../NoticeList";
+import NoNotice from "../NoNotice";
+import Skeleton from "../AllNoticesSkeleton";
 
 import styles from "./AllNotices.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface Notice {
-  id: string;
-  startsAt: string;
-  workhour: number;
-  hourlyPay: number;
-  closed: boolean;
-  name: string;
-  address1: string;
-  imageUrl: string;
-  originalHourlyPay: number;
-}
+export default function AllNotices() {
+  const [offset, setOffset] = useState(0);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [filters, setFilters] = useState({});
+  const [selected, setSelected] = useState("");
 
-interface AllNoticesProps {
-  notices: Notice[];
-  isOpen: boolean;
-  value: string;
-  onOpen: () => void;
-  onClose: () => void;
-  onChange: ChangeEventHandler<HTMLSelectElement>;
-  onFilter: (filter: Omit<FilterValue, "sort">) => void;
-}
+  const handleOpen = (state: boolean) => {
+    setIsFilterOpen(state);
+  };
 
-export default function AllNotices({ notices, isOpen, value, onOpen, onClose, onChange, onFilter }: AllNoticesProps) {
+  const handleFilter = (filter: Partial<FilterValue>) => {
+    setFilters((prev) => ({
+      ...prev,
+      ...filter,
+    }));
+  };
+
+  const handleSelect = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
+    setSelected(value);
+    setFilters((prev) => ({
+      ...prev,
+      sort: value,
+    }));
+  };
+
+  const { data, error, isPending, isError } = useGetAllNotices(offset * 6, filters);
+
+  if (isPending) {
+    return <Skeleton />;
+  }
+
+  if (isError) {
+    <div>Error: {error?.message}</div>;
+  }
+
+  const items = data ? data.items.map((obj) => obj.item) : [];
+
+  const posts = items.map((obj) => {
+    const { id, startsAt, workhour, shop, hourlyPay, closed } = obj;
+
+    const { name, address1, imageUrl, originalHourlyPay } = shop.item;
+
+    return { id, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
+  });
+
   return (
     <div>
-      <div className={cn("header")}>
-        <h2 className={cn("heading")}>전체 공고</h2>
+      <FilterBar
+        isOpen={isFilterOpen}
+        value={selected}
+        onChange={handleSelect}
+        onFilter={handleFilter}
+        onOpen={() => handleOpen(true)}
+        onClose={() => handleOpen(false)}
+      />
 
-        <div className={cn("filterBar")}>
-          <div className={cn("filterItem")}>
-            <select name="sort" value={value} onChange={onChange}>
-              <option value="time">마감임박순</option>
-              <option value="pay">시급많은순</option>
-              <option value="hour">시간적은순</option>
-              <option value="shop">가나다순</option>
-            </select>
-          </div>
+      {posts.length === 0 ? <NoNotice /> : <NoticeList notices={posts} />}
 
-          <div className={cn("filterItem")}>
-            <Button type="button" size="small" className={cn("filterButton")} onClick={onOpen}>
-              상세필터
-            </Button>
-          </div>
-        </div>
-
-        {isOpen && <Filter onClose={onClose} onFilter={onFilter} className={cn("filter")} />}
-      </div>
-
-      <div className={cn("postContainer")}>
-        {notices.map((notice) => {
-          const { id, imageUrl, startsAt, workhour, hourlyPay, closed, name, address1, originalHourlyPay } = notice;
-
-          return (
-            <div key={id}>
-              <Post
-                imageUrl={imageUrl}
-                startsAt={startsAt}
-                workhour={workhour}
-                hourlyPay={hourlyPay}
-                closed={closed}
-                name={name}
-                address={address1}
-                originalHourlyPay={originalHourlyPay}
-                className={cn("post")}
-              />
-            </div>
-          );
-        })}
+      <div className={cn("buttons")}>
+        <button type="button" onClick={() => setOffset(offset - 1)} disabled={offset === 0}>
+          이전
+        </button>
+        <button type="button" onClick={() => setOffset(offset + 1)} disabled={!data?.hasNext}>
+          다음
+        </button>
       </div>
     </div>
   );

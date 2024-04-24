@@ -1,0 +1,23 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1.4rem;
+  row-gap: 3rem;
+}
+
+.post {
+  width: 31.2rem;
+  height: 35rem;
+}
+
+@include tablet {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include mobile {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

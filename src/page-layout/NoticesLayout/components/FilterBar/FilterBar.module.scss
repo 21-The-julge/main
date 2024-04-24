@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .heading {
+    flex-basis: 50%;
+    @include sopoqa-28-700;
+  }
+
+  .filterBar {
+    flex-basis: 50%;
+    text-align: right;
+
+    .item {
+      display: inline;
+
+      .button {
+        background-color: $color-red-30;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .filter {
+    top: 4rem;
+    right: 0;
+  }
+}

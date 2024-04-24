@@ -26,7 +26,7 @@ export default function Dropdown({
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
-    setIsOpen((prevIsOpen) => !prevIsOpen);
+    setIsOpen(false);
 
     if (onClick) {
       onClick(option);

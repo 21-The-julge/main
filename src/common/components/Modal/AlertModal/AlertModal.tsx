@@ -3,7 +3,7 @@ import styles from "@/common/components/Modal/AlertModal/AlertModal.module.scss"
 import { useRef } from "react";
 import Check from "@/images/ic_check.svg";
 import Modal from "@/common/components/Modal/Modal";
-import useOutsideClick from "@/common/components/Modal/hooks/useOutsideClick";
+import useOutsideClick from "@/common/hooks/useOutsideClick";
 import Button from "@/common/components/Button/Button";
 
 const cn = classNames.bind(styles);

@@ -20,7 +20,7 @@ export interface InputFieldProps {
 }
 
 export interface DropdownProps {
-  options?: string[];
+  options?: readonly string[];
   onClick?: (option: string) => void;
   name?: string;
   placeholder?: string;

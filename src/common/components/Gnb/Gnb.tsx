@@ -23,19 +23,21 @@ export default function Gnb() {
   };
 
   return (
-    <div className={cn("container")}>
-      <Link href="/">
-        <LOGO className={cn("logo")} />
-      </Link>
-      <input
-        className={cn("input")}
-        type="text"
-        placeholder="가게 이름으로 찾아보세요."
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      />
-      <UserAction />
+    <div className={cn("background")}>
+      <div className={cn("container")}>
+        <Link href="/">
+          <LOGO className={cn("logo")} />
+        </Link>
+        <input
+          className={cn("input")}
+          type="text"
+          placeholder="가게 이름으로 찾아보세요."
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+        <UserAction />
+      </div>
     </div>
   );
 }

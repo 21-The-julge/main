@@ -6,7 +6,7 @@ import {
   GetSpecificShopNoticeDataParams,
   PostNoticeDataParams,
   PutNoticeDataParams,
-} from "./apiType";
+} from "../apiType";
 
 // 1. 공고 조회 GET 요청
 export async function useGetNoticesData({
@@ -43,7 +43,6 @@ export async function useGetShopNoticesData({ shopId, offset, limit }: GetShopNo
 // 3. 가게 공고 등록 POST 요청
 export async function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
   return useMutation({
-    mutationKey: ["PostNoticeData", { shopId, bodyData }],
     mutationFn: async () => {
       const { data } = await axiosInstanceToken.post(`/shops/${shopId}/notices`, bodyData);
       return data;
@@ -65,7 +64,6 @@ export async function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpec
 // 5. 가게의 특정 공고 수정 PUT 요청 api
 export async function usePutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
   return useMutation({
-    mutationKey: ["PutNoticeData", { shopId, noticeId, bodyData }],
     mutationFn: async () => {
       const { data } = await axiosInstanceToken.put(`/shops/${shopId}/notices/${noticeId}`, bodyData);
       return data;

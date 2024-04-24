@@ -3,7 +3,7 @@ import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 import { PostShopDataParams, PutShopDataParams } from "./apiType";
 
 // 1. 가게 등록 POST 요청
-export async function PostShopData(bodyData: PostShopDataParams) {
+export async function usePostShopData(bodyData: PostShopDataParams) {
   return useMutation({
     mutationKey: ["PostShopData", bodyData],
     mutationFn: async () => {
@@ -14,7 +14,7 @@ export async function PostShopData(bodyData: PostShopDataParams) {
 }
 
 // 2. 가게 정보 조회 GET 요청
-export async function GetShopData(shopId: string) {
+export async function useGetShopData(shopId: string) {
   return useQuery({
     queryKey: ["GetShopData", shopId],
     queryFn: async () => {
@@ -25,12 +25,11 @@ export async function GetShopData(shopId: string) {
 }
 
 // 3. 가게 정보 수정 PUT 요청
-export async function PutShopData(shopId: string, bodyData: PutShopDataParams) {
+export async function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
   return useMutation({
     mutationKey: ["PutShopData", { shopId, bodyData }],
     mutationFn: async () => {
-      const urlString = `/shops/${shopId}`;
-      const { data } = await axiosInstanceToken.put(urlString, bodyData);
+      const { data } = await axiosInstanceToken.put(`/shops/${shopId}`, bodyData);
       return data;
     },
   });

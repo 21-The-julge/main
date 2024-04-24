@@ -3,7 +3,7 @@ import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 import { PostSignUpProps, PutUserDataProps } from "./apiType";
 
 // 1. 회원가입 POST 요청
-export async function PostSignUp(bodyData: PostSignUpProps) {
+export async function usePostSignUp(bodyData: PostSignUpProps) {
   return useMutation({
     mutationKey: ["PostSignUp", bodyData],
     mutationFn: async () => {
@@ -13,7 +13,7 @@ export async function PostSignUp(bodyData: PostSignUpProps) {
   });
 }
 // 2. 내 정보 조회 GET 요청
-export async function GetUserData() {
+export async function useGetUserData() {
   return useQuery({
     queryKey: ["GetUserData"],
     queryFn: async () => {
@@ -24,7 +24,7 @@ export async function GetUserData() {
   });
 }
 // 3. 내 정보 수정 PUT 요청
-export async function PutUserData(bodyData: PutUserDataProps) {
+export async function usePutUserData(bodyData: PutUserDataProps) {
   return useMutation({
     mutationKey: ["PutUserData", bodyData],
     mutationFn: async () => {

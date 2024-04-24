@@ -3,7 +3,7 @@ import { axiosInstance } from "../axiosInstance";
 import { PostSignInParams } from "./apiType";
 
 // 로그인 POST 요청 - 세션 스토리지에 token, userId 저장
-export default async function PostSignIn(bodyData: PostSignInParams) {
+export default async function usePostSignIn(bodyData: PostSignInParams) {
   return useMutation({
     mutationKey: ["PostSignIn", bodyData],
     mutationFn: async () => {

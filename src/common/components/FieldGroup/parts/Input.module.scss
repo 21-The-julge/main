@@ -3,6 +3,7 @@
   outline: none;
   @include sopoqa-16-400;
   width: 100%;
+  white-space: nowrap;
 
   &::placeholder {
     color: $color-gray-40;

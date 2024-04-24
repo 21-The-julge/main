@@ -1,3 +1,7 @@
 .TriangleUpDown {
   pointer-events: none;
+
+  &.rotate {
+    transform: rotate(180deg);
+  }
 }

@@ -1,18 +1,15 @@
-import createQueryParams from "./apiUtills";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
-
-interface GetNoticesDataParams {
-  offset?: number;
-  limit?: number;
-  address?: string;
-  keyword?: string;
-  startsAtGte?: string;
-  hourlyPayGte?: number;
-  sort?: "time" | "pay" | "hour" | "shop";
-}
+import {
+  GetNoticesDataParams,
+  GetShopNoticesDataParams,
+  GetSpecificShopNoticeDataParams,
+  PostNoticeDataParams,
+  PutNoticeDataParams,
+} from "../apiType";
 
 // 1. 공고 조회 GET 요청
-export async function GetNoticesData({
+export async function useGetNoticesData({
   offset,
   limit,
   address,
@@ -21,72 +18,55 @@ export async function GetNoticesData({
   hourlyPayGte,
   sort,
 }: GetNoticesDataParams) {
-  const urlString = `notices?${createQueryParams({ offset, limit, address, keyword, startsAtGte, hourlyPayGte, sort })}/`;
-
-  const { data } = await axiosInstance.get(urlString);
-  return data;
-}
-
-interface GetShopNoticesDataParams {
-  shopId: string;
-  offset?: number;
-  limit?: number;
+  return useQuery({
+    queryKey: ["GetNoticesData", { offset, limit, address, keyword, startsAtGte, hourlyPayGte, sort }],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get("/notices", {
+        params: { offset, limit, address, keyword, startsAtGte, hourlyPayGte },
+      });
+      return data;
+    },
+  });
 }
 
 // 2. 가게의 공고 목록 조회 Get 요청
-export async function GetShopNoticesData({ shopId, offset, limit }: GetShopNoticesDataParams) {
-  const urlString = `shops/${shopId}/notices?${createQueryParams({ offset, limit })}/`;
-
-  const { data } = await axiosInstance.get(urlString);
-  return data;
-}
-
-interface PostNoticeDataParams {
-  shopId: string;
-  bodyData: {
-    hourlyPay: number;
-    startsAt: string; // 양식: 2023-12-23T00:00:00Z
-    workhour: number;
-    description: string;
-  };
+export async function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesDataParams) {
+  return useQuery({
+    queryKey: ["GetShopNoticesData", { shopId, offset, limit }],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/shops/${shopId}/notices`, { params: { offset, limit } });
+      return data;
+    },
+  });
 }
 
 // 3. 가게 공고 등록 POST 요청
-export async function PostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
-  const urlString = `/shops/${shopId}/notices`;
-
-  const { data } = await axiosInstanceToken.post(urlString, bodyData);
-  return data;
-}
-
-interface GetSpecificShopNoticeDataParams {
-  shopId: string;
-  noticeId: string;
+export async function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
+  return useMutation({
+    mutationFn: async () => {
+      const { data } = await axiosInstanceToken.post(`/shops/${shopId}/notices`, bodyData);
+      return data;
+    },
+  });
 }
 
 // 4. 가게의 특정 공고 조회 GET 요청
-export async function GetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificShopNoticeDataParams) {
-  const urlString = `/shops/${shopId}/notices/${noticeId}`;
-
-  const { data } = await axiosInstance.get(urlString);
-  return data;
-}
-
-interface PutNoticeDataParams {
-  shopId: string;
-  noticeId: string;
-  bodyData: {
-    hourlyPay: number;
-    startsAt: string;
-    workhour: number;
-    description: string;
-  };
+export async function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificShopNoticeDataParams) {
+  return useQuery({
+    queryKey: ["GetSpecificShopNoticeData", { shopId, noticeId }],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/shops/${shopId}/notices/${noticeId}`);
+      return data;
+    },
+  });
 }
 
 // 5. 가게의 특정 공고 수정 PUT 요청 api
-export async function PutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
-  const urlString = `/shops/${shopId}/notices/${noticeId}`;
-
-  const { data } = await axiosInstanceToken.put(urlString, bodyData);
-  return data;
+export async function usePutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
+  return useMutation({
+    mutationFn: async () => {
+      const { data } = await axiosInstanceToken.put(`/shops/${shopId}/notices/${noticeId}`, bodyData);
+      return data;
+    },
+  });
 }

@@ -40,7 +40,6 @@ export default function Dropdown({
 
   return (
     <div className={combinedClassName} style={style}>
-      {/* {label && <Label htmlFor={name} label={label} required={required} />} */}
       <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
         <Input
           name={name}

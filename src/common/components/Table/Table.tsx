@@ -1,4 +1,5 @@
 import classNames from "classnames/bind";
+import { ReactNode } from "react";
 import styles from "./Table.module.scss";
 
 interface TableProps {
@@ -6,7 +7,7 @@ interface TableProps {
     header: string;
     accessor: string;
   }[];
-  data: { [key: string]: any }[];
+  data: { id?: string; [key: string]: string | number | ReactNode }[];
 }
 const cn = classNames.bind(styles);
 

@@ -8,9 +8,7 @@ const cn = classNames.bind(styles);
 export default function NoticesPage() {
   return (
     <div className={cn("container")}>
-      <div>
-        <div>Personalized Notices</div>
-
+      <div className={cn("content")}>
         <div className={cn("allNotices")}>
           <AllNotices />
         </div>

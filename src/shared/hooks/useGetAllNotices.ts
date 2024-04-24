@@ -50,6 +50,9 @@ interface NoticeResponse {
 const fetchNotices = async (offset: number, filters: Partial<FilterValue>): Promise<NoticeResponse> => {
   const res = await axiosInstance.get(`/notices`, {
     params: { offset, limit: 6, ...filters },
+    paramsSerializer: {
+      indexes: null,
+    },
   });
 
   const result = await res.data;

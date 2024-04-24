@@ -32,9 +32,7 @@ export default function Dropdown({
     setSelectedOption(option);
     setIsOpen(false);
 
-    if (onClick) {
-      onClick(option);
-    }
+    onClick?.(option);
   };
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));

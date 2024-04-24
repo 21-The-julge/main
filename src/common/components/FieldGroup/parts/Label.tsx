@@ -10,12 +10,10 @@ interface LabelProps {
 }
 
 export default function Label({ htmlFor, label, required }: LabelProps) {
-  const showRequired = required && "*";
-
   return (
     <label htmlFor={htmlFor} className={cn("label")}>
       {label}
-      {showRequired}
+      {required && "*"}
     </label>
   );
 }

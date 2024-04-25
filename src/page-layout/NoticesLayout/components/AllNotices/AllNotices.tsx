@@ -79,6 +79,7 @@ export default function AllNotices() {
       pathname: ROUTE.NOTICES,
       query: { ...filters, offset },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   if (isPending) {

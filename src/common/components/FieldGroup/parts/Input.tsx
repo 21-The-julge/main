@@ -16,6 +16,7 @@ interface InputProps {
   color?: "white" | "gray";
   readOnly?: boolean;
   required?: boolean;
+  cursor?: string;
 }
 
 export default function Input({
@@ -27,10 +28,11 @@ export default function Input({
   disabled,
   value,
   onChange,
-  required,
   readOnly,
+  required,
+  cursor,
 }: InputProps) {
-  const className = cn("default", size, color);
+  const className = cn("default", size, color, cursor);
 
   return (
     <input

@@ -1,0 +1,7 @@
+.suffixUnit {
+  @include sopoqa-16-400;
+  color: $color-black;
+  pointer-events: none;
+  width: fit-content;
+  flex-shrink: 0;
+}

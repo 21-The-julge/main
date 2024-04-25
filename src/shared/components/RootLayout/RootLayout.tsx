@@ -8,14 +8,15 @@ const cn = classNames.bind(styles);
 
 interface RootLayoutProps {
   children: ReactNode;
+  needFooter?: boolean;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, needFooter = true }: RootLayoutProps) {
   return (
     <div className={cn("container")}>
       <Gnb />
       <main className={cn("children")}>{children}</main>
-      <Footer />
+      {needFooter && <Footer />}
     </div>
   );
 }

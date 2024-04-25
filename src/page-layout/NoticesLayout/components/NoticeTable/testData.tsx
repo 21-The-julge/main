@@ -171,7 +171,7 @@ export const employeeTableData: EmployeeDataForm[] = [
   },
 ];
 
-export const employers: EmployerTableData[] = [
+export const employersData: EmployerTableData[] = [
   {
     name: "홍길동",
     phone: "010-1234-5678",

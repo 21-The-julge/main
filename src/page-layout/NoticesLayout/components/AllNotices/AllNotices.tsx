@@ -1,19 +1,24 @@
 import { useState, ChangeEvent } from "react";
+import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
-import type { FilterValue } from "../../type";
+import { ROUTE } from "@/common/constants";
 
 import FilterBar from "../FilterBar";
 import NoticeList from "../NoticeList";
 import NoNotice from "../NoNotice";
 import Skeleton from "../AllNoticesSkeleton";
 
+import type { FilterValue } from "../../type";
+
 import styles from "./AllNotices.module.scss";
 
 const cn = classNames.bind(styles);
 
 export default function AllNotices() {
+  const router = useRouter();
+
   const [offset, setOffset] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
@@ -24,6 +29,11 @@ export default function AllNotices() {
   };
 
   const handleFilter = (filter: Partial<FilterValue>) => {
+    router.push({
+      pathname: ROUTE.NOTICES,
+      query: { ...filters },
+    });
+
     setFilters((prev) => ({
       ...prev,
       ...filter,
@@ -31,14 +41,20 @@ export default function AllNotices() {
   };
 
   const handleSelect = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
+    router.push({
+      pathname: ROUTE.NOTICES,
+      query: { ...filters, sort: value },
+    });
+
     setSelected(value);
+
     setFilters((prev) => ({
       ...prev,
       sort: value,
     }));
   };
 
-  const { data, error, isPending, isError } = useGetAllNotices(offset * 6, filters);
+  const { data, error, isPending, isError } = useGetAllNotices(offset * 6, router.query);
 
   if (isPending) {
     return <Skeleton />;

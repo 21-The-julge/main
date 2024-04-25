@@ -1,6 +1,7 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "@/shared/apis/axiosInstance";
-import { CATEGORIES } from "@/common/constants";
+
+import { CATEGORIES, ROUTE } from "@/common/constants";
 
 import type { FilterValue } from "@/page-layout/NoticesLayout/type";
 
@@ -47,9 +48,9 @@ interface NoticeResponse {
   links: NoticeLinks[];
 }
 
-const fetchNotices = async (offset: number, filters: Partial<FilterValue>): Promise<NoticeResponse> => {
-  const res = await axiosInstance.get(`/notices`, {
-    params: { offset, limit: 6, ...filters },
+const fetchNotices = async (offset: number, query: Partial<FilterValue>): Promise<NoticeResponse> => {
+  const res = await axiosInstance.get(ROUTE.NOTICES, {
+    params: { offset, limit: 6, ...query },
     paramsSerializer: {
       indexes: null,
     },

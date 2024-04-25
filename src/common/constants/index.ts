@@ -61,3 +61,5 @@ export const ROUTE = {
   SIGNUP: "/signup",
   NOTICES: "/notices",
 } as const;
+
+export const SORTED_OPTIONS = ["마감임박순", "시급많은순", "시간적은순", "가나다순"];

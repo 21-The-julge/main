@@ -3,8 +3,8 @@ import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNoti
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
 import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
+import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import { useEffect, useState } from "react";
-import { format } from "date-fns/fp";
 
 interface Shop {
   name: string;
@@ -37,17 +37,6 @@ interface ApiData {
     address: string;
     bio: string;
   };
-}
-
-function formatDateTimeRange(dateTimeString: string, workhour: number) {
-  const startDate = new Date(dateTimeString);
-  const endDate = new Date(startDate.getTime() + workhour * 60 * 60 * 1000);
-
-  const formattedStartDate = format("yyyy-MM-dd HH:mm", startDate);
-  const formattedEndDate = format("HH:mm", endDate);
-  const durationHour = workhour;
-
-  return `${formattedStartDate}~${formattedEndDate} (${durationHour}시간)`;
 }
 
 export async function getServerSideProps() {

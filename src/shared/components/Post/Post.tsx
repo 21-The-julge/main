@@ -1,7 +1,7 @@
 import Image from "next/image";
 import classNames from "classnames/bind";
 import styles from "@/shared/components/Post/Post.module.scss";
-import getFullDate from "@/shared/utils/getDate";
+import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
 import addComma from "@/shared/components/Post/utils/addComma";
@@ -48,7 +48,7 @@ export default function Post({
           <p className={cn("restaurantName")}>{name}</p>
           <div className={cn("clockContainer")}>
             <Clock className={cn("clock")} fill={closed || isPast ? "#cbc9cf" : "orange"} />
-            <p>{getFullDate(endDate, workhour)}</p>
+            <p>{formatDateTimeRange(startsAt, workhour)}</p>
           </div>
           <div className={cn("locationContainer")}>
             <Location className={cn("clock")} fill={closed || isPast ? "#cbc9cf" : "orange"} />

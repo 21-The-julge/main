@@ -1,28 +1,29 @@
-import createQueryParams from "./apiUtills";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstanceToken } from "../axiosInstance";
-
-interface GetAlertsDataParams {
-  offset?: number;
-  limit?: number;
-}
+import { GetAlertsDataParams } from "../apiType";
 
 // 1. 유저의 알림 목록 조회 GET 요청
-export async function GetAlertsData(params?: GetAlertsDataParams) {
-  const userId = sessionStorage.getItem("userId");
+export function useGetAlertsData(params?: GetAlertsDataParams) {
   const { offset, limit } = params || {};
 
-  const urlString = `/users/${userId}/alerts?${createQueryParams({ offset, limit })}`;
-
-  const { data } = await axiosInstanceToken.get(urlString);
-
-  return data;
+  return useQuery({
+    queryKey: ["alerts", { offset, limit }],
+    queryFn: async () => {
+      const userId = sessionStorage.getItem("userId");
+      const { data } = await axiosInstanceToken.get(`/users/${userId}/alerts`, { params: { offset, limit } });
+      return data;
+    },
+  });
 }
 
-// 2. 알림 읽음 처리
-export async function PutAlertData(alertId: string) {
-  const userId = sessionStorage.getItem("userId");
-  const urlString = `/users/${userId}/alerts/${alertId}`;
+// 2. 알림 읽음 처리 PUT 요청
+export function usePutAlertData(alertId: string) {
+  return useMutation({
+    mutationFn: async () => {
+      const userId = ["putAlert", alertId];
+      const { data } = await axiosInstanceToken.put(`/users/${userId}/alerts/${alertId}`);
 
-  const { data } = await axiosInstanceToken.put(urlString);
-  return data;
+      return data;
+    },
+  });
 }

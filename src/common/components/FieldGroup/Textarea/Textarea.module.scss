@@ -14,13 +14,5 @@
     border: none;
     width: 100%;
     height: 100%;
-
-    :invalid {
-      border: 0.1rem dashed red;
-    }
-
-    textarea:valid {
-      border: 0.1rem solid lime;
-    }
   }
 }

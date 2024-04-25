@@ -1,3 +1,4 @@
+import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice";
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
 import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
@@ -34,14 +35,10 @@ interface ApiData {
     address: string;
     bio: string;
   };
-  registeredNotice: {
-    item: Item[];
-  };
 }
 
 export async function getServerSideProps() {
   let myProfile;
-  let registeredNotice;
 
   try {
     const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8");
@@ -50,25 +47,25 @@ export async function getServerSideProps() {
     console.log(error);
   }
 
-  try {
-    const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications");
-    registeredNotice = response?.data ?? [];
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications");
+  //   registeredNotice = response?.data ?? [];
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   return {
     props: {
       myProfile,
-      registeredNotice,
     },
   };
 }
 
-export default function MyShop({ myProfile, registeredNotice }: ApiData) {
+export default function MyShop({ myProfile }: ApiData) {
   return (
     <RootLayout>
       <MyProfile myProfile={myProfile} />
+      <ViewNotice />
     </RootLayout>
   );
 }

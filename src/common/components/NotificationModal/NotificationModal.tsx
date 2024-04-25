@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classNames from "classnames/bind";
 import IC_NOTIFICATION from "@/images/ic_notification.svg";
-import GetNotificationData from "@/shared/hooks/getNotificationData";
+import { useGetAlertsData } from "@/shared/apis/api-hooks";
 import styles from "./NotificationModal.module.scss";
 
 import AlertModal from "./NotificationModalComponents/AlertCardModal";
@@ -9,16 +9,18 @@ import AlertModal from "./NotificationModalComponents/AlertCardModal";
 const cn = classNames.bind(styles);
 
 export default function NotificationModal() {
-  const { iconColor, alertCount } = GetNotificationData();
+  const { data } = useGetAlertsData({ offset: 0, limit: 10 });
   const [isOpen, setIsOpen] = useState(false);
+  const iconColor = data?.count > 0 ? "#EA3C12" : "none";
 
   const onToggleModal = () => {
     setIsOpen((prev) => !prev);
   };
+
   return (
     <>
       <IC_NOTIFICATION className={cn("container")} fill={iconColor} onClick={onToggleModal} />
-      {isOpen && <AlertModal onToggleModal={onToggleModal} alertCount={alertCount} />}
+      {isOpen && <AlertModal onToggleModal={onToggleModal} alertCount={data.count} />}
     </>
   );
 }

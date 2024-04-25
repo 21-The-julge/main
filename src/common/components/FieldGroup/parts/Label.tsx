@@ -6,12 +6,14 @@ const cn = classNames.bind(styles);
 interface LabelProps {
   htmlFor?: string;
   label: string;
+  required?: boolean;
 }
 
-export default function Label({ htmlFor, label }: LabelProps) {
+export default function Label({ htmlFor, label, required }: LabelProps) {
   return (
     <label htmlFor={htmlFor} className={cn("label")}>
       {label}
+      {required && "*"}
     </label>
   );
 }

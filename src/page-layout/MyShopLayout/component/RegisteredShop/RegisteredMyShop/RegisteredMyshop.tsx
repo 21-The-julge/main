@@ -13,10 +13,10 @@ export default function RegistseredMyShop({ lastRef, myShopData }: RegistseredMy
       <div className={cn("registerContiner")}>
         <p className={cn("myRegisterdShop")}>내가 등록한 공고</p>
         <div className={cn("gridContainer")}>
-          {myShopData?.map((item) => (
+          {myShopData?.map((item, idx) => (
             <div key={item.item.id}>
               <PostContainer myShopData={item} />
-              <div ref={lastRef} />
+              <div ref={idx === myShopData.length - 1 ? lastRef : null} />
             </div>
           ))}
         </div>

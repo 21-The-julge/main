@@ -29,29 +29,29 @@ export default function AllNotices() {
   };
 
   const handleFilter = (filter: Partial<FilterValue>) => {
-    router.push({
-      pathname: ROUTE.NOTICES,
-      query: { ...filters },
-    });
-
     setFilters((prev) => ({
       ...prev,
       ...filter,
     }));
+
+    router.push({
+      pathname: ROUTE.NOTICES,
+      query: { ...filter, ...filters },
+    });
   };
 
   const handleSelect = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    router.push({
-      pathname: ROUTE.NOTICES,
-      query: { ...filters, sort: value },
-    });
-
     setSelected(value);
 
     setFilters((prev) => ({
       ...prev,
       sort: value,
     }));
+
+    router.push({
+      pathname: ROUTE.NOTICES,
+      query: { ...filters, sort: value },
+    });
   };
 
   const { data, error, isPending, isError } = useGetAllNotices(offset * 6, router.query);

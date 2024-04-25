@@ -69,7 +69,10 @@
   .myShopTitle {
     color: $color-black;
     @include sopoqa-28-700;
-    letter-spacing: 0.56px;
+    letter-spacing: 0.056rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .location {
@@ -83,6 +86,10 @@
   .explanation {
     color: #000;
     @include sopoqa-16-400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 
   .buttonContainer {

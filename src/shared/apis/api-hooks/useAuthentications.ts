@@ -1,18 +1,25 @@
 import { useMutation } from "@tanstack/react-query";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { axiosInstance } from "../axiosInstance";
 import { PostSignInParams } from "../apiType";
 
-// 로그인 POST 요청 - 세션 스토리지에 token, userId 저장
-export default async function usePostSignIn(bodyData: PostSignInParams) {
-  return useMutation({
+// 로그인 POST 요청
+export default function usePostSignIn(bodyData: PostSignInParams) {
+  const { setToken, setUserId, setType, setLoggedIn } = useUserDataStore();
+  const mutation = useMutation({
     mutationFn: async () => {
       const { data } = await axiosInstance.post("/token", bodyData);
-      if (!data) {
-        return data;
-      }
-      sessionStorage.setItem("token", data.item.token);
-      sessionStorage.setItem("userId", data.item.user.item.id);
       return data;
     },
+    onSuccess: (data) => {
+      setToken(data.item.token);
+      setUserId(data.item.user.item.id);
+      setType(data.item.user.item.type);
+      setLoggedIn(Boolean(data.item.token));
+    },
   });
+  const { data, error, isIdle, isSuccess } = mutation;
+  const isLoading = isIdle && !isSuccess;
+
+  return { data, error, isLoading, mutate: mutation.mutate };
 }

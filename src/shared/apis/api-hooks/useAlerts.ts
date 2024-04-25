@@ -18,12 +18,16 @@ export function useGetAlertsData(params?: GetAlertsDataParams) {
 
 // 2. 알림 읽음 처리 PUT 요청
 export function usePutAlertData(alertId: string) {
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: async () => {
-      const userId = ["putAlert", alertId];
+      const userId = sessionStorage.getItem("userId");
       const { data } = await axiosInstanceToken.put(`/users/${userId}/alerts/${alertId}`);
 
       return data;
     },
   });
+  const { data, error, isIdle, isSuccess } = mutation;
+  const isLoading = isIdle && !isSuccess;
+
+  return { data, error, isLoading, mutate: mutation.mutate };
 }

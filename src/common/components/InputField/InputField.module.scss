@@ -2,6 +2,7 @@
   display: inline-flex;
   flex-direction: column;
   gap: 0.8rem;
+  white-space: nowrap;
 
   .error {
     border: 0.1rem solid $color-red-40;

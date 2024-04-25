@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Input.module.scss";
@@ -19,23 +19,15 @@ interface InputProps {
   cursor?: string;
 }
 
-export default function Input({
-  type = "text",
-  size,
-  placeholder,
-  name,
-  color = "white",
-  disabled,
-  value,
-  onChange,
-  readOnly,
-  required,
-  cursor,
-}: InputProps) {
+export default forwardRef<HTMLInputElement, InputProps>(function Input(
+  { type = "text", size, placeholder, name, color = "white", disabled, value, onChange, readOnly, required, cursor },
+  ref,
+) {
   const className = cn("default", size, color, cursor);
 
   return (
     <input
+      ref={ref}
       id={name}
       name={name}
       className={className}
@@ -48,4 +40,4 @@ export default function Input({
       readOnly={readOnly}
     />
   );
-}
+});

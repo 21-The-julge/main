@@ -6,8 +6,7 @@ export default function NoticeDetail() {
   return (
     <RootLayout>
       <NoticeDetailInfo />
-      <NoticesViewedRecent />
     </RootLayout>
   );
 }
-//
+//  <NoticesViewedRecent />

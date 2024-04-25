@@ -3,40 +3,69 @@
   width: 100%;
   padding: 60px 238px;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
   background: $color-gray-5;
 }
-.font {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  > h1 {
-    color: $color-black;
 
+.content {
+  display: flex;
+  width: 100%;
+  //max-width: 964px;
+  flex-direction: column;
+  gap: 24px;
+}
+.font {
+  display: inline-block;
+  h1 {
+    color: $color-black;
     @include sopoqa-28-700;
+    margin-top: 8px;
   }
-  > h2 {
+  h2 {
     color: $color-primary;
     @include sopoqa-16-700;
   }
 }
-.content {
+.Frame {
   display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.imgFrame {
-  display: inline-flex;
   padding: 24px;
-  justify-content: space-between;
+  gap: 30px;
   align-items: flex-start;
   border-radius: 12px;
   border: 1px solid $color-gray-20;
   background: $color-white;
+}
+
+.img {
+  width: 53.9rem;
+  height: 30.8rem;
+  position: relative;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+    height: 20rem;
+  }
+}
+
+.textFrame {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.money {
+  > div {
+    color: $color-black;
+    @include sopoqa-28-700;
+  }
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
 }
 
 .detail {
@@ -47,4 +76,23 @@
   align-items: flex-start;
   border-radius: 12px;
   background: $color-gray-10;
+}
+//  border-radius: 1.2rem; overflow: hidden;
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.clock .location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

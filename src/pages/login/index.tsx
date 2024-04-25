@@ -1,5 +1,4 @@
-import { InputField } from "@/common/components";
-import Dropdown from "@/common/components/FieldGroup/Dropdown/Dropdown";
+import { Dropdown, InputField } from "@/common/components/FieldGroup";
 import FieldGroup from "@/common/components/FieldGroup/FieldGroup";
 import { CATEGORIES } from "@/common/constants";
 

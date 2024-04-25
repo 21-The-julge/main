@@ -48,9 +48,13 @@ interface NoticeResponse {
   links: NoticeLinks[];
 }
 
-const fetchNotices = async (offset: number, query: Partial<FilterValue>): Promise<NoticeResponse> => {
+interface Query extends Partial<FilterValue> {
+  offset?: number;
+}
+
+const fetchNotices = async (query: Query): Promise<NoticeResponse> => {
   const res = await axiosInstance.get(ROUTE.NOTICES, {
-    params: { offset, limit: 6, ...query },
+    params: { limit: 6, ...query },
     paramsSerializer: {
       indexes: null,
     },
@@ -61,10 +65,10 @@ const fetchNotices = async (offset: number, query: Partial<FilterValue>): Promis
   return result;
 };
 
-const useGetAllNotices = (offset: number, filters: Partial<FilterValue>) => {
+const useGetAllNotices = (filters: Partial<FilterValue>) => {
   const { data, error, isPending, isError } = useQuery({
-    queryKey: ["notices", offset, filters],
-    queryFn: () => fetchNotices(offset, filters),
+    queryKey: ["notices", filters],
+    queryFn: () => fetchNotices(filters),
     placeholderData: keepPreviousData,
   });
 

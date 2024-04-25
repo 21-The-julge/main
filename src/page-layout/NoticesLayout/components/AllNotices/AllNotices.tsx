@@ -1,10 +1,13 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
+
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
+import usePaginationProps from "@/shared/hooks/usePagination";
 
 import { ROUTE } from "@/common/constants";
 
+import Pagination from "@/shared/components/Pagination/Pagination";
 import FilterBar from "../FilterBar";
 import NoticeList from "../NoticeList";
 import NoNotice from "../NoNotice";
@@ -19,16 +22,24 @@ const cn = classNames.bind(styles);
 export default function AllNotices() {
   const router = useRouter();
 
-  const [offset, setOffset] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
   const [selected, setSelected] = useState("");
+
+  const { data, error, isPending, isError } = useGetAllNotices(router.query);
+
+  const [currentPage, totalPages, setPage] = usePaginationProps({
+    totalDataCount: data?.count ?? 0,
+    itemsPageCount: 6,
+  });
 
   const handleOpen = (state: boolean) => {
     setIsFilterOpen(state);
   };
 
   const handleFilter = (filter: Partial<FilterValue>) => {
+    setPage(1);
+
     setFilters((prev) => ({
       ...prev,
       ...filter,
@@ -41,6 +52,8 @@ export default function AllNotices() {
   };
 
   const handleSelect = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
+    setPage(1);
+
     setSelected(value);
 
     setFilters((prev) => ({
@@ -54,7 +67,19 @@ export default function AllNotices() {
     });
   };
 
-  const { data, error, isPending, isError } = useGetAllNotices(offset * 6, router.query);
+  useEffect(() => {
+    const offset = (currentPage - 1) * 6;
+
+    setFilters((prev) => ({
+      ...prev,
+      offset,
+    }));
+
+    router.push({
+      pathname: ROUTE.NOTICES,
+      query: { ...filters, offset },
+    });
+  }, [currentPage]);
 
   if (isPending) {
     return <Skeleton />;
@@ -75,7 +100,7 @@ export default function AllNotices() {
   });
 
   return (
-    <div>
+    <div className={cn("container")}>
       <FilterBar
         isOpen={isFilterOpen}
         value={selected}
@@ -87,14 +112,7 @@ export default function AllNotices() {
 
       {posts.length === 0 ? <NoNotice /> : <NoticeList notices={posts} />}
 
-      <div className={cn("buttons")}>
-        <button type="button" onClick={() => setOffset(offset - 1)} disabled={offset === 0}>
-          이전
-        </button>
-        <button type="button" onClick={() => setOffset(offset + 1)} disabled={!data?.hasNext}>
-          다음
-        </button>
-      </div>
+      <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
     </div>
   );
 }

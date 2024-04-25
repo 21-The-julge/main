@@ -32,6 +32,7 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "react/require-default-props": "off",
     "no-restricted-exports": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }

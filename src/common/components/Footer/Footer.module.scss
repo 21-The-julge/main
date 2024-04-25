@@ -1,8 +1,14 @@
-.container {
+.background {
   background-color: $color-gray-10;
+
   width: 100%;
+}
+
+.container {
+  max-width: 144rem;
   height: 10rem;
   padding: 3.7rem 23.8rem;
+  margin: 0 auto;
 
   position: relative;
   bottom: 0;

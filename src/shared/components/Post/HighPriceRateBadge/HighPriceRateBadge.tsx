@@ -8,10 +8,13 @@ interface HighPriceRateBadgeProps {
   closed: boolean;
   isPast: boolean;
   hourlyPay: number;
-  originalHourlyPay: number;
+  originalHourlyPay?: number;
 }
 
 export default function HighPriceRateBadge({ closed, isPast, hourlyPay, originalHourlyPay }: HighPriceRateBadgeProps) {
+  if (originalHourlyPay === undefined) {
+    return null;
+  }
   const percentage = Number((((hourlyPay - originalHourlyPay) / originalHourlyPay) * 100).toFixed());
   let color;
   if (percentage < 20) {

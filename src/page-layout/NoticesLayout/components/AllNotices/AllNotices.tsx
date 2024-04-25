@@ -36,7 +36,7 @@ export default function AllNotices() {
 
     router.push({
       pathname: ROUTE.NOTICES,
-      query: { ...filter, ...filters },
+      query: { ...filter },
     });
   };
 

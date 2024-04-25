@@ -1,12 +1,14 @@
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 import { PostShopDataParams, PutShopDataParams } from "../apiType";
 
 // 1. 가게 등록 POST 요청
 export async function usePostShopData(bodyData: PostShopDataParams) {
+  const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken.post("/shops", bodyData);
+      const { data } = await axiosInstanceToken(token).post("/shops", bodyData);
       return data;
     },
   });
@@ -29,9 +31,10 @@ export async function useGetShopData(shopId: string) {
 
 // 3. 가게 정보 수정 PUT 요청
 export async function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
+  const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken.put(`/shops/${shopId}`, bodyData);
+      const { data } = await axiosInstanceToken(token).put(`/shops/${shopId}`, bodyData);
       return data;
     },
   });

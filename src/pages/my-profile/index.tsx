@@ -1,8 +1,10 @@
+import RegisterNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/RegisterNotice/RegisterNotice";
 import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice";
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
 import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { format } from "date-fns/fp";
 
 interface Shop {
   name: string;
@@ -37,6 +39,17 @@ interface ApiData {
   };
 }
 
+function formatDateTimeRange(dateTimeString: string, workhour: number) {
+  const startDate = new Date(dateTimeString);
+  const endDate = new Date(startDate.getTime() + workhour * 60 * 60 * 1000);
+
+  const formattedStartDate = format("yyyy-MM-dd HH:mm", startDate);
+  const formattedEndDate = format("HH:mm", endDate);
+  const durationHour = workhour;
+
+  return `${formattedStartDate}~${formattedEndDate} (${durationHour}시간)`;
+}
+
 export async function getServerSideProps() {
   let myProfile;
 
@@ -47,13 +60,6 @@ export async function getServerSideProps() {
     console.log(error);
   }
 
-  // try {
-  //   const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications");
-  //   registeredNotice = response?.data ?? [];
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   return {
     props: {
       myProfile,
@@ -62,10 +68,30 @@ export async function getServerSideProps() {
 }
 
 export default function MyShop({ myProfile }: ApiData) {
+  const [registeredNotice, setRegisteredNotice] = useState<Item[]>([]);
+
+  const fetchNotices = async () => {
+    const res = await axiosInstanceToken.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications`);
+    const result = await res.data.items;
+    setRegisteredNotice(result);
+  };
+
+  const registerNoticeData = registeredNotice.map((item) => {
+    return {
+      name: item.item.shop.item.name,
+      hourlyPay: item.item.notice.item.hourlyPay,
+      startsAt: formatDateTimeRange(item.item.notice.item.startsAt, item.item.notice.item.workhour),
+    };
+  });
+
+  useEffect(() => {
+    fetchNotices();
+  }, []);
+
   return (
     <RootLayout>
       <MyProfile myProfile={myProfile} />
-      <ViewNotice />
+      {registeredNotice ? <RegisterNotice registerNoticeData={registerNoticeData} /> : <ViewNotice />}
     </RootLayout>
   );
 }

@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/RegisteredShop/RegisteredMyShop/RegisteredMyShop.module.scss";
+
 import { RegisterdShop as RegistseredMyShopProps } from "@/page-layout/MyShopLayout/type";
+
 import PostContainer from "./PostContainer/PostContainer";
 
 const cn = classNames.bind(styles);
@@ -14,11 +16,11 @@ export default function RegistseredMyShop({ lastRef, myShopData }: RegistseredMy
           {myShopData?.map((item) => (
             <div key={item.item.id}>
               <PostContainer myShopData={item} />
+              <div ref={lastRef} />
             </div>
           ))}
         </div>
       </div>
-      <div ref={lastRef} />
     </div>
   );
 }

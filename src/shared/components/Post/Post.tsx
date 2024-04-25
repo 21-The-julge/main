@@ -1,11 +1,15 @@
 import Image from "next/image";
+
 import classNames from "classnames/bind";
 import styles from "@/shared/components/Post/Post.module.scss";
+
 import getFullDate from "@/shared/utils/getDate";
+import addComma from "@/shared/components/Post/utils/addComma";
+
 import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
-import addComma from "@/shared/components/Post/utils/addComma";
-import NoImg from "@/images/noImg.svg";
+import DefaultImg from "@/images/defaultImg.svg";
+
 import NoticeMessage from "./NoticeMessage/NoticeMessage";
 import HighPriceRateBadge from "./HighPriceRateBadge/HighPriceRateBadge";
 
@@ -42,7 +46,7 @@ export default function Post({
         <NoticeMessage isPast={isPast} closed={closed} />
         <Image
           className={cn("img")}
-          src={imageUrl || NoImg}
+          src={imageUrl || DefaultImg}
           alt="식당 공고"
           fill
           placeholder="blur"

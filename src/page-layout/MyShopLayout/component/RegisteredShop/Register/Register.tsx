@@ -1,5 +1,7 @@
 import { Button } from "@/common/components";
+
 import { useRouter } from "next/router";
+
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/RegisteredShop/Register/Register.module.scss";
 

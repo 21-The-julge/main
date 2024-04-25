@@ -1,4 +1,5 @@
 import { ApiData } from "@/page-layout/MyShopLayout/type";
+
 import { Post } from "@/shared/components";
 import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
 

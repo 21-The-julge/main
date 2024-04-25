@@ -1,4 +1,5 @@
 import { RegisterdShop as RegisterdShopProps } from "../../type";
+
 import Registser from "./Register/Register";
 import RegistseredMyShop from "./RegisteredMyShop/RegisteredMyshop";
 

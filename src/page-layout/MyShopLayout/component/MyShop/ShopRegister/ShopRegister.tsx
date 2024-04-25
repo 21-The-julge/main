@@ -1,8 +1,9 @@
 import classNames from "classnames/bind";
+import styles from "@/page-layout/MyShopLayout/component/MyShop/ShopRegister/ShopRegister.module.scss";
+
 import Button from "@/common/components/Button/Button";
 
 import { useRouter } from "next/router";
-import styles from "@/page-layout/MyShopLayout/component/MyShop/ShopRegister/ShopRegister.module.scss";
 
 const cn = classNames.bind(styles);
 

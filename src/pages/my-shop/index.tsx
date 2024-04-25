@@ -1,10 +1,12 @@
 import ShowMyShop from "@/page-layout/MyShopLayout/component/MyShop/MyShop";
 import RegisterdShop from "@/page-layout/MyShopLayout/component/RegisteredShop/RegisterdShop";
+import RootLayout from "@/shared/components/RootLayout/RootLayout";
+
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
+
 import useGetMessages from "@/page-layout/MyShopLayout/hooks/useGetShopData";
 import { axiosInstance } from "@/shared/apis/axiosInstance";
-import RootLayout from "@/shared/components/RootLayout/RootLayout";
 
 interface Item {
   address1: string;

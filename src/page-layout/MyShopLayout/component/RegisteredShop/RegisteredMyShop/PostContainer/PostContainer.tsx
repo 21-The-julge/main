@@ -11,6 +11,7 @@ export default function PostContainer({ myShopData }: PostContainerProps) {
   if (myShopData?.item?.startsAt === undefined) {
     return <PostSkeleton />;
   }
+
   return (
     <Post
       imageUrl={myShopData?.item?.imageUrl}

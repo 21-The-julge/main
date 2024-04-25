@@ -3,17 +3,12 @@ import styles from "@/page-layout/MyShopLayout/component/MyShop/MyShop.module.sc
 
 import RegisterMyShop from "@/page-layout/MyShopLayout/component/MyShop/ShopRegister/ShopRegister";
 import ShowMyShop from "./ShowMyShop/ShowMyShop";
+import { ShopData } from "../../type";
 
 const cn = classNames.bind(styles);
 
 interface MyShopProps {
-  myShopData: {
-    name: string;
-    category: string;
-    address1: string;
-    description: string;
-    imageUrl: string;
-  } | null;
+  myShopData: ShopData | null;
 }
 
 export default function MyShop({ myShopData }: MyShopProps) {

@@ -4,16 +4,28 @@ export interface RegisterdShop {
 }
 
 export interface ApiData {
-  item: {
-    id: string;
-    hourlyPay: number;
-    startsAt: string;
-    workhour: number;
-    description: string;
-    closed: boolean;
-    imageUrl?: string;
-    name?: string;
-    address1?: string;
-    originalHourlyPay?: number;
-  };
+  item: Item;
+}
+
+export interface Item extends CommonData {
+  hourlyPay: number;
+  startsAt: string;
+  workhour: number;
+  closed: boolean;
+}
+
+export interface PostProps extends Item {
+  address?: string;
+}
+export interface ShopData extends CommonData {
+  category: string;
+}
+
+export interface CommonData {
+  id?: string;
+  description?: string;
+  name?: string;
+  address1?: string;
+  imageUrl?: string;
+  originalHourlyPay?: number;
 }

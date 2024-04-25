@@ -10,21 +10,11 @@ import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
 import DefaultImg from "@/images/defaultImg.svg";
 
+import { PostProps } from "@/page-layout/MyShopLayout/type";
 import NoticeMessage from "./NoticeMessage/NoticeMessage";
 import HighPriceRateBadge from "./HighPriceRateBadge/HighPriceRateBadge";
 
 const cn = classNames.bind(styles);
-
-interface PostProps {
-  imageUrl?: string;
-  startsAt: string;
-  workhour: number;
-  hourlyPay: number;
-  closed: boolean;
-  name?: string;
-  address?: string;
-  originalHourlyPay?: number;
-}
 
 export default function Post({
   imageUrl,

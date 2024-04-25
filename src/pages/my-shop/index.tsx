@@ -7,19 +7,7 @@ import { useEffect, useState } from "react";
 
 import useGetMessages from "@/page-layout/MyShopLayout/hooks/useGetShopData";
 import { axiosInstance } from "@/shared/apis/axiosInstance";
-
-interface Item {
-  address1: string;
-  closed: boolean;
-  description: string;
-  hourlyPay: number;
-  id: string;
-  imageUrl: string;
-  name: string;
-  originalHourlyPay: number;
-  startsAt: string;
-  workhour: number;
-}
+import { Item, ShopData } from "@/page-layout/MyShopLayout/type";
 
 interface DataItem {
   item: Item;
@@ -28,15 +16,7 @@ interface DataItem {
 type DataArray = DataItem[];
 
 interface ApiData {
-  shopData: {
-    name: string;
-    category: string;
-    address1: string;
-    imageUrl: string;
-    originalHourlyPay: number;
-    description: string;
-    id: string;
-  } | null;
+  shopData: ShopData | null;
 }
 
 export async function getServerSideProps() {

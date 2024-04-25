@@ -3,20 +3,16 @@ import styles from "@/page-layout/MyShopLayout/component/MyShop/ShowMyShop/ShowM
 
 import Button from "@/common/components/Button/Button";
 import Location from "@/images/ic_location.svg";
+import DefaultImg from "@/images/defaultImg.svg";
 
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { ShopData } from "@/page-layout/MyShopLayout/type";
 
 const cn = classNames.bind(styles);
 
 interface ShowMyShopProps {
-  myShopData: {
-    name: string;
-    category: string;
-    address1: string;
-    description: string;
-    imageUrl: string;
-  };
+  myShopData: ShopData;
 }
 
 export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
@@ -37,7 +33,7 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
       <div className={cn("img")}>
         <Image
           fill
-          src={myShopData?.imageUrl}
+          src={myShopData?.imageUrl ? myShopData?.imageUrl : DefaultImg}
           alt="내 가게"
           sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
         />

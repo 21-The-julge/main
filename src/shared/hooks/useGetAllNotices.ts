@@ -65,10 +65,10 @@ const fetchNotices = async (query: Query): Promise<NoticeResponse> => {
   return result;
 };
 
-const useGetAllNotices = (filters: Partial<FilterValue>) => {
+const useGetAllNotices = (query: Query) => {
   const { data, error, isPending, isError } = useQuery({
-    queryKey: ["notices", filters],
-    queryFn: () => fetchNotices(filters),
+    queryKey: ["notices", query],
+    queryFn: () => fetchNotices(query),
     placeholderData: keepPreviousData,
   });
 

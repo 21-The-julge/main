@@ -2,7 +2,9 @@ import RegisterNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/Regi
 import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice";
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
 import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
+import addComma from "@/shared/components/Post/utils/addComma";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
+import getBadge from "@/shared/utils/getBadge";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import { useEffect, useState } from "react";
 
@@ -11,6 +13,7 @@ interface Shop {
 }
 
 interface Notice {
+  status: string;
   hourlyPay: number;
   startsAt: string;
   workhour: number;
@@ -68,8 +71,9 @@ export default function MyShop({ myProfile }: ApiData) {
   const registerNoticeData = registeredNotice.map((item) => {
     return {
       name: item.item.shop.item.name,
-      hourlyPay: item.item.notice.item.hourlyPay,
+      hourlyPay: `${addComma(item.item.notice.item.hourlyPay)}원`,
       startsAt: formatDateTimeRange(item.item.notice.item.startsAt, item.item.notice.item.workhour),
+      status: getBadge(item.item.notice.item.status),
     };
   });
 

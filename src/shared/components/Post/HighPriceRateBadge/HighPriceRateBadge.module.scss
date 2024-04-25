@@ -1,14 +1,21 @@
 .badge {
   display: flex;
-  padding: 1.2rem;
+  padding: 1rem 1rem;
   align-items: center;
   border-radius: 2rem;
   background: $color-red-40;
+  white-space: nowrap;
 
   .percentage {
+    display: inline-block;
     color: $color-white;
     text-align: center;
+
     @include sopoqa-14-700;
+
+    @include mobile {
+      @include sopoqa-12-400;
+    }
   }
 
   &.red20 {
@@ -23,6 +30,7 @@
   @include mobile {
     background-color: $color-white;
     padding: 0;
+
     &.red20,
     &.red30,
     &.red40 {
@@ -42,9 +50,11 @@
 .closed,
 .isPast {
   background: $color-gray-20;
+
   .percentage {
     color: $color-white;
   }
+
   @include mobile {
     background-color: $color-white;
     padding: 0;

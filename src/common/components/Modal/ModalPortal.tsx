@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
-import useIsMounted from "./hooks/useIsMounted";
+import useIsMounted from "../../hooks/useIsMounted";
 
 interface ModalPortalProps {
   children: ReactNode;

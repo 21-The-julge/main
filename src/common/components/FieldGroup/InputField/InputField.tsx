@@ -34,7 +34,7 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
   };
 
   return (
-    <div className={cn("inputField")}>
+    <div className={cn("inputField", className)}>
       <div className={combinedClassName} style={style}>
         {prefix && <PrefixElement element={prefix} />}
         <Input

@@ -23,7 +23,6 @@ export default function NoticesViewedRecent() {
               name={item.shop?.item?.name}
               address={item.shop?.item?.address1}
               originalHourlyPay={item.shop?.item?.originalHourlyPay}
-              className={cn("post")}
             />
           ))}
         </div>

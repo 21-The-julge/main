@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useState } from "react";
-import { parseISO, format, addHours } from "date-fns";
 import Table from "@/common/components/Table/Table";
 import { employersData } from "@/page-layout/NoticesLayout/components/NoticeTable/testData";
 import Pagination from "@/shared/components/Pagination/Pagination";
@@ -8,8 +7,12 @@ import Badge from "@/shared/components/Badge/Badge";
 import { Button } from "@/common/components";
 import classNames from "classnames/bind";
 import styles from "./NoticeTable.module.scss";
+import { usePostApplicationData } from "@/shared/apis/api-hooks";
 
-const cn = classNames.bind(styles);
+interface NoticeTableProps {
+  shopId: string;
+  noticeId: string;
+}
 
 interface TableHeader {
   header: string;
@@ -19,14 +22,20 @@ interface EmployerTableData {
   name: string;
   phone: string;
   bio: string;
-  status: string; // 'initial', 'accepted', or 'rejected'
+  status: string;
 }
 
-export default function NoticeTable() {
+const cn = classNames.bind(styles);
+
+export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
   const [employers, setEmployers] = useState<EmployerTableData[]>(employersData);
   const totalDataCount = employers.length;
   const itemsPageCount = 5;
   const [currentPage, totalPages, setPage] = usePagination({ totalDataCount, itemsPageCount });
+
+  const indexOfLastItem = currentPage * itemsPageCount;
+  const indexOfFirstItem = indexOfLastItem - itemsPageCount;
+  const currentItems = employers.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleStatusChange = (index: number, newStatus: string) => {
     const updatedEmployers = employers.map((employer, idx) => {
@@ -77,9 +86,9 @@ export default function NoticeTable() {
     }
   };
 
-  const dataFrom = employers.map((employer, index) => ({
+  const dataFrom = currentItems.map((employer, index) => ({
     ...employer,
-    status: statusFormatData(index, employer.status),
+    status: statusFormatData(index + indexOfFirstItem, employer.status),
   }));
 
   const employerColumns: TableHeader[] = [
@@ -96,3 +105,28 @@ export default function NoticeTable() {
     </div>
   );
 }
+
+/*
+  const userData = data.items.map(({ item }) => {
+    const { id: userId, user: { item: { id, name, phone, bio }}, status } = item;
+    
+    // userId를 따로 저장하고, 나머지 정보를 객체로 구성
+    return {
+      userId: id,
+      userDetails: {
+        name,
+        phone,
+        bio,
+        status
+      }
+    };
+  });
+  */
+/*
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await usePostApplicationData({ shopId, noticeId });
+      console.log(data); // 데이터 처리
+    }
+    fetchData();
+  }, [shopId, noticeId]);*/

@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 
+import Badge from "@/shared/components/Badge/Badge";
 import { ADDRESSES } from "@/common/constants";
 import remove from "@/shared/utils/remove";
 
@@ -38,10 +39,9 @@ export default function AddressSelector({ value, setAddress }: AddressSelectorPr
       <ul className={cn("badgeBox")}>
         {value.map((address) => (
           <li key={address}>
-            {address}
-            <span role="presentation" onClick={() => handleDelete(address)}>
-              x
-            </span>
+            <Badge color="red" hasCloseIcon onClick={() => handleDelete(address)}>
+              {address}
+            </Badge>
           </li>
         ))}
       </ul>

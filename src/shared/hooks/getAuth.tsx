@@ -1,29 +1,14 @@
-import { useState, useEffect } from "react";
+import usePostSignIn from "../apis/api-hooks/useAuthentications";
+import useUserDataStore from "./useUserDataStore";
+import { PostSignInParams } from "../apis/apiType";
 
-export default function GetAuth() {
-  const [token, setToken] = useState<string | null>(null);
-  const type: "employer" | "employee" = "employer";
-
-  const updateToken = () => {
-    const updatedToken = window.sessionStorage.getItem("token");
-    setToken(updatedToken);
-  };
-
-  useEffect(() => {
-    updateToken();
-    window.addEventListener("storage", updateToken);
-
-    return () => {
-      window.removeEventListener("storage", updateToken);
-    };
-  }, []);
-
-  const isLoggedIn = Boolean(token);
+export default function GetAuth(bodyData: PostSignInParams) {
+  const { error, isLoading, mutate } = usePostSignIn(bodyData);
+  const { token, userId, type, isLoggedIn, resetAll } = useUserDataStore();
 
   const handleLogout = () => {
-    sessionStorage.clear();
-    updateToken();
+    resetAll();
   };
 
-  return { isLoggedIn, type, handleLogout };
+  return { isLoggedIn, error, isLoading, mutate, token, userId, type, handleLogout };
 }

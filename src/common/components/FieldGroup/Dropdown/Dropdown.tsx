@@ -44,7 +44,7 @@ export default function Dropdown({
 
   return (
     <div className={combinedClassName} ref={dropdownRef} style={style}>
-      <button aria-label={name} className={cn("dropdown")} onClick={handleDropdownClick} type="button">
+      <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
         <Input
           name={name}
           type="text"
@@ -52,6 +52,7 @@ export default function Dropdown({
           required
           readOnly
           placeholder={placeholder}
+          size={size}
           cursor="pointer"
           color={color}
         />

@@ -1,18 +1,18 @@
 import classNames from "classnames/bind";
 import styles from "./NoticesViewedRecent.module.scss";
-import { data } from "./testData";
 import { Post } from "@/shared/components";
+import { dataTest } from "./testData";
 
 const cn = classNames.bind(styles);
 
-export default function NoticesViewedRecent() {
-  const noticeData = data;
+export default function NoticesRecent() {
+  const noticeData = dataTest;
   return (
-    <div className={cn("NoticesViewedRecent")}>
+    <div className={cn("NoticesRecentContainer")}>
       <div className={cn("contextFrame")}>
         <h1>최근에 본 공고</h1>
         <div className={cn("postFrame")}>
-          {noticeData.slice(0, 3).map((item) => (
+          {noticeData.map((item) => (
             <Post
               imageUrl={item.shop?.item?.imageUrl}
               key={item.id}
@@ -23,22 +23,6 @@ export default function NoticesViewedRecent() {
               name={item.shop?.item?.name}
               address={item.shop?.item?.address1}
               originalHourlyPay={item.shop?.item?.originalHourlyPay}
-            />
-          ))}
-        </div>
-        <div>
-          {noticeData.slice(3, 6).map((item) => (
-            <Post
-              imageUrl={item.shop?.item?.imageUrl}
-              key={item.id}
-              startsAt={item.startsAt}
-              workhour={item.workhour}
-              hourlyPay={item.hourlyPay}
-              closed={item.closed}
-              name={item.shop?.item?.name}
-              address={item.shop?.item?.address1}
-              originalHourlyPay={item.shop?.item?.originalHourlyPay}
-              className={cn("post")}
             />
           ))}
         </div>

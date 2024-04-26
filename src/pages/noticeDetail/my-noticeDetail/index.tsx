@@ -10,7 +10,8 @@ export default function NoticeDetail() {
   return (
     <RootLayout>
       <NoticeDetailInfo />
-      <NoticesRecent />
+      <NoticeTable />
     </RootLayout>
   );
 }
+//

@@ -1,27 +1,37 @@
-.NoticesViewedRecent {
+.NoticesRecentContainer {
   display: flex;
-  padding: 6rem 23.8rem 12rem 23.8rem;
+  padding-top: 6rem;
+  padding-bottom: 12rem;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  background: var(--The-julge-gray-05, #fafafa);
+  @include tablet {
+    padding: 6rem 3.2rem;
+  }
+  @include mobile {
+    padding: 40px 12px 80px 12px;
+  }
 }
 .contextFrame {
   display: flex;
+  width: 100%;
+  max-width: 97.6rem;
   flex-direction: column;
-  align-items: flex-start;
   gap: 3.2rem;
   > h1 {
     color: $color-black;
     @include sopoqa-28-700;
+  }
+  .postFrame {
+    align-items: center;
+    justify-content: center;
   }
 }
 .postFrame {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  width: 280px;
-  height: 317px;
-}
-.post {
-  width: 280px;
-  height: 317px;
+  flex-wrap: wrap;
+  gap: 20px;
+  // 모바일 질문
 }

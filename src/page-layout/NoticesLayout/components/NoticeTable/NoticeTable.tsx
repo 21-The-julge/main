@@ -7,13 +7,12 @@ import Badge from "@/shared/components/Badge/Badge";
 import { Button } from "@/common/components";
 import classNames from "classnames/bind";
 import styles from "./NoticeTable.module.scss";
-import { usePostApplicationData } from "@/shared/apis/api-hooks";
 
 interface NoticeTableProps {
   shopId: string;
   noticeId: string;
 }
-
+//{ shopId, noticeId }
 interface TableHeader {
   header: string;
   accessor: string;
@@ -27,7 +26,7 @@ interface EmployerTableData {
 
 const cn = classNames.bind(styles);
 
-export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
+export default function NoticeTable() {
   const [employers, setEmployers] = useState<EmployerTableData[]>(employersData);
   const totalDataCount = employers.length;
   const itemsPageCount = 5;
@@ -99,14 +98,23 @@ export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
   ];
 
   return (
-    <div>
-      <Table columns={employerColumns} data={dataFrom} />
-      <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+    <div className={cn("noticesTableContainer")}>
+      <div className={cn("noticesTableFrame")}>
+        <h1>신청자 목록</h1>
+        <div className={cn("noticesTable")}>
+          <Table columns={employerColumns} data={dataFrom} />
+          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+        </div>
+      </div>
     </div>
   );
 }
 
 /*
+ <div className={cn("NoticesTableContainer")}>
+  <div className={cn("NoticesTableFrame")}>
+       
+            </div>
   const userData = data.items.map(({ item }) => {
     const { id: userId, user: { item: { id, name, phone, bio }}, status } = item;
     

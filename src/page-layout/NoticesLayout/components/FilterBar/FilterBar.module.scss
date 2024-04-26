@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .heading {
+    @include sopoqa-28-700;
+  }
+
+  .filterBar {
+    display: flex;
+    gap: 1rem;
+
+    .dropdown {
+      border-radius: 0.5rem;
+    }
+
+    .button {
+      @include sopoqa-14-700;
+
+      width: 8rem;
+      height: 3rem;
+      background-color: $color-red-30;
+    }
+  }
+}

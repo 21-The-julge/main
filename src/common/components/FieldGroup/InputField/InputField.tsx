@@ -22,6 +22,7 @@ export default function InputField({
   border = "solid",
   errorMessage = "",
   className,
+  ...rest
 }: InputFieldProps) {
   const combinedClassName = cn("default", size, color, border, { error: isError });
   const style: ClassNameCSSProperties = {
@@ -42,6 +43,7 @@ export default function InputField({
           disabled={disabled}
           value={value}
           onChange={onChange}
+          {...rest}
         />
         {unit && <SuffixUnit unit={unit} />}
       </div>

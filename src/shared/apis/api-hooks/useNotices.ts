@@ -10,7 +10,7 @@ import {
 } from "../apiType";
 
 // 1. 공고 조회 GET 요청
-export async function useGetNoticesData({
+export function useGetNoticesData({
   offset,
   limit,
   address,
@@ -31,7 +31,7 @@ export async function useGetNoticesData({
 }
 
 // 2. 가게의 공고 목록 조회 Get 요청
-export async function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesDataParams) {
+export function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesDataParams) {
   return useQuery({
     queryKey: ["GetShopNoticesData", { shopId, offset, limit }],
     queryFn: async () => {
@@ -42,7 +42,7 @@ export async function useGetShopNoticesData({ shopId, offset, limit }: GetShopNo
 }
 
 // 3. 가게 공고 등록 POST 요청
-export async function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
+export function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
@@ -57,7 +57,7 @@ export async function usePostNoticeData({ shopId, bodyData }: PostNoticeDataPara
 }
 
 // 4. 가게의 특정 공고 조회 GET 요청
-export async function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificShopNoticeDataParams) {
+export function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificShopNoticeDataParams) {
   return useQuery({
     queryKey: ["GetSpecificShopNoticeData", { shopId, noticeId }],
     queryFn: async () => {
@@ -68,7 +68,7 @@ export async function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpec
 }
 
 // 5. 가게의 특정 공고 수정 PUT 요청 api
-export async function usePutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
+export function usePutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {

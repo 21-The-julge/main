@@ -4,7 +4,7 @@ import { axiosInstanceToken } from "../axiosInstance";
 import { PostPresignedURLParams } from "../apiType";
 
 // 1. Presigned URL 생성 POST 요청
-export default async function usePostPresignedURL(bodyData: PostPresignedURLParams) {
+export default function usePostPresignedURL(bodyData: PostPresignedURLParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {

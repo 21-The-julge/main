@@ -20,7 +20,20 @@ interface InputProps {
 }
 
 export default forwardRef<HTMLInputElement, InputProps>(function Input(
-  { type = "text", size, placeholder, name, color = "white", disabled, value, onChange, readOnly, required, cursor },
+  {
+    type = "text",
+    size,
+    placeholder,
+    name,
+    color = "white",
+    disabled,
+    value,
+    onChange,
+    readOnly,
+    required,
+    cursor,
+    ...rest
+  },
   ref,
 ) {
   const className = cn("default", size, color, cursor);
@@ -38,6 +51,7 @@ export default forwardRef<HTMLInputElement, InputProps>(function Input(
       required={required}
       onChange={onChange}
       readOnly={readOnly}
+      {...rest}
     />
   );
 });

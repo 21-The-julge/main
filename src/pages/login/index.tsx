@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Button, FieldGroup } from "@/common/components";
+import { InputField } from "@/common/components/FieldGroup";
 
 import ThejulgeLogo from "@/images/logo.svg";
 
@@ -51,14 +52,14 @@ export default function SignInPage() {
             />
           )}
         /> */}
-        {/* <InputField
+        <InputField
           {...register("email", { required: "이메일을 입력해 주세요" })}
           type="email"
           placeholder="입력"
           name="email"
           isError={!!errors.email}
           errorMessage={errors.email?.message}
-        /> */}
+        />
         <FieldGroup
           field="input"
           {...register("email", { required: "이메일을 입력해 주세요" })}
@@ -69,6 +70,7 @@ export default function SignInPage() {
           isError={!!errors.email}
           errorMessage={errors.email?.message}
         />
+
         {/* <FieldGroup field="input" type="password" label="비밀번호" name="비밀번호" placeholder="입력" /> */}
         <Button type="submit" size="large">
           로그인하기

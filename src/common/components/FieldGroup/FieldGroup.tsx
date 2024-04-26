@@ -32,6 +32,7 @@ export default function FieldGroup({
   onClick,
   className,
   onTextareaChange,
+  ...rest
 }: FieldGroupProps) {
   const commonProps = {
     name,
@@ -39,6 +40,7 @@ export default function FieldGroup({
     size,
     color,
     className,
+    ...rest,
     ...(field === "input" && {
       type,
       isError,

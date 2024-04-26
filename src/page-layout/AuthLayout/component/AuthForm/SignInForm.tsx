@@ -1,20 +1,21 @@
+// import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { ERROR_MESSAGE, PLACEHOLDERS } from "@/common/constants";
 import { Button, FieldGroup } from "@/common/components";
+import { PostSignInParams } from "@/shared/apis/apiType";
 
 import classNames from "classnames/bind";
 import styles from "./SignInForm.module.scss";
-// import GetAuth from "@/shared/hooks/getAuth";
 
 const cn = classNames.bind(styles);
 
-interface FieldValues {
-  email: string;
-  password: string;
-}
+// interface FieldValues {
+//   email: string;
+//   password: string;
+// }
 
 const schema = z.object({
   email: z.string().min(1, { message: ERROR_MESSAGE.EMAIL.EMPTY }).email({ message: ERROR_MESSAGE.EMAIL.INVALID }),
@@ -23,13 +24,14 @@ const schema = z.object({
 });
 
 export default function SignInForm() {
-  // const { mutate } = GetAuth();
+  // const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
-    mode: "onBlur",
+  } = useForm<PostSignInParams>({
+    mode: "onTouched",
     resolver: zodResolver(schema),
     defaultValues: {
       email: "",
@@ -37,10 +39,9 @@ export default function SignInForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // GetAuth(data);
+  const onSubmit: SubmitHandler<PostSignInParams> = async (data) => {
     // eslint-disable-next-line no-console
-    console.log(data);
+    console.log("로그인 data:", data);
   };
 
   const EMAIL = "email";

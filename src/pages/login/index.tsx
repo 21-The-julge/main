@@ -18,7 +18,7 @@ export default function SignInPage() {
       <SignInForm />
       <div className={cn("textBox")}>
         <span>회원이 아니신가요?</span>
-        <Link className={cn("link")} href="/">
+        <Link className={cn("link")} href="sign-up">
           회원가입하기
         </Link>
       </div>

@@ -3,8 +3,7 @@ name: Feature request
 about: 새로운 기능 추가
 title: "[feat] "
 labels: feat
-assignees: ''
-
+assignees: ""
 ---
 
 ## 😁어떤 기능인가요?

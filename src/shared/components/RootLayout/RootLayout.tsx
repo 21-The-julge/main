@@ -1,17 +1,22 @@
 import { ReactNode } from "react";
 import Gnb from "@/common/components/Gnb/Gnb";
 import Footer from "@/common/components/Footer/Footer";
+import styles from "@/shared/components/RootLayout/RootLayout.module.scss";
+import classNames from "classnames/bind";
+
+const cn = classNames.bind(styles);
 
 interface RootLayoutProps {
   children: ReactNode;
+  needFooter?: boolean;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, needFooter = true }: RootLayoutProps) {
   return (
-    <div>
+    <div className={cn("container")}>
       <Gnb />
-      <main>{children}</main>
-      <Footer />
+      <main className={cn("children")}>{children}</main>
+      {needFooter && <Footer />}
     </div>
   );
 }

@@ -11,13 +11,6 @@
     padding-bottom: 2rem;
   }
 
-  .formBox {
-    display: flex;
-    flex-direction: column;
-    gap: 2.8rem;
-    max-width: 35rem;
-  }
-
   .textBox {
     @include pretendard-16-400;
     display: flex;

@@ -7,7 +7,7 @@ const cn = classNames.bind(styles);
 
 interface InputProps {
   name?: string;
-  type: "text" | "email" | "password" | "search";
+  type: "text" | "email" | "password" | "search" | "radio";
   value?: string | number | readonly string[];
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;

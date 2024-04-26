@@ -2,7 +2,7 @@ import { CSSProperties, ChangeEvent } from "react";
 
 export interface InputFieldProps {
   name?: string;
-  type?: "text" | "email" | "password" | "search";
+  type?: "text" | "email" | "password" | "search" | "radio";
   value?: string | number;
   placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;

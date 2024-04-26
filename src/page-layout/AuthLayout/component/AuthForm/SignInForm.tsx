@@ -6,16 +6,12 @@ import { z } from "zod";
 import { ERROR_MESSAGE, PLACEHOLDERS } from "@/common/constants";
 import { Button, FieldGroup } from "@/common/components";
 import { PostSignInParams } from "@/shared/apis/apiType";
+// import { usePostSignIn } from "@/shared/apis/api-hooks";
 
 import classNames from "classnames/bind";
 import styles from "./SignInForm.module.scss";
 
 const cn = classNames.bind(styles);
-
-// interface FieldValues {
-//   email: string;
-//   password: string;
-// }
 
 const schema = z.object({
   email: z.string().min(1, { message: ERROR_MESSAGE.EMAIL.EMPTY }).email({ message: ERROR_MESSAGE.EMAIL.INVALID }),
@@ -39,9 +35,19 @@ export default function SignInForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<PostSignInParams> = async (data) => {
+  // const { mutate, error, isLoading } = usePostSignIn();
+
+  const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
     // eslint-disable-next-line no-console
-    console.log("로그인 data:", data);
+    console.log("로그인 payload:", payload);
+    // mutate(payload, {
+    //   onSuccess: () => {
+    //     console.log("로그인 성공");
+    //   },
+    //   onError: (error) => {
+    //     console.error("로그인 실패", error);
+    //   },
+    // });
   };
 
   const EMAIL = "email";

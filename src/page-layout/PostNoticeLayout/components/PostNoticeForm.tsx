@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import InputField from "@/common/components/InputField/InputField";
+import { InputField } from "@/common/components/FieldGroup";
 import Button from "@/common/components/Button/Button";
 import styles from "./PostNoticeForm.module.scss";
 

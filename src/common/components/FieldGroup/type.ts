@@ -9,7 +9,7 @@ export interface InputFieldProps {
   label?: string;
   required?: boolean;
   disabled?: boolean;
-  unit?: "원" | "시급";
+  unit?: "원" | "시간";
   prefix?: "search";
   isError?: boolean;
   errorMessage?: string;

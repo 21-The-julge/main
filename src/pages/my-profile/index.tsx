@@ -63,7 +63,7 @@ export default function MyShop({ myProfile }: ApiData) {
   const [registeredNotice, setRegisteredNotice] = useState<Item[]>([]);
 
   const fetchNotices = async () => {
-    const res = await axiosInstanceToken.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications`);
+    const res = await axiosInstanceToken.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications?limit=100`);
     const result = await res.data.items;
     setRegisteredNotice(result);
   };

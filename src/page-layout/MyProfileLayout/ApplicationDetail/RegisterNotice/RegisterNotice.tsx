@@ -22,8 +22,12 @@ interface RegisterNoticeProps {
 
 export default function RegisterNotice({ registerNoticeData }: RegisterNoticeProps) {
   const totalDataCount = registerNoticeData.length;
-  const itemsPageNum = 5;
-  const [currentPage, totalPages, setPage] = usePaginationProps(totalDataCount, itemsPageNum);
+  const itemsPageCount = 5;
+
+  const [currentPage, totalPages, setPage] = usePaginationProps({ totalDataCount, itemsPageCount });
+  const startIndex = (currentPage - 1) * itemsPageCount; // 테이블의 첫 번째 요소의 인덱스
+  const endIndex = startIndex + itemsPageCount; // 테이블의 마지막 요소의 인덱스
+  const currentPageData = registerNoticeData.slice(startIndex, endIndex);
 
   const employeeHeaders: TableHeader[] = [
     { header: "가게", accessor: "name" },
@@ -36,8 +40,8 @@ export default function RegisterNotice({ registerNoticeData }: RegisterNoticePro
     <div className={cn("container")}>
       <div className={cn("registerContiner")}>
         <p className={cn("registerTitle")}>신청 내역</p>
-        <Table columns={employeeHeaders} data={registerNoticeData} />
-        {/* <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setPage} /> */}
+        <Table columns={employeeHeaders} data={currentPageData} />
+        <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
       </div>
     </div>
   );

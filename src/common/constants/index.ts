@@ -54,3 +54,5 @@ export const ERROR_MESSAGE = {
   SHORT_PASSWORD: "8자 이상 입력해 주세요.",
   INCORRECT_PASSWORD: "비밀번호가 일치하지 않습니다.",
 } as const;
+
+export const SORTED_OPTIONS = ["마감임박순", "시급많은순", "시간적은순", "가나다순"];

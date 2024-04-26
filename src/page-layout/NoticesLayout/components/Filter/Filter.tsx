@@ -2,7 +2,8 @@ import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { addMinutes, formatRFC3339 } from "date-fns";
 import classNames from "classnames/bind";
 
-import { Button, InputField } from "@/common/components";
+import { InputField } from "@/common/components/FieldGroup";
+import { Button } from "@/common/components";
 import CloseIcon from "@/images/ic_close.svg";
 import AddressSelector from "./AddressSelector";
 import StartDatePicker from "./StartDatePicker";
@@ -79,23 +80,6 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
 
         <FieldSet label="금액">
           <div className={cn("pay")}>
-            {/* <div className={cn("payInput")}>
-              <input
-                placeholder="입력"
-                {...register("hourlyPayGte", {
-                  min: 0,
-                  pattern: {
-                    value: /^\d+$/,
-                    message: "숫자만 입력해주세요",
-                  },
-                })}
-              /> */}
-
-            {/* <span>이상부터</span>
-            </div>
-
-            <p>{errors.hourlyPayGte?.message}</p> */}
-
             <InputField
               unit="원"
               size="sm"

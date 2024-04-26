@@ -52,7 +52,7 @@ export default function Post({
             <p>{formatDateTimeRange(startsAt, workhour)}</p>
           </div>
           <div className={cn("locationContainer")}>
-            <Location className={cn("clock")} fill={closed || isPast ? "#cbc9cf" : "orange"} />
+            <Location className={cn("location")} fill={closed || isPast ? "#cbc9cf" : "orange"} />
             {address}
           </div>
         </div>

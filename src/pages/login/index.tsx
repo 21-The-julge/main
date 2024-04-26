@@ -2,8 +2,9 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+
 import { Button, FieldGroup } from "@/common/components";
-// import { InputField } from "@/common/components/FieldGroup";
+import { ERROR_MESSAGE, PLACEHOLDERS } from "@/common/constants";
 
 import ThejulgeLogo from "@/images/logo.svg";
 
@@ -17,12 +18,10 @@ interface FieldValues {
   password: string;
 }
 
-// export type RegisterSchemaType = z.infer<typeof registerSchema>;
-
 const schema = z.object({
-  email: z.string().min(1, { message: "이메일을 입력해 주세요." }).email({ message: "이메일 형식으로 작성해 주세요." }),
+  email: z.string().min(1, { message: ERROR_MESSAGE.EMAIL.EMPTY }).email({ message: ERROR_MESSAGE.EMAIL.INVALID }),
 
-  password: z.string().nonempty("비밀번호를 입력해 주세요."),
+  password: z.string().min(8, { message: ERROR_MESSAGE.PASSWORD.SHORT }),
 });
 
 export default function SignInPage() {
@@ -53,7 +52,7 @@ export default function SignInPage() {
           {...register("email")}
           type="email"
           label="이메일"
-          placeholder="입력"
+          placeholder={PLACEHOLDERS.EMAIL}
           name="email"
           isError={!!errors.email}
           errorMessage={errors.email?.message}
@@ -63,7 +62,7 @@ export default function SignInPage() {
           {...register("password")}
           type="password"
           label="비밀번호"
-          placeholder="입력"
+          placeholder={PLACEHOLDERS.PASSWORD}
           name="password"
           isError={!!errors.password}
           errorMessage={errors.password?.message}

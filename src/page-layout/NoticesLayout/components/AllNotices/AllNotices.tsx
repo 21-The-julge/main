@@ -94,11 +94,11 @@ export default function AllNotices() {
   const items = data ? data.items.map((obj) => obj.item) : [];
 
   const posts = items.map((obj) => {
-    const { id, startsAt, workhour, shop, hourlyPay, closed } = obj;
+    const { id: noticeId, startsAt, workhour, shop, hourlyPay, closed } = obj;
 
-    const { name, address1, imageUrl, originalHourlyPay } = shop.item;
+    const { id: shopId, name, address1, imageUrl, originalHourlyPay } = shop.item;
 
-    return { id, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
+    return { noticeId, shopId, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
   });
 
   return (

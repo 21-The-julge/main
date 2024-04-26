@@ -6,6 +6,7 @@ import addComma from "@/shared/components/Post/utils/addComma";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
 import getBadge from "@/shared/utils/getBadge";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
+
 import { useEffect, useState } from "react";
 
 interface Shop {
@@ -61,7 +62,6 @@ export async function getServerSideProps() {
 
 export default function MyShop({ myProfile }: ApiData) {
   const [registeredNotice, setRegisteredNotice] = useState<Item[]>([]);
-
   const fetchNotices = async () => {
     const res = await axiosInstanceToken.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications?limit=100`);
     const result = await res.data.items;

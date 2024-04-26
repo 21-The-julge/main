@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button, FieldGroup } from "@/common/components";
-import { InputField } from "@/common/components/FieldGroup";
+// import { InputField } from "@/common/components/FieldGroup";
 
 import ThejulgeLogo from "@/images/logo.svg";
 
@@ -15,6 +17,14 @@ interface FieldValues {
   password: string;
 }
 
+// export type RegisterSchemaType = z.infer<typeof registerSchema>;
+
+const schema = z.object({
+  email: z.string().min(1, { message: "이메일을 입력해 주세요." }).email("이메일 형식으로 작성해 주세요."),
+
+  password: z.string().nonempty("비밀번호를 입력해 주세요."),
+});
+
 export default function SignInPage() {
   const {
     register,
@@ -22,6 +32,7 @@ export default function SignInPage() {
     formState: { errors },
   } = useForm<FieldValues>({
     mode: "onBlur",
+    resolver: zodResolver(schema),
     defaultValues: {
       email: "",
       password: "",
@@ -32,6 +43,7 @@ export default function SignInPage() {
 
   return (
     <main className={cn("signInPage")}>
+      {/* route 경로 공고리스트 페이지로 수정 필요 */}
       <Link className={cn("logoBox")} href="/">
         <ThejulgeLogo width={248} height={45} />
       </Link>
@@ -52,17 +64,24 @@ export default function SignInPage() {
             />
           )}
         /> */}
-        <InputField
-          {...register("email", { required: "이메일을 입력해 주세요" })}
+
+        {/* <FieldGroup
+          field="input"
+          {...register("email", { required: "이메일을 입력해 주세요", pattern: {
+            value: 
+            message: "이메일 형식으로 작성해 주세요."
+          } 
+        })}
           type="email"
+          label="이메일"
           placeholder="입력"
           name="email"
           isError={!!errors.email}
           errorMessage={errors.email?.message}
-        />
+        /> */}
         <FieldGroup
           field="input"
-          {...register("email", { required: "이메일을 입력해 주세요" })}
+          {...register("email")}
           type="email"
           label="이메일"
           placeholder="입력"
@@ -71,7 +90,16 @@ export default function SignInPage() {
           errorMessage={errors.email?.message}
         />
 
-        {/* <FieldGroup field="input" type="password" label="비밀번호" name="비밀번호" placeholder="입력" /> */}
+        <FieldGroup
+          field="input"
+          {...register("password")}
+          type="password"
+          label="비밀번호"
+          placeholder="입력"
+          name="password"
+          isError={!!errors.password}
+          errorMessage={errors.password?.message}
+        />
         <Button type="submit" size="large">
           로그인하기
         </Button>

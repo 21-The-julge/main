@@ -2,7 +2,7 @@
   display: inline-flex;
   flex-direction: column;
   gap: 0.8rem;
-  width: fit-content;
+  width: 100%;
 
   .default {
     position: relative;
@@ -13,6 +13,7 @@
     border: 0.1rem solid $color-gray-30;
     padding: 1.6rem 2rem;
     width: calc(var(--width));
+    height: 5.8rem;
   }
 
   .error {

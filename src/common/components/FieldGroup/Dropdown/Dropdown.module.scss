@@ -16,8 +16,10 @@ $option-height: 6rem;
     position: absolute;
     border: none;
     width: 100%;
+    margin-top: 0.8rem;
     overflow: scroll;
     background: none;
+    border-radius: 0.6rem;
     box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
     z-index: $zindex-dropdown;
     background-color: $color-gray-5;
@@ -29,7 +31,16 @@ $option-height: 6rem;
       align-items: center;
       width: 100%;
       border: 0.1rem solid $color-gray-20;
-      border-radius: 0.6rem;
+      border-bottom: none;
+
+      &:first-child {
+        border-radius: 0.6rem 0.6rem 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 0.6rem 0.6rem;
+        border-bottom: 0.1rem solid $color-gray-20;
+      }
 
       &:hover {
         background-color: $color-red-20;

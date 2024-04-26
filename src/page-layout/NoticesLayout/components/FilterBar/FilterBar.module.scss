@@ -6,21 +6,23 @@
   align-items: center;
 
   .heading {
-    flex-basis: 50%;
     @include sopoqa-28-700;
   }
 
   .filterBar {
-    flex-basis: 50%;
-    text-align: right;
+    display: flex;
+    gap: 1rem;
 
-    .item {
-      display: inline;
+    .dropdown {
+      border-radius: 0.5rem;
+    }
 
-      .button {
-        background-color: $color-red-30;
-        margin-left: 1rem;
-      }
+    .button {
+      @include sopoqa-14-700;
+
+      width: 8rem;
+      height: 3rem;
+      background-color: $color-red-30;
     }
   }
 }

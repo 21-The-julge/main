@@ -1,8 +1,8 @@
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
-import { formatRFC3339 } from "date-fns/formatRFC3339";
+import { addMinutes, formatRFC3339 } from "date-fns";
 import classNames from "classnames/bind";
 
-import { Button } from "@/common/components";
+import { Button, InputField } from "@/common/components";
 import CloseIcon from "@/images/ic_close.svg";
 import AddressSelector from "./AddressSelector";
 import StartDatePicker from "./StartDatePicker";
@@ -34,7 +34,7 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
   } = useForm<FieldValues>({
     defaultValues: {
       address: [],
-      startsAtGte: formatRFC3339(new Date()),
+      startsAtGte: formatRFC3339(addMinutes(new Date(), 2)),
       hourlyPayGte: "",
     },
   });
@@ -66,7 +66,10 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
           <Controller
             name="startsAtGte"
             render={({ field: { value, onChange } }) => (
-              <StartDatePicker startDate={new Date(value)} onChange={(date: Date) => onChange(formatRFC3339(date))} />
+              <StartDatePicker
+                startDate={new Date(value)}
+                onChange={(date: Date) => onChange(formatRFC3339(addMinutes(date, 2)))}
+              />
             )}
             control={control}
           />
@@ -76,7 +79,7 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
 
         <FieldSet label="금액">
           <div className={cn("pay")}>
-            <div className={cn("payInput")}>
+            {/* <div className={cn("payInput")}>
               <input
                 placeholder="입력"
                 {...register("hourlyPayGte", {
@@ -86,11 +89,28 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
                     message: "숫자만 입력해주세요",
                   },
                 })}
-              />
-              <span>이상부터</span>
+              /> */}
+
+            {/* <span>이상부터</span>
             </div>
 
-            <p>{errors.hourlyPayGte?.message}</p>
+            <p>{errors.hourlyPayGte?.message}</p> */}
+
+            <InputField
+              unit="원"
+              size="sm"
+              placeholder="입력"
+              className={cn("payInput")}
+              isError={!!errors.hourlyPayGte?.message}
+              errorMessage={errors.hourlyPayGte?.message}
+              {...register("hourlyPayGte", {
+                min: 0,
+                pattern: {
+                  value: /^\d+$/,
+                  message: "숫자만 입력해주세요",
+                },
+              })}
+            />
           </div>
         </FieldSet>
 

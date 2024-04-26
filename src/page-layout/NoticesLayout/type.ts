@@ -1,8 +1,8 @@
-type Sort = "time" | "pay" | "hour" | "shop" | "";
+import { SORT_VALUE } from "@/common/constants";
 
 export interface FilterValue {
   address: string[];
   startsAtGte: string;
   hourlyPayGte: string;
-  sort: Sort;
+  sort: typeof SORT_VALUE;
 }

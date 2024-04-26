@@ -62,4 +62,11 @@ export const ROUTE = {
   NOTICES: "/notices",
 } as const;
 
-export const SORTED_OPTIONS = ["마감임박순", "시급많은순", "시간적은순", "가나다순"];
+export const SORT_OPTIONS = ["마감임박순", "시급많은순", "시간적은순", "가나다순"];
+
+export const SORT_VALUE = ["time", "pay", "hour", "shop"] as const;
+
+export const SORT = SORT_OPTIONS.map((option, index) => ({
+  value: SORT_VALUE[index],
+  option,
+}));

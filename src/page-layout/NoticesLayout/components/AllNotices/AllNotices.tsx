@@ -1,11 +1,11 @@
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 import usePaginationProps from "@/shared/hooks/usePagination";
 
-import { ROUTE } from "@/common/constants";
+import { ROUTE, SORT } from "@/common/constants";
 
 import Pagination from "@/shared/components/Pagination/Pagination";
 import FilterBar from "../FilterBar";
@@ -24,7 +24,6 @@ export default function AllNotices() {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
-  const [selected, setSelected] = useState("");
 
   const { data, error, isPending, isError } = useGetAllNotices(router.query);
 
@@ -47,23 +46,25 @@ export default function AllNotices() {
 
     router.push({
       pathname: ROUTE.NOTICES,
-      query: { ...filter },
+      query: { ...filters, ...filter },
     });
   };
 
-  const handleSelect = ({ target: { value } }: ChangeEvent<HTMLSelectElement>) => {
-    setPage(1);
+  const handleSelect = (selected: string) => {
+    const sort = SORT.map(({ value, option }) => (selected === option ? value : ""))
+      .join("")
+      .trim();
 
-    setSelected(value);
+    setPage(1);
 
     setFilters((prev) => ({
       ...prev,
-      sort: value,
+      sort,
     }));
 
     router.push({
       pathname: ROUTE.NOTICES,
-      query: { ...filters, sort: value },
+      query: { ...filters, sort },
     });
   };
 
@@ -104,7 +105,6 @@ export default function AllNotices() {
     <div className={cn("container")}>
       <FilterBar
         isOpen={isFilterOpen}
-        value={selected}
         onChange={handleSelect}
         onFilter={handleFilter}
         onOpen={() => handleOpen(true)}

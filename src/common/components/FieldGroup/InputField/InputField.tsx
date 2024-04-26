@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
 
@@ -6,24 +8,27 @@ import { ClassNameCSSProperties, InputFieldProps } from "../type";
 
 const cn = classNames.bind(styles);
 
-export default function InputField({
-  name,
-  type = "text",
-  placeholder,
-  size = "md",
-  color = "white",
-  isError = false,
-  disabled,
-  required,
-  unit,
-  prefix,
-  value,
-  onChange,
-  border = "solid",
-  errorMessage = "",
-  className,
-  ...rest
-}: InputFieldProps) {
+export default forwardRef(function InputField(
+  {
+    name,
+    type = "text",
+    placeholder,
+    size = "md",
+    color = "white",
+    isError = false,
+    disabled,
+    required,
+    unit,
+    prefix,
+    value,
+    onChange,
+    border = "solid",
+    errorMessage = "",
+    className,
+    ...rest
+  }: InputFieldProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const combinedClassName = cn("default", size, color, border, { error: isError });
   const style: ClassNameCSSProperties = {
     "--width": className || "100vw",
@@ -43,6 +48,7 @@ export default function InputField({
           disabled={disabled}
           value={value}
           onChange={onChange}
+          ref={ref}
           {...rest}
         />
         {unit && <SuffixUnit unit={unit} />}
@@ -50,4 +56,4 @@ export default function InputField({
       {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
-}
+});

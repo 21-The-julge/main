@@ -1,3 +1,5 @@
+import { ForwardedRef, Ref, forwardRef } from "react";
+
 import classNames from "classnames/bind";
 import styles from "./FieldGroup.module.scss";
 
@@ -11,35 +13,39 @@ interface FieldGroupProps extends InputFieldProps, DropdownProps, TextareaProps 
   field: "input" | "dropdown" | "textarea";
 }
 
-export default function FieldGroup({
-  field,
-  label,
-  required,
-  name,
-  placeholder,
-  size,
-  color,
-  type,
-  isError,
-  disabled,
-  unit,
-  prefix,
-  value,
-  onChange,
-  border,
-  errorMessage,
-  options,
-  onClick,
-  className,
-  onTextareaChange,
-  ...rest
-}: FieldGroupProps) {
+export default forwardRef(function FieldGroup(
+  {
+    field,
+    label,
+    required,
+    name,
+    placeholder,
+    size,
+    color,
+    type,
+    isError,
+    disabled,
+    unit,
+    prefix,
+    value,
+    onChange,
+    border,
+    errorMessage,
+    options,
+    onClick,
+    className,
+    onTextareaChange,
+    ...rest
+  }: FieldGroupProps,
+  ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
+) {
   const commonProps = {
     name,
     placeholder,
     size,
     color,
     className,
+    ref,
     ...rest,
     ...(field === "input" && {
       type,
@@ -66,7 +72,7 @@ export default function FieldGroup({
   const renderField = () => {
     switch (field) {
       case "input":
-        return <InputField {...commonProps} />;
+        return <InputField {...commonProps} ref={ref as Ref<HTMLInputElement>} />;
       case "dropdown":
         return <Dropdown {...commonProps} />;
       case "textarea":
@@ -82,4 +88,4 @@ export default function FieldGroup({
       {renderField()}
     </div>
   );
-}
+});

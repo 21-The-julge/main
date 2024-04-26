@@ -20,7 +20,7 @@ interface FieldValues {
 // export type RegisterSchemaType = z.infer<typeof registerSchema>;
 
 const schema = z.object({
-  email: z.string().min(1, { message: "이메일을 입력해 주세요." }).email("이메일 형식으로 작성해 주세요."),
+  email: z.string().min(1, { message: "이메일을 입력해 주세요." }).email({ message: "이메일 형식으로 작성해 주세요." }),
 
   password: z.string().nonempty("비밀번호를 입력해 주세요."),
 });
@@ -48,37 +48,6 @@ export default function SignInPage() {
         <ThejulgeLogo width={248} height={45} />
       </Link>
       <form className={cn("formBox")} onSubmit={handleSubmit(onSubmit)}>
-        {/* <Controller
-          name="email"
-          control={control}
-          rules={{ required: "이메일을 입력해주세요" }}
-          render={({ field, fieldState: { error } }) => (
-            <FieldGroup
-              group="input"
-              type="email"
-              placeholder="테스트"
-              isError={error ? true : false}
-              errorMessage={error ? error.message : ""}
-              {...field}
-              name="email"
-            />
-          )}
-        /> */}
-
-        {/* <FieldGroup
-          field="input"
-          {...register("email", { required: "이메일을 입력해 주세요", pattern: {
-            value: 
-            message: "이메일 형식으로 작성해 주세요."
-          } 
-        })}
-          type="email"
-          label="이메일"
-          placeholder="입력"
-          name="email"
-          isError={!!errors.email}
-          errorMessage={errors.email?.message}
-        /> */}
         <FieldGroup
           field="input"
           {...register("email")}
@@ -89,7 +58,6 @@ export default function SignInPage() {
           isError={!!errors.email}
           errorMessage={errors.email?.message}
         />
-
         <FieldGroup
           field="input"
           {...register("password")}

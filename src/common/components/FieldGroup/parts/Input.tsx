@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef } from "react";
+import { ChangeEvent, ForwardedRef, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Input.module.scss";
@@ -19,7 +19,7 @@ interface InputProps {
   cursor?: string;
 }
 
-export default forwardRef<HTMLInputElement, InputProps>(function Input(
+export default forwardRef(function Input(
   {
     type = "text",
     size,
@@ -33,8 +33,8 @@ export default forwardRef<HTMLInputElement, InputProps>(function Input(
     required,
     cursor,
     ...rest
-  },
-  ref,
+  }: InputProps,
+  ref: ForwardedRef<HTMLInputElement>,
 ) {
   const className = cn("default", size, color, cursor);
 

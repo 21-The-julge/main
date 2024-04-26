@@ -51,10 +51,10 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
           <p className={cn("explanation")}>{myShopData.description}</p>
         </div>
         <div className={cn("buttonContainer")}>
-          <Button variant="outline" size="large" onClick={handleEditClick}>
+          <Button className={cn("button")} variant="outline" size="large" onClick={handleEditClick}>
             편집하기
           </Button>
-          <Button size="large" onClick={handleRegisterClick}>
+          <Button className={cn("button")} size="large" onClick={handleRegisterClick}>
             공고 등록하기
           </Button>
         </div>

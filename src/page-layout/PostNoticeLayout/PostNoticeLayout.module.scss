@@ -1,0 +1,56 @@
+.background {
+  background-color: $color-gray-5;
+
+  width: 100%;
+  height: 100%;
+  padding: 6rem 23.8rem;
+}
+
+.container {
+  max-width: 96.4rem;
+  max-height: 44.9rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 3.2rem;
+
+  margin: 0 auto;
+}
+
+.inputHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.text {
+  white-space: nowrap;
+  @include sopoqa-28-700;
+  letter-spacing: 0.02em;
+}
+
+.icon {
+  width: 3.2em;
+  height: 3.2em;
+}
+
+.alertModal {
+  width: 54rem;
+  height: 25rem;
+}
+
+@include tablet {
+  .container {
+    width: 68rem;
+    height: 56.5rem;
+  }
+}
+
+@include mobile {
+  .container {
+    width: 35.1rem;
+    height: 64.4rem;
+  }
+}

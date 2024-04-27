@@ -23,7 +23,8 @@ export async function getServerSideProps() {
   let shopData;
 
   try {
-    const response = await axiosInstance.get("shops/ae78c3af-a075-4586-bee2-21c8da59d6b2");
+    const shopId = "ae78c3af-a075-4586-bee2-21c8da59d6b2";
+    const response = await axiosInstance.get(`shops/${shopId}`);
     shopData = response?.data?.item ?? [];
   } catch (error) {
     shopData = null;

@@ -3,13 +3,17 @@ import { ApiData } from "@/page-layout/MyShopLayout/type";
 import { Post } from "@/shared/components";
 import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
 
+import classNames from "classnames/bind";
+import styles from "@/shared/components/Post/Skeleton/PostSkeleton.module.scss";
+
 interface PostContainerProps {
   myShopData: ApiData;
 }
+const cn = classNames.bind(styles);
 
 export default function PostContainer({ myShopData }: PostContainerProps) {
   if (myShopData?.item?.startsAt === undefined) {
-    return <PostSkeleton />;
+    return <PostSkeleton className={cn("skeleton")} />;
   }
 
   return (

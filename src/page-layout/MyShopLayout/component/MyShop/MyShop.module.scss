@@ -19,11 +19,11 @@
     width: 96.4rem;
 
     @include tablet {
-      width: 68rem;
+      width: 100%;
     }
 
     @include mobile {
-      width: 35.1rem;
+      width: 100%;
     }
   }
 

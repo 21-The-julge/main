@@ -6,6 +6,16 @@ $option-height: 5.8rem;
   gap: 0.8rem;
   width: 100%;
 
+  .default {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-gray-30;
+    padding: 1.6rem 2rem;
+  }
+
   .error {
     border: 0.1rem solid $color-red-40;
   }
@@ -20,16 +30,6 @@ $option-height: 5.8rem;
 
   .none {
     border: none;
-  }
-
-  .default {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 0.6rem;
-    border: 0.1rem solid $color-gray-30;
-    padding: 1.6rem 2rem;
   }
 
   .md {

@@ -1,0 +1,107 @@
+$option-height: 5.8rem;
+
+.dropdownBox {
+  width: 100%;
+  position: relative;
+
+  .field {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+
+    .dropdown {
+      display: flex;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  }
+}
+
+.optionsBox {
+  position: absolute;
+  border: none;
+  width: 100%;
+  margin-top: 0.8rem;
+  overflow: auto;
+  background: none;
+  border-radius: 0.6rem;
+  box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  z-index: $zindex-dropdown;
+  background-color: $color-gray-5;
+
+  .option {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 0.1rem solid $color-gray-20;
+    border-bottom: none;
+
+    &:first-child {
+      border-radius: 0.6rem 0.6rem 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 0.6rem 0.6rem;
+      border-bottom: 0.1rem solid $color-gray-20;
+    }
+
+    &:hover {
+      background-color: $color-red-20;
+    }
+  }
+}
+
+.white {
+  .dropdown {
+    background-color: $color-white;
+  }
+}
+
+.gray {
+  .dropdown {
+    background-color: $color-gray-10;
+  }
+}
+
+.md {
+  @include sopoqa-16-400;
+
+  .dropdown {
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-gray-30;
+    padding: 1.6rem 2rem;
+    height: $option-height;
+  }
+
+  .optionsBox {
+    height: calc($option-height * 4);
+
+    .option {
+      padding: 1.6rem 2rem;
+      height: $option-height;
+    }
+  }
+}
+
+.sm {
+  @include sopoqa-14-400;
+
+  .dropdown {
+    border: none;
+    padding: 0.8rem;
+    height: calc($option-height * 0.5);
+  }
+
+  .optionsBox {
+    height: calc($option-height * 2);
+
+    .option {
+      height: calc($option-height * 0.5);
+    }
+  }
+}

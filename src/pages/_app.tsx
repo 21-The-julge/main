@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   return getLayout(
     <QueryClientProvider client={queryClient}>
-      <ToastContainer />
+      <ToastContainer limit={3} />
       <Component {...pageProps} />
       <ReactQueryDevtools />
     </QueryClientProvider>,

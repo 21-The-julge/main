@@ -1,8 +1,8 @@
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
-import { formatRFC3339 } from "date-fns/formatRFC3339";
+import { addMinutes, formatRFC3339 } from "date-fns";
 import classNames from "classnames/bind";
 
-import { Button } from "@/common/components";
+import { Button, InputField } from "@/common/components";
 import CloseIcon from "@/images/ic_close.svg";
 import AddressSelector from "./AddressSelector";
 import StartDatePicker from "./StartDatePicker";
@@ -12,13 +12,19 @@ import styles from "./Filter.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface FieldValues {
-  address: string[];
-  startDate: string;
-  pay: number | null;
+interface FilterProps {
+  className: string;
+  onClose: () => void;
+  onFilter: (filter: FieldValues) => void;
 }
 
-export default function Filter() {
+interface FieldValues {
+  address: string[];
+  startsAtGte: string;
+  hourlyPayGte: string;
+}
+
+export default function Filter({ className, onClose, onFilter }: FilterProps) {
   const {
     register,
     reset,
@@ -28,21 +34,22 @@ export default function Filter() {
   } = useForm<FieldValues>({
     defaultValues: {
       address: [],
-      startDate: formatRFC3339(new Date()),
-      pay: null,
+      startsAtGte: formatRFC3339(addMinutes(new Date(), 2)),
+      hourlyPayGte: "",
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = () => {
-    // TODO: API 호출
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    onFilter(data);
+    onClose();
   };
 
   return (
-    <div className={cn("container")}>
+    <div className={cn("container", className)}>
       <form onSubmit={handleSubmit(onSubmit)} className={cn("content")}>
         <div className={cn("header")}>
           <h2>상세 필터</h2>
-          <CloseIcon width={24} height={24} className={cn("closeIcon")} />
+          <CloseIcon width={24} height={24} className={cn("closeIcon")} onClick={onClose} />
         </div>
 
         <FieldSet label="위치">
@@ -57,9 +64,12 @@ export default function Filter() {
 
         <FieldSet label="시작일">
           <Controller
-            name="startDate"
+            name="startsAtGte"
             render={({ field: { value, onChange } }) => (
-              <StartDatePicker startDate={new Date(value)} onChange={(date: Date) => onChange(formatRFC3339(date))} />
+              <StartDatePicker
+                startDate={new Date(value)}
+                onChange={(date: Date) => onChange(formatRFC3339(addMinutes(date, 2)))}
+              />
             )}
             control={control}
           />
@@ -69,21 +79,22 @@ export default function Filter() {
 
         <FieldSet label="금액">
           <div className={cn("pay")}>
-            <div className={cn("payInput")}>
-              <input
-                placeholder="입력"
-                {...register("pay", {
-                  min: 0,
-                  pattern: {
-                    value: /^\d+$/,
-                    message: "숫자만 입력해주세요",
-                  },
-                })}
-              />
-              <span>이상부터</span>
-            </div>
-
-            <p>{errors.pay?.message}</p>
+            <InputField
+              label="금액" // 편하신대로 골라쓰시면 될듯 합니다.
+              unit="원"
+              size="sm"
+              placeholder="입력"
+              className={cn("payInput")}
+              isError={!!errors.hourlyPayGte?.message}
+              errorMessage={errors.hourlyPayGte?.message}
+              {...register("hourlyPayGte", {
+                min: 0,
+                pattern: {
+                  value: /^\d+$/,
+                  message: "숫자만 입력해주세요",
+                },
+              })}
+            />
           </div>
         </FieldSet>
 

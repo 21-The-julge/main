@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { ERROR_MESSAGE, PLACEHOLDERS } from "@/common/constants";
-import { Button, FieldGroup } from "@/common/components";
+import { Button, InputField } from "@/common/components";
 import { PostSignInParams } from "@/shared/apis/apiType";
 // import { usePostSignIn } from "@/shared/apis/api-hooks";
 
@@ -55,8 +55,7 @@ export default function SignInForm() {
 
   return (
     <form className={cn("formBox")} onSubmit={handleSubmit(onSubmit)}>
-      <FieldGroup
-        field="input"
+      <InputField
         {...register(EMAIL)}
         type={EMAIL}
         label="이메일"
@@ -65,8 +64,7 @@ export default function SignInForm() {
         isError={!!errors.email}
         errorMessage={errors.email?.message}
       />
-      <FieldGroup
-        field="input"
+      <InputField
         {...register(PASSWORD)}
         type={PASSWORD}
         label="비밀번호"

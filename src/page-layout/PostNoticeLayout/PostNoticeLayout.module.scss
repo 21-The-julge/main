@@ -42,15 +42,25 @@
 }
 
 @include tablet {
+  .background {
+    padding: 6rem 3.2rem 43.8rem;
+  }
+
   .container {
-    width: 68rem;
-    height: 56.5rem;
+    max-width: 68rem;
+    max-height: 56.5rem;
   }
 }
 
 @include mobile {
+  .background {
+    padding: 4rem 1.2rem 8rem;
+  }
+
   .container {
-    width: 35.1rem;
-    height: 64.4rem;
+    max-width: 35.1rem;
+    max-height: 64.4rem;
+
+    gap: 3.2rem;
   }
 }

@@ -18,7 +18,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
     <form className={cn("container")}>
       <div className={cn("inputContainer")}>
         <InputField
-          className="30.8rem"
+          className={cn("inputfield", "hourlyPay")}
           name="hourlyPay"
           type="text"
           label="시급"
@@ -27,7 +27,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
           onChange={handleInputChange}
         />
         <InputField
-          className="30.8rem"
+          className={cn("inputfield", "startsAt")}
           name="startsAt"
           type="text"
           label="시작 일시"
@@ -35,7 +35,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
           onChange={handleInputChange}
         />
         <InputField
-          className="30.8rem"
+          className={cn("inputfield", "workhour")}
           name="workhour"
           type="text"
           label="업무 시간"
@@ -45,7 +45,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
         />
       </div>
       <div className={cn("textField")}>
-        <Textarea name="description" label="공고 설명" onChange={handleInputChange} />
+        <Textarea className={cn("textarea")} name="description" label="공고 설명" onChange={handleInputChange} />
       </div>
       <Button className={cn("submitButton")} onClick={handleModalOpen} size="large">
         등록하기

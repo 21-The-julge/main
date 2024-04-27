@@ -11,6 +11,7 @@
   padding: 1.4rem 13.6rem;
   white-space: nowrap;
 }
+
 .inputContainer {
   display: flex;
   flex-direction: row;
@@ -19,7 +20,12 @@
   gap: 2rem;
 }
 
+.inputfield {
+  max-width: 30.8rem;
+}
+
 .textField {
+  max-width: 96.4rem;
   height: 18.7rem;
   margin-top: 2.4rem;
 }
@@ -27,4 +33,28 @@
 .submitButton {
   margin: 0 auto;
   margin-top: 3.2rem;
+}
+
+@include tablet {
+  .inputContainer {
+    flex-wrap: wrap;
+  }
+  .workhour {
+    flex-basis: 100%;
+    margin-right: auto;
+  }
+
+  .inputfield {
+    max-width: 33rem;
+  }
+}
+
+@include mobile {
+  .inputContainer {
+    flex-wrap: wrap;
+  }
+
+  .inputfield {
+    max-width: 35.1rem;
+  }
 }

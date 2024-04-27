@@ -69,7 +69,6 @@ $option-height: 5.8rem;
 }
 
 .md {
-  // max-width: 35rem;
   @include sopoqa-16-400;
 
   .dropdown {
@@ -90,7 +89,6 @@ $option-height: 5.8rem;
 }
 
 .sm {
-  // max-width: 10.6rem;
   @include sopoqa-14-400;
 
   .dropdown {

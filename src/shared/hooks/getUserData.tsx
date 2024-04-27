@@ -1,7 +1,6 @@
 import { useGetUserData } from "../apis/api-hooks/useUsers";
 import { useGetShopNoticesData } from "../apis/api-hooks/useNotices";
 import useUserDataStore from "./useUserDataStore";
-import { set } from "date-fns";
 
 export default function GetUserData() {
   const {

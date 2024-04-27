@@ -13,9 +13,10 @@ const cn = classNames.bind(styles);
 interface PostNoticeFormProps {
   handleModalOpen: () => void;
   handleInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onOptionClick: (option: string) => void;
 }
 
-export default function PostNoticeForm({ handleModalOpen, handleInputChange }: PostNoticeFormProps) {
+export default function PostNoticeForm({ handleModalOpen, handleInputChange, onOptionClick }: PostNoticeFormProps) {
   return (
     <form className={cn("container")}>
       <div className={cn("inputContainer")}>
@@ -42,6 +43,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
           label="선호 지역"
           options={ADDRESSES}
           onChange={handleInputChange}
+          onOptionClick={onOptionClick}
         />
       </div>
       <div className={cn("textField")}>

@@ -32,6 +32,10 @@ export default function PostNoticeLayout() {
     setInputValue((prev) => ({ ...prev, [name]: value }));
   };
 
+  const onOptionClick = (option: string) => {
+    setInputValue((prev) => ({ ...prev, address: option }));
+  };
+
   const handleModalOpen = () => {
     setIsModalOpen((prev) => !prev);
   };
@@ -47,7 +51,11 @@ export default function PostNoticeLayout() {
           <div className={cn("text")}>공고 등록</div>
           <IC_CLOSE className={cn("icon")} fill="#000" onClick={handleClose} />
         </div>
-        <PostProfileForm handleModalOpen={handleModalOpen} handleInputChange={handleInputChange} />
+        <PostProfileForm
+          handleModalOpen={handleModalOpen}
+          handleInputChange={handleInputChange}
+          onOptionClick={onOptionClick}
+        />
       </div>
       {isModalOpen && <ConfirmModal className={cn("alertModal")} message="모달창" onClick={handleConfirmButtonClick} />}
     </div>

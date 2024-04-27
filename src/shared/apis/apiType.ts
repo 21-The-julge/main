@@ -37,7 +37,7 @@ export interface PostSignInParams {
 }
 
 export interface PostPresignedURLParams {
-  name: string;
+  name: string | ArrayBuffer;
 }
 
 export interface GetNoticesDataParams {
@@ -84,8 +84,8 @@ export interface PutNoticeDataParams {
 
 export interface PostShopDataParams {
   name: string;
-  category: typeof CATEGORIES;
-  address1: typeof ADDRESSES;
+  category: string;
+  address1: string;
   address2: string;
   description: string;
   imageUrl: string;

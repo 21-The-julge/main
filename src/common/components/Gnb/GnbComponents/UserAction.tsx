@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import Link from "next/link";
-import GetAuth from "@/shared/hooks/getAuth";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import styles from "./UserAction.module.scss";
 
 import NotificationModal from "../../NotificationModal/NotificationModal";
@@ -9,17 +8,15 @@ import NotificationModal from "../../NotificationModal/NotificationModal";
 const cn = classNames.bind(styles);
 
 export default function UserAction() {
-  const { isLoggedIn, type, handleLogout } = GetAuth();
-  const [isUserLoggedIn, setUserLoggedIn] = useState(isLoggedIn);
-  useEffect(() => {
-    setUserLoggedIn(isLoggedIn);
-  }, [isLoggedIn]);
+  const { isLoggedIn, type, resetAll } = useUserDataStore();
 
-  const isEmployer = type === "employer";
+  const handleLogout = () => {
+    resetAll();
+  };
 
   const loggedInSection = (
     <>
-      {isEmployer ? <Link href="/my-shop">내 가게</Link> : <Link href="/my-profile">내 프로필</Link>}
+      {type ? <Link href="/my-shop">내 가게</Link> : <Link href="/my-profile">내 프로필</Link>}
       <Link href="/" onClick={handleLogout}>
         로그아웃
       </Link>
@@ -34,5 +31,5 @@ export default function UserAction() {
     </>
   );
 
-  return <div className={cn("container")}>{isUserLoggedIn ? loggedInSection : notLoggedInSection}</div>;
+  return <div className={cn("container")}>{isLoggedIn ? loggedInSection : notLoggedInSection}</div>;
 }

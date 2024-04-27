@@ -8,9 +8,7 @@ export function usePostShopData(bodyData: PostShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMWEzMjJmNS1kMmFmLTRkNWYtOGZmMi0yNzY2MTlmMGJiZTAiLCJpYXQiOjE3MTMyNDc4NTh9.XVDHsrpOvq_yLJH0jh-m5lGZwIuTFj3XCwk1tsydoYw",
-      ).post("/shops", bodyData);
+      const { data } = await axiosInstanceToken(token).post("/shops", bodyData);
       return data;
     },
   });

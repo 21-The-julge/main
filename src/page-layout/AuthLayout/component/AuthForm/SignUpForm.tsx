@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { ERROR_MESSAGE, PLACEHOLDERS, ROUTE } from "@/common/constants";
+import { ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
 import { Button, InputField, RadioInput } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
@@ -34,6 +34,17 @@ export default function SignUpForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
+  const handleModalButtonClick = () => {
+    setIsModalOpen(false);
+
+    if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
+      router.push(ROUTE.LOGIN);
+      return;
+    }
+
+    router.reload();
+  };
+
   const {
     register,
     handleSubmit,
@@ -55,9 +66,8 @@ export default function SignUpForm() {
     newAccount(payload, {
       onSuccess: () => {
         console.log("회원가입 성공");
-        setAlertMessage("가입이 완료되었습니다");
+        setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
         setIsModalOpen(true);
-        router.push(ROUTE.LOGIN);
       },
       onError: (error) => {
         console.error(error);

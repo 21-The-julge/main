@@ -47,6 +47,10 @@ export const MESSAGES = {
   ACCEPT: "신청을 승인하시겠어요?",
   REJECT: "신청을 거절하시겠어요?",
   NOTIFICATION: "알림이 없습니다.",
+
+  AUTH_ALERT_MESSAGE: {
+    SUCCESS: "가입이 완료되었습니다!",
+  },
 } as const;
 
 export const ERROR_MESSAGE = {

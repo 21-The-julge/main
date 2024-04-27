@@ -6,6 +6,8 @@ import { Post } from "@/shared/components";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
+import { ROUTE } from "@/common/constants";
+
 import Skeleton from "../NoticesSkeleton";
 
 import styles from "./PersonalNoticeList.module.scss";
@@ -29,7 +31,7 @@ export default function PersonalNoticeList() {
     return { noticeId, shopId, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
   });
 
-  const path = type === "employer" ? "/my-notice-detail" : "/notice-detail";
+  const path = type === "employer" ? ROUTE.MY_NOTICE_DETAIL : ROUTE.NOTICES_DETAIL;
 
   if (isPending) {
     return <Skeleton />;

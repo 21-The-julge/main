@@ -35,21 +35,19 @@
 }
 
 .pay {
+  position: relative;
   .payInput {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-
-    @include sopoqa-16-400;
-
-    input {
-      width: 16.9rem;
-      padding: 1.6rem 2rem;
-    }
+    position: relative;
+    width: 17rem;
+    height: 5.8rem;
   }
 
   p {
     position: absolute;
+    bottom: 1.5rem;
+    left: 18rem;
+
+    @include sopoqa-16-400;
   }
 }
 

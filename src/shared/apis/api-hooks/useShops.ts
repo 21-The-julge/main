@@ -28,6 +28,7 @@ export function useGetShopData(shopId: string) {
       const { data } = await axiosInstance.get(`/shops/${shopId}`);
       return data;
     },
+    enabled: !!shopId,
   });
 }
 

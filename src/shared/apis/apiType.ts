@@ -6,21 +6,21 @@ export interface GetAlertsDataParams {
 }
 
 export interface GetShopApplicationsDataParams {
-  shopId: string;
-  noticeId: string;
+  shopId: string | null;
+  noticeId: string | null;
   offset?: number;
   limit?: number;
 }
 
 export interface PostApplicationDataParams {
-  shopId: string;
-  noticeId: string;
+  shopId: string | null;
+  noticeId: string | null;
 }
 
 export interface PutApplicationDataParams {
-  shopId: string;
-  noticeId: string;
-  applicationId: string;
+  shopId: string | null;
+  noticeId: string | null;
+  applicationId: string | null;
   bodydata: {
     status: "accepted" | "rejected" | "canceled";
   };
@@ -51,18 +51,18 @@ export interface GetNoticesDataParams {
 }
 
 export interface GetShopNoticesDataParams {
-  shopId: string;
+  shopId: string | null;
   offset?: number;
   limit?: number;
 }
 
 export interface GetSpecificShopNoticeDataParams {
-  shopId: string;
-  noticeId: string;
+  shopId: string | null;
+  noticeId: string | null;
 }
 
 export interface PostNoticeDataParams {
-  shopId: string;
+  shopId: string | null;
   bodyData: {
     hourlyPay: number;
     startsAt: string; // 양식: 2023-12-23T00:00:00Z
@@ -72,8 +72,8 @@ export interface PostNoticeDataParams {
 }
 
 export interface PutNoticeDataParams {
-  shopId: string;
-  noticeId: string;
+  shopId: string | null;
+  noticeId: string | null;
   bodyData: {
     hourlyPay: number;
     startsAt: string;

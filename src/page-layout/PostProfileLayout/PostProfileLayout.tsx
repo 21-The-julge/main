@@ -38,7 +38,7 @@ export default function PostNoticeLayout() {
 
   const handleConfirmButtonClick = () => {
     mutate();
-    // router.replace(`users/${userId}`);
+    router.replace(`users/${userId}`);
   };
   return (
     <div className={cn("background")}>

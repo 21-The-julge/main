@@ -111,9 +111,14 @@ export default function AllNotices() {
         onClose={() => handleOpen(false)}
       />
 
-      {posts.length === 0 ? <NoNotice /> : <NoticeList notices={posts} />}
-
-      <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+      {posts.length === 0 ? (
+        <NoNotice />
+      ) : (
+        <div className={cn("notices")}>
+          <NoticeList notices={posts} />
+          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+        </div>
+      )}
     </div>
   );
 }

@@ -32,7 +32,7 @@ const schema = z.object({
 
 const cn = classNames.bind(styles);
 
-export default function RegisterMyShop() {
+export default function RegisterMyShopLayout() {
   // const { token } = useUserDataStore();
 
   const {

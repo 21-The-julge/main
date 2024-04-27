@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/RegisterMyShopLayout/component/RegisterMyShop/RegisterMyShop.module.scss";
 
+import Camera from "@/images/ic_camera.svg";
 import Close from "@/images/ic_close.svg";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
 
@@ -8,8 +9,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ADDRESSES, CATEGORIES } from "@/common/constants";
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
+import { useRouter } from "next/router";
+import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 
 interface ShopInfo {
   name: string;
@@ -50,7 +53,7 @@ export default function RegisterMyShop() {
   const [description, setDescription] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const { data, mutate } = usePostPresignedURL();
-  const { data: shpoData, mutate: shopDataMutate } = usePostShopData({
+  const { mutate: shopDataMutate } = usePostShopData({
     name: shopName,
     category: classification,
     address1: address,
@@ -59,8 +62,14 @@ export default function RegisterMyShop() {
     imageUrl: data,
     originalHourlyPay: Number(hourlyRate),
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(shpoData);
+  const router = useRouter();
+
+  const handleClickConfirm = () => {
+    shopDataMutate();
+    router.push("/my-shop");
+  };
 
   const handleOnchangeShopName = (e: ChangeEvent<HTMLInputElement>) => {
     setShopName(e.target.value);
@@ -116,7 +125,7 @@ export default function RegisterMyShop() {
   };
 
   const handleSubmitFormData = () => {
-    shopDataMutate();
+    setIsModalOpen((prev) => !prev);
   };
 
   return (
@@ -128,77 +137,75 @@ export default function RegisterMyShop() {
         </div>
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
-            <div>
-              <InputField
-                value={shopName}
-                placeholder="입력"
-                label="가게 이름"
-                required
-                {...register("name")}
-                name="name"
-                onChange={handleOnchangeShopName}
-                isError={!!errors.name}
-                errorMessage={errors.name?.message}
-              />
-            </div>
-            <div>
-              <Dropdown
-                value={classification}
-                onOptionClick={handleClickClassification}
-                options={CATEGORIES}
-                placeholder="선택"
-                label="분류"
-                required
-                {...register("classification")}
-                onChange={handleOnchangeClassification}
-                isError={!!errors.classification}
-                errorMessage={errors.classification?.message}
-              />
-            </div>
-            <div>
-              <Dropdown
-                value={address}
-                onOptionClick={handleClickAddress}
-                options={ADDRESSES}
-                placeholder="선택"
-                label="주소"
-                required
-                {...register("address")}
-                onChange={handleOnchangeAddress}
-                isError={!!errors.address}
-                errorMessage={errors.address?.message}
-              />
-            </div>
-            <div>
-              <InputField
-                value={detailedAddress}
-                placeholder="입력"
-                label="상세 주소"
-                required
-                {...register("detailedAddress")}
-                onChange={handleOnchangeDetailedAddress}
-                isError={!!errors.detailedAddress}
-                errorMessage={errors.detailedAddress?.message}
-              />
-            </div>
-            <div>
-              <InputField
-                unit="원"
-                value={hourlyRate}
-                placeholder="입력"
-                label="기본 시급"
-                required
-                {...register("hourlyRate")}
-                onChange={handleOnchangeHourlyRate}
-                isError={!!errors.hourlyRate}
-                errorMessage={errors.hourlyRate?.message}
-              />
-            </div>
+            <InputField
+              value={shopName}
+              placeholder="입력"
+              label="가게 이름"
+              required
+              {...register("name")}
+              name="name"
+              onChange={handleOnchangeShopName}
+              isError={!!errors.name}
+              errorMessage={errors.name?.message}
+            />
+            <Dropdown
+              value={classification}
+              onOptionClick={handleClickClassification}
+              options={CATEGORIES}
+              placeholder="선택"
+              label="분류"
+              required
+              {...register("classification")}
+              onChange={handleOnchangeClassification}
+              isError={!!errors.classification}
+              errorMessage={errors.classification?.message}
+            />
+            <Dropdown
+              value={address}
+              onOptionClick={handleClickAddress}
+              options={ADDRESSES}
+              placeholder="선택"
+              label="주소"
+              required
+              {...register("address")}
+              onChange={handleOnchangeAddress}
+              isError={!!errors.address}
+              errorMessage={errors.address?.message}
+            />
+            <InputField
+              value={detailedAddress}
+              placeholder="입력"
+              label="상세 주소"
+              required
+              {...register("detailedAddress")}
+              onChange={handleOnchangeDetailedAddress}
+              isError={!!errors.detailedAddress}
+              errorMessage={errors.detailedAddress?.message}
+            />
+            <InputField
+              unit="원"
+              value={hourlyRate}
+              placeholder="입력"
+              label="기본 시급"
+              required
+              {...register("hourlyRate")}
+              onChange={handleOnchangeHourlyRate}
+              isError={!!errors.hourlyRate}
+              errorMessage={errors.hourlyRate?.message}
+            />
           </div>
           <div className={cn("imgContainer")}>
-            <p>가게 이미지</p>
-            {img && <img src={img} alt="이미지 미리보기" />}
-            <input ref={imgRef} onChange={handleOnchangeImg} type="file" />
+            <p className={cn("imgTitle")}>가게 이미지</p>
+            <div className={cn("imgBox")}>
+              {img && <img className={cn("img")} src={img} alt="이미지 미리보기" />}
+              <label className={cn("inputLabel")} htmlFor="file">
+                <div className={cn("imgAddContainer")}>
+                  <Camera width={32} height={32} />
+                  <p>이미지 추가하기</p>
+                </div>
+              </label>
+              <input id="file" className={cn("input")} ref={imgRef} onChange={handleOnchangeImg} type="file" />
+            </div>
           </div>
           <Textarea onChange={handleOnchangeDesription} value={description} placeholder="입력" label="가게 설명" />
         </div>
@@ -206,6 +213,9 @@ export default function RegisterMyShop() {
           등록하기
         </Button>
       </form>
+      {isModalOpen && (
+        <ConfirmModal message="등록이 완료되었습니다." className={cn("modal")} onClick={handleClickConfirm} />
+      )}
     </div>
   );
 }

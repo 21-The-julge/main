@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 60px 32px;
+  padding: 6rem 3.2rem;
   background-color: $color-red-10;
   display: flex;
   justify-content: center;
@@ -17,5 +17,15 @@
     @include sopoqa-28-700;
 
     margin-bottom: 3.2rem;
+  }
+}
+
+@include mobile {
+  .container {
+    .heading {
+      @include sopoqa-20-700;
+
+      margin-bottom: 1.6rem;
+    }
   }
 }

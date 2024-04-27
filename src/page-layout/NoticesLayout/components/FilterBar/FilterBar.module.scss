@@ -26,3 +26,15 @@
     }
   }
 }
+
+@include mobile {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+
+    .heading {
+      @include sopoqa-20-700;
+    }
+  }
+}

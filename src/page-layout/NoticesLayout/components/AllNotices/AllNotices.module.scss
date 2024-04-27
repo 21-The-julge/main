@@ -11,3 +11,9 @@
   flex-direction: column;
   gap: 4rem;
 }
+
+@include mobile {
+  .container {
+    gap: 1.6rem;
+  }
+}

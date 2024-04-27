@@ -6,6 +6,8 @@
   .heading {
     width: 11.2rem;
     height: 3.5rem;
+
+    @include sopoqa-28-700;
   }
 
   .filter {
@@ -19,11 +21,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1.4rem;
   row-gap: 3rem;
-
-  .post {
-    width: 31.2rem;
-    height: 35rem;
-  }
 }
 
 @include tablet {
@@ -34,6 +31,17 @@
 
 @include mobile {
   .list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+.post {
+  width: 31.2rem;
+  height: 35rem;
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
 }

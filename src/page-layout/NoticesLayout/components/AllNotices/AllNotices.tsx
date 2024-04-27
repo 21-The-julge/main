@@ -11,7 +11,7 @@ import Pagination from "@/shared/components/Pagination/Pagination";
 import FilterBar from "../FilterBar";
 import NoticeList from "../NoticeList";
 import NoNotice from "../NoNotice";
-import Skeleton from "../AllNoticesSkeleton";
+import Skeleton from "../NoticesSkeleton";
 
 import type { FilterValue } from "../../type";
 
@@ -84,7 +84,7 @@ export default function AllNotices() {
   }, [currentPage]);
 
   if (isPending) {
-    return <Skeleton />;
+    return <Skeleton isAllNotice />;
   }
 
   if (isError) {

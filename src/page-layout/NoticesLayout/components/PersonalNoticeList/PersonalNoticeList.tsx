@@ -6,6 +6,8 @@ import { Post } from "@/shared/components";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
+import Skeleton from "../NoticesSkeleton";
+
 import styles from "./PersonalNoticeList.module.scss";
 
 const cn = classNames.bind(styles);
@@ -15,7 +17,7 @@ export default function PersonalNoticeList() {
 
   const address = useUserDataStore((state) => state.address) ?? "";
 
-  const { data } = useGetAllNotices({ limit: 9, sort: "shop", address: [address] });
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: 9, sort: "shop", address: [address] });
 
   const items = data ? data.items.map((obj) => obj.item) : [];
 
@@ -27,7 +29,16 @@ export default function PersonalNoticeList() {
     return { noticeId, shopId, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
   });
 
-  const path = type === "employer" ? "my-notice-detail" : "/notice-detail";
+  const path = type === "employer" ? "/my-notice-detail" : "/notice-detail";
+
+  if (isPending) {
+    return <Skeleton />;
+  }
+
+  if (isError) {
+    <div>Error: {error?.message}</div>;
+  }
+
   return (
     <div className={cn("slider")}>
       {notices.map((notice) => {

@@ -45,7 +45,6 @@ const useUserDataStore = create<UserDataStoreState>((set) => ({
       applicationId: null,
     }),
 
-
   setToken: (value) => set({ token: value }),
   setUserId: (value) => set({ userId: value }),
   setType: (value) => set({ type: value }),

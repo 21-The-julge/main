@@ -2,8 +2,7 @@ import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { addMinutes, formatRFC3339 } from "date-fns";
 import classNames from "classnames/bind";
 
-import { InputField } from "@/common/components/FieldGroup";
-import { Button } from "@/common/components";
+import { Button, InputField } from "@/common/components";
 import CloseIcon from "@/images/ic_close.svg";
 import AddressSelector from "./AddressSelector";
 import StartDatePicker from "./StartDatePicker";
@@ -81,6 +80,7 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
         <FieldSet label="금액">
           <div className={cn("pay")}>
             <InputField
+              label="금액" // 편하신대로 골라쓰시면 될듯 합니다.
               unit="원"
               size="sm"
               placeholder="입력"

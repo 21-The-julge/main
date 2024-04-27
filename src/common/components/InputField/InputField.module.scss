@@ -1,8 +1,20 @@
+$option-height: 5.8rem;
+
 .inputField {
   display: inline-flex;
   flex-direction: column;
   gap: 0.8rem;
-  width: fit-content;
+  width: 100%;
+
+  .default {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid $color-gray-30;
+    padding: 1.6rem 2rem;
+  }
 
   .error {
     border: 0.1rem solid $color-red-40;
@@ -20,30 +32,13 @@
     border: none;
   }
 
-  .default {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 0.6rem;
-    border: 0.1rem solid $color-gray-30;
-    padding: 1.6rem 2rem;
-    width: calc(var(--width));
-  }
-
   .md {
     padding: 1.6rem 2rem;
-    max-width: 35rem;
+    height: $option-height;
   }
 
   .sm {
     padding: 0.8rem;
-    max-width: 33.5rem;
-  }
-
-  .free {
-    padding: 1.6rem 2rem;
-    width: calc(var(--width) * 1rem);
   }
 
   @include tablet {

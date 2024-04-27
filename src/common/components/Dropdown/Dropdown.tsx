@@ -1,23 +1,34 @@
-import { useRef, useState } from "react";
+import { InputHTMLAttributes, useRef, useState } from "react";
 
 import useOutsideClick from "@/common/hooks/useOutsideClick";
 
 import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
 
-import { Input, SuffixIcon } from "../parts";
-import { ClassNameCSSProperties, DropdownProps } from "../type";
+import { Input, Label, SuffixIcon } from "../parts";
 
 const cn = classNames.bind(styles);
 
+interface DropdownProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  options?: readonly string[];
+  onOptionClick?: (option: string) => void; // option값이 필요하면 상단에서 onOptionClick Prop으로 함수 전달
+  name?: string;
+  size?: "sm" | "md";
+  color?: "white" | "gray";
+  className?: string;
+  label?: string;
+  required?: boolean;
+}
+
 export default function Dropdown({
   options,
-  onClick,
+  onOptionClick,
   name,
-  placeholder,
   size = "md",
   color = "white",
   className,
+  label,
+  ...rest
 }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -32,32 +43,22 @@ export default function Dropdown({
     setSelectedOption(option);
     setIsOpen(false);
 
-    onClick?.(option);
+    onOptionClick?.(option);
   };
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
   const combinedClassName = cn("dropdownBox", size, color);
-  const style: ClassNameCSSProperties = {
-    "--width": className || "100vw",
-  };
 
   return (
-    <div className={combinedClassName} ref={dropdownRef} style={style}>
-      <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
-        <Input
-          name={name}
-          type="text"
-          value={selectedOption}
-          required
-          readOnly
-          placeholder={placeholder}
-          size={size}
-          cursor="pointer"
-          color={color}
-        />
-        <SuffixIcon icon="triangle" isOpen={isOpen} />
-      </button>
+    <div className={combinedClassName} ref={dropdownRef}>
+      <div className={cn("field")}>
+        {label && <Label label={label} htmlFor={name} required={rest.required} />}
+        <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
+          <Input name={name} value={selectedOption} readOnly size={size} cursor="pointer" color={color} {...rest} />
+          <SuffixIcon icon="triangle" isOpen={isOpen} />
+        </button>
+      </div>
       {isOpen && (
         <div className={cn("optionsBox")}>
           {options?.map((option) => {

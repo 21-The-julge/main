@@ -29,7 +29,7 @@ export default function HighPriceRateBadge({ closed, isPast, hourlyPay, original
   return (
     <div className={cn("badge", { closed, isPast }, isPast || color)}>
       <span className={cn("percentage")}>기존 시급보다 {percentage}%</span>
-      <ArrowUp className={cn("svg")} width={20} height={20} fill="white" />
+      <ArrowUp className={cn("svg")} width="2rem" height="2rem" fill="white" />
     </div>
   );
 }

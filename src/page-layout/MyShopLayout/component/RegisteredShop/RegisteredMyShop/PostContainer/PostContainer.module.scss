@@ -1,0 +1,16 @@
+.skeleton {
+  width: 31.2rem;
+  height: 34.9rem;
+
+  @include tablet {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.75 / 1;
+  }
+
+  @include mobile {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.75 / 1;
+  }
+}

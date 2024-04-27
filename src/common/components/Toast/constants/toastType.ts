@@ -3,6 +3,6 @@ const TOAST_TYPE = {
   error: "error",
   warn: "warn",
   info: "info",
-};
+} as const;
 
 export default TOAST_TYPE;

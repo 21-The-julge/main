@@ -11,12 +11,9 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
   {
     name,
     type = "text",
-    placeholder,
     size = "md",
     color = "white",
     isError = false,
-    disabled,
-    required,
     unit,
     prefix,
     value,
@@ -40,11 +37,8 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
         <Input
           name={name}
           type={type}
-          placeholder={placeholder}
-          required={required}
           size={size}
           color={color}
-          disabled={disabled}
           value={value}
           onChange={onChange}
           ref={ref}

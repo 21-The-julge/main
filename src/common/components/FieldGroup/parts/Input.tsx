@@ -1,39 +1,22 @@
-import { ChangeEvent, forwardRef } from "react";
+import { ChangeEvent, HTMLInputTypeAttribute, InputHTMLAttributes, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Input.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface InputProps {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   name?: string;
-  type: "text" | "email" | "password" | "search";
+  type?: HTMLInputTypeAttribute;
   value?: string | number | readonly string[];
-  placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
   size?: "sm" | "md";
   color?: "white" | "gray";
-  readOnly?: boolean;
-  required?: boolean;
   cursor?: string;
 }
 
 export default forwardRef<HTMLInputElement, InputProps>(function Input(
-  {
-    type = "text",
-    size,
-    placeholder,
-    name,
-    color = "white",
-    disabled,
-    value,
-    onChange,
-    readOnly,
-    required,
-    cursor,
-    ...rest
-  },
+  { type = "text", size, name, color = "white", value, onChange, cursor, ...rest },
   ref,
 ) {
   const className = cn("default", size, color, cursor);
@@ -44,13 +27,9 @@ export default forwardRef<HTMLInputElement, InputProps>(function Input(
       id={name}
       name={name}
       className={className}
-      type={type}
-      placeholder={placeholder}
-      disabled={disabled}
-      value={value}
-      required={required}
       onChange={onChange}
-      readOnly={readOnly}
+      type={type}
+      value={value}
       {...rest}
     />
   );

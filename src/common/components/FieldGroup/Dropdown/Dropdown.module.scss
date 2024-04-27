@@ -1,50 +1,57 @@
-$option-height: 6rem;
+$option-height: 5.8rem;
 
 .dropdownBox {
+  width: 100%;
   position: relative;
-  width: calc(var(--width));
 
-  .dropdown {
-    display: flex;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
+  .field {
+    display: inline-flex;
+    flex-direction: column;
     width: 100%;
-  }
+    gap: 0.8rem;
 
-  .optionsBox {
-    position: absolute;
-    border: none;
-    width: 100%;
-    margin-top: 0.8rem;
-    overflow: auto;
-    background: none;
-    border-radius: 0.6rem;
-    box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
-    z-index: $zindex-dropdown;
-    background-color: $color-gray-5;
-
-    .option {
-      cursor: pointer;
+    .dropdown {
       display: flex;
-      justify-content: center;
       align-items: center;
+      user-select: none;
+      cursor: pointer;
       width: 100%;
-      border: 0.1rem solid $color-gray-20;
-      border-bottom: none;
+    }
+  }
+}
 
-      &:first-child {
-        border-radius: 0.6rem 0.6rem 0 0;
-      }
+.optionsBox {
+  position: absolute;
+  border: none;
+  width: 100%;
+  margin-top: 0.8rem;
+  overflow: auto;
+  background: none;
+  border-radius: 0.6rem;
+  box-shadow: 0rem 0.4rem 2.5rem 0rem rgba(0, 0, 0, 0.1);
+  z-index: $zindex-dropdown;
+  background-color: $color-gray-5;
 
-      &:last-child {
-        border-radius: 0 0 0.6rem 0.6rem;
-        border-bottom: 0.1rem solid $color-gray-20;
-      }
+  .option {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 0.1rem solid $color-gray-20;
+    border-bottom: none;
 
-      &:hover {
-        background-color: $color-red-20;
-      }
+    &:first-child {
+      border-radius: 0.6rem 0.6rem 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 0.6rem 0.6rem;
+      border-bottom: 0.1rem solid $color-gray-20;
+    }
+
+    &:hover {
+      background-color: $color-red-20;
     }
   }
 }
@@ -62,7 +69,7 @@ $option-height: 6rem;
 }
 
 .md {
-  max-width: 35rem;
+  // max-width: 35rem;
   @include sopoqa-16-400;
 
   .dropdown {
@@ -83,7 +90,7 @@ $option-height: 6rem;
 }
 
 .sm {
-  max-width: 10.6rem;
+  // max-width: 10.6rem;
   @include sopoqa-14-400;
 
   .dropdown {

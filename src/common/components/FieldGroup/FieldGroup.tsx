@@ -1,85 +1,80 @@
-import classNames from "classnames/bind";
-import styles from "./FieldGroup.module.scss";
+// import { ForwardedRef, Ref, forwardRef } from "react";
 
-import { Label } from "./parts";
-import { InputField, Dropdown, Textarea } from "./index";
-import { DropdownProps, InputFieldProps, TextareaProps } from "./type";
+// import classNames from "classnames/bind";
+// import styles from "./FieldGroup.module.scss";
 
-const cn = classNames.bind(styles);
+// import { Label } from "./parts";
+// import { InputField, Dropdown, Textarea } from "./index";
+// import { DropdownProps, InputFieldProps, TextareaProps } from "./type";
 
-interface FieldGroupProps extends InputFieldProps, DropdownProps, TextareaProps {
-  field: "input" | "dropdown" | "textarea";
-}
+// const cn = classNames.bind(styles);
 
-export default function FieldGroup({
-  field,
-  label,
-  required,
-  name,
-  placeholder,
-  size,
-  color,
-  type,
-  isError,
-  disabled,
-  unit,
-  prefix,
-  value,
-  onChange,
-  border,
-  errorMessage,
-  options,
-  onClick,
-  className,
-  onTextareaChange,
-  ...rest
-}: FieldGroupProps) {
-  const commonProps = {
-    name,
-    placeholder,
-    size,
-    color,
-    className,
-    ...rest,
-    ...(field === "input" && {
-      type,
-      isError,
-      disabled,
-      required,
-      unit,
-      prefix,
-      value,
-      onChange,
-      border,
-      errorMessage,
-    }),
-    ...(field === "dropdown" && {
-      options,
-      onClick,
-    }),
-    ...(field === "textarea" && {
-      rows: 4,
-      onTextareaChange,
-    }),
-  };
+// interface FieldGroupProps extends InputFieldProps, DropdownProps, TextareaProps {
+//   field: "input" | "dropdown" | "textarea" | "fieldset";
+// }
 
-  const renderField = () => {
-    switch (field) {
-      case "input":
-        return <InputField {...commonProps} />;
-      case "dropdown":
-        return <Dropdown {...commonProps} />;
-      case "textarea":
-        return <Textarea {...commonProps} />;
-      default:
-        return null;
-    }
-  };
+// export default forwardRef(function FieldGroup(
+//   {
+//     field,
+//     label,
+//     name,
+//     size,
+//     color,
+//     type,
+//     isError,
+//     unit,
+//     prefix,
+//     value,
+//     border,
+//     errorMessage,
+//     options,
+//     className,
+//     required,
+//     ...rest
+//   }: FieldGroupProps,
+//   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
+// ) {
+//   const commonProps = {
+//     name,
+//     size,
+//     color,
+//     className,
+//     ref,
+//     ...rest,
+//     ...(field === "input" && {
+//       type,
+//       isError,
+//       unit,
+//       prefix,
+//       value,
+//       border,
+//       errorMessage,
+//     }),
+//     ...(field === "dropdown" && {
+//       options,
+//     }),
+//     ...(field === "textarea" && {
+//       rows: 1,
+//     }),
+//   };
 
-  return (
-    <div className={cn("fieldGroup")}>
-      {label && <Label label={label} htmlFor={name} required={required} />}
-      {renderField()}
-    </div>
-  );
-}
+//   const renderField = () => {
+//     switch (field) {
+//       case "input":
+//         return <InputField {...commonProps} ref={ref as Ref<HTMLInputElement>} />;
+//       case "dropdown":
+//         return <Dropdown {...commonProps} />;
+//       case "textarea":
+//         return <Textarea {...commonProps} />;
+//       default:
+//         return null;
+//     }
+//   };
+
+//   return (
+//     <div className={cn("fieldGroup")}>
+//       {label && <Label label={label} htmlFor={name} required={required} />}
+//       {renderField()}
+//     </div>
+//   );
+// });

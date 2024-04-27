@@ -2,19 +2,21 @@
   background-color: $color-gray-5;
 
   width: 100%;
-  height: 56.9rem;
+  height: 100%;
   padding: 6rem 23.8rem;
 }
 
 .container {
-  width: 96.4rem;
-  height: 44.9rem;
+  max-width: 96.4rem;
+  max-height: 44.9rem;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   gap: 3.2rem;
+
+  margin: 0 auto;
 }
 
 .inputHeader {
@@ -37,4 +39,18 @@
 .alertModal {
   width: 54rem;
   height: 25rem;
+}
+
+@include tablet {
+  .container {
+    width: 68rem;
+    height: 56.5rem;
+  }
+}
+
+@include mobile {
+  .container {
+    width: 35.1rem;
+    height: 64.4rem;
+  }
 }

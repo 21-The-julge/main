@@ -1,15 +1,17 @@
+import classNames from "classnames/bind";
+
 import { Button, InputField } from "@/common/components";
+
+import styles from "./SignInForm.module.scss";
+
+const cn = classNames.bind(styles);
 
 export default function SignUpForm() {
   return (
-    <form>
+    <form className={cn("formBox")}>
       <InputField type="email" name="email" label="이메일" />
       <InputField type="password" name="password" label="비밀번호" />
-      {/* <fieldset>
-        <legend>회원 유형</legend>
-        <InputField type="radio" name="사장님" value="employer" label="사장님" />
-        <InputField type="radio" value="employee" />
-      </fieldset> */}
+      <InputField type="password" name="passwordValid" label="비밀번호 확인" />
       <Button type="submit" size="large">
         가입하기
       </Button>

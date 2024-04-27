@@ -1,9 +1,9 @@
+import classNames from "classnames/bind";
 import Link from "next/link";
 
 import { SignInForm } from "@/page-layout/AuthLayout/component";
 import ThejulgeLogo from "@/images/logo.svg";
 
-import classNames from "classnames/bind";
 import styles from "./SignInPage.module.scss";
 
 const cn = classNames.bind(styles);

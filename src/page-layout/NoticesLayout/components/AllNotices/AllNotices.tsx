@@ -45,7 +45,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname: ROUTE.HOME,
       query: { ...filters, ...filter },
     });
   };
@@ -63,7 +63,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname: ROUTE.HOME,
       query: { ...filters, sort },
     });
   };
@@ -77,7 +77,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname: ROUTE.HOME,
       query: { ...filters, offset },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -5,7 +5,7 @@ import styles from "./Badge.module.scss";
 
 interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
   color: "blue" | "green" | "red";
-  isResponsive: boolean;
+  isResponsive?: boolean;
   hasCloseIcon?: boolean;
   onClick?: () => void;
   className?: string;

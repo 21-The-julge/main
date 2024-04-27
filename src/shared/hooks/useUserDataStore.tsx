@@ -1,9 +1,12 @@
 import { create } from "zustand";
 
+import { ADDRESSES } from "@/common/constants";
+
 interface UserDataStoreState {
   token: string | null;
   userId: string | null;
   type: "employer" | "employee" | null;
+  address: (typeof ADDRESSES)[number] | null;
   isLoggedIn: boolean;
   shopId: string | null;
   noticeId: string | null;
@@ -14,6 +17,7 @@ interface UserDataStoreState {
   setToken: (text: string) => void;
   setUserId: (text: string) => void;
   setType: (text: "employer" | "employee" | null) => void;
+  setAddress: (text: (typeof ADDRESSES)[number] | null) => void;
   setLoggedIn: (value: boolean) => void;
   setShopId: (value: string) => void;
   setNoticeId: (value: string) => void;
@@ -24,6 +28,7 @@ const useUserDataStore = create<UserDataStoreState>((set) => ({
   token: null,
   userId: null,
   type: null,
+  address: null,
   isLoggedIn: false,
   shopId: null,
   noticeId: null,
@@ -40,9 +45,11 @@ const useUserDataStore = create<UserDataStoreState>((set) => ({
       applicationId: null,
     }),
 
+
   setToken: (value) => set({ token: value }),
   setUserId: (value) => set({ userId: value }),
   setType: (value) => set({ type: value }),
+  setAddress: (value) => set({ address: value }),
   setLoggedIn: (value) => set({ isLoggedIn: value }),
   setShopId: (value) => set({ shopId: value }),
   setNoticeId: (value) => set({ noticeId: value }),

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
@@ -8,10 +9,20 @@ import NotificationModal from "../../NotificationModal/NotificationModal";
 const cn = classNames.bind(styles);
 
 export default function UserAction() {
-  const { isLoggedIn, type, resetAll } = useUserDataStore();
+  const { isLoggedIn, type, resetAll, setIsLoggedIn, setType } = useUserDataStore();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(Boolean(token));
+    const userType = localStorage.getItem("type");
+    if (userType === "employer" || userType === "employee") {
+      setType(userType);
+    }
+  }, [setIsLoggedIn, setType]);
 
   const handleLogout = () => {
     resetAll();
+    localStorage.clear();
   };
 
   const loggedInSection = (

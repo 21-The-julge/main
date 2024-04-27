@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import { SORT_OPTIONS } from "@/common/constants";
-import { Dropdown } from "@/common/components/FieldGroup";
-import { Button } from "@/common/components";
+import { Button, Dropdown } from "@/common/components";
 import Filter from "../Filter";
 
 import type { FilterValue } from "../../type";
@@ -25,7 +24,7 @@ export default function FilterBar({ isOpen, onChange, onFilter, onOpen, onClose 
 
       <div className={cn("filterBar")}>
         <Dropdown
-          onClick={onChange}
+          onOptionClick={onChange}
           name="sort"
           size="sm"
           color="gray"

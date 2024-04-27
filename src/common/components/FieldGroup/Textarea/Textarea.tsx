@@ -16,8 +16,9 @@ export default function Textarea({ name, value, required, placeholder, onTextare
         required={required}
         placeholder={placeholder}
         onChange={onTextareaChange}
-        value={value}
-      />
+      >
+        {value}
+      </textarea>
     </div>
   );
 }

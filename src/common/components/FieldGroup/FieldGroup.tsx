@@ -58,7 +58,7 @@ export default function FieldGroup({
       onClick,
     }),
     ...(field === "textarea" && {
-      // rows: 4,
+      rows: 4,
       onTextareaChange,
     }),
   };

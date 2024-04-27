@@ -25,7 +25,7 @@ export default function AllNotices() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
 
-  const { data, error, isPending, isError } = useGetAllNotices(router.query);
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: 6, ...router.query });
 
   const [currentPage, totalPages, setPage] = usePaginationProps({
     totalDataCount: data?.count ?? 0,

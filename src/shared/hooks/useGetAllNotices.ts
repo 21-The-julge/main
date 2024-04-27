@@ -49,12 +49,13 @@ interface NoticeResponse {
 }
 
 interface Query extends Partial<FilterValue> {
+  limit?: number;
   offset?: number;
 }
 
 const fetchNotices = async (query: Query): Promise<NoticeResponse> => {
   const res = await axiosInstance.get(ROUTE.NOTICES, {
-    params: { limit: 6, ...query },
+    params: { ...query },
     paramsSerializer: {
       indexes: null,
     },

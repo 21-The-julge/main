@@ -63,8 +63,8 @@ export const ERROR_MESSAGE = {
 
 export const ROUTE = {
   HOME: "/",
-  LOGIN: "/signin",
-  SIGNUP: "/signup",
+  LOGIN: "/login",
+  SIGNUP: "/sign-up",
   NOTICES: "/notices",
 } as const;
 

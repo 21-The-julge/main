@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Link from "next/link";
 
+import { ROUTE } from "@/common/constants";
 import { SignUpForm } from "@/page-layout/AuthLayout/component";
 import ThejulgeLogo from "@/images/logo.svg";
 
@@ -18,7 +19,7 @@ export default function SignUpPage() {
       <SignUpForm />
       <div className={cn("textBox")}>
         <span>이미 가입하셨나요?</span>
-        <Link className={cn("link")} href="login">
+        <Link className={cn("link")} href={ROUTE.LOGIN}>
           로그인하기
         </Link>
       </div>

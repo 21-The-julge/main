@@ -2,7 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { axiosInstance } from "../axiosInstance";
 import { PostSignInParams } from "../apiType";
-// import { PostSignInParams } from "../apiType";
 
 // 로그인 POST 요청
 export default function usePostSignIn() {

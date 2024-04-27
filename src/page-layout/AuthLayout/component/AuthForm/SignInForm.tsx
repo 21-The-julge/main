@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -8,10 +7,9 @@ import { z } from "zod";
 
 import { ERROR_MESSAGE, PLACEHOLDERS, ROUTE } from "@/common/constants";
 import { Button, InputField } from "@/common/components";
+import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { PostSignInParams } from "@/shared/apis/apiType";
 import { usePostSignIn } from "@/shared/apis/api-hooks";
-
-import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 
 import styles from "./SignInForm.module.scss";
 
@@ -29,13 +27,17 @@ const PASSWORD = "password";
 export default function SignInForm() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const handleModalButtonClick = () => {
+    setIsModalOpen(false);
+    router.reload();
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<PostSignInParams>({
     mode: "onTouched",
     resolver: zodResolver(schema),
@@ -45,13 +47,7 @@ export default function SignInForm() {
     },
   });
 
-  const handleModalButtonClick = () => {
-    setIsModalOpen(false);
-    router.reload();
-    setError(PASSWORD, { message: ERROR_MESSAGE.PASSWORD.INCORRECT });
-  };
-
-  const { mutate: login } = usePostSignIn();
+  const { mutate: login, isPending } = usePostSignIn();
 
   const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
     // eslint-disable-next-line no-console
@@ -61,7 +57,7 @@ export default function SignInForm() {
         router.push(ROUTE.NOTICES);
       },
       onError: () => {
-        setModalMessage(ERROR_MESSAGE.PASSWORD.INCORRECT);
+        setAlertMessage(ERROR_MESSAGE.PASSWORD.INCORRECT);
         setIsModalOpen(true);
       },
     });
@@ -78,6 +74,7 @@ export default function SignInForm() {
           name={EMAIL}
           isError={!!errors.email}
           errorMessage={errors.email?.message}
+          disabled={isPending}
         />
         <InputField
           {...register(PASSWORD)}
@@ -87,13 +84,14 @@ export default function SignInForm() {
           name={PASSWORD}
           isError={!!errors.password}
           errorMessage={errors.password?.message}
+          disabled={isPending}
         />
-        <Button type="submit" size="large">
+        <Button type="submit" size="large" disabled={isPending}>
           로그인하기
         </Button>
       </form>
       {isModalOpen && (
-        <ConfirmModal className={cn("signInFormModal")} message={modalMessage} onClick={handleModalButtonClick} />
+        <ConfirmModal className={cn("signInFormModal")} message={alertMessage} onClick={handleModalButtonClick} />
       )}
     </>
   );

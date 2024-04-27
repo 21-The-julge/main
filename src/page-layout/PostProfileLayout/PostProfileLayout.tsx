@@ -3,12 +3,11 @@ import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import IC_CLOSE from "@/images/ic_close.svg";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
-import { usePostNoticeData as UsePostNoticeData } from "@/shared/apis/api-hooks/useNotices";
+import { usePutUserData } from "@/shared/apis/api-hooks";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
-import GetUserData from "@/shared/hooks/getUserData";
-import PostNoticeForm from "./components/PostNoticeForm";
+import PostProfileForm from "./components/PostProfileForm";
 
-import styles from "./PostNoticeLayout.module.scss";
+import styles from "./PostProfileLayout.module.scss";
 
 const cn = classNames.bind(styles);
 
@@ -16,17 +15,16 @@ export default function PostNoticeLayout() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState({
-    hourlyPay: 0,
-    startsAt: "", // 양식: 2023-12-23T00:00:00Z
-    workhour: 0,
-    description: "",
+    name: "",
+    phone: "",
+    address: "",
+    bio: "",
   });
-  const { shopId, noticeId } = useUserDataStore();
-  const { mutate } = UsePostNoticeData({ shopId, bodyData: inputValue });
-  const { setNoticeIdFromData } = GetUserData();
+  const { userId } = useUserDataStore();
+  const { mutate } = usePutUserData(inputValue);
 
   const handleClose = () => {
-    router.replace(`shops/${shopId}`);
+    router.replace(`users/${userId}`);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,8 +38,7 @@ export default function PostNoticeLayout() {
 
   const handleConfirmButtonClick = () => {
     mutate();
-    setNoticeIdFromData();
-    router.replace(`/shops/${shopId}/notices/${noticeId}`);
+    // router.replace(`users/${userId}`);
   };
   return (
     <div className={cn("background")}>
@@ -50,7 +47,7 @@ export default function PostNoticeLayout() {
           <div className={cn("text")}>공고 등록</div>
           <IC_CLOSE className={cn("icon")} fill="#000" onClick={handleClose} />
         </div>
-        <PostNoticeForm handleModalOpen={handleModalOpen} handleInputChange={handleInputChange} />
+        <PostProfileForm handleModalOpen={handleModalOpen} handleInputChange={handleInputChange} />
       </div>
       {isModalOpen && <ConfirmModal className={cn("alertModal")} message="모달창" onClick={handleConfirmButtonClick} />}
     </div>

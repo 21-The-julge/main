@@ -19,6 +19,9 @@ const schema = z.object({
   password: z.string().min(8, { message: ERROR_MESSAGE.PASSWORD.SHORT }),
 });
 
+const EMAIL = "email";
+const PASSWORD = "password";
+
 export default function SignInForm() {
   // const router = useRouter();
 
@@ -35,12 +38,12 @@ export default function SignInForm() {
     },
   });
 
-  // const { mutate } = usePostSignIn();
+  // const { mutate: login } = usePostSignIn();
 
   const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
     // eslint-disable-next-line no-console
     console.log("로그인 payload:", payload);
-    // mutate(payload, {
+    // login(payload, {
     //   onSuccess: () => {
     //     console.log("로그인 성공");
     //   },
@@ -49,9 +52,6 @@ export default function SignInForm() {
     //   },
     // });
   };
-
-  const EMAIL = "email";
-  const PASSWORD = "password";
 
   return (
     <form className={cn("formBox")} onSubmit={handleSubmit(onSubmit)}>

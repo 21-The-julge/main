@@ -14,6 +14,7 @@ export function useGetAlertsData(params?: GetAlertsDataParams) {
       const { data } = await axiosInstanceToken(token).get(`/users/${userId}/alerts`, { params: { offset, limit } });
       return data;
     },
+    enabled: !!token && !!userId,
   });
 }
 

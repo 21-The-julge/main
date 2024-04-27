@@ -35,7 +35,7 @@ export default function SignInForm() {
     },
   });
 
-  // const { mutate, error, isLoading } = usePostSignIn();
+  // const { mutate } = usePostSignIn();
 
   const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
     // eslint-disable-next-line no-console

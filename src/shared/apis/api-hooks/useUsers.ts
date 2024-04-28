@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
@@ -7,7 +8,7 @@ import { PostSignUpProps, PutUserDataProps } from "../apiType";
 export function usePostSignUp() {
   return useMutation({
     mutationFn: async (bodyData: PostSignUpProps) => {
-      const { data } = await axiosInstance.post("/users", bodyData);
+      const { data } = await axiosInstance.post(END_POINT.USERS, bodyData);
       return data;
     },
   });
@@ -18,7 +19,7 @@ export function useGetUserData() {
   return useQuery({
     queryKey: ["GetUserData"],
     queryFn: async () => {
-      const { data } = await axiosInstanceToken(token).get(`/users/${userId}`);
+      const { data } = await axiosInstanceToken(token).get(`${END_POINT.USERS}/${userId}`);
       return data;
     },
     enabled: !!token && !!userId,
@@ -29,7 +30,7 @@ export function usePutUserData(bodyData: PutUserDataProps) {
   const { token, userId } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).put(`/users/${userId}`, bodyData);
+      const { data } = await axiosInstanceToken(token).put(`${END_POINT.USERS}/${userId}`, bodyData);
       return data;
     },
   });

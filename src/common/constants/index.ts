@@ -72,10 +72,18 @@ export const ROUTE = {
   SEARCH: "/search",
   NOTICES_DETAIL: "/notice-detail",
   MY_NOTICE_DETAIL: "/my-notice-detail",
+  MYSHOP: "/my-shop",
+  MYPROFILE: "/my-profile",
 } as const;
 
 export const END_POINT = {
   NOTICES: "/notices",
+  USERS: "/users",
+  ALERTS: "/alerts",
+  SHOPS: "/shops",
+  APPLICATIONS: "/applications",
+  TOKEN: "/token",
+  IMAGES: "/images",
 } as const;
 
 export const SORT_OPTIONS = ["마감임박순", "시급많은순", "시간적은순", "가나다순"];

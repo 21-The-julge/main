@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstanceToken } from "../axiosInstance";
@@ -11,7 +12,9 @@ export function useGetAlertsData(params?: GetAlertsDataParams) {
   return useQuery({
     queryKey: ["alerts", { offset, limit }],
     queryFn: async () => {
-      const { data } = await axiosInstanceToken(token).get(`/users/${userId}/alerts`, { params: { offset, limit } });
+      const { data } = await axiosInstanceToken(token).get(`${END_POINT.USERS}/${userId}${END_POINT.ALERTS}`, {
+        params: { offset, limit },
+      });
       return data;
     },
     enabled: !!token && !!userId,
@@ -23,7 +26,9 @@ export function usePutAlertData(alertId: string) {
   const { token, userId } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).put(`/users/${userId}/alerts/${alertId}`);
+      const { data } = await axiosInstanceToken(token).put(
+        `${END_POINT.USERS}/${userId}${END_POINT.ALERTS}/${alertId}`,
+      );
 
       return data;
     },

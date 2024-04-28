@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
@@ -8,7 +9,7 @@ export function usePostShopData(bodyData: PostShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).post("/shops", bodyData);
+      const { data } = await axiosInstanceToken(token).post(END_POINT.SHOPS, bodyData);
       return data;
     },
   });
@@ -23,7 +24,7 @@ export function useGetShopData(shopId: string) {
   return useQuery({
     queryKey: ["GetShopData", shopId],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/shops/${shopId}`);
+      const { data } = await axiosInstance.get(`${END_POINT.SHOPS}/${shopId}`);
       return data;
     },
     enabled: !!shopId,
@@ -35,7 +36,7 @@ export function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).put(`/shops/${shopId}`, bodyData);
+      const { data } = await axiosInstanceToken(token).put(`${END_POINT.SHOPS}/${shopId}`, bodyData);
       return data;
     },
   });

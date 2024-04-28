@@ -40,10 +40,10 @@ export default function SignUpForm() {
 
     if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
       router.push(ROUTE.LOGIN);
-      // return;
+      return;
     }
 
-    // router.reload();
+    router.reload();
   };
 
   const {
@@ -74,7 +74,7 @@ export default function SignUpForm() {
 
         if (axiosError.response) {
           const errorMessage = (axiosError.response.data as { message?: string }).message;
-          setAlertMessage(errorMessage || "문제가 발생하였습니다");
+          setAlertMessage(errorMessage || "회원가입에 실패 하였습니다.");
         }
 
         setIsModalOpen((prevOpen) => !prevOpen);

@@ -59,6 +59,7 @@ export const ROUTE = {
   HOME: "/",
   LOGIN: "/signin",
   SIGNUP: "/signup",
+  SEARCH: "/search",
   NOTICES_DETAIL: "/notice-detail",
   MY_NOTICE_DETAIL: "/my-notice-detail",
 } as const;

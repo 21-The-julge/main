@@ -7,6 +7,10 @@
 
   .heading {
     @include sopoqa-28-700;
+
+    span {
+      color: $color-primary;
+    }
   }
 
   .filterBar {

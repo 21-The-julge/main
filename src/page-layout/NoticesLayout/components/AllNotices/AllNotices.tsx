@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 import usePaginationProps from "@/shared/hooks/usePagination";
 
-import { ROUTE, SORT } from "@/common/constants";
+import { SORT } from "@/common/constants";
 
 import Pagination from "@/shared/components/Pagination/Pagination";
 import FilterBar from "../FilterBar";
@@ -22,8 +22,10 @@ const cn = classNames.bind(styles);
 export default function AllNotices() {
   const router = useRouter();
 
+  const { pathname, query } = router;
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState(query);
 
   const { data, error, isPending, isError } = useGetAllNotices({ limit: 6, ...router.query });
 
@@ -45,7 +47,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.HOME,
+      pathname,
       query: { ...filters, ...filter },
     });
   };
@@ -63,7 +65,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.HOME,
+      pathname,
       query: { ...filters, sort },
     });
   };
@@ -73,11 +75,11 @@ export default function AllNotices() {
 
     setFilters((prev) => ({
       ...prev,
-      offset,
+      offset: `${offset}`,
     }));
 
     router.push({
-      pathname: ROUTE.HOME,
+      pathname,
       query: { ...filters, offset },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,6 +106,7 @@ export default function AllNotices() {
   return (
     <div className={cn("container")}>
       <FilterBar
+        router={router}
         isOpen={isFilterOpen}
         onChange={handleSelect}
         onFilter={handleFilter}

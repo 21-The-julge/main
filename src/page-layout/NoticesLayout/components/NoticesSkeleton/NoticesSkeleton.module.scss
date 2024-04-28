@@ -23,20 +23,8 @@
   row-gap: 3rem;
 }
 
-@include tablet {
-  .list {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@include mobile {
-  .list {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 .post {
-  width: 31.2rem;
+  max-width: 31.2rem;
   height: 35rem;
 }
 
@@ -44,4 +32,26 @@
   width: 100%;
   display: flex;
   gap: 1rem;
+}
+
+@include tablet {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include mobile {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+
+    .heading {
+      @include sopoqa-20-700;
+    }
+  }
+
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
 }

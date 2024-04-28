@@ -2,17 +2,16 @@
   background-color: $color-white;
 
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
-  max-width: 144rem;
-  height: 7rem;
-  padding: 1.5rem 17rem;
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 100%;
+  max-width: 96.4rem;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 11.2rem 1fr 1fr;
   align-items: center;
   position: sticky;
   top: 0;
@@ -20,46 +19,37 @@
   right: 0;
   z-index: $zindex-fixed;
 }
+
 .logo {
   width: 11.2rem;
   height: 4rem;
-  margin-right: 4rem;
-}
-.input {
-  background: $color-gray-10;
-  margin-right: auto;
-
-  width: 45rem;
-  height: 4rem;
-  gap: 10px;
-  border-radius: 1rem;
-  border: 1px solid $color-gray-20;
-}
-
-@include tablet {
-  .container {
-    padding: 1.5rem 3.2rem;
-  }
-  .input {
-    width: 34.4rem;
-    margin-right: auto;
-  }
+  padding-right: 2rem;
 }
 
 @include mobile {
   .container {
-    height: 10.2rem;
-    flex-wrap: wrap;
     padding: 1rem 2rem;
+
+    .item:nth-child(1) {
+      grid-area: logo;
+    }
+
+    .item:nth-child(2) {
+      grid-area: serachBar;
+    }
+
+    .item:nth-child(3) {
+      grid-area: userAction;
+    }
+
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    grid-template-areas:
+      "logo userAction"
+      "serachBar serachBar";
   }
-  .logo {
-    width: 8.4rem;
-    height: 3rem;
-    margin-right: 0;
-  }
-  .input {
+
+  .search {
     width: 100%;
-    height: 3.6rem;
-    order: 1;
   }
 }

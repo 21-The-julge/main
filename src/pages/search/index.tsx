@@ -1,5 +1,6 @@
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
-import SearchLayout from "@/page-layout/AuthLayout/component/Search/SearchLayout";
+//import SearchLayout from "@/page-layout/AuthLayout/component/Search/SearchLayout";
+import SearchLayout from "@/page-layout/SearchLayout/components/SearchLayout";
 
 export default function Search() {
   return (

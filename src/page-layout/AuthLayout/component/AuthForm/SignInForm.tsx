@@ -54,7 +54,7 @@ export default function SignInForm() {
     console.log("로그인 payload:", payload);
     login(payload, {
       onSuccess: () => {
-        router.push(ROUTE.NOTICES);
+        router.push(ROUTE.HOME);
       },
       onError: () => {
         setAlertMessage(ERROR_MESSAGE.PASSWORD.INCORRECT);

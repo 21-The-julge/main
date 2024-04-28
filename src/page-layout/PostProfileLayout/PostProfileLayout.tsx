@@ -24,7 +24,7 @@ export default function PostNoticeLayout() {
   const { mutate } = usePutUserData(inputValue);
 
   const handleClose = () => {
-    router.replace(`users/${userId}`);
+    router.push(`/users/${userId}`);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,8 +42,9 @@ export default function PostNoticeLayout() {
 
   const handleConfirmButtonClick = () => {
     mutate();
-    router.replace(`users/${userId}`);
+    router.push(`/users/${userId}`);
   };
+
   return (
     <div className={cn("background")}>
       <div className={cn("container")}>

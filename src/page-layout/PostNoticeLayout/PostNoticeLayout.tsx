@@ -21,12 +21,13 @@ export default function PostNoticeLayout() {
     workhour: 0,
     description: "",
   });
+
   const { shopId, noticeId } = useUserDataStore();
   const { mutate } = UsePostNoticeData({ shopId, bodyData: inputValue });
   const { setNoticeIdFromData } = GetUserData();
 
   const handleClose = () => {
-    router.replace(`shops/${shopId}`);
+    router.push(`/shops/${shopId}`);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,8 +42,9 @@ export default function PostNoticeLayout() {
   const handleConfirmButtonClick = () => {
     mutate();
     setNoticeIdFromData();
-    router.replace(`/shops/${shopId}/notices/${noticeId}`);
+    router.push(`/shops/${shopId}/notices/${noticeId}`);
   };
+
   return (
     <div className={cn("background")}>
       <div className={cn("container")}>

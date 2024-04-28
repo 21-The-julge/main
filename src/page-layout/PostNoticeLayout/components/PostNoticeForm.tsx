@@ -1,8 +1,7 @@
 import { ChangeEvent } from "react";
 import classNames from "classnames/bind";
 import Button from "@/common/components/Button/Button";
-import InputField from "@/common/components/InputField/InputField";
-import Textarea from "@/common/components/Textarea/Textarea";
+import { InputField, Textarea } from "@/common/components/index";
 
 import styles from "./PostNoticeForm.module.scss";
 

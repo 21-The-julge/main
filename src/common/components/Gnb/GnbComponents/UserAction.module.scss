@@ -1,10 +1,8 @@
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 4rem;
-  margin-left: 8rem;
 
   @include sopoqa-16-700;
   a {

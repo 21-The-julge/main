@@ -5,7 +5,7 @@ import { PostSignInParams } from "../apiType";
 
 // 로그인 POST 요청
 export default function usePostSignIn(bodyData: PostSignInParams) {
-  const { setToken, setUserId, setType, setLoggedIn } = useUserDataStore();
+  const { setToken, setUserId, setType, setIsLoggedIn } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
       const { data } = await axiosInstance.post("/token", bodyData);
@@ -15,7 +15,10 @@ export default function usePostSignIn(bodyData: PostSignInParams) {
       setToken(data.item.token);
       setUserId(data.item.user.item.id);
       setType(data.item.user.item.type);
-      setLoggedIn(Boolean(data.item.token));
+      setIsLoggedIn(Boolean(data.item.token));
+
+      localStorage.setItem("token", data.item.token);
+      localStorage.setItem("type", data.item.user.item.type);
     },
   });
   const { data, error, isIdle, isSuccess } = mutation;

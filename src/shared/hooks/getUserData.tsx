@@ -12,7 +12,7 @@ export default function GetUserData() {
     noticeId,
     applicationId,
     resetAll,
-    setLoggedIn,
+    setIsLoggedIn,
     setShopId,
     setNoticeId,
     setApplicationId,
@@ -41,7 +41,7 @@ export default function GetUserData() {
     noticeId,
     applicationId,
 
-    setLoggedIn,
+    setIsLoggedIn,
     setShopIdFromData,
     setNoticeIdFromData,
     setApplicationId,

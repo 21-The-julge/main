@@ -5,8 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
-import { Button, InputField, RadioInput } from "@/common/components";
+import { CATEGORIES, ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
+import { Button, Dropdown, InputField, RadioInput } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
 import { PostSignUpProps } from "@/shared/apis/apiType";
@@ -117,6 +117,8 @@ export default function SignUpForm() {
           <RadioInput value="employer" name="type" label="사장님" />
           <RadioInput value="employee" name="type" label="알바님" />
         </fieldset>
+
+        <Dropdown options={CATEGORIES} />
 
         <Button type="submit" size="large" disabled={isPending}>
           가입하기

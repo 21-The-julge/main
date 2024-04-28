@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import Camera from "@/images/ic_camera.svg";
 import styles from "@/page-layout/EditMyShopLayout/component/EditMyShop/EditMyShop.module.scss";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 
 interface ShopInfo {
   name: string;
@@ -44,7 +45,8 @@ export default function EditMyShopLayout() {
     resolver: zodResolver(schema),
     mode: "onTouched",
   });
-  const { data: shopData } = useGetShopData("ae78c3af-a075-4586-bee2-21c8da59d6b2");
+  const { shopId } = useUserDataStore();
+  const { data: shopData } = useGetShopData(shopId);
   const [shopName, setShopName] = useState("");
   const [classification, setClassification] = useState("");
   const [address, setAddress] = useState("");
@@ -55,7 +57,7 @@ export default function EditMyShopLayout() {
   const imgRef = useRef<HTMLInputElement>(null);
   const { data, mutate } = usePostPresignedURL();
   const imageUrl = data || img;
-  const { mutate: shopDataMutate } = usePutShopData("ae78c3af-a075-4586-bee2-21c8da59d6b2", {
+  const { mutate: shopDataMutate } = usePutShopData(shopId, {
     name: shopName,
     category: classification,
     address1: address,

@@ -19,7 +19,7 @@ export function usePostShopData(bodyData: PostShopDataParams) {
 }
 
 // 2. 가게 정보 조회 GET 요청
-export function useGetShopData(shopId: string) {
+export function useGetShopData(shopId: string | null) {
   return useQuery({
     queryKey: ["GetShopData", shopId],
     queryFn: async () => {
@@ -31,7 +31,7 @@ export function useGetShopData(shopId: string) {
 }
 
 // 3. 가게 정보 수정 PUT 요청
-export function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
+export function usePutShopData(shopId: string | null, bodyData: PutShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {

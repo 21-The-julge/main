@@ -1,3 +1,5 @@
+import { ROUTE } from "@/common/constants/index";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/MyShop/ShowMyShop/ShowMyshop.module.scss";
 
@@ -16,16 +18,15 @@ interface ShowMyShopProps {
 }
 
 export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
+  const { shopId } = useUserDataStore();
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push("/");
-    // TODO: 가게 정보 편집하기 페이지로 이동해야함
+    router.push(`${ROUTE.MYSHOP}/${shopId}`);
   };
 
   const handleRegisterClick = () => {
-    router.push("/");
-    // TODO: 공도 등록하기 페이지로 이동해야함
+    router.push(ROUTE.POSTNOTICE);
   };
 
   return (

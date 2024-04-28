@@ -72,8 +72,11 @@ export const ROUTE = {
   SEARCH: "/search",
   NOTICES_DETAIL: "/notice-detail",
   MY_NOTICE_DETAIL: "/my-notice-detail",
-  MYSHOP: "/my-shop",
-  MYPROFILE: "/my-profile",
+
+  MYSHOP: "/shops",
+  MYPROFILE: "/users",
+  POSTNOTICE: "/shops/post-notice",
+  POSTPROFILE: "/users/post-profile",
 } as const;
 
 export const END_POINT = {

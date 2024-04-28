@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
 import Table from "@/common/components/Table/Table";
-import { employersData } from "@/page-layout/NoticesLayout/components/NoticeTable/testData";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import usePagination from "@/shared/hooks/usePagination";
 import Badge from "@/shared/components/Badge/Badge";
@@ -30,7 +29,14 @@ const cn = classNames.bind(styles);
 export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
   const { data: getShopApplicationsData } = useGetShopApplicationsData({ shopId, noticeId });
   const ShopApplicationsData: GetShopApplicationsDataType = getShopApplicationsData;
-  const [employers, setEmployers] = useState<EmployerTableData[]>(employersData);
+  const [employers, setEmployers] = useState<EmployerTableData[]>([
+    {
+      name: "냥이만 두번울면",
+      phone: "010-5555-3333",
+      bio: "고양만두",
+      status: "pending",
+    },
+  ]);
   const totalDataCount = employers.length;
   const itemsPageCount = 5;
   const [currentPage, totalPages, setPage] = usePagination({ totalDataCount, itemsPageCount });

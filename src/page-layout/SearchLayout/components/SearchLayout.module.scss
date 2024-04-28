@@ -1,8 +1,6 @@
 .container {
   width: 100%;
-  color: $color-gray-40;
   display: flex;
   justify-content: center;
-
-  @include sopoqa-16-400
+  padding: 6rem 3.2rem;
 }

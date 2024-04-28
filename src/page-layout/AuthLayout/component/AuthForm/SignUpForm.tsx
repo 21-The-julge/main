@@ -113,7 +113,9 @@ export default function SignUpForm() {
           errorMessage={errors.passwordValid?.message}
           disabled={isPending}
         />
+
         <RadioField {...register("type")} legend="회원 유형" name="type" options={FIELDSET_OPTION} />
+
         <Button type="submit" size="large" disabled={isPending}>
           가입하기
         </Button>

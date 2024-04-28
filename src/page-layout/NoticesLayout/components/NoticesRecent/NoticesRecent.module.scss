@@ -4,14 +4,15 @@
   padding-bottom: 12rem;
   flex-direction: column;
   align-items: center;
-  background: var(--The-julge-gray-05, #fafafa);
+  background: $color-gray-5;
   @include tablet {
     padding: 6rem 3.2rem;
   }
   @include mobile {
-    padding: 40px 12px 80px 12px;
+    padding: 4rem 1.2rem 8rem 1.2rem;
   }
 }
+
 .contextFrame {
   display: flex;
   width: 100%;
@@ -27,11 +28,11 @@
     justify-content: center;
   }
 }
+
 .postFrame {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 1.4rem;
   flex-wrap: wrap;
-  gap: 20px;
-  // 모바일 질문
+  gap: 2rem;
 }

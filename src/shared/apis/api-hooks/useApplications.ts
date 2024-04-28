@@ -23,9 +23,10 @@ export function useGetShopApplicationsData({ shopId, noticeId, offset, limit }: 
 
 // 2. 가게의 특정 공고의 지원 등록 POST 요청
 export function usePostApplicationData({ shopId, noticeId }: PostApplicationDataParams) {
+  const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken("token").post(`/shops/${shopId}/notices/${noticeId}/applications`);
+      const { data } = await axiosInstanceToken(token).post(`/shops/${shopId}/notices/${noticeId}/applications`);
       return data;
     },
   });

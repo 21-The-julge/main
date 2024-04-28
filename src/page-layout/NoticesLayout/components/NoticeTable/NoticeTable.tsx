@@ -6,13 +6,14 @@ import usePagination from "@/shared/hooks/usePagination";
 import Badge from "@/shared/components/Badge/Badge";
 import { Button } from "@/common/components";
 import classNames from "classnames/bind";
+import { useGetShopApplicationsData } from "@/shared/apis/api-hooks";
+import { GetShopApplicationsDataType } from "@/page-layout/NoticesLayout/type";
 import styles from "./NoticeTable.module.scss";
 
 interface NoticeTableProps {
   shopId: string;
   noticeId: string;
 }
-//{ shopId, noticeId }
 interface TableHeader {
   header: string;
   accessor: string;
@@ -26,7 +27,9 @@ interface EmployerTableData {
 
 const cn = classNames.bind(styles);
 
-export default function NoticeTable() {
+export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
+  const { data: getShopApplicationsData } = useGetShopApplicationsData({ shopId, noticeId });
+  const ShopApplicationsData: GetShopApplicationsDataType = getShopApplicationsData;
   const [employers, setEmployers] = useState<EmployerTableData[]>(employersData);
   const totalDataCount = employers.length;
   const itemsPageCount = 5;
@@ -49,40 +52,40 @@ export default function NoticeTable() {
   const statusFormatData = (index: number, status: string): ReactNode => {
     if (status === "accepted") {
       return (
-        <Badge color="blue" isResponsive={true} hasCloseIcon={false}>
+        <Badge color="blue" isResponsive hasCloseIcon={false}>
           승인 완료
         </Badge>
       );
-    } else if (status === "rejected") {
+    }
+    if (status === "rejected") {
       return (
-        <Badge color="red" isResponsive={true} hasCloseIcon={false}>
+        <Badge color="red" isResponsive hasCloseIcon={false}>
           거절
         </Badge>
       );
-    } else {
-      return (
-        <div className={cn("tableButton")}>
-          <Button
-            type="button"
-            size="small"
-            variant="outline"
-            color="primary"
-            onClick={() => handleStatusChange(index, "rejected")}
-          >
-            거절하기
-          </Button>
-          <Button
-            type="button"
-            size="small"
-            variant="outline"
-            color="secondary"
-            onClick={() => handleStatusChange(index, "accepted")}
-          >
-            승인하기
-          </Button>
-        </div>
-      );
     }
+    return (
+      <div className={cn("tableButton")}>
+        <Button
+          type="button"
+          size="small"
+          variant="outline"
+          color="primary"
+          onClick={() => handleStatusChange(index, "rejected")}
+        >
+          거절하기
+        </Button>
+        <Button
+          type="button"
+          size="small"
+          variant="outline"
+          color="secondary"
+          onClick={() => handleStatusChange(index, "accepted")}
+        >
+          승인하기
+        </Button>
+      </div>
+    );
   };
 
   const dataFrom = currentItems.map((employer, index) => ({
@@ -97,6 +100,21 @@ export default function NoticeTable() {
     { header: "지원 상태", accessor: "status" },
   ];
 
+  useEffect(() => {
+    if (ShopApplicationsData) {
+      const employerTableData = ShopApplicationsData.items.map((item) => {
+        const user = item.item.user.item;
+        return {
+          name: user.name,
+          phone: user.phone,
+          bio: user.bio,
+          status: item.item.status,
+        };
+      });
+      setEmployers(employerTableData);
+    }
+  }, [ShopApplicationsData]);
+
   return (
     <div className={cn("noticesTableContainer")}>
       <div className={cn("noticesTableFrame")}>
@@ -109,32 +127,3 @@ export default function NoticeTable() {
     </div>
   );
 }
-
-/*
- <div className={cn("NoticesTableContainer")}>
-  <div className={cn("NoticesTableFrame")}>
-       
-            </div>
-  const userData = data.items.map(({ item }) => {
-    const { id: userId, user: { item: { id, name, phone, bio }}, status } = item;
-    
-    // userId를 따로 저장하고, 나머지 정보를 객체로 구성
-    return {
-      userId: id,
-      userDetails: {
-        name,
-        phone,
-        bio,
-        status
-      }
-    };
-  });
-  */
-/*
-  useEffect(() => {
-    async function fetchData() {
-      const { data } = await usePostApplicationData({ shopId, noticeId });
-      console.log(data); // 데이터 처리
-    }
-    fetchData();
-  }, [shopId, noticeId]);*/

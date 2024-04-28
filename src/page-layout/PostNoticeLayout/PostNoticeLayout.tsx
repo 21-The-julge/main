@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import IC_CLOSE from "@/images/ic_close.svg";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
-import { usePostNoticeData as UsePostNoticeData } from "@/shared/apis/api-hooks/useNotices";
+import { usePostNoticeData } from "@/shared/apis/api-hooks/useNotices";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import GetUserData from "@/shared/hooks/getUserData";
 import PostNoticeForm from "./components/PostNoticeForm";
@@ -23,7 +23,7 @@ export default function PostNoticeLayout() {
   });
 
   const { shopId, noticeId } = useUserDataStore();
-  const { mutate } = UsePostNoticeData({ shopId, bodyData: inputValue });
+  const { mutate: postNoticeData } = usePostNoticeData({ shopId, bodyData: inputValue });
   const { setNoticeIdFromData } = GetUserData();
 
   const handleClose = () => {
@@ -40,7 +40,7 @@ export default function PostNoticeLayout() {
   };
 
   const handleConfirmButtonClick = () => {
-    mutate();
+    postNoticeData();
     setNoticeIdFromData();
     router.push(`/shops/${shopId}/notices/${noticeId}`);
   };

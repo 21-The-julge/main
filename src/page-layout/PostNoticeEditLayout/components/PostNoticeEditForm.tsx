@@ -10,13 +10,20 @@ const cn = classNames.bind(styles);
 interface PostNoticeFormProps {
   handleModalOpen: () => void;
   handleInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  inputValue: {
+    hourlyPay: number;
+    startsAt: string;
+    workhour: number;
+    description: string;
+  };
 }
 
-export default function PostNoticeForm({ handleModalOpen, handleInputChange }: PostNoticeFormProps) {
+export default function PostNoticeForm({ handleModalOpen, handleInputChange, inputValue }: PostNoticeFormProps) {
   return (
     <form className={cn("container")}>
       <div className={cn("inputContainer")}>
         <InputField
+          value={inputValue?.hourlyPay}
           className={cn("inputfield", "hourlyPay")}
           name="hourlyPay"
           type="text"
@@ -26,6 +33,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
           onChange={handleInputChange}
         />
         <InputField
+          value={inputValue?.startsAt}
           className={cn("inputfield", "startsAt")}
           name="startsAt"
           type="text"
@@ -34,6 +42,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
           onChange={handleInputChange}
         />
         <InputField
+          value={inputValue?.workhour}
           className={cn("inputfield", "workhour")}
           name="workhour"
           type="text"
@@ -44,7 +53,13 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange }: P
         />
       </div>
       <div className={cn("textField")}>
-        <Textarea className={cn("textarea")} name="description" label="공고 설명" onChange={handleInputChange} />
+        <Textarea
+          value={inputValue?.description}
+          className={cn("textarea")}
+          name="description"
+          label="공고 설명"
+          onChange={handleInputChange}
+        />
       </div>
       <Button className={cn("submitButton")} onClick={handleModalOpen} size="large">
         등록하기

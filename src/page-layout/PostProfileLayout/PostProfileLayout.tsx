@@ -21,7 +21,7 @@ export default function PostNoticeLayout() {
     bio: "",
   });
   const { userId } = useUserDataStore();
-  const { mutate } = usePutUserData(inputValue);
+  const { mutate: putUserData } = usePutUserData(inputValue);
 
   const handleClose = () => {
     router.push(`/users/${userId}`);
@@ -41,7 +41,7 @@ export default function PostNoticeLayout() {
   };
 
   const handleConfirmButtonClick = () => {
-    mutate();
+    putUserData();
     router.push(`/users/${userId}`);
   };
 

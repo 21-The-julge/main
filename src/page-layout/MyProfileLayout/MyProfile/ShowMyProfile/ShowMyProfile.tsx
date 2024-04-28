@@ -26,7 +26,7 @@ export default function ShowMyProfile({ myProfile }: ShowMyShopProps) {
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push(`${ROUTE.MYPROFILE}/${userId}`);
+    router.push(`${ROUTE.MYPROFILE}/${userId}/edit`);
   };
 
   return (

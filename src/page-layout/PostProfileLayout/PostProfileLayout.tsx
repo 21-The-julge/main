@@ -48,7 +48,7 @@ export default function PostNoticeLayout() {
     <div className={cn("background")}>
       <div className={cn("container")}>
         <div className={cn("inputHeader")}>
-          <div className={cn("text")}>공고 등록</div>
+          <div className={cn("text")}>내 프로필</div>
           <IC_CLOSE className={cn("icon")} fill="#000" onClick={handleClose} />
         </div>
         <PostProfileForm

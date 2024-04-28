@@ -65,12 +65,15 @@ export default function SignUpForm() {
   const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
     newAccount(payload, {
       onSuccess: () => {
-        console.log("회원가입 성공");
+        // eslint-disable-next-line no-console
+        console.log("회원가입 성공", payload);
         setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
         setIsModalOpen(true);
       },
       onError: (error) => {
+        // eslint-disable-next-line no-console
         console.error(error);
+        // eslint-disable-next-line no-console
         console.log("회원가입 실패");
       },
     });

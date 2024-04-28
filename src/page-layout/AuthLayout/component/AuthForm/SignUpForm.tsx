@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
+import { ERROR_MESSAGE, FIELDSET_OPTION, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
 import { Button, InputField, RadioField } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
@@ -56,7 +56,7 @@ export default function SignUpForm() {
       email: "",
       password: "",
       passwordValid: "",
-      type: "employer",
+      type: "employee",
     },
   });
 
@@ -113,9 +113,7 @@ export default function SignUpForm() {
           errorMessage={errors.passwordValid?.message}
           disabled={isPending}
         />
-
-        <RadioField {...register("type")} legend="회원 유형" name="type" />
-
+        <RadioField {...register("type")} legend="회원 유형" name="type" options={FIELDSET_OPTION} />
         <Button type="submit" size="large" disabled={isPending}>
           가입하기
         </Button>

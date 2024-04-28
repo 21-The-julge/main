@@ -9,13 +9,14 @@ interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   name?: string; // fieldset안에서 name값이 같아야 하나만 checked가능
   label?: string;
+  ckecked?: boolean;
 }
 
 export default forwardRef<HTMLInputElement, RadioInputProps>(function RadioInput(
-  { id, value, label, name, ...rest },
+  { id, value, label, name, checked, ...rest },
   ref,
 ) {
-  const className = cn("radioBox");
+  const className = cn("radioBox", { inputChecked: checked });
 
   return (
     <label htmlFor={id} className={className}>

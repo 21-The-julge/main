@@ -5,3 +5,9 @@
 .customInput {
   width: 100%;
 }
+
+@include mobile {
+  .customInput {
+    width: 100%;
+  }
+}

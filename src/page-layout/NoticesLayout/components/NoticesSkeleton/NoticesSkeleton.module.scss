@@ -6,6 +6,8 @@
   .heading {
     width: 11.2rem;
     height: 3.5rem;
+
+    @include sopoqa-28-700;
   }
 
   .filter {
@@ -19,11 +21,17 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1.4rem;
   row-gap: 3rem;
+}
 
-  .post {
-    width: 31.2rem;
-    height: 35rem;
-  }
+.post {
+  max-width: 31.2rem;
+  height: 35rem;
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
 }
 
 @include tablet {
@@ -33,7 +41,17 @@
 }
 
 @include mobile {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+
+    .heading {
+      @include sopoqa-20-700;
+    }
+  }
+
   .list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }

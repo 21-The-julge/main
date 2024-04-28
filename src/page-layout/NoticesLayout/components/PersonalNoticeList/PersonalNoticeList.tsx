@@ -2,38 +2,47 @@ import Link from "next/link";
 import classNames from "classnames/bind";
 
 import { Post } from "@/shared/components";
+
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
+import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
 import { ROUTE } from "@/common/constants";
 
-import styles from "./NoticeList.module.scss";
+import Skeleton from "../NoticesSkeleton";
+
+import styles from "./PersonalNoticeList.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface Notice {
-  noticeId: string;
-  shopId: string;
-  startsAt: string;
-  workhour: number;
-  hourlyPay: number;
-  closed: boolean;
-  name: string;
-  address1: string;
-  imageUrl: string;
-  originalHourlyPay: number;
-}
-
-interface NoticesListProps {
-  notices: Notice[];
-}
-
-function NoticeList({ notices }: NoticesListProps) {
+export default function PersonalNoticeList() {
   const type = useUserDataStore((state) => state.type);
+
+  const address = useUserDataStore((state) => state.address) ?? "";
+
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: 9, sort: "shop", address: [address] });
+
+  const items = data ? data.items.map((obj) => obj.item) : [];
+
+  const notices = items.map((obj) => {
+    const { id: noticeId, startsAt, workhour, shop, hourlyPay, closed } = obj;
+
+    const { id: shopId, name, address1, imageUrl, originalHourlyPay } = shop.item;
+
+    return { noticeId, shopId, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
+  });
 
   const path = type === "employer" ? ROUTE.MY_NOTICE_DETAIL : ROUTE.NOTICES_DETAIL;
 
+  if (isPending) {
+    return <Skeleton />;
+  }
+
+  if (isError) {
+    <div>Error: {error?.message}</div>;
+  }
+
   return (
-    <div className={cn("list")}>
+    <div className={cn("slider")}>
       {notices.map((notice) => {
         const { noticeId, shopId, imageUrl, startsAt, workhour, hourlyPay, closed, name, address1, originalHourlyPay } =
           notice;
@@ -63,5 +72,3 @@ function NoticeList({ notices }: NoticesListProps) {
     </div>
   );
 }
-
-export default NoticeList;

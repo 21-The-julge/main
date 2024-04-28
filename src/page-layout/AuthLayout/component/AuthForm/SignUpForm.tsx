@@ -5,8 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { CATEGORIES, ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
-import { Button, Dropdown, InputField, RadioInput } from "@/common/components";
+import { ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
+import { Button, InputField, RadioField } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
 import { PostSignUpProps } from "@/shared/apis/apiType";
@@ -63,6 +63,7 @@ export default function SignUpForm() {
   const { mutate: newAccount, isPending } = usePostSignUp();
 
   const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
+    console.log(payload);
     newAccount(payload, {
       onSuccess: () => {
         // eslint-disable-next-line no-console
@@ -113,12 +114,7 @@ export default function SignUpForm() {
           disabled={isPending}
         />
 
-        <fieldset {...register("type")}>
-          <RadioInput value="employer" name="type" label="사장님" />
-          <RadioInput value="employee" name="type" label="알바님" />
-        </fieldset>
-
-        <Dropdown options={CATEGORIES} />
+        <RadioField {...register("type")} legend="회원 유형" name="type" />
 
         <Button type="submit" size="large" disabled={isPending}>
           가입하기

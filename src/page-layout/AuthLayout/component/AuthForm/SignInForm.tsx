@@ -29,10 +29,7 @@ export default function SignInForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  const handleModalButtonClick = () => {
-    setIsModalOpen(false);
-    router.reload();
-  };
+  const { mutate: login, isPending } = usePostSignIn();
 
   const {
     register,
@@ -47,11 +44,7 @@ export default function SignInForm() {
     },
   });
 
-  const { mutate: login, isPending } = usePostSignIn();
-
   const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
-    // eslint-disable-next-line no-console
-    console.log("로그인 payload:", payload);
     login(payload, {
       onSuccess: () => {
         router.push(ROUTE.HOME);
@@ -61,6 +54,11 @@ export default function SignInForm() {
         setIsModalOpen(true);
       },
     });
+  };
+
+  const handleModalButtonClick = () => {
+    setIsModalOpen(false);
+    router.reload();
   };
 
   return (

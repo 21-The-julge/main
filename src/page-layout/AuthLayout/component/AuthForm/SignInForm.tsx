@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { AxiosError } from "axios";
 
 import { ERROR_MESSAGE, PLACEHOLDERS, ROUTE } from "@/common/constants";
-import { Button, InputField } from "@/common/components";
+import { Button, InputField, Textarea } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { PostSignInParams } from "@/shared/apis/apiType";
 import { usePostSignIn } from "@/shared/apis/api-hooks";
@@ -47,11 +48,17 @@ export default function SignInForm() {
   const onSubmit: SubmitHandler<PostSignInParams> = (payload) => {
     login(payload, {
       onSuccess: () => {
-        router.push(ROUTE.HOME);
+        router.replace(ROUTE.HOME);
       },
-      onError: () => {
-        setAlertMessage(ERROR_MESSAGE.PASSWORD.INCORRECT);
-        setIsModalOpen(true);
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response) {
+          const errorMessage = (axiosError.response.data as { message?: string }).message;
+          setAlertMessage(errorMessage || "");
+        }
+
+        setIsModalOpen((prevOpen) => !prevOpen);
       },
     });
   };
@@ -84,13 +91,14 @@ export default function SignInForm() {
           errorMessage={errors.password?.message}
           disabled={isPending}
         />
+
+        <Textarea />
+
         <Button type="submit" size="large" disabled={isPending}>
           로그인하기
         </Button>
       </form>
-      {isModalOpen && (
-        <ConfirmModal className={cn("signInFormModal")} message={alertMessage} onClick={handleModalButtonClick} />
-      )}
+      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalButtonClick} />}
     </>
   );
 }

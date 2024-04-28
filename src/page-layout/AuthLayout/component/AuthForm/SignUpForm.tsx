@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { AxiosError } from "axios";
 
 import { ERROR_MESSAGE, FIELDSET_OPTION, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
 import { Button, InputField, RadioField } from "@/common/components";
@@ -39,10 +40,10 @@ export default function SignUpForm() {
 
     if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
       router.push(ROUTE.LOGIN);
-      return;
+      // return;
     }
 
-    router.reload();
+    // router.reload();
   };
 
   const {
@@ -63,19 +64,21 @@ export default function SignUpForm() {
   const { mutate: newAccount, isPending } = usePostSignUp();
 
   const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
-    console.log(payload);
+    // console.log(payload);
     newAccount(payload, {
       onSuccess: () => {
-        // eslint-disable-next-line no-console
-        console.log("회원가입 성공", payload);
         setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
-        setIsModalOpen(true);
+        setIsModalOpen((prevOpen) => !prevOpen);
       },
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-        // eslint-disable-next-line no-console
-        console.log("회원가입 실패");
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response) {
+          const errorMessage = (axiosError.response.data as { message?: string }).message;
+          setAlertMessage(errorMessage || "");
+        }
+
+        setIsModalOpen((prevOpen) => !prevOpen);
       },
     });
   };

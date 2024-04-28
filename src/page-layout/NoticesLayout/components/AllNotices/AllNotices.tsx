@@ -5,13 +5,13 @@ import classNames from "classnames/bind";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 import usePaginationProps from "@/shared/hooks/usePagination";
 
-import { ROUTE, SORT } from "@/common/constants";
+import { SORT } from "@/common/constants";
 
 import Pagination from "@/shared/components/Pagination/Pagination";
 import FilterBar from "../FilterBar";
 import NoticeList from "../NoticeList";
 import NoNotice from "../NoNotice";
-import Skeleton from "../AllNoticesSkeleton";
+import Skeleton from "../NoticesSkeleton";
 
 import type { FilterValue } from "../../type";
 
@@ -22,10 +22,12 @@ const cn = classNames.bind(styles);
 export default function AllNotices() {
   const router = useRouter();
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [filters, setFilters] = useState({});
+  const { pathname, query } = router;
 
-  const { data, error, isPending, isError } = useGetAllNotices(router.query);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [filters, setFilters] = useState(query);
+
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: 6, ...router.query });
 
   const [currentPage, totalPages, setPage] = usePaginationProps({
     totalDataCount: data?.count ?? 0,
@@ -45,7 +47,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname,
       query: { ...filters, ...filter },
     });
   };
@@ -63,7 +65,7 @@ export default function AllNotices() {
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname,
       query: { ...filters, sort },
     });
   };
@@ -73,18 +75,18 @@ export default function AllNotices() {
 
     setFilters((prev) => ({
       ...prev,
-      offset,
+      offset: `${offset}`,
     }));
 
     router.push({
-      pathname: ROUTE.NOTICES,
+      pathname,
       query: { ...filters, offset },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   if (isPending) {
-    return <Skeleton />;
+    return <Skeleton isAllNotice />;
   }
 
   if (isError) {
@@ -104,6 +106,7 @@ export default function AllNotices() {
   return (
     <div className={cn("container")}>
       <FilterBar
+        router={router}
         isOpen={isFilterOpen}
         onChange={handleSelect}
         onFilter={handleFilter}
@@ -111,9 +114,14 @@ export default function AllNotices() {
         onClose={() => handleOpen(false)}
       />
 
-      {posts.length === 0 ? <NoNotice /> : <NoticeList notices={posts} />}
-
-      <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+      {posts.length === 0 ? (
+        <NoNotice />
+      ) : (
+        <div className={cn("notices")}>
+          <NoticeList notices={posts} />
+          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,42 +1,58 @@
-import { ChangeEvent, KeyboardEvent, useState } from "react";
-import classNames from "classnames/bind";
 import Link from "next/link";
-import LOGO from "@/images/logo.svg";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
+
+import classNames from "classnames/bind";
+
+import { ROUTE } from "@/common/constants";
+import { InputField } from "@/common/components";
+
+import LOGO from "@/images/logo.svg";
+
 import styles from "./Gnb.module.scss";
 
 import UserAction from "./GnbComponents/UserAction";
 
 const cn = classNames.bind(styles);
 
+interface Input {
+  keyword: string;
+}
+
 export default function Gnb() {
-  const [inputValue, setInputValue] = useState("");
   const router = useRouter();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && inputValue !== "") {
-      router.push(`/search?inputValue=${inputValue}`);
-    }
+  const { register, handleSubmit } = useForm<Input>();
+
+  const onSubmit: SubmitHandler<Input> = (data) => {
+    router.push({
+      pathname: ROUTE.SEARCH,
+      query: { ...data },
+    });
   };
 
   return (
     <div className={cn("background")}>
       <div className={cn("container")}>
-        <Link href="/">
-          <LOGO className={cn("logo")} />
+        <Link href={ROUTE.HOME}>
+          <LOGO className={cn("logo", "item")} />
         </Link>
-        <input
-          className={cn("input")}
-          type="text"
-          placeholder="가게 이름으로 찾아보세요."
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
-        <UserAction />
+
+        <form onSubmit={handleSubmit(onSubmit)} className={cn("search", "item")}>
+          <InputField
+            type="search"
+            size="sm"
+            prefix="search"
+            color="gray"
+            border="none"
+            placeholder="가게 이름으로 찾아보세요."
+            {...register("keyword", { required: true })}
+          />
+        </form>
+
+        <div className={cn("item")}>
+          <UserAction />
+        </div>
       </div>
     </div>
   );

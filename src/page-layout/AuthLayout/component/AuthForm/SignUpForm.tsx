@@ -10,7 +10,6 @@ import { ERROR_MESSAGE, FIELDSET_OPTION, MESSAGES, PLACEHOLDERS, ROUTE } from "@
 import { Button, InputField, RadioField } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
-import { PostSignUpProps } from "@/shared/apis/apiType";
 
 import styles from "./SignInForm.module.scss";
 
@@ -35,16 +34,7 @@ export default function SignUpForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  const handleModalButtonClick = () => {
-    setIsModalOpen(false);
-
-    if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
-      router.push(ROUTE.LOGIN);
-      return;
-    }
-
-    router.reload();
-  };
+  const { mutate: signUp, isPending } = usePostSignUp();
 
   const {
     register,
@@ -61,10 +51,8 @@ export default function SignUpForm() {
     },
   });
 
-  const { mutate: newAccount, isPending } = usePostSignUp();
-
-  const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
-    newAccount(payload, {
+  const onSubmit: SubmitHandler<NewAccount> = (payload) => {
+    signUp(payload, {
       onSuccess: () => {
         setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
         setIsModalOpen((prevOpen) => !prevOpen);
@@ -80,6 +68,17 @@ export default function SignUpForm() {
         setIsModalOpen((prevOpen) => !prevOpen);
       },
     });
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+
+    if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
+      router.push(ROUTE.LOGIN);
+      return;
+    }
+
+    router.reload();
   };
 
   return (
@@ -122,7 +121,7 @@ export default function SignUpForm() {
           가입하기
         </Button>
       </form>
-      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalButtonClick} />}
+      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalClose} />}
     </>
   );
 }

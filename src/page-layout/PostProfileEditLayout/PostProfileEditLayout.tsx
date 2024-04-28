@@ -15,6 +15,9 @@ const cn = classNames.bind(styles);
 export default function PostNoticeLayout() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data } = useGetUserData();
+
   const [inputValue, setInputValue] = useState({
     name: "",
     phone: "",
@@ -22,7 +25,6 @@ export default function PostNoticeLayout() {
     bio: "",
   });
 
-  const { data } = useGetUserData();
   const { userId } = useUserDataStore();
   const { mutate: putUSerData, error } = usePutUserData(inputValue);
 

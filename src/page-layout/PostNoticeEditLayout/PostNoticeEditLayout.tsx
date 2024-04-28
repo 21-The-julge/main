@@ -15,6 +15,11 @@ const cn = classNames.bind(styles);
 export default function PostNoticeLayout() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { shopId, noticeId } = GetUserData();
+
+  const { data } = useGetSpecificShopNoticeData({ shopId, noticeId });
+
   const [inputValue, setInputValue] = useState({
     hourlyPay: 0,
     startsAt: "", // 양식: 2023-12-23T00:00:00Z
@@ -22,8 +27,6 @@ export default function PostNoticeLayout() {
     description: "",
   });
 
-  const { shopId, noticeId } = GetUserData();
-  const { data } = useGetSpecificShopNoticeData({ shopId, noticeId });
   const { mutate: putNoticeData, error } = usePutNoticeData({ shopId, noticeId, bodyData: inputValue });
 
   useEffect(() => {

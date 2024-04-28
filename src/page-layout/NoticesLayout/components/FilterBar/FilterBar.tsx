@@ -1,6 +1,6 @@
 import type { NextRouter } from "next/router";
 import classNames from "classnames/bind";
-import { SORT_OPTIONS } from "@/common/constants";
+import { SORT_OPTIONS, ROUTE } from "@/common/constants";
 import { Button, Dropdown } from "@/common/components";
 import Filter from "../Filter";
 
@@ -22,7 +22,7 @@ interface FilterBarProps {
 export default function FilterBar({ router, isOpen, onChange, onFilter, onOpen, onClose }: FilterBarProps) {
   return (
     <div className={cn("container")}>
-      {router.pathname === "/search" ? (
+      {router.pathname === ROUTE.SEARCH ? (
         <h2 className={cn("heading")}>
           <span>{router.query.keyword}</span>에 대한 공고 목록
         </h2>

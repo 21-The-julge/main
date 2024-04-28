@@ -1,0 +1,25 @@
+.formBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  max-width: 35rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 32.7rem;
+  height: 22rem;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 54rem;
+    height: 25rem;
+  }
+
+  @include desktop {
+    width: 54rem;
+    height: 25rem;
+  }
+}

@@ -1,7 +1,7 @@
 import RegisterNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/RegisterNotice/RegisterNotice";
 import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice";
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
-import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
+import { axiosInstance } from "@/shared/apis/axiosInstance";
 import addComma from "@/shared/components/Post/utils/addComma";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
 import getBadge from "@/shared/utils/getBadge";
@@ -50,6 +50,8 @@ export async function getServerSideProps() {
     const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8");
     myProfile = response?.data.item ?? [];
   } catch (error) {
+    // 일단 처리해드릴게요
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 
@@ -63,7 +65,7 @@ export async function getServerSideProps() {
 export default function MyShop({ myProfile }: ApiData) {
   const [registeredNotice, setRegisteredNotice] = useState<Item[]>([]);
   const fetchNotices = async () => {
-    const res = await axiosInstanceToken.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications?limit=100`);
+    const res = await axiosInstance.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications?limit=100`);
     const result = await res.data.items;
     setRegisteredNotice(result);
   };

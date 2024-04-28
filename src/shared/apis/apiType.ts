@@ -103,7 +103,7 @@ export interface PutShopDataParams {
 }
 
 export interface PostSignUpProps {
-  eamil: string;
+  email: string;
   password: string;
   type: "employee" | "employer";
 }

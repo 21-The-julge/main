@@ -39,6 +39,7 @@ export default function EditMyShopLayout() {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm<ShopInfo>({
     resolver: zodResolver(schema),
     mode: "onTouched",
@@ -138,6 +139,9 @@ export default function EditMyShopLayout() {
       setDescription(shopData.item.description);
       setImg(shopData.item.imageUrl);
       setHourlyRate(shopData.item.originalHourlyPay);
+      setValue("name", shopData.item.name);
+      setValue("detailedAddress", shopData.item.address2);
+      setValue("hourlyRate", shopData.item.originalHourlyPay.toString());
     }
   }, [shopData]);
 
@@ -151,7 +155,6 @@ export default function EditMyShopLayout() {
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
             <InputField
-              value={shopName}
               placeholder="입력"
               label="가게 이름"
               required
@@ -162,8 +165,8 @@ export default function EditMyShopLayout() {
               errorMessage={errors.name?.message}
             />
             <Dropdown
-              value={classification}
               onOptionClick={handleClickClassification}
+              value={classification}
               options={CATEGORIES}
               placeholder="선택"
               label="분류"
@@ -174,8 +177,8 @@ export default function EditMyShopLayout() {
               errorMessage={errors.classification?.message}
             />
             <Dropdown
-              value={address}
               onOptionClick={handleClickAddress}
+              value={address}
               options={ADDRESSES}
               placeholder="선택"
               label="주소"
@@ -186,7 +189,6 @@ export default function EditMyShopLayout() {
               errorMessage={errors.address?.message}
             />
             <InputField
-              value={detailedAddress}
               placeholder="입력"
               label="상세 주소"
               required
@@ -197,7 +199,6 @@ export default function EditMyShopLayout() {
             />
             <InputField
               unit="원"
-              value={hourlyRate}
               placeholder="입력"
               label="기본 시급"
               required
@@ -210,8 +211,8 @@ export default function EditMyShopLayout() {
           <div className={cn("imgContainer")}>
             <p className={cn("imgTitle")}>가게 이미지</p>
             <div className={cn("imgBox")}>
-              {img && <img className={cn("img")} src={img} alt="이미지 미리보기" />}
-              <label className={cn("inputLabel")} htmlFor="file">
+              {img && <img className={cn("img", { data })} src={img} alt="이미지 미리보기" />}
+              <label className={cn("inputLabel", { data })} htmlFor="file">
                 <div className={cn("imgAddContainer")}>
                   <Camera width={32} height={32} fill="#FFFFFF" />
                   <p>이미지 추가하기</p>

@@ -107,6 +107,9 @@
     overflow: hidden;
     pointer-events: none;
   }
+  .data {
+    z-index: 2;
+  }
 
   .inputLabel {
     width: 100%;
@@ -123,6 +126,11 @@
     line-height: 20px; /* 125% */
     background: rgba(0, 0, 0, 0.7);
     z-index: 1;
+
+    .data {
+      background-color: white;
+      display: none;
+    }
   }
 
   .imgAddContainer {

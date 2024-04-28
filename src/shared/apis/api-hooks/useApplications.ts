@@ -18,6 +18,7 @@ export function useGetShopApplicationsData({ shopId, noticeId, offset, limit }: 
       });
       return data;
     },
+    enabled: !!shopId && !!noticeId,
   });
 }
 
@@ -66,5 +67,6 @@ export function useGetUserApplicationsData(params?: GetUserApplicationsDataProps
       });
       return data;
     },
+    enabled: !!token && !!userId,
   });
 }

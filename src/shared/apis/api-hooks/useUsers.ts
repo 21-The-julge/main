@@ -4,17 +4,13 @@ import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 import { PostSignUpProps, PutUserDataProps } from "../apiType";
 
 // 1. 회원가입 POST 요청
-export function usePostSignUp(bodyData: PostSignUpProps) {
-  const mutation = useMutation({
-    mutationFn: async () => {
+export function usePostSignUp() {
+  return useMutation({
+    mutationFn: async (bodyData: PostSignUpProps) => {
       const { data } = await axiosInstance.post("/users", bodyData);
       return data;
     },
   });
-  const { data, error, isIdle, isSuccess } = mutation;
-  const isLoading = isIdle && !isSuccess;
-
-  return { data, error, isLoading, mutate: mutation.mutate };
 }
 // 2. 내 정보 조회 GET 요청
 export function useGetUserData() {

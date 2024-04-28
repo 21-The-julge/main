@@ -1,0 +1,24 @@
+.signInPage {
+  width: 100vw;
+  height: 100vh;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  .logoBox {
+    padding-bottom: 2rem;
+  }
+
+  .textBox {
+    @include pretendard-16-400;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    .link {
+      text-decoration: underline;
+    }
+  }
+}

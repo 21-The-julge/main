@@ -47,18 +47,34 @@ export const MESSAGES = {
   ACCEPT: "신청을 승인하시겠어요?",
   REJECT: "신청을 거절하시겠어요?",
   NOTIFICATION: "알림이 없습니다.",
+
+  AUTH_ALERT_MESSAGE: {
+    SUCCESS: "가입이 완료되었습니다!",
+  },
 } as const;
 
 export const ERROR_MESSAGE = {
-  INCORRECT_EMAIL: "잘못된 이메일입니다.",
-  SHORT_PASSWORD: "8자 이상 입력해 주세요.",
-  INCORRECT_PASSWORD: "비밀번호가 일치하지 않습니다.",
+  EMAIL: {
+    EMPTY: "이메일을 입력해 주세요.",
+    INVALID: "이메일 형식으로 작성해 주세요.",
+    INCORRECT: "잘못된 이메일입니다.",
+  },
+  PASSWORD: {
+    SHORT: "8자 이상 입력해 주세요.",
+    INCORRECT: "비밀번호가 일치하지 않습니다.",
+  },
 } as const;
 
 export const ROUTE = {
   HOME: "/",
-  LOGIN: "/signin",
-  SIGNUP: "/signup",
+  LOGIN: "/login",
+  SIGNUP: "/sign-up",
+  SEARCH: "/search",
+  NOTICES_DETAIL: "/notice-detail",
+  MY_NOTICE_DETAIL: "/my-notice-detail",
+} as const;
+
+export const END_POINT = {
   NOTICES: "/notices",
 } as const;
 

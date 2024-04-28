@@ -1,5 +1,6 @@
+import type { NextRouter } from "next/router";
 import classNames from "classnames/bind";
-import { SORT_OPTIONS } from "@/common/constants";
+import { SORT_OPTIONS, ROUTE } from "@/common/constants";
 import { Button, Dropdown } from "@/common/components";
 import Filter from "../Filter";
 
@@ -10,6 +11,7 @@ import styles from "./FilterBar.module.scss";
 const cn = classNames.bind(styles);
 
 interface FilterBarProps {
+  router: NextRouter;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
@@ -17,10 +19,16 @@ interface FilterBarProps {
   onFilter: (filter: Omit<FilterValue, "sort">) => void;
 }
 
-export default function FilterBar({ isOpen, onChange, onFilter, onOpen, onClose }: FilterBarProps) {
+export default function FilterBar({ router, isOpen, onChange, onFilter, onOpen, onClose }: FilterBarProps) {
   return (
     <div className={cn("container")}>
-      <h2 className={cn("heading")}>전체 공고</h2>
+      {router.pathname === ROUTE.SEARCH ? (
+        <h2 className={cn("heading")}>
+          <span>{router.query.keyword}</span>에 대한 공고 목록
+        </h2>
+      ) : (
+        <h2 className={cn("heading")}>전체 공고</h2>
+      )}
 
       <div className={cn("filterBar")}>
         <Dropdown

@@ -1,7 +1,11 @@
-import classNames from "classnames/bind";
-import { Post } from "@/shared/components";
-
 import Link from "next/link";
+import classNames from "classnames/bind";
+
+import { Post } from "@/shared/components";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
+
+import { ROUTE } from "@/common/constants";
+
 import styles from "./NoticeList.module.scss";
 
 const cn = classNames.bind(styles);
@@ -24,6 +28,10 @@ interface NoticesListProps {
 }
 
 function NoticeList({ notices }: NoticesListProps) {
+  const type = useUserDataStore((state) => state.type);
+
+  const path = type === "employer" ? ROUTE.MY_NOTICE_DETAIL : ROUTE.NOTICES_DETAIL;
+
   return (
     <div className={cn("list")}>
       {notices.map((notice) => {
@@ -34,7 +42,7 @@ function NoticeList({ notices }: NoticesListProps) {
           <div key={noticeId}>
             <Link
               href={{
-                pathname: "/",
+                pathname: path,
                 query: { noticeId, shopId },
               }}
             >

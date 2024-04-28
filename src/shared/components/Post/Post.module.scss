@@ -63,10 +63,19 @@
     flex-direction: column;
     gap: 1.6rem;
   }
+
+  .price {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+  }
+
   .priceContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 4.2rem;
     color: $color-black;
     @include sopoqa-20-700;
     @include mobile {
@@ -74,6 +83,7 @@
       align-items: flex-start;
     }
   }
+
   @include mobile {
     padding: 1.2rem;
     gap: 1.2rem;

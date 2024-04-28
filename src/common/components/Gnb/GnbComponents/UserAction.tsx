@@ -28,7 +28,7 @@ export default function UserAction() {
 
   const loggedInSection = (
     <>
-      {type ? <Link href={ROUTE.MYSHOP}>내 가게</Link> : <Link href={ROUTE.MYPROFILE}>내 프로필</Link>}
+      {type === "employer" ? <Link href={ROUTE.MYSHOP}>내 가게</Link> : <Link href={ROUTE.MYPROFILE}>내 프로필</Link>}
       <Link href="/" onClick={handleLogout}>
         로그아웃
       </Link>

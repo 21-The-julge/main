@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import { useMutation } from "@tanstack/react-query";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { axiosInstance } from "../axiosInstance";
@@ -8,7 +9,7 @@ export default function usePostSignIn() {
   const { setToken, setUserId, setType, setIsLoggedIn } = useUserDataStore();
   return useMutation({
     mutationFn: async (bodyData: PostSignInParams) => {
-      const { data } = await axiosInstance.post("/token", bodyData);
+      const { data } = await axiosInstance.post(END_POINT.TOKEN, bodyData);
       return data;
     },
     onSuccess: (data) => {

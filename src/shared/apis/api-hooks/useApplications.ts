@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
@@ -13,9 +14,12 @@ export function useGetShopApplicationsData({ shopId, noticeId, offset, limit }: 
   return useQuery({
     queryKey: ["GetShopApplicationsData", { shopId, noticeId, offset, limit }],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/shops/${shopId}/notices/${noticeId}/applications`, {
-        params: { offset, limit },
-      });
+      const { data } = await axiosInstance.get(
+        `${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}/${noticeId}${END_POINT.APPLICATIONS}`,
+        {
+          params: { offset, limit },
+        },
+      );
       return data;
     },
     enabled: !!shopId && !!noticeId,
@@ -26,7 +30,9 @@ export function useGetShopApplicationsData({ shopId, noticeId, offset, limit }: 
 export function usePostApplicationData({ shopId, noticeId }: PostApplicationDataParams) {
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken("token").post(`/shops/${shopId}/notices/${noticeId}/applications`);
+      const { data } = await axiosInstanceToken("token").post(
+        `${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}/${noticeId}${END_POINT.APPLICATIONS}`,
+      );
       return data;
     },
   });
@@ -42,7 +48,7 @@ export function usePutApplicationData({ shopId, noticeId, applicationId, bodydat
   const mutation = useMutation({
     mutationFn: async () => {
       const { data } = await axiosInstanceToken(token).put(
-        `/shops/${shopId}/notices/${noticeId}/applications/${applicationId}`,
+        `${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}/${noticeId}${END_POINT.APPLICATIONS}/${applicationId}`,
         bodydata,
       );
       return data;
@@ -62,7 +68,7 @@ export function useGetUserApplicationsData(params?: GetUserApplicationsDataProps
   return useQuery({
     queryKey: ["GetUserApplicationsData", { offset, limit }],
     queryFn: async () => {
-      const { data } = await axiosInstanceToken(token).get(`/users/${userId}/applications`, {
+      const { data } = await axiosInstanceToken(token).get(`${END_POINT.USERS}/${userId}${END_POINT.APPLICATIONS}`, {
         params: { offset, limit },
       });
       return data;

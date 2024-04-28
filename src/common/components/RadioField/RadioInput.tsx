@@ -1,47 +1,26 @@
 import classNames from "classnames/bind";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { Input } from "../parts";
+import { InputHTMLAttributes, forwardRef } from "react";
 
 import styles from "./RadioInput.module.scss";
 
 const cn = classNames.bind(styles);
 
-interface RadioInputProps {
-  value: string;
-  name?: string;
+interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+  name?: string; // fieldset안에서 name값이 같아야 하나만 checked가능
   label?: string;
 }
 
-export default function RadioInput({ value, label, name }: RadioInputProps) {
-  const [isChecked, setIsChecked] = useState(false);
-  const radioRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (radioRef.current) {
-      setIsChecked(radioRef.current.checked);
-      return;
-    }
-
-    setIsChecked(false);
-  }, [radioRef]);
-
-  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
-  };
-
-  const className = cn("radioBox", { checked: isChecked });
+export default forwardRef<HTMLInputElement, RadioInputProps>(function RadioInput(
+  { id, value, label, name, ...rest },
+  ref,
+) {
+  const className = cn("radioBox");
 
   return (
-    <label htmlFor={name} className={className}>
-      <Input
-        className={cn("input")}
-        type="radio"
-        name={name}
-        value={value}
-        ref={radioRef}
-        onChange={handleRadioChange}
-      />
+    <label htmlFor={id} className={className}>
+      <input ref={ref} id={id} className={cn("input")} type="radio" name={name} value={value} {...rest} />
       {label}
     </label>
   );
-}
+});

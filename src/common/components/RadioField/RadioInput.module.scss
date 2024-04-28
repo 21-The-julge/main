@@ -9,8 +9,8 @@
   border: 0.1rem solid $color-gray-30;
   background: $color-white;
   @include sopoqa-14-400;
+}
 
-  &.checked {
-    border: 0.1rem solid $color-primary;
-  }
+.checked {
+  border: 0.1rem solid $color-primary;
 }

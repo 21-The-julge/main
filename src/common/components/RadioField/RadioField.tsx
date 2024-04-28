@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import { ChangeEvent, InputHTMLAttributes, forwardRef, useState } from "react";
-
-import RadioInput from "./RadioInput";
+import { RadioInput } from "../parts";
 
 import styles from "./RadioField.module.scss";
 

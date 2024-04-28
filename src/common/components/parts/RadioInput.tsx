@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import { InputHTMLAttributes, forwardRef } from "react";
+import RadioToggle from "./RadioToggle";
 
 import styles from "./RadioInput.module.scss";
-import RadioToggle from "./RadioToggle";
 
 const cn = classNames.bind(styles);
 

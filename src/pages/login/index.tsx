@@ -12,8 +12,7 @@ const cn = classNames.bind(styles);
 export default function SignInPage() {
   return (
     <main className={cn("signInPage")}>
-      {/* route 경로 공고리스트 페이지로 수정 필요 */}
-      <Link className={cn("logoBox")} href="/">
+      <Link className={cn("logoBox")} href={ROUTE.HOME}>
         <ThejulgeLogo width={248} height={45} />
       </Link>
       <SignInForm />

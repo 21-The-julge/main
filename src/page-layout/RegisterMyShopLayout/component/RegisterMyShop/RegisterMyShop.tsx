@@ -58,15 +58,15 @@ export default function RegisterMyShopLayout() {
     address1: address,
     address2: detailedAddress,
     description,
-    imageUrl: data,
+    imageUrl: data?.item.url,
     originalHourlyPay: Number(hourlyRate),
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
 
-  const handleClickConfirm = () => {
-    shopDataMutate();
+  const handleClickConfirm = async () => {
+    await shopDataMutate();
     router.push("/my-shop");
   };
 

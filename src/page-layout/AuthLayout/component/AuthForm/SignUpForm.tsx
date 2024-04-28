@@ -49,9 +49,9 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<NewAccount>({
-    mode: "onTouched",
+    mode: "all",
     resolver: zodResolver(schema),
     defaultValues: {
       email: "",
@@ -64,7 +64,6 @@ export default function SignUpForm() {
   const { mutate: newAccount, isPending } = usePostSignUp();
 
   const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
-    // console.log(payload);
     newAccount(payload, {
       onSuccess: () => {
         setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
@@ -75,7 +74,7 @@ export default function SignUpForm() {
 
         if (axiosError.response) {
           const errorMessage = (axiosError.response.data as { message?: string }).message;
-          setAlertMessage(errorMessage || "");
+          setAlertMessage(errorMessage || "문제가 발생하였습니다");
         }
 
         setIsModalOpen((prevOpen) => !prevOpen);
@@ -119,7 +118,7 @@ export default function SignUpForm() {
 
         <RadioField {...register("type")} legend="회원 유형" name="type" options={FIELDSET_OPTION} />
 
-        <Button type="submit" size="large" disabled={isPending}>
+        <Button type="submit" size="large" disabled={!isValid}>
           가입하기
         </Button>
       </form>

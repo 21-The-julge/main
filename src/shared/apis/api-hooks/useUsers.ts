@@ -25,6 +25,7 @@ export function useGetUserData() {
       const { data } = await axiosInstanceToken(token).get(`/users/${userId}`);
       return data;
     },
+    enabled: !!token && !!userId,
   });
 }
 // 3. 내 정보 수정 PUT 요청

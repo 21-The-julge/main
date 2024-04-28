@@ -1,31 +1,59 @@
 import { create } from "zustand";
 
+import { ADDRESSES } from "@/common/constants";
+
 interface UserDataStoreState {
-  token: string;
-  userId: string;
+  token: string | null;
+  userId: string | null;
   type: "employer" | "employee" | null;
+  address: (typeof ADDRESSES)[number] | null;
   isLoggedIn: boolean;
+  shopId: string | null;
+  noticeId: string | null;
+  applicationId: string | null;
 
   resetAll: () => void;
 
   setToken: (text: string) => void;
   setUserId: (text: string) => void;
   setType: (text: "employer" | "employee" | null) => void;
+  setAddress: (text: (typeof ADDRESSES)[number] | null) => void;
   setLoggedIn: (value: boolean) => void;
+  setShopId: (value: string) => void;
+  setNoticeId: (value: string) => void;
+  setApplicationId: (value: string) => void;
 }
 
 const useUserDataStore = create<UserDataStoreState>((set) => ({
-  token: "",
-  userId: "",
+  token: null,
+  userId: null,
   type: null,
+  address: null,
   isLoggedIn: false,
+  shopId: null,
+  noticeId: null,
+  applicationId: null,
 
-  resetAll: () => set({ token: "", userId: "", type: null, isLoggedIn: false }),
+  resetAll: () =>
+    set({
+      token: null,
+      userId: null,
+      type: null,
+      isLoggedIn: false,
+      shopId: null,
+      noticeId: null,
+      applicationId: null,
+    }),
+
 
   setToken: (value) => set({ token: value }),
   setUserId: (value) => set({ userId: value }),
   setType: (value) => set({ type: value }),
+  setAddress: (value) => set({ address: value }),
   setLoggedIn: (value) => set({ isLoggedIn: value }),
+  setShopId: (value) => set({ shopId: value }),
+  setNoticeId: (value) => set({ noticeId: value }),
+  setApplicationId: (value) => set({ applicationId: value }),
 }));
 
 export default useUserDataStore;

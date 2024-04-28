@@ -3,7 +3,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale/ko";
 
-import { InputField } from "@/common/components/FieldGroup";
+import { InputField } from "@/common/components";
 
 import styles from "./StartDatePicker.module.scss";
 

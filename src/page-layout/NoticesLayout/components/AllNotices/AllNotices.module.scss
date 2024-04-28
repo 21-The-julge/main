@@ -1,5 +1,19 @@
 .container {
+  width: 100%;
+  max-width: 96.4rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
+}
+
+.notices {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+@include mobile {
+  .container {
+    gap: 1.6rem;
+  }
 }

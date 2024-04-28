@@ -77,26 +77,25 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
 
         <div className={cn("divider")} />
 
-        <FieldSet label="금액">
-          <div className={cn("pay")}>
-            <InputField
-              label="금액" // 편하신대로 골라쓰시면 될듯 합니다.
-              unit="원"
-              size="sm"
-              placeholder="입력"
-              className={cn("payInput")}
-              isError={!!errors.hourlyPayGte?.message}
-              errorMessage={errors.hourlyPayGte?.message}
-              {...register("hourlyPayGte", {
-                min: 0,
-                pattern: {
-                  value: /^\d+$/,
-                  message: "숫자만 입력해주세요",
-                },
-              })}
-            />
-          </div>
-        </FieldSet>
+        <div className={cn("pay")}>
+          <InputField
+            label="금액"
+            unit="원"
+            size="sm"
+            placeholder="입력"
+            className={cn("payInput")}
+            isError={!!errors.hourlyPayGte?.message}
+            errorMessage={errors.hourlyPayGte?.message}
+            {...register("hourlyPayGte", {
+              min: 0,
+              pattern: {
+                value: /^\d+$/,
+                message: "숫자만 입력해주세요",
+              },
+            })}
+          />
+          <p>이상부터</p>
+        </div>
 
         <div className={cn("buttons")}>
           <div>

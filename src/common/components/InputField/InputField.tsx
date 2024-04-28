@@ -39,10 +39,10 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
   },
   ref,
 ) {
-  const combinedClassName = cn("default", size, color, border, { error: isError }, className);
+  const combinedClassName = cn("default", size, color, border, { error: isError });
 
   return (
-    <div className={cn("inputField")}>
+    <div className={cn("inputField", className)}>
       {label && <Label label={label} htmlFor={name} required={rest.required} />}
       <div className={combinedClassName}>
         {prefix && <PrefixElement element={prefix} />}

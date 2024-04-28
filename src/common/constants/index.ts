@@ -69,6 +69,12 @@ export const ROUTE = {
   HOME: "/",
   LOGIN: "/login",
   SIGNUP: "/sign-up",
+  SEARCH: "/search",
+  NOTICES_DETAIL: "/notice-detail",
+  MY_NOTICE_DETAIL: "/my-notice-detail",
+} as const;
+
+export const END_POINT = {
   NOTICES: "/notices",
 } as const;
 

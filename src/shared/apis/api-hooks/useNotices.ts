@@ -38,6 +38,7 @@ export function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesD
       const { data } = await axiosInstance.get(`/shops/${shopId}/notices`, { params: { offset, limit } });
       return data;
     },
+    enabled: !!shopId,
   });
 }
 
@@ -64,6 +65,7 @@ export function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificSh
       const { data } = await axiosInstance.get(`/shops/${shopId}/notices/${noticeId}`);
       return data;
     },
+    enabled: !!shopId && !!noticeId,
   });
 }
 

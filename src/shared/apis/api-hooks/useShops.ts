@@ -35,7 +35,9 @@ export function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).put(`/shops/${shopId}`, bodyData);
+      const { data } = await axiosInstanceToken(
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZmNkMGJhOC1jZjhmLTRmY2YtOTdiMS04MmY2NTY3ZmU0Y2MiLCJpYXQiOjE3MTMyNDY1NjZ9.eexZyuw_-CoOfbHnPDF9RrAQNq9YWnLEQAesbCOlSo0",
+      ).put(`/shops/${shopId}`, bodyData);
       return data;
     },
   });

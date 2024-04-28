@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { ChangeEvent, InputHTMLAttributes, forwardRef, useState } from "react";
-import { RadioInput } from "../parts";
+
+import { Radio } from "../parts";
 
 import styles from "./RadioField.module.scss";
 
@@ -32,7 +33,7 @@ export default forwardRef<HTMLInputElement, RadioFieldProps>(function RadioField
       <legend className={cn("legend")}>{legend}</legend>
       <div className={cn("radioInputBox")}>
         {options.map((option) => (
-          <RadioInput
+          <Radio
             {...rest}
             ref={ref}
             key={option.id}

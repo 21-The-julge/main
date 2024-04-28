@@ -4,4 +4,4 @@ export { default as Label } from "./Label";
 export { default as Input } from "./Input";
 export { default as SuffixUnit } from "./SuffixUnit";
 export { default as SuffixIcon } from "./SuffixIcon";
-export { default as RadioInput } from "./RadioInput";
+export { default as Radio } from "./Radio";

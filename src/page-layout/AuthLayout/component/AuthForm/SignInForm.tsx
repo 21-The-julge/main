@@ -59,7 +59,7 @@ export default function SignInForm() {
     });
   };
 
-  const handleModalButtonClick = () => {
+  const handleModalClose = () => {
     setIsModalOpen(false);
     router.reload();
   };
@@ -92,7 +92,7 @@ export default function SignInForm() {
           로그인하기
         </Button>
       </form>
-      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalButtonClick} />}
+      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalClose} />}
     </>
   );
 }

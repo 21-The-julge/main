@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
@@ -22,7 +23,7 @@ export function useGetNoticesData({
   return useQuery({
     queryKey: ["GetNoticesData", { offset, limit, address, keyword, startsAtGte, hourlyPayGte, sort }],
     queryFn: async () => {
-      const { data } = await axiosInstance.get("/notices", {
+      const { data } = await axiosInstance.get(END_POINT.NOTICES, {
         params: { offset, limit, address, keyword, startsAtGte, hourlyPayGte },
       });
       return data;
@@ -35,7 +36,9 @@ export function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesD
   return useQuery({
     queryKey: ["GetShopNoticesData", { shopId, offset, limit }],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/shops/${shopId}/notices`, { params: { offset, limit } });
+      const { data } = await axiosInstance.get(`${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}`, {
+        params: { offset, limit },
+      });
       return data;
     },
     enabled: !!shopId,
@@ -62,7 +65,7 @@ export function useGetSpecificShopNoticeData({ shopId, noticeId }: GetSpecificSh
   return useQuery({
     queryKey: ["GetSpecificShopNoticeData", { shopId, noticeId }],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/shops/${shopId}/notices/${noticeId}`);
+      const { data } = await axiosInstance.get(`${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}/${noticeId}`);
       return data;
     },
     enabled: !!shopId && !!noticeId,
@@ -74,7 +77,10 @@ export function usePutNoticeData({ shopId, noticeId, bodyData }: PutNoticeDataPa
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {
-      const { data } = await axiosInstanceToken(token).put(`/shops/${shopId}/notices/${noticeId}`, bodyData);
+      const { data } = await axiosInstanceToken(token).put(
+        `${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}/${noticeId}`,
+        bodyData,
+      );
       return data;
     },
   });

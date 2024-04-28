@@ -1,3 +1,4 @@
+import { END_POINT } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import { useMutation } from "@tanstack/react-query";
 import { axiosInstanceToken } from "../axiosInstance";
@@ -8,7 +9,7 @@ export default function usePostPresignedURL() {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async (bodyData: PostPresignedURLParams) => {
-      const { data } = await axiosInstanceToken(token).post("/images", bodyData);
+      const { data } = await axiosInstanceToken(token).post(END_POINT.IMAGES, bodyData);
       return data;
     },
   });

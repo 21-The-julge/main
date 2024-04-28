@@ -25,9 +25,9 @@ interface ShopInfo {
 
 const schema = z.object({
   name: z.string().min(1, { message: "가게 이름은 필수값입니다." }),
-  address: z.string().min(1, { message: "주소는 필수값입니다." }),
+  address: z.string().min(0, { message: "주소는 필수값입니다." }),
   detailedAddress: z.string().min(1, { message: "상세 주소는 필수값입니다." }),
-  classification: z.string().min(1, { message: "분류는 필수값입니다." }),
+  classification: z.string().min(0, { message: "분류는 필수값입니다." }),
   hourlyRate: z.string().min(1, { message: "시급은 필수값입니다." }),
 });
 

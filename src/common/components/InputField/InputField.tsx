@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef } from "react";
+import { HTMLInputTypeAttribute, InputHTMLAttributes, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./InputField.module.scss";
@@ -8,7 +8,7 @@ import { PrefixElement, ErrorMessage, Input, SuffixUnit, Label } from "../parts/
 const cn = classNames.bind(styles);
 interface InputFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   name?: string;
-  type?: "text" | "email" | "password" | "search";
+  type?: HTMLInputTypeAttribute;
   value?: string | number;
   label?: string;
   unit?: "원" | "시간";

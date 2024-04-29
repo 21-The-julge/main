@@ -46,7 +46,7 @@ export default function MyShop() {
   return (
     <RootLayout>
       <MyProfile myProfile={registeredMyPofile} isPending={isPending} />
-      {registeredMyPofile ? <ApplicationDetail registerNoticeData={registerNoticeData} /> : null}
+      {registeredMyPofile?.bio ? <ApplicationDetail registerNoticeData={registerNoticeData} /> : null}
     </RootLayout>
   );
 }

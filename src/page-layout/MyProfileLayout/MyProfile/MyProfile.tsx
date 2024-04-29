@@ -25,7 +25,7 @@ export default function MyProfile({ myProfile, isPending }: MyProfileProps) {
   if (isPending) {
     return <PostSkeleton className={cn("skeleton")} />;
   }
-  if (!myProfile) {
+  if (!myProfile?.bio) {
     return <RegisterMyProfile />;
   }
 

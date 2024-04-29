@@ -3,6 +3,7 @@ import Button from "@/common/components/Button/Button";
 
 import { useRouter } from "next/router";
 import styles from "@/page-layout/MyProfileLayout/MyProfile/RegisterMyProfile/RegisterMyProfile.module.scss";
+import { ROUTE } from "@/common/constants";
 
 const cn = classNames.bind(styles);
 
@@ -10,8 +11,7 @@ export default function RegisterMyProfile() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
-    // TODO: 가게 정보 등록 페이지로 이동해야함
+    router.push(ROUTE.POSTPROFILE);
   };
 
   return (

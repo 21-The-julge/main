@@ -37,12 +37,14 @@ export default function GetUserData() {
     if (userData) {
       setShopIdFromData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
   useEffect(() => {
     if (shopData) {
       setNoticeIdFromData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shopData]);
 
   return {

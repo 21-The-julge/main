@@ -14,6 +14,7 @@ import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import Camera from "@/images/ic_camera.svg";
 import styles from "@/page-layout/EditMyShopLayout/component/EditMyShop/EditMyShop.module.scss";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
+import Image from "next/image";
 
 interface ShopInfo {
   name: string;
@@ -50,7 +51,7 @@ export default function EditMyShopLayout() {
   const [address, setAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
-  const [img, setImg] = useState<string | ArrayBuffer>("");
+  const [img, setImg] = useState<string>("");
   const [description, setDescription] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const { data, mutate } = usePostPresignedURL();
@@ -103,7 +104,7 @@ export default function EditMyShopLayout() {
         if (reader.result) {
           const imgData = reader.result;
 
-          setImg(imgData);
+          setImg(imgData as string);
           if (file?.name) {
             mutate({ name: file?.name });
           }
@@ -143,7 +144,7 @@ export default function EditMyShopLayout() {
       setValue("detailedAddress", shopData.item.address2);
       setValue("hourlyRate", shopData.item.originalHourlyPay.toString());
     }
-  }, [shopData]);
+  }, [shopData, setValue]);
 
   return (
     <div className={cn("container")}>
@@ -211,7 +212,7 @@ export default function EditMyShopLayout() {
           <div className={cn("imgContainer")}>
             <p className={cn("imgTitle")}>가게 이미지</p>
             <div className={cn("imgBox")}>
-              {img && <img className={cn("img", { data })} src={img} alt="이미지 미리보기" />}
+              {img && <Image className={cn("img", { data })} src={img} alt="이미지 미리보기" />}
               <label className={cn("inputLabel", { data })} htmlFor="file">
                 <div className={cn("imgAddContainer")}>
                   <Camera width={32} height={32} fill="#FFFFFF" />

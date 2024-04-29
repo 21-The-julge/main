@@ -40,6 +40,8 @@ export default function RegisterMyShopLayout() {
   const imgRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [address1Value, setAddress1Value] = useState("");
+  const [categoryValue, setCategoryValue] = useState("");
 
   const { mutate: postPresignedURL } = usePostPresignedURL();
   const { mutate: postShopInfo } = usePostShopData();
@@ -66,6 +68,16 @@ export default function RegisterMyShopLayout() {
       description: "",
     },
   });
+
+  const handleAddress1Click = (option: string) => {
+    setValue("address1", option, { shouldValidate: true });
+    setAddress1Value(option);
+  };
+
+  const handleCategoryClick = (option: string) => {
+    setValue("category", option, { shouldValidate: true });
+    setCategoryValue(option);
+  };
 
   const onImageUpload = () => {
     const file = imgRef.current?.files?.[0];
@@ -100,14 +112,14 @@ export default function RegisterMyShopLayout() {
     console.log(data);
     postShopInfo(data, {
       onSuccess: (response) => {
-        console.log("성공", response);
+        // console.log("성공", response);
         setUserData.setShopId(response.shopId);
         setAlertMessage(MESSAGES.SUCCESS);
         setIsModalOpen((prev) => !prev);
       },
-      onError: (error) => {
-        console.error("실패", error);
-      },
+      // onError: (error) => {
+      //   console.error("실패", error);
+      // },
     });
   };
 
@@ -141,25 +153,24 @@ export default function RegisterMyShopLayout() {
             <Dropdown
               {...register("category")}
               name="category"
+              value={categoryValue}
               options={CATEGORIES}
               placeholder="선택"
               label="분류"
+              onOptionClick={handleCategoryClick}
               isError={!!errors.category}
               errorMessage={errors.category?.message}
             />
-            <Controller
+            <Dropdown
+              {...register("address1")}
               name="address1"
-              control={control}
-              render={({ field: { onChange, value, ...field } }) => (
-                <Dropdown
-                  {...field}
-                  options={ADDRESSES}
-                  placeholder="선택"
-                  label="주소"
-                  isError={!!errors.address1}
-                  errorMessage={errors.address1?.message}
-                />
-              )}
+              value={address1Value}
+              options={ADDRESSES}
+              placeholder="선택"
+              label="주소"
+              onOptionClick={handleAddress1Click}
+              isError={!!errors.address1}
+              errorMessage={errors.address1?.message}
             />
             <InputField
               {...register("address2")}

@@ -20,6 +20,7 @@ interface DropdownProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "siz
   required?: boolean;
   isError?: boolean;
   errorMessage?: string;
+  value?: string | number | readonly string[] | undefined;
 }
 
 export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
@@ -33,13 +34,12 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
     color = "white",
     className,
     label,
+    value,
     ...rest
   },
   ref,
 ) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
-
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleDropdownClick = () => {
@@ -47,11 +47,9 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
   };
 
   const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
     setIsOpen(false);
 
     onOptionClick?.(option);
-    console.log(selectedOption);
   };
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
@@ -63,16 +61,7 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
       <div className={cn("field")}>
         {label && <Label label={label} htmlFor={name} required={rest.required} />}
         <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
-          <Input
-            ref={ref}
-            name={name}
-            value={selectedOption}
-            readOnly
-            size={size}
-            cursor="pointer"
-            color={color}
-            {...rest}
-          />
+          <Input ref={ref} name={name} value={value} readOnly size={size} cursor="pointer" color={color} {...rest} />
           <SuffixIcon icon="triangle" isOpen={isOpen} />
         </button>
         {isError && <ErrorMessage message={errorMessage} />}

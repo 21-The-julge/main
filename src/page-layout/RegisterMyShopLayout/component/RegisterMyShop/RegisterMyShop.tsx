@@ -1,29 +1,23 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/RegisterMyShopLayout/component/RegisterMyShop/RegisterMyShop.module.scss";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import Image from "next/image";
 
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import axios from "axios";
+
+import { ADDRESSES, CATEGORIES, MESSAGES, ROUTE } from "@/common/constants";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
+import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
+
 import Camera from "@/images/ic_camera.svg";
 import Close from "@/images/ic_close.svg";
 
-import { ADDRESSES, CATEGORIES, MESSAGES } from "@/common/constants";
-import { useRef, useState } from "react";
 import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
-import axios from "axios";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
-// import { useRouter } from "next/router";
-import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
-
-// interface ShopInfo {
-//   name: string;
-//   address: string;
-//   detailedAddress: string;
-//   hourlyRate: number;
-//   classification: string;
-// }
 
 const schema = z.object({
   name: z.string().min(1, { message: "가게 이름은 필수값입니다." }),
@@ -40,7 +34,7 @@ const cn = classNames.bind(styles);
 type ShopInfo = z.infer<typeof schema>;
 
 export default function RegisterMyShopLayout() {
-  // const router = useRouter();
+  const router = useRouter();
   const [img, setImg] = useState<string>("");
   const imgRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -64,8 +58,8 @@ export default function RegisterMyShopLayout() {
     mode: "onTouched",
     defaultValues: {
       name: "",
-      category: "중식",
-      address1: "서울시 송파구",
+      category: "",
+      address1: "",
       address2: "",
       originalHourlyPay: 0,
       imageUrl: "",
@@ -119,6 +113,12 @@ export default function RegisterMyShopLayout() {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+
+    if (alertMessage === MESSAGES.SUCCESS) {
+      router.replace(ROUTE.MYSHOP);
+    }
+
+    // router.reload();
   };
 
   return (

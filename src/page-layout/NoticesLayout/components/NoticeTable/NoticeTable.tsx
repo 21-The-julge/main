@@ -7,6 +7,7 @@ import { Button } from "@/common/components";
 import classNames from "classnames/bind";
 import { GetShopApplicationsDataType } from "@/page-layout/NoticesLayout/type";
 import { useGetShopApplicationsData, usePutApplicationData } from "@/shared/apis/api-hooks";
+import { EMPLOYEE_COLUMN } from "@/common/constants/index";
 import styles from "./NoticeTable.module.scss";
 
 interface NoticeTableProps {
@@ -27,7 +28,7 @@ interface EmployeeTableData {
 const cn = classNames.bind(styles);
 
 export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
-  const { data: getShopApplicationsData } = useGetShopApplicationsData({ shopId, noticeId, limit: 100 }) as {
+  const { data: shopApplicationsData } = useGetShopApplicationsData({ shopId, noticeId, limit: 100 }) as {
     data: GetShopApplicationsDataType;
   };
   const [employeeTableData, setEmployeeTableData] = useState<EmployeeTableData[]>([]);
@@ -40,6 +41,8 @@ export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
   const lastItemIndex = currentPage * itemsPageCount;
   const firstItemIndex = lastItemIndex - itemsPageCount;
   const currentPageItems = employeeTableData.slice(firstItemIndex, lastItemIndex);
+
+  const employeeColumns: TableHeader[] = EMPLOYEE_COLUMN;
 
   const { mutate: applicationAccept } = usePutApplicationData({
     shopId,
@@ -63,10 +66,10 @@ export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
     });
     setEmployeeTableData(updatedEmployees);
     if (newStatus === "accepted") {
-      setApplicationId(getShopApplicationsData.items[index].item.id);
+      setApplicationId(shopApplicationsData.items[index].item.id);
       applicationAccept();
     } else if (newStatus === "rejected") {
-      setApplicationId(getShopApplicationsData.items[index].item.id);
+      setApplicationId(shopApplicationsData.items[index].item.id);
       applicationReject();
     }
   };
@@ -117,21 +120,14 @@ export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
     );
   };
 
-  const employeeColumns: TableHeader[] = [
-    { header: "이름", accessor: "name" },
-    { header: "간략한 소개", accessor: "bio" },
-    { header: "전화번호", accessor: "phone" },
-    { header: "지원 상태", accessor: "status" },
-  ];
-
   const dataFrom = currentPageItems.map((employee, index) => ({
     ...employee,
     status: statusFormatData(index + firstItemIndex, employee.status),
   }));
 
   useEffect(() => {
-    if (getShopApplicationsData) {
-      const applicationsData: EmployeeTableData[] = getShopApplicationsData?.items.map((item) => {
+    if (shopApplicationsData) {
+      const applicationsData: EmployeeTableData[] = shopApplicationsData?.items.map((item) => {
         const user = item.item.user.item;
         return {
           name: user.name,
@@ -142,7 +138,7 @@ export default function NoticeTable({ shopId, noticeId }: NoticeTableProps) {
       });
       setEmployeeTableData(applicationsData);
     }
-  }, [getShopApplicationsData]);
+  }, [shopApplicationsData]);
 
   return (
     <div className={cn("noticesTableContainer")}>

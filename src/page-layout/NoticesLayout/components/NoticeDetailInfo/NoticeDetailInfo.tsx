@@ -9,7 +9,7 @@ import { useGetSpecificShopNoticeData } from "@/shared/apis/api-hooks";
 import NoticeMessage from "@/shared/components/Post/NoticeMessage/NoticeMessage";
 import styles from "./NoticeDetailInfo.module.scss";
 import NoticeDetailButtonAndModal from "./NoticeDetailButtonAndModal/NoticeDetailButtonAndModal";
-
+import { BLUR_DATA_URL } from "@/common/constants/index";
 interface NoticeDetailInfoProps {
   shopId: string;
   noticeId: string;
@@ -45,7 +45,7 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
               fill
               priority
               sizes="(max-width: 757px) 100vw, (max-width: 1024px) 539px, 308px"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
           <div className={cn("noticeDetail", "titleFont")}>

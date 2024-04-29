@@ -8,7 +8,7 @@ import addComma from "@/shared/components/Post/utils/addComma";
 
 import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
-import DefaultImg from "@/images/defaultImg.svg";
+import IcDefaultImage from "@/images/ic_default_image.svg";
 
 import { PostProps } from "@/page-layout/MyShopLayout/type";
 import NoticeMessage from "./NoticeMessage/NoticeMessage";
@@ -36,7 +36,7 @@ export default function Post({
         <NoticeMessage isPast={isPast} closed={closed} />
         <Image
           className={cn("img")}
-          src={imageUrl || DefaultImg}
+          src={imageUrl || IcDefaultImage}
           alt="식당 공고"
           fill
           placeholder="blur"

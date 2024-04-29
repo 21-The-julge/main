@@ -2,7 +2,7 @@ import { ROUTE } from "@/common/constants/index";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import classNames from "classnames/bind";
 import Button from "@/common/components/Button/Button";
-import Phone from "@/images/ic_phone.svg";
+import IcPhone from "@/images/ic_phone.svg";
 import Locatoin from "@/images/ic_location.svg";
 import { useRouter } from "next/router";
 import styles from "@/page-layout/MyProfileLayout/MyProfile/ShowMyProfile/ShowMyProfile.module.scss";
@@ -42,7 +42,7 @@ export default function ShowMyProfile({ myProfile }: ShowMyShopProps) {
                   <p className={cn("apiName")}>{myProfile.name}</p>
                 </div>
                 <div className={cn("phoneNumberContainer")}>
-                  <Phone className={cn("phone")} />
+                  <IcPhone className={cn("phone")} />
                   <p className={cn("phoneNumber")}>{myProfile.phone}</p>
                 </div>
                 <div className={cn("locationContainer")}>

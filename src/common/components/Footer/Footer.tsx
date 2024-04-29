@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
-import IC_ENVELOPE from "@/images/ic_envelope-square.svg";
-import IC_FACEBOOK from "@/images/ic_facebook-square.svg";
-import IC_INSTAGRAM from "@/images/ic_instagram.svg";
+import IcEnvelopeSquare from "@/images/ic_envelope-square.svg";
+import IcFacebookSquare from "@/images/ic_facebook-square.svg";
+import IcInstagram from "@/images/ic_instagram.svg";
 
 import styles from "./Footer.module.scss";
 
@@ -18,9 +18,9 @@ export default function Footer() {
           <div>FAQ</div>
         </div>
         <div className={cn("linkIcons")}>
-          <IC_ENVELOPE className={cn("icon")} fill={color} />
-          <IC_FACEBOOK className={cn("icon")} fill={color} />
-          <IC_INSTAGRAM className={cn("icon")} fill={color} />
+          <IcEnvelopeSquare className={cn("icon")} fill={color} />
+          <IcFacebookSquare className={cn("icon")} fill={color} />
+          <IcInstagram className={cn("icon")} fill={color} />
         </div>
       </div>
     </div>

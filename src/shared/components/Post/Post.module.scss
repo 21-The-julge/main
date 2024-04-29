@@ -72,6 +72,19 @@
     text-overflow: ellipsis;
     display: block;
     overflow: hidden;
+
+    .hidePrice {
+      background-color: $color-gray-50;
+      @include sopoqa-14-400;
+      position: absolute;
+      display: none;
+    }
+
+    &:hover {
+      .hidePrice {
+        display: block;
+      }
+    }
   }
 
   .priceContent {

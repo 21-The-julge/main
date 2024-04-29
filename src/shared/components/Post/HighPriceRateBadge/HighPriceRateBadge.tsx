@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "@/shared/components/Post/HighPriceRateBadge/HighPriceRateBadge.module.scss";
-import ArrowUp from "@/images/ic_arrowUp.svg";
+import IcArrowUp from "@/images/ic_arrowUp.svg";
 
 const cn = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ export default function HighPriceRateBadge({ closed, isPast, hourlyPay, original
   return (
     <div className={cn("badge", { closed, isPast }, isPast || color)}>
       <span className={cn("percentage")}>기존 시급보다 {percentage}%</span>
-      <ArrowUp className={cn("svg")} width="2rem" height="2rem" fill="white" />
+      <IcArrowUp className={cn("svg")} width="2rem" height="2rem" fill="white" />
     </div>
   );
 }

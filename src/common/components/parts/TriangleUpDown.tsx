@@ -1,4 +1,4 @@
-import IC_TRIANGLE_DOWN from "@/images/ic_triangle_down.svg";
+import IcTriangleDown from "@/images/ic_triangle_down.svg";
 
 import classNames from "classnames/bind";
 import styles from "./TriangleUpDown.module.scss";
@@ -14,7 +14,7 @@ export default function TriangleUpDown({ isOpen }: TriangleUpDownProps) {
 
   return (
     <div className={className}>
-      <IC_TRIANGLE_DOWN width={16} height={16} />
+      <IcTriangleDown width={16} height={16} />
     </div>
   );
 }

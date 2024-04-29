@@ -12,8 +12,8 @@ import {
   usePutApplicationData,
 } from "@/shared/apis/api-hooks";
 import { useRouter } from "next/router";
-import styles from "./NoticeDetailButtonAndModal.module.scss";
 import { ROUTE } from "@/common/constants/index";
+import styles from "./NoticeDetailButtonAndModal.module.scss";
 
 interface NoticeDetailButtonAndModalProps {
   shopId: string;

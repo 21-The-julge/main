@@ -40,10 +40,12 @@ export default function Pagination({ currentPage, totalPage, onPageClick, pageNu
 
   return (
     <div className={cn("pagination")}>
-      <button type="button" aria-label="처음 페이지로" onClick={() => onPageClick(1)}>
-        <LeftArrowDoubleIcon className={cn("buttonArrow")} />
-      </button>
-      {currentPageGroup > 0 && (
+      {totalPage > pageNumberLimit && (
+        <button type="button" aria-label="처음 페이지로" onClick={() => onPageClick(1)}>
+          <LeftArrowDoubleIcon className={cn("buttonArrow")} />
+        </button>
+      )}
+      {totalPage > pageNumberLimit && (
         <button type="button" aria-label="이전 페이지 그룹" onClick={movePrevGroup}>
           <LeftArrowIcon className={cn("buttonArrow")} />
         </button>
@@ -61,12 +63,16 @@ export default function Pagination({ currentPage, totalPage, onPageClick, pageNu
           </button>
         ))}
       </div>
-      <button type="button" aria-label="다음 페이지 그룹" onClick={moveNextGroup}>
-        <RightArrowIcon className={cn("buttonArrow")} />
-      </button>
-      <button type="button" aria-label="마지막 페이지로" onClick={() => onPageClick(totalPage)}>
-        <RightArrowDoubleIcon className={cn("buttonArrow")} />
-      </button>
+      {totalPage > pageNumberLimit && (
+        <button type="button" aria-label="다음 페이지 그룹" onClick={moveNextGroup}>
+          <RightArrowIcon className={cn("buttonArrow")} />
+        </button>
+      )}
+      {totalPage > pageNumberLimit && (
+        <button type="button" aria-label="마지막 페이지로" onClick={() => onPageClick(totalPage)}>
+          <RightArrowDoubleIcon className={cn("buttonArrow")} />
+        </button>
+      )}
     </div>
   );
 }

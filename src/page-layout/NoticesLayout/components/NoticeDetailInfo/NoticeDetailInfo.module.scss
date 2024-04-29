@@ -1,0 +1,178 @@
+.noticeInfoContainer {
+  display: flex;
+  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  flex-direction: column;
+  align-items: center;
+  background: $color-gray-5;
+  @include tablet {
+    padding: 6rem 3.2rem;
+  }
+  @include mobile {
+    padding: 4rem 1.2rem;
+  }
+}
+
+.noticeInfoContent {
+  display: flex;
+  width: 100%;
+  max-width: 96.4rem;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.titleFont {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  h1 {
+    color: $color-black;
+    @include sopoqa-28-700;
+  }
+
+  h2 {
+    color: $color-primary;
+    @include sopoqa-16-700;
+  }
+}
+
+.detailFrame {
+  display: flex;
+  padding: 2.4rem;
+  gap: 3rem;
+  align-items: flex-start;
+  border: 0.1rem solid $color-gray-20;
+  border-radius: 1.2rem;
+  background: $color-white;
+  @include tablet {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+  @include mobile {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+.noticeImg {
+  width: 53.9rem;
+  height: 30.8rem;
+  position: relative;
+  .img {
+    border-radius: 1.2rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @include tablet {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.75 / 1;
+  }
+
+  @include mobile {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.75 / 1;
+  }
+}
+
+.noticeDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 34.6rem;
+  height: 30.8rem;
+  @include tablet {
+    max-width: none;
+    height: 100%;
+  }
+  @include mobile {
+    max-width: none;
+    height: 100%;
+  }
+}
+
+.wage {
+  > div {
+    color: $color-black;
+    @include sopoqa-28-700;
+  }
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.clock,
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  @include sopoqa-16-400;
+  color: $color-gray-50;
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.shopDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+  color: $color-black;
+  @include sopoqa-16-400;
+  @include tablet {
+    flex-grow: 0;
+    -webkit-line-clamp: 5;
+  }
+  @include mobile {
+    flex-grow: 0;
+    -webkit-line-clamp: 5;
+  }
+}
+
+.noticeDescription {
+  display: flex;
+  width: 100%;
+  padding: 3.2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 1.2rem;
+  background: $color-gray-10;
+  gap: 1.2rem;
+
+  > h1 {
+    color: $color-black;
+    @include sopoqa-16-700;
+  }
+  > p {
+    word-break: break-word;
+    color: $color-black;
+    @include sopoqa-16-400;
+  }
+}
+
+@include tablet {
+  .detailFrame {
+    flex-direction: column;
+  }
+  .applicationButton {
+    margin-top: 2.8rem;
+    max-width: none;
+    width: 100%;
+  }
+}
+
+@include mobile {
+  .applicationButton {
+    margin-top: 1;
+    max-width: none;
+    width: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+.NoticesRecentContainer {
+  display: flex;
+  padding-top: 6rem;
+  padding-bottom: 12rem;
+  flex-direction: column;
+  align-items: center;
+  background: $color-gray-5;
+  @include tablet {
+    padding: 6rem 3.2rem;
+  }
+  @include mobile {
+    padding: 4rem 1.2rem 8rem 1.2rem;
+  }
+}
+
+.contextFrame {
+  display: flex;
+  width: 100%;
+  max-width: 97.6rem;
+  flex-direction: column;
+  gap: 3.2rem;
+  > h1 {
+    color: $color-black;
+    @include sopoqa-28-700;
+  }
+  .postFrame {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.postFrame {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.NoticesRecentNot {
+  @include pretendard-18-500;
+}

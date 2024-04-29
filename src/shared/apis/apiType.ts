@@ -48,10 +48,34 @@ export interface GetNoticesDataParams {
   sort?: "time" | "pay" | "hour" | "shop";
 }
 
+export interface ShopNoticeData {
+  items: [];
+}
+
 export interface GetShopNoticesDataParams {
   shopId: string | null;
   offset?: number;
   limit?: number;
+}
+
+export interface Item {
+  item: {
+    id: string;
+    hourlyPay: number;
+    startsAt: string;
+    workhour: number;
+    closed: boolean;
+  };
+}
+
+export interface Items {
+  items: Item[];
+}
+
+export interface ApiResponse {
+  pageParams: [number];
+  pages: Items[];
+  items: Item[];
 }
 
 export interface GetSpecificShopNoticeDataParams {

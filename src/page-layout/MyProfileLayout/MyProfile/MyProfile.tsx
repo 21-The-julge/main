@@ -1,5 +1,10 @@
+import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
+import classNames from "classnames/bind";
+import styles from "@/page-layout/MyProfileLayout/MyProfile/ShowMyProfile/ShowMyProfile.module.scss";
 import RegisterMyProfile from "./RegisterMyProfile/RegisterMyProfile";
 import ShowMyProfile from "./ShowMyProfile/ShowMyProfile";
+
+const cn = classNames.bind(styles);
 
 interface MyProfileProps {
   myProfile:
@@ -13,8 +18,16 @@ interface MyProfileProps {
         bio: string;
       }
     | undefined;
+  isPending: boolean;
 }
 
-export default function MyProfile({ myProfile }: MyProfileProps) {
-  return myProfile ? <ShowMyProfile myProfile={myProfile} /> : <RegisterMyProfile />;
+export default function MyProfile({ myProfile, isPending }: MyProfileProps) {
+  if (isPending) {
+    return <PostSkeleton className={cn("skeleton")} />;
+  }
+  if (!myProfile) {
+    return <RegisterMyProfile />;
+  }
+
+  return <ShowMyProfile myProfile={myProfile} />;
 }

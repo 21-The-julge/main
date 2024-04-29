@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import IC_SEARCH from "@/images/ic_search.svg";
+import IcSearch from "@/images/ic_search.svg";
 import styles from "./CreateCards.module.scss";
 
 const cn = classNames.bind(styles);
@@ -18,7 +18,7 @@ export default function CreateCards({ name, startsAt, createdAt, result }: Creat
 
   return (
     <div className={cn("card")}>
-      <IC_SEARCH className={cn("icon")} fill={alertColor} />
+      <IcSearch className={cn("icon")} fill={alertColor} />
       <div className={cn("textContainer")}>
         {name}({startsAt})
         <br />

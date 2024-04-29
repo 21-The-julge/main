@@ -5,7 +5,7 @@ import styles from "@/page-layout/MyShopLayout/component/MyShop/ShowMyShop/ShowM
 
 import Button from "@/common/components/Button/Button";
 import Location from "@/images/ic_location.svg";
-import DefaultImg from "@/images/defaultImg.svg";
+import IcDefaultImage from "@/images/ic_default_image.svg";
 
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -34,7 +34,7 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
       <div className={cn("img")}>
         <Image
           fill
-          src={myShopData?.imageUrl ? myShopData?.imageUrl : DefaultImg}
+          src={myShopData?.imageUrl ? myShopData?.imageUrl : IcDefaultImage}
           alt="내 가게"
           sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
         />

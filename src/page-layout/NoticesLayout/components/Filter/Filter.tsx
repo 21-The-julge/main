@@ -4,10 +4,9 @@ import classNames from "classnames/bind";
 
 import { Button, InputField } from "@/common/components";
 import CloseIcon from "@/images/ic_close.svg";
+import { StartDatePicker } from "@/shared/components";
 import AddressSelector from "./AddressSelector";
-import StartDatePicker from "./StartDatePicker";
 import FieldSet from "./FieldSet";
-
 import styles from "./Filter.module.scss";
 
 const cn = classNames.bind(styles);
@@ -67,6 +66,7 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
             name="startsAtGte"
             render={({ field: { value, onChange } }) => (
               <StartDatePicker
+                className={cn("customInput")}
                 startDate={new Date(value)}
                 onChange={(date: Date) => onChange(formatRFC3339(addMinutes(date, 2)))}
               />

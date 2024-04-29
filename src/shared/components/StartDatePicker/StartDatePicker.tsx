@@ -12,11 +12,12 @@ const cn = classNames.bind(styles);
 registerLocale("ko", ko);
 
 interface StartDatePickerProps {
+  className: string;
   startDate: Date | null;
   onChange: (date: Date) => void;
 }
 
-export default function StartDatePicker({ startDate, onChange }: StartDatePickerProps) {
+export default function StartDatePicker({ className, startDate, onChange }: StartDatePickerProps) {
   return (
     <DatePicker
       selected={startDate}
@@ -25,7 +26,7 @@ export default function StartDatePicker({ startDate, onChange }: StartDatePicker
       dateFormat="yyyy년 MM월 dd일"
       locale="ko"
       wrapperClassName={cn("datePicker")}
-      customInput={<InputField className={cn("customInput")} />}
+      customInput={<InputField className={className} />}
     />
   );
 }

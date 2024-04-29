@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
-import IC_CLOSE from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePutUserData } from "@/shared/apis/api-hooks";
@@ -56,7 +56,7 @@ export default function PostNoticeLayout() {
       <div className={cn("container")}>
         <div className={cn("inputHeader")}>
           <div className={cn("text")}>내 프로필</div>
-          <IC_CLOSE className={cn("icon")} fill="#000" onClick={onClose} />
+          <IcClose className={cn("icon")} fill="#000" onClick={onClose} />
         </div>
         <PostProfileForm
           handleModalOpen={handleModalOpen}

@@ -32,7 +32,7 @@ export function useGetShopData(shopId: string | null) {
 }
 
 // 3. 가게 정보 수정 PUT 요청
-export function usePutShopData(shopId: string, bodyData: PutShopDataParams) {
+export function usePutShopData(shopId: string | null, bodyData: PutShopDataParams) {
   const { token } = useUserDataStore();
   const mutation = useMutation({
     mutationFn: async () => {

@@ -26,6 +26,7 @@ export default forwardRef<HTMLInputElement, RadioFieldProps>(function RadioField
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsSelected(e.target.value);
+    rest.onChange?.(e);
   };
 
   return (
@@ -35,14 +36,14 @@ export default forwardRef<HTMLInputElement, RadioFieldProps>(function RadioField
         {options.map((option) => (
           <Radio
             {...rest}
+            checked={isSelected === option.value}
+            onChange={handleChange}
             ref={ref}
             key={option.id}
             id={option.id}
-            value={option.value}
             name={name}
             label={option.label}
-            checked={isSelected === option.value}
-            onChange={handleChange}
+            value={option.value}
           />
         ))}
       </div>

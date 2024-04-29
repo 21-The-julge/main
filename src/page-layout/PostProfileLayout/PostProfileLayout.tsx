@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import IC_CLOSE from "@/images/ic_close.svg";
+
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePutUserData } from "@/shared/apis/api-hooks";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
@@ -20,10 +21,11 @@ export default function PostNoticeLayout() {
     address: "",
     bio: "",
   });
-  const { userId } = useUserDataStore();
-  const { mutate } = usePutUserData(inputValue);
 
-  const handleClose = () => {
+  const { userId } = useUserDataStore();
+  const { mutate: putUserData, error } = usePutUserData(inputValue);
+
+  const onClose = () => {
     router.push(`/users/${userId}`);
   };
 
@@ -38,10 +40,14 @@ export default function PostNoticeLayout() {
 
   const handleModalOpen = () => {
     setIsModalOpen((prev) => !prev);
+    putUserData();
   };
 
   const handleConfirmButtonClick = () => {
-    mutate();
+    if (error) {
+      setIsModalOpen(false);
+      return;
+    }
     router.push(`/users/${userId}`);
   };
 
@@ -50,15 +56,22 @@ export default function PostNoticeLayout() {
       <div className={cn("container")}>
         <div className={cn("inputHeader")}>
           <div className={cn("text")}>내 프로필</div>
-          <IC_CLOSE className={cn("icon")} fill="#000" onClick={handleClose} />
+          <IC_CLOSE className={cn("icon")} fill="#000" onClick={onClose} />
         </div>
         <PostProfileForm
           handleModalOpen={handleModalOpen}
           handleInputChange={handleInputChange}
           onOptionClick={onOptionClick}
+          inputValue={inputValue}
         />
       </div>
-      {isModalOpen && <ConfirmModal className={cn("alertModal")} message="모달창" onClick={handleConfirmButtonClick} />}
+      {isModalOpen && (
+        <ConfirmModal
+          className={cn("alertModal")}
+          message={error?.message ? "잘못된 요청입니다." : "프로필이 동록되었습니다."}
+          onClick={handleConfirmButtonClick}
+        />
+      )}
     </div>
   );
 }

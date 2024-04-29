@@ -15,19 +15,19 @@ import UserAction from "./GnbComponents/UserAction";
 
 const cn = classNames.bind(styles);
 
-interface SearchBar {
+interface Input {
   keyword: string;
 }
 
 export default function Gnb() {
   const router = useRouter();
 
-  const { register, handleSubmit } = useForm<SearchBar>();
+  const { register, handleSubmit } = useForm<Input>();
 
-  const onSubmit: SubmitHandler<SearchBar> = (keyword) => {
+  const onSubmit: SubmitHandler<Input> = (data) => {
     router.push({
       pathname: ROUTE.SEARCH,
-      query: { ...keyword },
+      query: { ...data },
     });
   };
 

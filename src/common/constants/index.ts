@@ -97,3 +97,8 @@ export const SORT = SORT_OPTIONS.map((option, index) => ({
   value: SORT_VALUE[index],
   option,
 }));
+
+export const FIELDSET_OPTION = [
+  { id: "employee", value: "employee", label: "알바님" },
+  { id: "employer", value: "employer", label: "사장님" },
+];

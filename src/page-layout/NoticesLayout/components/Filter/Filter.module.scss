@@ -35,16 +35,17 @@
 }
 
 .pay {
+  display: flex;
   position: relative;
   .payInput {
-    position: relative;
     width: 17rem;
     height: 5.8rem;
+    margin-bottom: 2.4rem;
   }
 
   p {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1rem;
     left: 18rem;
 
     @include sopoqa-16-400;
@@ -54,6 +55,7 @@
 .buttons {
   display: flex;
   gap: 0.8rem;
+  margin-top: 1rem;
 
   div:nth-child(1) {
     flex-grow: 1;

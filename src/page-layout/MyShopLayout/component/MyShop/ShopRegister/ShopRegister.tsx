@@ -11,8 +11,7 @@ export default function ShopRegister() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
-    // TODO: 가게 정보 등록 페이지로 이동해야함
+    router.push("/register-my-shop");
   };
 
   return (

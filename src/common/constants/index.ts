@@ -70,8 +70,6 @@ export const ROUTE = {
   LOGIN: "/login",
   SIGNUP: "/sign-up",
   SEARCH: "/search",
-  NOTICES_DETAIL: "/notice-detail",
-  MY_NOTICE_DETAIL: "/my-notice-detail",
 
   MYSHOP: "/shops",
   MYPROFILE: "/users",

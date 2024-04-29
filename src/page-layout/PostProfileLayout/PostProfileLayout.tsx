@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
-import IC_CLOSE from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePutUserData } from "@/shared/apis/api-hooks";
@@ -48,7 +48,7 @@ export default function PostNoticeLayout() {
       setIsModalOpen(false);
       return;
     }
-    router.push(`/users/${userId}`);
+    router.push(`/users`);
   };
 
   return (
@@ -56,7 +56,7 @@ export default function PostNoticeLayout() {
       <div className={cn("container")}>
         <div className={cn("inputHeader")}>
           <div className={cn("text")}>내 프로필</div>
-          <IC_CLOSE className={cn("icon")} fill="#000" onClick={onClose} />
+          <IcClose className={cn("icon")} fill="#000" onClick={onClose} />
         </div>
         <PostProfileForm
           handleModalOpen={handleModalOpen}
@@ -68,7 +68,7 @@ export default function PostNoticeLayout() {
       {isModalOpen && (
         <ConfirmModal
           className={cn("alertModal")}
-          message={error?.message ? "잘못된 요청입니다." : "프로필이 동록되었습니다."}
+          message={error?.message ? "잘못된 요청입니다." : "프로필이 등록되었습니다."}
           onClick={handleConfirmButtonClick}
         />
       )}

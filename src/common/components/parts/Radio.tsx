@@ -8,7 +8,7 @@ const cn = classNames.bind(styles);
 
 interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  name: string; // fieldset안에서 name값이 같아야 하나만 checked가능
+  name: string;
   label: string;
   checked: boolean;
 }

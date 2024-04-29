@@ -34,6 +34,21 @@ export function useGetNoticesData({
 
 // 2. 가게의 공고 목록 조회 Get 요청
 export function useGetShopNoticesData({ shopId, offset = 0, limit = 6 }: GetShopNoticesDataParams) {
+  return useQuery({
+    queryKey: ["GetShopNoticesData", { shopId, offset, limit }],
+    queryFn: async ({ pageParam = offset }) => {
+      const { data } = await axiosInstance.get(`${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}`, {
+        params: { offset: pageParam, limit },
+      });
+      return data;
+    },
+
+    enabled: !!shopId,
+  });
+}
+
+// 무한 스크롤 - 가게의 공고 목록 조회 Get 요청
+export function useInfinityQuery({ shopId, offset = 0, limit = 6 }: GetShopNoticesDataParams) {
   const {
     data: shopNoticeData,
     error,
@@ -43,7 +58,7 @@ export function useGetShopNoticesData({ shopId, offset = 0, limit = 6 }: GetShop
     isFetchingNextPage,
     status,
   } = useInfiniteQuery<ApiResponse>({
-    queryKey: ["GetShopNoticesData", { shopId, offset, limit }],
+    queryKey: ["GetShopNoticesDataInfinityQuery", { shopId, offset, limit }],
     queryFn: async ({ pageParam = offset }) => {
       const { data } = await axiosInstance.get(`${END_POINT.SHOPS}/${shopId}${END_POINT.NOTICES}`, {
         params: { offset: pageParam, limit },
@@ -62,10 +77,10 @@ export function useGetShopNoticesData({ shopId, offset = 0, limit = 6 }: GetShop
 }
 
 // 3. 가게 공고 등록 POST 요청
-export function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
+export function usePostNoticeData() {
   const { token } = useUserDataStore();
   const mutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ shopId, bodyData }: PostNoticeDataParams) => {
       const { data } = await axiosInstanceToken(token).post(`/shops/${shopId}/notices`, bodyData);
       return data;
     },

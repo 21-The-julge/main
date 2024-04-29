@@ -15,14 +15,14 @@ export function usePostSignUp() {
 }
 // 2. 내 정보 조회 GET 요청
 export function useGetUserData() {
-  const { token, userId } = useUserDataStore();
+  const { userId } = useUserDataStore();
   return useQuery({
     queryKey: ["GetUserData"],
     queryFn: async () => {
-      const { data } = await axiosInstanceToken(token).get(`${END_POINT.USERS}/${userId}`);
+      const { data } = await axiosInstance.get(`${END_POINT.USERS}/${userId}`);
       return data;
     },
-    enabled: !!token && !!userId,
+    enabled: !!userId,
   });
 }
 // 3. 내 정보 수정 PUT 요청

@@ -6,8 +6,6 @@ import { Post } from "@/shared/components";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
-import { ROUTE } from "@/common/constants";
-
 import Skeleton from "../NoticesSkeleton";
 
 import styles from "./PersonalNoticeList.module.scss";
@@ -45,12 +43,7 @@ export default function PersonalNoticeList() {
 
         return (
           <div key={noticeId}>
-            <Link
-              href={{
-                pathname: ROUTE.NOTICES_DETAIL,
-                query: { noticeId, shopId },
-              }}
-            >
+            <Link href={`shops/${shopId}/notices/${noticeId}`}>
               <Post
                 imageUrl={imageUrl}
                 startsAt={startsAt}

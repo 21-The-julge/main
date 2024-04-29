@@ -3,8 +3,6 @@ import classNames from "classnames/bind";
 
 import { Post } from "@/shared/components";
 
-import { ROUTE } from "@/common/constants";
-
 import styles from "./NoticeList.module.scss";
 
 const cn = classNames.bind(styles);
@@ -35,12 +33,7 @@ function NoticeList({ notices }: NoticesListProps) {
 
         return (
           <div key={noticeId}>
-            <Link
-              href={{
-                pathname: ROUTE.NOTICES_DETAIL,
-                query: { noticeId, shopId },
-              }}
-            >
+            <Link href={`shops/${shopId}/notices/${noticeId}`}>
               <Post
                 imageUrl={imageUrl}
                 startsAt={startsAt}

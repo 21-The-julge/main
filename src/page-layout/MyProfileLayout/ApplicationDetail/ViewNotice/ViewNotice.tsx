@@ -3,6 +3,7 @@ import Button from "@/common/components/Button/Button";
 
 import { useRouter } from "next/router";
 import styles from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice.module.scss";
+import { ROUTE } from "@/common/constants";
 
 const cn = classNames.bind(styles);
 
@@ -10,8 +11,7 @@ export default function ViewNotice() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
-    // TODO: 공고 리스트 페이지로 이동
+    router.push(ROUTE.HOME);
   };
 
   return (

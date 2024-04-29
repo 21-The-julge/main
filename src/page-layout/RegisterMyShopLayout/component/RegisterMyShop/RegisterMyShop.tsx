@@ -13,8 +13,8 @@ import { ADDRESSES, CATEGORIES, MESSAGES, ROUTE } from "@/common/constants";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 
-import Camera from "@/images/ic_camera.svg";
-import Close from "@/images/ic_close.svg";
+import IcCamera from "@/images/ic_camera.svg";
+import IcClose from "@/images/ic_close.svg";
 
 import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
@@ -126,7 +126,7 @@ export default function RegisterMyShopLayout() {
       <form onSubmit={handleSubmit(onSubmit)} className={cn("formContainer")}>
         <div className={cn("shopInfoTitleContainer")}>
           <p>가게 정보</p>
-          <Close width={32} height={32} fill="#111322" />
+          <IcClose width={32} height={32} fill="#111322" />
         </div>
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
@@ -191,7 +191,7 @@ export default function RegisterMyShopLayout() {
               {img && <Image className={cn("img")} fill src={img} alt="이미지 미리보기" />}
               <label className={cn("inputLabel")} htmlFor="file">
                 <div className={cn("imgAddContainer", { img })}>
-                  <Camera width={32} height={32} />
+                  <IcCamera width={32} height={32} />
                   <p>이미지 추가하기</p>
                 </div>
               </label>

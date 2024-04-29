@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import Check from "@/images/ic_check.svg";
+import IcCheck from "@/images/ic_check.svg";
 import styles from "./RadioToggle.module.scss";
 
 const cn = classNames.bind(styles);
@@ -13,7 +13,7 @@ export default function RadioToggle({ isChecked }: RadioToggleProps) {
 
   return (
     <div className={className}>
-      <Check width={14} height={14} />
+      <IcCheck width={14} height={14} />
     </div>
   );
 }

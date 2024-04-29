@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import CloseIcon from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 import classNames from "classnames/bind";
 import styles from "./Badge.module.scss";
 
@@ -25,7 +25,7 @@ export default function Badge({
   return (
     <div className={badgeClass} {...rest}>
       {children}
-      {hasCloseIcon && <CloseIcon width="16" height="16" fill="#EA3C12" onClick={onClick} />}
+      {hasCloseIcon && <IcClose width="16" height="16" fill="#EA3C12" onClick={onClick} />}
     </div>
   );
 }

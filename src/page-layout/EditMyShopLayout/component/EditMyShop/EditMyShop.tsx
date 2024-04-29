@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 
-import Close from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
 
 import { z } from "zod";
@@ -11,7 +11,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useGetShopData, usePostPresignedURL, usePutShopData } from "@/shared/apis/api-hooks";
 import { useRouter } from "next/router";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
-import Camera from "@/images/ic_camera.svg";
+import IcCamera from "@/images/ic_camera.svg";
 import styles from "@/page-layout/EditMyShopLayout/component/EditMyShop/EditMyShop.module.scss";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import Image from "next/image";
@@ -151,7 +151,7 @@ export default function EditMyShopLayout() {
       <form onSubmit={handleSubmit(handleSubmitFormData)} className={cn("formContainer")}>
         <div className={cn("shopInfoTitleContainer")}>
           <p>가게 정보</p>
-          <Close width={32} height={32} fill="#111322" />
+          <IcClose width={32} height={32} fill="#111322" />
         </div>
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
@@ -215,7 +215,7 @@ export default function EditMyShopLayout() {
               {img && <Image className={cn("img", { data })} src={img} alt="이미지 미리보기" />}
               <label className={cn("inputLabel", { data })} htmlFor="file">
                 <div className={cn("imgAddContainer")}>
-                  <Camera width={32} height={32} fill="#FFFFFF" />
+                  <IcCamera width={32} height={32} fill="#FFFFFF" />
                   <p>이미지 추가하기</p>
                 </div>
               </label>

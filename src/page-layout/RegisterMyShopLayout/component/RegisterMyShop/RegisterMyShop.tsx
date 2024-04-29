@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/RegisterMyShopLayout/component/RegisterMyShop/RegisterMyShop.module.scss";
 
-import Camera from "@/images/ic_camera.svg";
-import Close from "@/images/ic_close.svg";
+import IcCamera from "@/images/ic_camera.svg";
+import IcClose from "@/images/ic_close.svg";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
 
 import { z } from "zod";
@@ -134,7 +134,7 @@ export default function RegisterMyShopLayout() {
       <form onSubmit={handleSubmit(handleSubmitFormData)} className={cn("formContainer")}>
         <div className={cn("shopInfoTitleContainer")}>
           <p>가게 정보</p>
-          <Close width={32} height={32} fill="#111322" />
+          <IcClose width={32} height={32} fill="#111322" />
         </div>
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
@@ -201,7 +201,7 @@ export default function RegisterMyShopLayout() {
               {img && <Image className={cn("img")} fill src={img} alt="이미지 미리보기" />}
               <label className={cn("inputLabel")} htmlFor="file">
                 <div className={cn("imgAddContainer", { img })}>
-                  <Camera width={32} height={32} />
+                  <IcCamera width={32} height={32} />
                   <p>이미지 추가하기</p>
                 </div>
               </label>

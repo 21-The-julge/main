@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "@/common/components/Modal/AlertModal/AlertModal.module.scss";
 import { useRef } from "react";
-import Check from "@/images/ic_check.svg";
+import IcCheck from "@/images/ic_check.svg";
 import Modal from "@/common/components/Modal/Modal";
 import useOutsideClick from "@/common/hooks/useOutsideClick";
 import Button from "@/common/components/Button/Button";
@@ -33,7 +33,7 @@ export default function AlertModal({
     <Modal>
       <div className={cn("modalContainer", className)} ref={modalRef}>
         <div className={cn("messageContainer")}>
-          <Check width={20} height={20} />
+          <IcCheck width={20} height={20} />
           <p className={cn("text")}>{message}</p>
         </div>
         <div className={cn("buttonContainer")}>

@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
-import IC_CLOSE from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostNoticeData } from "@/shared/apis/api-hooks/useNotices";
-import GetUserData from "@/shared/hooks/getUserData";
+import useGetId from "@/shared/hooks/useGetId";
 import PostNoticeForm from "./components/PostNoticeForm";
 
 import styles from "./PostNoticeLayout.module.scss";
@@ -22,7 +22,7 @@ export default function PostNoticeLayout() {
     description: "",
   });
 
-  const { shopId, noticeId } = GetUserData();
+  const { shopId, noticeId } = useGetId();
   const { mutate: postNoticeData, error } = usePostNoticeData({ shopId, bodyData: inputValue });
 
   const onClose = () => {
@@ -52,7 +52,7 @@ export default function PostNoticeLayout() {
       <div className={cn("container")}>
         <div className={cn("inputHeader")}>
           <div className={cn("text")}>공고 등록</div>
-          <IC_CLOSE className={cn("icon")} fill="#000" onClick={onClose} />
+          <IcClose className={cn("icon")} fill="#000" onClick={onClose} />
         </div>
         <PostNoticeForm
           handleModalOpen={handleModalOpen}

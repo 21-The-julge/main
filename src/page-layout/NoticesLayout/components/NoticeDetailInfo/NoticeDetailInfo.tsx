@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import Image from "next/image";
 import HighPriceRateBadge from "@/shared/components/Post/HighPriceRateBadge/HighPriceRateBadge";
-import LocationIcon from "@/images/ic_location.svg";
-import ClockIcon from "@/images/ic_clock.svg";
+import IcLocation from "@/images/ic_location.svg";
+import IcClock from "@/images/ic_clock.svg";
 import addComma from "@/shared/components/Post/utils/addComma";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import { useGetSpecificShopNoticeData } from "@/shared/apis/api-hooks";
@@ -61,11 +61,11 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
               />
             </div>
             <div className={cn("clock")}>
-              <ClockIcon className={cn("icon")} fill={noticeDetailData?.closed || isPast ? "#cbc9cf" : "orange"} />
+              <IcClock className={cn("icon")} fill={noticeDetailData?.closed || isPast ? "#cbc9cf" : "orange"} />
               <p>{formatDateTimeRange(noticeDetailData.startsAt, noticeDetailData.workhour)}</p>
             </div>
             <div className={cn("location")}>
-              <LocationIcon className={cn("icon")} fill={noticeDetailData?.closed || isPast ? "#cbc9cf" : "orange"} />
+              <IcLocation className={cn("icon")} fill={noticeDetailData?.closed || isPast ? "#cbc9cf" : "orange"} />
               {noticeDetailData?.shop?.item.address1}
             </div>
             <p className={cn("shopDescription")}>{noticeDetailData?.shop?.item.description}</p>

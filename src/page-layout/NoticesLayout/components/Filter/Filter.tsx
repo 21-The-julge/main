@@ -3,7 +3,7 @@ import { addMinutes, formatRFC3339 } from "date-fns";
 import classNames from "classnames/bind";
 
 import { Button, InputField } from "@/common/components";
-import CloseIcon from "@/images/ic_close.svg";
+import IcClose from "@/images/ic_close.svg";
 import AddressSelector from "./AddressSelector";
 import StartDatePicker from "./StartDatePicker";
 import FieldSet from "./FieldSet";
@@ -49,7 +49,7 @@ export default function Filter({ className, onClose, onFilter }: FilterProps) {
       <form onSubmit={handleSubmit(onSubmit)} className={cn("content")}>
         <div className={cn("header")}>
           <h2>상세 필터</h2>
-          <CloseIcon width={24} height={24} className={cn("closeIcon")} onClick={onClose} />
+          <IcClose width={24} height={24} className={cn("closeIcon")} onClick={onClose} />
         </div>
 
         <FieldSet label="위치">

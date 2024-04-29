@@ -20,7 +20,7 @@ export function usePostShopData(bodyData: PostShopDataParams) {
 }
 
 // 2. 가게 정보 조회 GET 요청
-export function useGetShopData(shopId: string) {
+export function useGetShopData(shopId: string | null) {
   return useQuery({
     queryKey: ["GetShopData", shopId],
     queryFn: async () => {

@@ -125,7 +125,7 @@ export default function PostNoticeForm() {
           </div>
         </div>
         <div className={cn("textField")}>
-          <Textarea className={cn("textarea")} label="공고 설명" {...register("workhour")} />
+          <Textarea className={cn("textarea")} label="공고 설명" {...register("description")} />
         </div>
         <Button type="submit" disabled={!isValid} className={cn("submitButton")} size="large">
           등록하기

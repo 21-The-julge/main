@@ -19,6 +19,7 @@ interface InputFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "s
   color?: "white" | "gray";
   border?: "solid" | "none";
   className?: string;
+  disabled?: boolean;
 }
 
 export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
@@ -35,18 +36,28 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
     errorMessage = "",
     className,
     label,
+    disabled,
     ...rest
   },
   ref,
 ) {
-  const combinedClassName = cn("default", size, color, border, { error: isError });
+  const combinedClassName = cn("default", size, color, border, { error: isError, inputDisabled: disabled });
 
   return (
     <div className={cn("inputField", className)}>
       {label && <Label label={label} htmlFor={name} required={rest.required} />}
       <div className={combinedClassName}>
         {prefix && <PrefixElement element={prefix} />}
-        <Input name={name} type={type} size={size} color={color} value={value} ref={ref} {...rest} />
+        <Input
+          name={name}
+          type={type}
+          size={size}
+          color={color}
+          value={value}
+          disabled={disabled}
+          ref={ref}
+          {...rest}
+        />
         {unit && <SuffixUnit unit={unit} />}
       </div>
       {isError && <ErrorMessage message={errorMessage} />}

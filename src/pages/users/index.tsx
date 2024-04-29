@@ -1,9 +1,9 @@
-import RegisterNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/RegisterNotice/RegisterNotice";
-import ViewNotice from "@/page-layout/MyProfileLayout/ApplicationDetail/ViewNotice/ViewNotice";
+import ApplicationDetail from "@/page-layout/MyProfileLayout/ApplicationDetail/ApplicationDetail";
 import MyProfile from "@/page-layout/MyProfileLayout/MyProfile/MyProfile";
-import { axiosInstance } from "@/shared/apis/axiosInstance";
+import { axiosInstance, axiosInstanceToken } from "@/shared/apis/axiosInstance";
 import addComma from "@/shared/components/Post/utils/addComma";
 import RootLayout from "@/shared/components/RootLayout/RootLayout";
+import GetUserData from "@/shared/hooks/getUserData";
 import getBadge from "@/shared/utils/getBadge";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 
@@ -43,29 +43,22 @@ interface ApiData {
   };
 }
 
-export async function getServerSideProps() {
-  let myProfile;
+export default function MyShop() {
+  const { token, userId } = GetUserData();
 
-  try {
-    const response = await axiosInstance.get("users/af968af9-03b1-448e-b8f3-f3823fc7f6a8");
-    myProfile = response?.data.item ?? [];
-  } catch (error) {
-    // 일단 처리해드릴게요
-    // eslint-disable-next-line no-console
-    console.log(error);
-  }
-
-  return {
-    props: {
-      myProfile,
-    },
-  };
-}
-
-export default function MyShop({ myProfile }: ApiData) {
+  const [registeredMyPofile, setRegisteredMyProfile] = useState<ApiData["myProfile"]>();
   const [registeredNotice, setRegisteredNotice] = useState<Item[]>([]);
+
+  const fetchMyProfile = async () => {
+    const res = await axiosInstance.get(`users/${userId}`);
+    const result = await res.data.item;
+    if (result.name) {
+      setRegisteredMyProfile(result);
+    }
+  };
+
   const fetchNotices = async () => {
-    const res = await axiosInstance.get(`users/af968af9-03b1-448e-b8f3-f3823fc7f6a8/applications?limit=100`);
+    const res = await axiosInstanceToken(token).get(`users/${userId}/applications?limit=100`);
     const result = await res.data.items;
     setRegisteredNotice(result);
   };
@@ -80,13 +73,17 @@ export default function MyShop({ myProfile }: ApiData) {
   });
 
   useEffect(() => {
-    fetchNotices();
-  }, []);
+    if (userId && registeredMyPofile) {
+      fetchNotices();
+    } else if (userId) {
+      fetchMyProfile();
+    }
+  }, [userId]);
 
   return (
     <RootLayout>
-      <MyProfile myProfile={myProfile} />
-      {registeredNotice ? <RegisterNotice registerNoticeData={registerNoticeData} /> : <ViewNotice />}
+      <MyProfile myProfile={registeredMyPofile} />
+      {registeredMyPofile ? <ApplicationDetail registerNoticeData={registerNoticeData} /> : null}
     </RootLayout>
   );
 }

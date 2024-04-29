@@ -5,7 +5,6 @@ import IC_CLOSE from "@/images/ic_close.svg";
 
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { useGetUserData, usePutUserData } from "@/shared/apis/api-hooks";
-import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import PostProfileEditForm from "./components/PostProfileEditForm";
 
 import styles from "./PostProfileEditLayout.module.scss";
@@ -25,7 +24,6 @@ export default function PostNoticeLayout() {
     bio: "",
   });
 
-  const { userId } = useUserDataStore();
   const { mutate: putUSerData, error } = usePutUserData(inputValue);
 
   useEffect(() => {
@@ -38,7 +36,7 @@ export default function PostNoticeLayout() {
   }, [data]);
 
   const onClose = () => {
-    router.push(`/users/${userId}`);
+    router.push(`/users`);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -60,7 +58,7 @@ export default function PostNoticeLayout() {
       setIsModalOpen(false);
       return;
     }
-    router.push(`/users/${userId}`);
+    router.push(`/users`);
   };
 
   return (

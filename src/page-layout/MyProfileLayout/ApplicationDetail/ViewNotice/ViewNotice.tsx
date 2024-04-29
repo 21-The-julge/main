@@ -11,7 +11,6 @@ export default function ViewNotice() {
 
   const handleClick = () => {
     router.push("/");
-    // TODO: 공고 리스트 페이지로 이동
   };
 
   return (

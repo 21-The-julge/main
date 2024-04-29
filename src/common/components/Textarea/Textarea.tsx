@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes } from "react";
+import { TextareaHTMLAttributes, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Textarea.module.scss";
@@ -16,12 +16,16 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
 }
 
-export default function Textarea({ name, value, label, rows = 4, className, ...rest }: TextareaProps) {
+export default forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
+  { name, value, label, rows = 4, className, ...rest },
+  ref,
+) {
   return (
     <div className={cn("field")}>
       {label && <Label label={label} htmlFor={name} required={rest.required} />}
       <div className={cn("textareaBox", className)}>
         <textarea
+          ref={ref}
           rows={rows}
           className={cn("textarea")}
           id={name}
@@ -33,4 +37,4 @@ export default function Textarea({ name, value, label, rows = 4, className, ...r
       </div>
     </div>
   );
-}
+});

@@ -1,137 +1,141 @@
 import classNames from "classnames/bind";
 import styles from "@/page-layout/RegisterMyShopLayout/component/RegisterMyShop/RegisterMyShop.module.scss";
 
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import axios from "axios";
+
+import { ADDRESSES, CATEGORIES, MESSAGES, ROUTE } from "@/common/constants";
+import { Button, InputField, Textarea, Dropdown } from "@/common/components";
+import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
+
 import IcCamera from "@/images/ic_camera.svg";
 import IcClose from "@/images/ic_close.svg";
-import { Button, InputField, Textarea, Dropdown } from "@/common/components";
 
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ADDRESSES, CATEGORIES } from "@/common/constants";
-import { ChangeEvent, useRef, useState } from "react";
 import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
-import { useRouter } from "next/router";
-import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
-import Image from "next/image";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
-
-interface ShopInfo {
-  name: string;
-  address: string;
-  detailedAddress: string;
-  hourlyRate: number;
-  classification: string;
-}
-
-const schema = z.object({
-  name: z.string().min(1, { message: "가게 이름은 필수값입니다." }),
-  address: z.string().min(0, { message: "주소는 필수값입니다." }),
-  detailedAddress: z.string().min(1, { message: "상세 주소는 필수값입니다." }),
-  classification: z.string().min(0, { message: "분류는 필수값입니다." }),
-  hourlyRate: z.string().min(1, { message: "시급은 필수값입니다." }),
-});
 
 const cn = classNames.bind(styles);
 
+const schema = z.object({
+  name: z.string().min(1, { message: "가게 이름은 필수값입니다." }),
+  category: z.string().min(1, { message: "분류는 필수값입니다." }),
+  address1: z.string().min(1, { message: "주소는 필수값입니다." }),
+  address2: z.string().min(1, { message: "상세 주소는 필수값입니다." }),
+  originalHourlyPay: z.number(),
+  imageUrl: z.string(),
+  description: z.string(),
+});
+
+type ShopInfo = z.infer<typeof schema>;
+
 export default function RegisterMyShopLayout() {
+  const router = useRouter();
+
+  const [img, setImg] = useState<string>("");
+  const imgRef = useRef<HTMLInputElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [address1Value, setAddress1Value] = useState("");
+  const [categoryValue, setCategoryValue] = useState("");
+
+  const { mutate: postPresignedURL } = usePostPresignedURL();
+  const { mutate: postShopInfo } = usePostShopData();
+  const setUserData = useUserDataStore((state) => ({
+    setShopId: state.setShopId,
+  }));
+
   const {
     register,
     formState: { errors },
     handleSubmit,
+    control,
+    setValue,
   } = useForm<ShopInfo>({
     resolver: zodResolver(schema),
     mode: "onTouched",
+    defaultValues: {
+      name: "",
+      category: "",
+      address1: "",
+      address2: "",
+      originalHourlyPay: 0,
+      imageUrl: "",
+      description: "",
+    },
   });
-  const { setShopId } = useUserDataStore();
-  const [shopName, setShopName] = useState("");
-  const [classification, setClassification] = useState("");
-  const [address, setAddress] = useState("");
-  const [detailedAddress, setDetailedAddress] = useState("");
-  const [hourlyRate, setHourlyRate] = useState("");
-  const [img, setImg] = useState<string>("");
-  const [description, setDescription] = useState("");
-  const imgRef = useRef<HTMLInputElement>(null);
-  const { data, mutate } = usePostPresignedURL();
-  const { data: shopData, mutate: shopDataMutate } = usePostShopData({
-    name: shopName,
-    category: classification,
-    address1: address,
-    address2: detailedAddress,
-    description,
-    imageUrl: data?.item.url,
-    originalHourlyPay: Number(hourlyRate),
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const router = useRouter();
-
-  const handleClickConfirm = async () => {
-    await shopDataMutate();
-    setShopId(shopData); // shopId 저장해야함 -> 수정 필요
-    router.push("/my-shop");
+  const handleAddress1Click = (option: string) => {
+    setValue("address1", option, { shouldValidate: true });
+    setAddress1Value(option);
   };
 
-  const handleOnchangeShopName = (e: ChangeEvent<HTMLInputElement>) => {
-    setShopName(e.target.value);
+  const handleCategoryClick = (option: string) => {
+    setValue("category", option, { shouldValidate: true });
+    setCategoryValue(option);
   };
 
-  const handleOnchangeClassification = (e: ChangeEvent<HTMLInputElement>) => {
-    setClassification(e.target.value);
-  };
-
-  const handleOnchangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    setAddress(e.target.value);
-  };
-
-  const handleOnchangeDetailedAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    setDetailedAddress(e.target.value);
-  };
-
-  const handleOnchangeHourlyRate = (e: ChangeEvent<HTMLInputElement>) => {
-    setHourlyRate(e.target.value);
-  };
-
-  const handleOnchangeImg = () => {
+  const onImageUpload = () => {
     const file = imgRef.current?.files?.[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        if (reader.result) {
-          const imgData = reader.result;
-
-          setImg(imgData as string);
-          if (file?.name) {
-            mutate({ name: file?.name });
-          }
-        } else {
-          setImg("");
-        }
-      };
+      postPresignedURL(
+        { name: file.name },
+        {
+          onSuccess: async (data) => {
+            // try {
+            const response = await axios.put(data.item.url, file, {
+              headers: { "Content-Type": file.type },
+            });
+            if (response.status === 200) {
+              const imageUrl = data.item.url.split("?")[0];
+              setValue("imageUrl", imageUrl);
+              setImg(imageUrl);
+            }
+            // } catch (error) {
+            //   console.error("이미지 업로드 실패", error);
+            // }
+          },
+          // onError: (error) => {
+          //   console.error("POST 실패", error);
+          // },
+        },
+      );
     }
   };
 
-  const handleOnchangeDesription = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
+  const onSubmit: SubmitHandler<ShopInfo> = (data) => {
+    // console.log(data);
+    postShopInfo(data, {
+      onSuccess: (response) => {
+        // console.log("성공", response);
+        setUserData.setShopId(response.shopId);
+        setAlertMessage(MESSAGES.SUCCESS);
+        setIsModalOpen((prev) => !prev);
+      },
+      // onError: (error) => {
+      //   console.error("실패", error);
+      // },
+    });
   };
 
-  const handleClickClassification = (option: string) => {
-    setClassification(option);
-  };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
 
-  const handleClickAddress = (option: string) => {
-    setAddress(option);
-  };
+    if (alertMessage === MESSAGES.SUCCESS) {
+      router.replace(ROUTE.MYSHOP);
+    }
 
-  const handleSubmitFormData = () => {
-    setIsModalOpen((prev) => !prev);
+    // router.reload();
   };
 
   return (
-    <div className={cn("container")}>
-      <form onSubmit={handleSubmit(handleSubmitFormData)} className={cn("formContainer")}>
+    <main className={cn("container")}>
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("formContainer")}>
         <div className={cn("shopInfoTitleContainer")}>
           <p>가게 정보</p>
           <IcClose width={32} height={32} fill="#111322" />
@@ -139,60 +143,57 @@ export default function RegisterMyShopLayout() {
         <div className={cn("shopContentContainer")}>
           <div className={cn("gridContainer")}>
             <InputField
-              value={shopName}
-              placeholder="입력"
-              label="가게 이름"
-              required
               {...register("name")}
               name="name"
-              onChange={handleOnchangeShopName}
+              placeholder="입력"
+              label="가게 이름"
               isError={!!errors.name}
               errorMessage={errors.name?.message}
             />
             <Dropdown
-              value={classification}
-              onOptionClick={handleClickClassification}
+              {...register("category")}
+              name="category"
+              value={categoryValue}
               options={CATEGORIES}
               placeholder="선택"
               label="분류"
-              required
-              {...register("classification")}
-              onChange={handleOnchangeClassification}
-              isError={!!errors.classification}
-              errorMessage={errors.classification?.message}
+              onOptionClick={handleCategoryClick}
+              isError={!!errors.category}
+              errorMessage={errors.category?.message}
             />
             <Dropdown
-              value={address}
-              onOptionClick={handleClickAddress}
+              {...register("address1")}
+              name="address1"
+              value={address1Value}
               options={ADDRESSES}
               placeholder="선택"
               label="주소"
-              required
-              {...register("address")}
-              onChange={handleOnchangeAddress}
-              isError={!!errors.address}
-              errorMessage={errors.address?.message}
+              onOptionClick={handleAddress1Click}
+              isError={!!errors.address1}
+              errorMessage={errors.address1?.message}
             />
             <InputField
-              value={detailedAddress}
+              {...register("address2")}
+              name="address2"
               placeholder="입력"
               label="상세 주소"
-              required
-              {...register("detailedAddress")}
-              onChange={handleOnchangeDetailedAddress}
-              isError={!!errors.detailedAddress}
-              errorMessage={errors.detailedAddress?.message}
+              isError={!!errors.address2}
+              errorMessage={errors.address2?.message}
             />
-            <InputField
-              unit="원"
-              value={hourlyRate}
-              placeholder="입력"
-              label="기본 시급"
-              required
-              {...register("hourlyRate")}
-              onChange={handleOnchangeHourlyRate}
-              isError={!!errors.hourlyRate}
-              errorMessage={errors.hourlyRate?.message}
+            <Controller
+              name="originalHourlyPay"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  {...field}
+                  onChange={(e) => field.onChange(parseInt(e.target.value, 10) || 0)}
+                  placeholder="입력"
+                  unit="원"
+                  label="기본 시급"
+                  isError={!!errors.originalHourlyPay}
+                  errorMessage={errors.originalHourlyPay?.message}
+                />
+              )}
             />
           </div>
           <div className={cn("imgContainer")}>
@@ -205,18 +206,16 @@ export default function RegisterMyShopLayout() {
                   <p>이미지 추가하기</p>
                 </div>
               </label>
-              <input id="file" className={cn("input")} ref={imgRef} onChange={handleOnchangeImg} type="file" />
+              <input id="file" className={cn("input")} ref={imgRef} onChange={onImageUpload} type="file" />
             </div>
           </div>
-          <Textarea onChange={handleOnchangeDesription} value={description} placeholder="입력" label="가게 설명" />
+          <Textarea {...register("description")} name="description" placeholder="입력" label="가게 설명" />
         </div>
         <Button type="submit" size="large">
           등록하기
         </Button>
       </form>
-      {isModalOpen && (
-        <ConfirmModal message="등록이 완료되었습니다." className={cn("modal")} onClick={handleClickConfirm} />
-      )}
-    </div>
+      {isModalOpen && <ConfirmModal message={alertMessage} className={cn("modal")} onClick={handleModalClose} />}
+    </main>
   );
 }

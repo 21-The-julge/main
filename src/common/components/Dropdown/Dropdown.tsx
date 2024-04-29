@@ -20,6 +20,7 @@ interface DropdownProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "siz
   required?: boolean;
   isError?: boolean;
   errorMessage?: string;
+  value?: string | number | readonly string[] | undefined;
 }
 
 export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
@@ -33,13 +34,12 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
     color = "white",
     className,
     label,
+    value,
     ...rest
   },
   ref,
 ) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
-
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleDropdownClick = () => {
@@ -47,7 +47,6 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
   };
 
   const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
     setIsOpen(false);
 
     onOptionClick?.(option);
@@ -55,25 +54,17 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
-  const combinedClassName = cn("dropdownBox", size, color);
+  const combinedClassName = cn("dropdownBox", size, color, { error: isError });
 
   return (
     <div className={combinedClassName} ref={dropdownRef}>
       <div className={cn("field")}>
         {label && <Label label={label} htmlFor={name} required={rest.required} />}
         <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
-          <Input
-            ref={ref}
-            name={name}
-            value={selectedOption}
-            readOnly
-            size={size}
-            cursor="pointer"
-            color={color}
-            {...rest}
-          />
+          <Input ref={ref} name={name} value={value} readOnly size={size} cursor="pointer" color={color} {...rest} />
           <SuffixIcon icon="triangle" isOpen={isOpen} />
         </button>
+        {isError && <ErrorMessage message={errorMessage} />}
       </div>
       {isOpen && (
         <div className={cn("optionsBox")}>
@@ -86,7 +77,6 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
           })}
         </div>
       )}
-      {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
 });

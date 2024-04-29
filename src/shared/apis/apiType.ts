@@ -109,9 +109,9 @@ export interface PostShopDataParams {
   category: string;
   address1: string;
   address2: string;
-  description: string;
-  imageUrl: string;
   originalHourlyPay: number;
+  imageUrl: string;
+  description: string;
 }
 
 export interface PutShopDataParams {

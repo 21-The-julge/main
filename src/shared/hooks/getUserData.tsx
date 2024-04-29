@@ -23,13 +23,13 @@ export default function GetUserData() {
 
   const setShopIdFromData = () => {
     if (userData && userData.item.shop) {
-      setShopId(userData.item.shop.item.id);
+      setShopId(userData?.item?.shop?.item?.id);
     }
   };
 
   const setNoticeIdFromData = () => {
     if (shopData) {
-      setNoticeId(shopData.items[0].item.id);
+      setNoticeId(shopData?.items[0]?.item?.id);
     }
   };
 

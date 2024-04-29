@@ -4,10 +4,10 @@ import { axiosInstance } from "@/shared/apis/axiosInstance";
 
 const useGetMessages = () => {
   const getMessages = async (pageParam: number) => {
+    // const { data: shopId } = await useGetUserData(); // shop id 가져오는 훅
     const myRegisterResponse = await axiosInstance.get(
-      `shops/ae78c3af-a075-4586-bee2-21c8da59d6b2/notices?limit=6&offset=${pageParam}`,
+      `shops/ae78c3af-a075-4586-bee2-21c8da59d6b2/notices?limit=6&offset=${pageParam}`, // shopId 가져와서 수정 필요
     );
-
     return {
       count: myRegisterResponse.data.count,
       result: myRegisterResponse.data.items,
@@ -25,6 +25,7 @@ const useGetMessages = () => {
       if (!lastPage.isLast) {
         return lastPage.nextPage;
       }
+
       return undefined;
     },
   });

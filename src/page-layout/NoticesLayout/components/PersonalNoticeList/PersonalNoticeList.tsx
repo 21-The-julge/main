@@ -15,8 +15,6 @@ import styles from "./PersonalNoticeList.module.scss";
 const cn = classNames.bind(styles);
 
 export default function PersonalNoticeList() {
-  const type = useUserDataStore((state) => state.type);
-
   const address = useUserDataStore((state) => state.address) ?? "";
 
   const { data, error, isPending, isError } = useGetAllNotices({ limit: 9, sort: "shop", address: [address] });
@@ -30,8 +28,6 @@ export default function PersonalNoticeList() {
 
     return { noticeId, shopId, startsAt, workhour, hourlyPay, closed, name, address1, imageUrl, originalHourlyPay };
   });
-
-  const path = type === "employer" ? ROUTE.MY_NOTICE_DETAIL : ROUTE.NOTICES_DETAIL;
 
   if (isPending) {
     return <Skeleton />;
@@ -51,7 +47,7 @@ export default function PersonalNoticeList() {
           <div key={noticeId}>
             <Link
               href={{
-                pathname: path,
+                pathname: ROUTE.NOTICES_DETAIL,
                 query: { noticeId, shopId },
               }}
             >

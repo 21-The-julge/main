@@ -26,7 +26,7 @@ export default function PostNoticeLayout() {
   const { mutate: postNoticeData, error } = usePostNoticeData({ shopId, bodyData: inputValue });
 
   const onClose = () => {
-    router.push(`/shops/${shopId}`);
+    router.push("/shops");
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

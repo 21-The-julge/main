@@ -71,6 +71,7 @@ export const ROUTE = {
   SIGNUP: "/sign-up",
   SEARCH: "/search",
 
+  EDIT_MY_SHOP: "/edit-my-shop",
   MYSHOP: "/shops",
   MYPROFILE: "/users",
   POSTNOTICE: "/shops/post-notice",

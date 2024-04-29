@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/RegisteredShop/Register/Register.module.scss";
+import { ROUTE } from "@/common/constants";
 
 const cn = classNames.bind(styles);
 
@@ -11,9 +12,9 @@ export default function Registser() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/");
-    // TODO: 공고 등록하기 페이지로 이동해야함.
+    router.push(ROUTE.POSTNOTICE);
   };
+
   return (
     <div className={cn("container")}>
       <div className={cn("registerContiner")}>

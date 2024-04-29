@@ -5,18 +5,14 @@ import { axiosInstance, axiosInstanceToken } from "../axiosInstance";
 import { PostShopDataParams, PutShopDataParams } from "../apiType";
 
 // 1. 가게 등록 POST 요청
-export function usePostShopData(bodyData: PostShopDataParams) {
+export function usePostShopData() {
   const { token } = useUserDataStore();
-  const mutation = useMutation({
-    mutationFn: async () => {
+  return useMutation({
+    mutationFn: async (bodyData: PostShopDataParams) => {
       const { data } = await axiosInstanceToken(token).post(END_POINT.SHOPS, bodyData);
       return data;
     },
   });
-  const { data, error, isIdle, isSuccess } = mutation;
-  const isLoading = isIdle && !isSuccess;
-
-  return { data, error, isLoading, mutate: mutation.mutate };
 }
 
 // 2. 가게 정보 조회 GET 요청

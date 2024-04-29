@@ -51,6 +51,7 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
     setIsOpen(false);
 
     onOptionClick?.(option);
+    console.log(selectedOption);
   };
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));

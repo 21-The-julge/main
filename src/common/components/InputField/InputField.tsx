@@ -9,7 +9,6 @@ const cn = classNames.bind(styles);
 interface InputFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   name?: string;
   type?: HTMLInputTypeAttribute;
-  value?: string | number;
   label?: string;
   unit?: "원" | "시간";
   prefix?: "search";
@@ -48,16 +47,7 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
       {label && <Label label={label} htmlFor={name} required={rest.required} />}
       <div className={combinedClassName}>
         {prefix && <PrefixElement element={prefix} />}
-        <Input
-          name={name}
-          type={type}
-          size={size}
-          color={color}
-          value={value}
-          disabled={disabled}
-          ref={ref}
-          {...rest}
-        />
+        <Input name={name} type={type} size={size} color={color} disabled={disabled} ref={ref} {...rest} />
         {unit && <SuffixUnit unit={unit} />}
         {isError && <ErrorMessage message={errorMessage} />}
       </div>

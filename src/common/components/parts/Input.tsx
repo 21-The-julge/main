@@ -8,10 +8,10 @@ const cn = classNames.bind(styles);
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   name?: string;
   type?: HTMLInputTypeAttribute;
-  value?: string | number | readonly string[];
   size?: "sm" | "md";
   color?: "white" | "gray";
   cursor?: string;
+  value?: string | number | readonly string[] | undefined;
 }
 
 export default forwardRef<HTMLInputElement, InputProps>(function Input(

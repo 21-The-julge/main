@@ -61,7 +61,7 @@ const fetchNotices = async (query: Query): Promise<NoticeResponse> => {
     },
   });
 
-  const result = await res.data;
+  const result = res.data;
 
   return result;
 };

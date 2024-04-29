@@ -9,7 +9,7 @@ import { InputField } from "@/common/components";
 
 import LOGO from "@/images/logo.svg";
 
-import styles from "./Gnb.module.scss";
+import styles from "./GlobalNavigationBar.module.scss";
 
 import UserAction from "./GnbComponents/UserAction";
 

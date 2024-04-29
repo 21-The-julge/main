@@ -34,8 +34,6 @@ const schema = z.object({
 const cn = classNames.bind(styles);
 
 export default function EditMyShopLayout() {
-  // const { token } = useUserDataStore();
-
   const {
     register,
     formState: { errors },

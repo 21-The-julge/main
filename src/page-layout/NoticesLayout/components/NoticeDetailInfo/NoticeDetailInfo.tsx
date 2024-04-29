@@ -1,3 +1,4 @@
+import { useState } from "react";
 import classNames from "classnames/bind";
 import Image from "next/image";
 import HighPriceRateBadge from "@/shared/components/Post/HighPriceRateBadge/HighPriceRateBadge";
@@ -26,6 +27,8 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
   const endDate = new Date(noticeDetailData?.startsAt);
   const isPast = currentDate > endDate;
 
+  const [isImgError, setIsImgError] = useState<boolean>(false);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error occurred: {error.message}</div>;
 
@@ -41,12 +44,13 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
             <NoticeMessage isPast={isPast} closed={noticeDetailData?.closed} />
             <Image
               className={cn("img")}
-              src={noticeDetailData?.shop?.item.imageUrl}
+              src={isImgError ? "/images/logo.svg" : noticeDetailData?.shop?.item.imageUrl}
               alt="내 가게"
               fill
               priority
               sizes="(max-width: 757px) 100vw, (max-width: 1024px) 539px, 308px"
               blurDataURL={BLUR_DATA_URL}
+              onError={() => setIsImgError(true)}
             />
           </div>
           <div className={cn("noticeDetail", "titleFont")}>

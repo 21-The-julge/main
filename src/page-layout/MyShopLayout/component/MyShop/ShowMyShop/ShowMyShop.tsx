@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { ROUTE } from "@/common/constants/index";
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/MyShop/ShowMyShop/ShowMyshop.module.scss";
 
 import Button from "@/common/components/Button/Button";
 import Location from "@/images/ic_location.svg";
-import IcDefaultImage from "@/images/ic_default_image.svg";
 
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -19,6 +19,8 @@ interface ShowMyShopProps {
 export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
   const router = useRouter();
 
+  const [isImgError, setIsImgError] = useState<boolean>(false);
+
   const handleEditClick = () => {
     router.push(`${ROUTE.EDIT_MY_SHOP}`);
   };
@@ -30,12 +32,15 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
   return (
     <div className={cn("shopContainer")}>
       <div className={cn("img")}>
-        <Image
-          fill
-          src={myShopData?.imageUrl ? myShopData?.imageUrl : IcDefaultImage}
-          alt="내 가게"
-          sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
-        />
+        {myShopData?.imageUrl && (
+          <Image
+            fill
+            src={isImgError ? "/images/logo.svg" : myShopData?.imageUrl}
+            alt="내 가게"
+            sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
+            onError={() => setIsImgError(true)}
+          />
+        )}
       </div>
       <div className={cn("myShopInfoContainer")}>
         <div className={cn("contentContainer")}>

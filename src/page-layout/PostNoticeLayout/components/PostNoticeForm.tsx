@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import { StartDatePicker } from "@/shared/components";
 import Button from "@/common/components/Button/Button";
 import { InputField, Textarea } from "@/common/components/index";
-import GetUserData from "@/shared/hooks/getUserData";
+import useGetId from "@/shared/hooks/useGetId";
 import { usePostNoticeData } from "@/shared/apis/api-hooks/useNotices";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import styles from "./PostNoticeForm.module.scss";
@@ -39,7 +39,7 @@ export default function PostNoticeForm() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { shopId, noticeId } = GetUserData();
+  const { shopId, noticeId } = useGetId();
 
   const { mutate: postNoticeData, error } = usePostNoticeData();
 

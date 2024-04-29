@@ -29,11 +29,7 @@ export default function GetUserData() {
 
   const setNoticeIdFromData = () => {
     if (shopData) {
-<<<<<<< HEAD
-      setNoticeId(shopData.items[0].item.id);
-=======
       setNoticeId(shopData?.items[0]?.item?.id);
->>>>>>> develop
     }
   };
 

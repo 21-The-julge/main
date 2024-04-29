@@ -1,0 +1,13 @@
+.radioToggle {
+  width: 2rem;
+  height: 2rem;
+  border: 0.1rem solid $color-gray-30;
+  border-radius: 9999rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggleChecked {
+  background: $color-primary;
+}

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useGetUserData } from "../apis/api-hooks/useUsers";
 import { useGetShopNoticesData } from "../apis/api-hooks/useNotices";
 import useUserDataStore from "./useUserDataStore";
@@ -22,15 +23,27 @@ export default function GetUserData() {
 
   const setShopIdFromData = () => {
     if (userData && userData.item.shop) {
-      setShopId(userData.item.shop.item.id);
+      setShopId(userData?.item?.shop?.item?.id);
     }
   };
 
   const setNoticeIdFromData = () => {
     if (shopData) {
-      setNoticeId(shopData.items.item.id);
+      setNoticeId(shopData?.items[0]?.item?.id);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      setShopIdFromData();
+    }
+  }, [userData]);
+
+  useEffect(() => {
+    if (shopData) {
+      setNoticeIdFromData();
+    }
+  }, [shopData]);
 
   return {
     isLoggedIn,

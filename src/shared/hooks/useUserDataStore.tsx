@@ -8,7 +8,7 @@ interface UserDataStoreState {
   type: "employer" | "employee" | null;
   address: (typeof ADDRESSES)[number] | null;
   isLoggedIn: boolean;
-  shopId: string | null;
+  shopId: string;
   noticeId: string | null;
   applicationId: string | null;
 
@@ -32,7 +32,7 @@ const useUserDataStore = create(
       type: null,
       address: null,
       isLoggedIn: false,
-      shopId: null,
+      shopId: "",
       noticeId: null,
       applicationId: null,
 
@@ -42,7 +42,7 @@ const useUserDataStore = create(
           userId: null,
           type: null,
           isLoggedIn: false,
-          shopId: null,
+          shopId: "",
           noticeId: null,
           applicationId: null,
         }),

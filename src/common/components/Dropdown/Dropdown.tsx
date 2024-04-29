@@ -1,11 +1,10 @@
-import { InputHTMLAttributes, useRef, useState } from "react";
+import classNames from "classnames/bind";
+import { InputHTMLAttributes, forwardRef, useRef, useState } from "react";
 
 import useOutsideClick from "@/common/hooks/useOutsideClick";
+import { ErrorMessage, Input, Label, SuffixIcon } from "../parts";
 
-import classNames from "classnames/bind";
 import styles from "./Dropdown.module.scss";
-
-import { Input, Label, SuffixIcon } from "../parts";
 
 const cn = classNames.bind(styles);
 
@@ -18,18 +17,25 @@ interface DropdownProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "siz
   className?: string;
   label?: string;
   required?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
 }
 
-export default function Dropdown({
-  options,
-  onOptionClick,
-  name,
-  size = "md",
-  color = "white",
-  className,
-  label,
-  ...rest
-}: DropdownProps) {
+export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
+  {
+    options,
+    isError = false,
+    errorMessage = "",
+    onOptionClick,
+    name,
+    size = "md",
+    color = "white",
+    className,
+    label,
+    ...rest
+  },
+  ref,
+) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -55,7 +61,16 @@ export default function Dropdown({
       <div className={cn("field")}>
         {label && <Label label={label} htmlFor={name} required={rest.required} />}
         <button aria-label={name} className={cn("dropdown", className)} onClick={handleDropdownClick} type="button">
-          <Input name={name} value={selectedOption} readOnly size={size} cursor="pointer" color={color} {...rest} />
+          <Input
+            ref={ref}
+            name={name}
+            value={selectedOption}
+            readOnly
+            size={size}
+            cursor="pointer"
+            color={color}
+            {...rest}
+          />
           <SuffixIcon icon="triangle" isOpen={isOpen} />
         </button>
       </div>
@@ -70,6 +85,7 @@ export default function Dropdown({
           })}
         </div>
       )}
+      {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
-}
+});

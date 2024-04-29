@@ -1,7 +1,7 @@
 .radioBox {
   display: flex;
   padding: 1.2rem 4rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.8rem;
   flex: 1 0 0;
@@ -10,7 +10,11 @@
   background: $color-white;
   @include sopoqa-14-400;
 
-  &.checked {
-    border: 0.1rem solid $color-primary;
+  .input {
+    display: none;
   }
+}
+
+.inputChecked {
+  border: 0.1rem solid $color-primary;
 }

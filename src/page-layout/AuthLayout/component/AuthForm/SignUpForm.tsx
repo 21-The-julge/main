@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { AxiosError } from "axios";
 
-import { ERROR_MESSAGE, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
-import { Button, InputField, RadioInput } from "@/common/components";
+import { ERROR_MESSAGE, FIELDSET_OPTION, MESSAGES, PLACEHOLDERS, ROUTE } from "@/common/constants";
+import { Button, InputField, RadioField } from "@/common/components";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePostSignUp } from "@/shared/apis/api-hooks";
-import { PostSignUpProps } from "@/shared/apis/apiType";
 
 import styles from "./SignInForm.module.scss";
 
@@ -34,7 +34,43 @@ export default function SignUpForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  const handleModalButtonClick = () => {
+  const { mutate: signUp, isPending } = usePostSignUp();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<NewAccount>({
+    mode: "all",
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: "",
+      password: "",
+      passwordValid: "",
+      type: "employee",
+    },
+  });
+
+  const onSubmit: SubmitHandler<NewAccount> = (payload) => {
+    signUp(payload, {
+      onSuccess: () => {
+        setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
+        setIsModalOpen((prevOpen) => !prevOpen);
+      },
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response) {
+          const errorMessage = (axiosError.response.data as { message?: string }).message;
+          setAlertMessage(errorMessage || "회원가입에 실패 하였습니다.");
+        }
+
+        setIsModalOpen((prevOpen) => !prevOpen);
+      },
+    });
+  };
+
+  const handleModalClose = () => {
     setIsModalOpen(false);
 
     if (alertMessage === MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS) {
@@ -43,40 +79,6 @@ export default function SignUpForm() {
     }
 
     router.reload();
-  };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<NewAccount>({
-    mode: "onTouched",
-    resolver: zodResolver(schema),
-    defaultValues: {
-      email: "",
-      password: "",
-      passwordValid: "",
-      type: "employer",
-    },
-  });
-
-  const { mutate: newAccount, isPending } = usePostSignUp();
-
-  const onSubmit: SubmitHandler<PostSignUpProps> = (payload) => {
-    newAccount(payload, {
-      onSuccess: () => {
-        // eslint-disable-next-line no-console
-        console.log("회원가입 성공", payload);
-        setAlertMessage(MESSAGES.AUTH_ALERT_MESSAGE.SUCCESS);
-        setIsModalOpen(true);
-      },
-      onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-        // eslint-disable-next-line no-console
-        console.log("회원가입 실패");
-      },
-    });
   };
 
   return (
@@ -113,16 +115,13 @@ export default function SignUpForm() {
           disabled={isPending}
         />
 
-        <fieldset {...register("type")}>
-          <RadioInput value="employer" name="type" label="사장님" />
-          <RadioInput value="employee" name="type" label="알바님" />
-        </fieldset>
+        <RadioField {...register("type")} legend="회원 유형" name="type" options={FIELDSET_OPTION} />
 
-        <Button type="submit" size="large" disabled={isPending}>
+        <Button type="submit" size="large" disabled={!isValid}>
           가입하기
         </Button>
       </form>
-      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalButtonClick} />}
+      {isModalOpen && <ConfirmModal className={cn("modal")} message={alertMessage} onClick={handleModalClose} />}
     </>
   );
 }

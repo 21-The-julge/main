@@ -57,7 +57,9 @@ export default function Post({
           </div>
         </div>
         <div className={cn("priceContent")}>
-          <p>{addComma(hourlyPay)}원</p>
+          <p className={cn("price")}>
+            {addComma(hourlyPay)}원<p className={cn("hidePrice")}>{addComma(hourlyPay)}원</p>
+          </p>
           <HighPriceRateBadge
             closed={closed}
             isPast={isPast}

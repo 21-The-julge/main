@@ -1,40 +1,151 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+##  더 줄게 웹사이트 만들기 
+ 
+<br><br><br><br><br><br><br><br>
 
-## Getting Started
+## 📚목차
 
-First, run the development server:
+<br><br><br><br><br><br><br><br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 팀원 소개
+  
+<br><br>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- 사용한 기술 스택
+  
+<br><br>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 작업 과정
+  
+<br><br>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- 서비스 구성
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<br><br><br><br><br><br><br><br>
 
-## Learn More
+### 팀원 소개
 
-To learn more about Next.js, take a look at the following resources:
+<br><br><br><br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+@suzinxix - 길수진
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br><br>
 
-## Deploy on Vercel
+@bokeeeey - 김보경
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br><br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+@changmin6362 - 김창민
+
+<br><br>
+
+@smb0123 - 심민보
+
+<br><br>
+
+@smimdla0205 - 이상민
+
+<br><br><br><br><br><br><br><br>
+
+
+### 🏝 사용한 기술 스택
+
+<br><br><br><br>
+
+
+## 기술 스택
+ - react
+ - typescript
+ - Next.js
+ - tanstack-query
+ - scss
+ - className
+
+
+<br><br><br><br>
+
+
+
+## 라이브러리
+ - react-hook-form
+   - 폼을 편하게 다루기 위해 사용
+
+ - zodResolver:
+   - 훅폼에 조드를 적용하기 위해 사용
+
+ - date-fns:
+   - 날짜 인풋을 편하게 구현하기 위해 사용
+
+ - react-toastify:
+   - 토스트 구현을 편하게 하기 위해 사용
+
+ - react-intersection-observer:
+   -무한 스크롤 구현을 위해 사용
+
+ - zustand:
+   - state의 전역 관리를 위해 사용
+
+
+
+<br><br><br><br><br><br><br><br>
+
+
+## 작업 과정
+
+<br><br><br><br>
+
+- ### 공고 리스트 페이지 (주소: /)
+<br><br>
+
+
+<br><br>
+- ### 로그인 페이지 (주소: /login)
+<br><br>
+
+<br><br>
+- ### 회원가입 페이지 (주소: /sign-up)
+<br><br>
+
+<br><br>
+- ### 가게 정보 상세 페이지 (주소: /shops)
+<br><br>
+
+<br><br>
+- ### 가게 정보 등록 페이지 (주소: /registor-my-shop)
+<br><br>
+
+<br><br>
+- ### 가게 정보 변경 페이지 (주소: /edit-my-shop)
+<br><br>
+
+<br><br>
+- ### 프로필 정보 상세 페이지 (주소: /users)
+<br><br>
+
+<br><br>
+- ### 프로필 정보 등록 페이지 (주소: /users/post-profile)
+<br><br>
+
+<br><br>
+- ### 프로필 정보 변경 페이지 (주소: /users/{userId}/edit)
+<br><br>
+
+<br><br>
+- ### 공고 정보 상세 페이지 (주소: /shops/{shopId}/notices/{noticeId})
+<br><br>
+
+<br><br>
+- ### 공고 정보 등록 페이지 (주소: /shops/post-notice)
+<br><br>
+
+<br><br>
+- ### 공고 정보 변경 페이지 (주소: /shops/{shopId}/notices/{noticeId}edit)
+<br><br>
+
+<br><br><br><br>
+
+  
+
+
+
+

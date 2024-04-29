@@ -106,7 +106,6 @@ export default function AllNotices() {
   return (
     <div className={cn("container")}>
       <FilterBar
-        filters={filters}
         router={router}
         isOpen={isFilterOpen}
         onChange={handleSelect}

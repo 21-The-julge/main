@@ -7,9 +7,10 @@ import addComma from "@/shared/components/Post/utils/addComma";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import { useGetSpecificShopNoticeData } from "@/shared/apis/api-hooks";
 import NoticeMessage from "@/shared/components/Post/NoticeMessage/NoticeMessage";
+import { BLUR_DATA_URL } from "@/common/constants/index";
 import styles from "./NoticeDetailInfo.module.scss";
 import NoticeDetailButtonAndModal from "./NoticeDetailButtonAndModal/NoticeDetailButtonAndModal";
-import { BLUR_DATA_URL } from "@/common/constants/index";
+
 interface NoticeDetailInfoProps {
   shopId: string;
   noticeId: string;

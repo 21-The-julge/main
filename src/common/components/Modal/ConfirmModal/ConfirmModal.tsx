@@ -5,7 +5,7 @@ import { Button } from "@/common/components";
 import useOutsideClick from "@/common/hooks/useOutsideClick";
 import Modal from "@/common/components/Modal/Modal";
 
-import styles from "@/common/components/Modal/ConfirmModal/confirmModal.module.scss";
+import styles from "./ConfirmModal.module.scss";
 
 const cn = classNames.bind(styles);
 

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import { ADDRESSES, CATEGORIES, MESSAGES, ROUTE } from "@/common/constants";
 import { Button, InputField, Textarea, Dropdown } from "@/common/components";
@@ -87,39 +87,53 @@ export default function RegisterMyShopLayout() {
         { name: file.name },
         {
           onSuccess: async (data) => {
-            // try {
-            const response = await axios.put(data.item.url, file, {
-              headers: { "Content-Type": file.type },
-            });
-            if (response.status === 200) {
-              const imageUrl = data.item.url.split("?")[0];
-              setValue("imageUrl", imageUrl);
-              setImg(imageUrl);
+            try {
+              const response = await axios.put(data.item.url, file, {
+                headers: { "Content-Type": file.type },
+              });
+              if (response.status === 200) {
+                const imageUrl = data.item.url.split("?")[0];
+                setValue("imageUrl", imageUrl);
+                setImg(imageUrl);
+              }
+            } catch (error) {
+              setAddress1Value("잘못된 이미지 입니다.");
+              setIsModalOpen((prevOpen) => !prevOpen);
             }
-            // } catch (error) {
-            //   console.error("이미지 업로드 실패", error);
-            // }
           },
-          // onError: (error) => {
-          //   console.error("POST 실패", error);
-          // },
+          onError: () => {
+            setAddress1Value("이미지 등록에 실패하였습니다.");
+            setIsModalOpen((prevOpen) => !prevOpen);
+          },
         },
       );
     }
   };
 
   const onSubmit: SubmitHandler<ShopInfo> = (data) => {
-    // console.log(data);
     postShopInfo(data, {
       onSuccess: (response) => {
-        // console.log("성공", response);
         setUserData.setShopId(response.shopId);
         setAlertMessage(MESSAGES.SUCCESS);
         setIsModalOpen((prev) => !prev);
       },
-      // onError: (error) => {
-      //   console.error("실패", error);
-      // },
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response) {
+          const status = axiosError.response.status as number;
+          const errorMessage = (axiosError.response.data as { message?: string }).message;
+
+          if (status === 401) {
+            setAlertMessage("로그인이 필요합니다.");
+          } else if (status === 409) {
+            setAlertMessage(errorMessage || MESSAGES.FAIL);
+          } else {
+            setAlertMessage(MESSAGES.FAIL);
+          }
+        }
+
+        setIsModalOpen((prevOpen) => !prevOpen);
+      },
     });
   };
 
@@ -129,8 +143,6 @@ export default function RegisterMyShopLayout() {
     if (alertMessage === MESSAGES.SUCCESS) {
       router.replace(ROUTE.MYSHOP);
     }
-
-    // router.reload();
   };
 
   return (

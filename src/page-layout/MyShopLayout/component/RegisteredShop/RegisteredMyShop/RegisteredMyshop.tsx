@@ -17,7 +17,6 @@ export default function RegistseredMyShop({ shopId }: { shopId: string }) {
 
   const { shopNoticeData, hasNextPage, fetchNextPage } = useGetShopNoticesData({ shopId });
 
-  // console.log(shopNoticeData?.pages);
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();

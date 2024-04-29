@@ -107,3 +107,8 @@ export const EMPLOYEE_COLUMN = [
 
 export const BLUR_DATA_URL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==";
+
+export const FIELDSET_OPTION = [
+  { id: "employee", value: "employee", label: "알바님" },
+  { id: "employer", value: "employer", label: "사장님" },
+];

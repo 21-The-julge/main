@@ -19,6 +19,8 @@ import Close from "@/images/ic_close.svg";
 import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 
+const cn = classNames.bind(styles);
+
 const schema = z.object({
   name: z.string().min(1, { message: "가게 이름은 필수값입니다." }),
   category: z.string().min(1, { message: "분류는 필수값입니다." }),
@@ -29,23 +31,21 @@ const schema = z.object({
   description: z.string(),
 });
 
-const cn = classNames.bind(styles);
-
 type ShopInfo = z.infer<typeof schema>;
 
 export default function RegisterMyShopLayout() {
   const router = useRouter();
+
   const [img, setImg] = useState<string>("");
   const imgRef = useRef<HTMLInputElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
+  const { mutate: postPresignedURL } = usePostPresignedURL();
+  const { mutate: postShopInfo } = usePostShopData();
   const setUserData = useUserDataStore((state) => ({
     setShopId: state.setShopId,
   }));
-
-  const { mutate: postPresignedURL } = usePostPresignedURL();
-  const { mutate: postShopInfo } = usePostShopData();
 
   const {
     register,
@@ -75,22 +75,22 @@ export default function RegisterMyShopLayout() {
         { name: file.name },
         {
           onSuccess: async (data) => {
-            try {
-              const response = await axios.put(data.item.url, file, {
-                headers: { "Content-Type": file.type },
-              });
-              if (response.status === 200) {
-                const imageUrl = data.item.url.split("?")[0];
-                setValue("imageUrl", imageUrl);
-                setImg(imageUrl);
-              }
-            } catch (error) {
-              console.error("이미지 업로드 실패", error);
+            // try {
+            const response = await axios.put(data.item.url, file, {
+              headers: { "Content-Type": file.type },
+            });
+            if (response.status === 200) {
+              const imageUrl = data.item.url.split("?")[0];
+              setValue("imageUrl", imageUrl);
+              setImg(imageUrl);
             }
+            // } catch (error) {
+            //   console.error("이미지 업로드 실패", error);
+            // }
           },
-          onError: (error) => {
-            console.error("Failed to get presigned URL:", error);
-          },
+          // onError: (error) => {
+          //   console.error("POST 실패", error);
+          // },
         },
       );
     }

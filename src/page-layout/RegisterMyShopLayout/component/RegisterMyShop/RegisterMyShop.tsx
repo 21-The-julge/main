@@ -14,6 +14,7 @@ import { usePostPresignedURL, usePostShopData } from "@/shared/apis/api-hooks";
 import { useRouter } from "next/router";
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import Image from "next/image";
+import useUserDataStore from "@/shared/hooks/useUserDataStore";
 
 interface ShopInfo {
   name: string;
@@ -42,7 +43,7 @@ export default function RegisterMyShopLayout() {
     resolver: zodResolver(schema),
     mode: "onTouched",
   });
-
+  const { setShopId } = useUserDataStore();
   const [shopName, setShopName] = useState("");
   const [classification, setClassification] = useState("");
   const [address, setAddress] = useState("");
@@ -52,7 +53,7 @@ export default function RegisterMyShopLayout() {
   const [description, setDescription] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
   const { data, mutate } = usePostPresignedURL();
-  const { mutate: shopDataMutate } = usePostShopData({
+  const { data: shopData, mutate: shopDataMutate } = usePostShopData({
     name: shopName,
     category: classification,
     address1: address,
@@ -67,6 +68,7 @@ export default function RegisterMyShopLayout() {
 
   const handleClickConfirm = async () => {
     await shopDataMutate();
+    setShopId(shopData); // shopId 저장해야함 -> 수정 필요
     router.push("/my-shop");
   };
 

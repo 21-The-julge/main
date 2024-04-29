@@ -109,7 +109,7 @@ export default function RegisterMyShopLayout() {
   };
 
   const onSubmit: SubmitHandler<ShopInfo> = (data) => {
-    console.log(data);
+    // console.log(data);
     postShopInfo(data, {
       onSuccess: (response) => {
         // console.log("성공", response);

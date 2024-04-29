@@ -13,6 +13,7 @@ import {
 } from "@/shared/apis/api-hooks";
 import { useRouter } from "next/router";
 import styles from "./NoticeDetailButtonAndModal.module.scss";
+import { ROUTE } from "@/common/constants/index";
 
 interface NoticeDetailButtonAndModalProps {
   shopId: string;
@@ -103,7 +104,7 @@ export default function NoticeDetailButtonAndModal({
   };
   const handleClick = () => {
     if (buttonText === "공고 편집하기") {
-      router.replace("/");
+      router.push(ROUTE.POSTNOTICE);
     }
     modalProduce();
     toggleModal();

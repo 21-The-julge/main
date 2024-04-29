@@ -46,11 +46,11 @@ interface UserWrapper {
 interface User {
   id: string;
   email: string;
-  type: string;
-  name: string;
-  phone: string;
-  address: string;
-  bio: string;
+  type: "employer" | "employee";
+  name?: string;
+  phone?: string;
+  address?: string;
+  bio?: string;
 }
 
 interface ShopWrapper {
@@ -83,16 +83,6 @@ interface Notice {
   closed: boolean;
 }
 
-interface Link {
-  rel: string;
-  description: string;
-  method: string;
-  href: string;
-  body?: {
-    status: "accepted" | "rejected";
-  };
-}
-
 export interface GetShopApplicationsDataType {
   offset: number;
   limit: number;
@@ -117,4 +107,45 @@ export interface FilterValue {
   startsAtGte: string;
   hourlyPayGte: string;
   sort: (typeof SORT_VALUE)[number];
+}
+
+interface Link {
+  rel: string;
+  description: string;
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  href: string;
+  body?: {
+    status: "pending" | "accepted" | "rejected" | "canceled";
+  };
+}
+
+interface ApplicationItem {
+  id: string;
+  status: "pending" | "accepted" | "rejected" | "canceled";
+  createdAt: string;
+  user: {
+    item: User;
+    href: string;
+  };
+  shop: {
+    item: ShopItem;
+    href: string;
+  };
+  notice: {
+    item: Notice;
+    href: string;
+  };
+  links: Link[];
+}
+
+export interface ApplicationListType {
+  offset: number;
+  limit: number;
+  count: number;
+  hasNext: boolean;
+  items: {
+    item: ApplicationItem;
+    links: Link[];
+  }[];
+  links: Link[];
 }

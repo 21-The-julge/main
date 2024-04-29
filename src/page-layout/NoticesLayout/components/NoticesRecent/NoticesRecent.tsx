@@ -29,7 +29,7 @@ export default function NoticesRecent() {
               />
             ))
           ) : (
-            <p>최근에 본 공고가 없습니다.</p>
+            <p className={cn("NoticesRecentNot")}>최근에 본 공고가 없습니다.</p>
           )}
         </div>
       </div>

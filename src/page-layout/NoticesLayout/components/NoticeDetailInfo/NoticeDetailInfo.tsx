@@ -6,6 +6,7 @@ import ClockIcon from "@/images/ic_clock.svg";
 import addComma from "@/shared/components/Post/utils/addComma";
 import formatDateTimeRange from "@/shared/utils/getFormatDateTimeRange";
 import { useGetSpecificShopNoticeData } from "@/shared/apis/api-hooks";
+import NoticeMessage from "@/shared/components/Post/NoticeMessage/NoticeMessage";
 import styles from "./NoticeDetailInfo.module.scss";
 import NoticeDetailButtonAndModal from "./NoticeDetailButtonAndModal/NoticeDetailButtonAndModal";
 
@@ -26,6 +27,7 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error occurred: {error.message}</div>;
+
   return (
     <div className={cn("noticeInfoContainer")}>
       <div className={cn("noticeInfoContent")}>
@@ -35,7 +37,16 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
         </div>
         <div className={cn("detailFrame")}>
           <div className={cn("noticeImg")}>
-            <Image fill src={noticeDetailData?.shop?.item.imageUrl} alt="내 가게" />
+            <NoticeMessage isPast={isPast} closed={noticeDetailData?.closed} />
+            <Image
+              className={cn("img")}
+              src={noticeDetailData?.shop?.item.imageUrl}
+              alt="내 가게"
+              fill
+              priority
+              sizes="(max-width: 757px) 100vw, (max-width: 1024px) 539px, 308px"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            />
           </div>
           <div className={cn("noticeDetail", "titleFont")}>
             <h2>시급</h2>
@@ -57,7 +68,13 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
               {noticeDetailData?.shop?.item.address1}
             </div>
             <p className={cn("shopDescription")}>{noticeDetailData?.shop?.item.description}</p>
-            <NoticeDetailButtonAndModal shopId={shopId} noticeId={noticeId} myNotice={myNotice} />
+            <NoticeDetailButtonAndModal
+              shopId={shopId}
+              noticeId={noticeId}
+              myNotice={myNotice}
+              isPast={isPast}
+              closed={noticeDetailData?.closed}
+            />
           </div>
         </div>
         <div className={cn("noticeDescription")}>

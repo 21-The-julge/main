@@ -105,3 +105,9 @@ $option-height: 5.8rem;
     }
   }
 }
+
+.error {
+  .dropdown {
+    border: 0.1rem solid $color-red-40;
+  }
+}

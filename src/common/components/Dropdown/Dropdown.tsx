@@ -55,7 +55,7 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
-  const combinedClassName = cn("dropdownBox", size, color);
+  const combinedClassName = cn("dropdownBox", size, color, { error: isError });
 
   return (
     <div className={combinedClassName} ref={dropdownRef}>
@@ -74,6 +74,7 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
           />
           <SuffixIcon icon="triangle" isOpen={isOpen} />
         </button>
+        {isError && <ErrorMessage message={errorMessage} />}
       </div>
       {isOpen && (
         <div className={cn("optionsBox")}>
@@ -86,7 +87,6 @@ export default forwardRef<HTMLInputElement, DropdownProps>(function Dropdown(
           })}
         </div>
       )}
-      {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
 });

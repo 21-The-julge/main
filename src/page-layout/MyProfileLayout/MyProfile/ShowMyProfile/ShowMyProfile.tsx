@@ -45,7 +45,7 @@ export default function ShowMyProfile({ myProfile }: ShowMyShopProps) {
                 </div>
                 <div className={cn("phoneNumberContainer")}>
                   <IcPhone className={cn("phone")} />
-                  <p className={cn("phoneNumber")}>{myProfile.phone}</p>
+                  <p className={cn("phoneNumber")}>{myProfile?.phone}</p>
                 </div>
                 <div className={cn("locationContainer")}>
                   <Locatoin width={20} height={20} fill="#F48A71" />

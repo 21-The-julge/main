@@ -57,7 +57,7 @@ export default function RegisterMyShopLayout() {
     setValue,
   } = useForm<ShopInfo>({
     resolver: zodResolver(schema),
-    mode: "onTouched",
+    mode: "all",
     defaultValues: {
       name: "",
       category: "",

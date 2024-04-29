@@ -30,7 +30,7 @@ export default function Post({
   const endDate = new Date(startsAt);
   const isPast = currentDate > endDate;
 
-  const [isImgError, setIsImgError] = useState<boolean>(false);
+  const [isImgError, setIsImgError] = useState(false);
 
   return (
     <div className={cn("postContainer", { closed, isPast })}>

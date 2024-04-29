@@ -19,7 +19,7 @@ interface ShowMyShopProps {
 export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
   const router = useRouter();
 
-  const [isImgError, setIsImgError] = useState<boolean>(false);
+  const [isImgError, setIsImgError] = useState(false);
 
   const handleEditClick = () => {
     router.push(`${ROUTE.EDIT_MY_SHOP}`);

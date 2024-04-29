@@ -27,7 +27,7 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
   const endDate = new Date(noticeDetailData?.startsAt);
   const isPast = currentDate > endDate;
 
-  const [isImgError, setIsImgError] = useState<boolean>(false);
+  const [isImgError, setIsImgError] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error occurred: {error.message}</div>;

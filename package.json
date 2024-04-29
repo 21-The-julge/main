@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "react-scripts start",
+    "start": "next start",
     "format": "prettier --write --cache .",
     "lint": "eslint --cache .",
     "postInstall": "husky install",

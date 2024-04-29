@@ -1,5 +1,3 @@
-import { CATEGORIES, ADDRESSES } from "@/common/constants/index";
-
 export interface GetAlertsDataParams {
   offset?: number;
   limit?: number;

@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import Button from "@/common/components/Button/Button";
 import { InputField, Textarea } from "@/common/components/index";
 
+import ValidateInput from "../../PostNoticeLayout/ValidateInput";
 import styles from "./PostNoticeEditForm.module.scss";
 
 const cn = classNames.bind(styles);
@@ -19,6 +20,8 @@ interface PostNoticeFormProps {
 }
 
 export default function PostNoticeForm({ handleModalOpen, handleInputChange, inputValue }: PostNoticeFormProps) {
+  const disabled = ValidateInput({ inputValue });
+
   return (
     <form className={cn("container")}>
       <div className={cn("inputContainer")}>
@@ -61,7 +64,7 @@ export default function PostNoticeForm({ handleModalOpen, handleInputChange, inp
           onChange={handleInputChange}
         />
       </div>
-      <Button className={cn("submitButton")} onClick={handleModalOpen} size="large">
+      <Button disabled={disabled} className={cn("submitButton")} onClick={handleModalOpen} size="large">
         등록하기
       </Button>
     </form>

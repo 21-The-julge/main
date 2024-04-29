@@ -6,6 +6,7 @@ import DropDownField from "@/common/components/Dropdown/Dropdown";
 import Textarea from "@/common/components/Textarea/Textarea";
 import { ADDRESSES } from "@/common/constants";
 
+import ValidateInput from "../../PostProfileLayout/ValidateInput";
 import styles from "./PostProfileEditForm.module.scss";
 
 const cn = classNames.bind(styles);
@@ -28,6 +29,8 @@ export default function PostNoticeForm({
   onOptionClick,
   inputValue,
 }: PostNoticeFormProps) {
+  const disabled = ValidateInput({ inputValue });
+
   return (
     <form className={cn("container")}>
       <div className={cn("inputContainer")}>
@@ -69,7 +72,7 @@ export default function PostNoticeForm({
           onChange={handleInputChange}
         />
       </div>
-      <Button className={cn("submitButton")} onClick={handleModalOpen} size="large">
+      <Button disabled={disabled} className={cn("submitButton")} onClick={handleModalOpen} size="large">
         등록하기
       </Button>
     </form>

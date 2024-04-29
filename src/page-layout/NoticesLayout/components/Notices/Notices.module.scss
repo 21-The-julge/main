@@ -7,3 +7,9 @@
   justify-content: center;
   margin: 6rem;
 }
+
+@include mobile {
+  .allNotices {
+    margin: 4rem 1.2rem 8rem 1.2rem;
+  }
+}

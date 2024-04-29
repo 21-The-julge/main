@@ -8,6 +8,8 @@ import PostContainer from "./PostContainer/PostContainer";
 const cn = classNames.bind(styles);
 
 export default function RegistseredMyShop({ lastRef, myShopData }: RegistseredMyShopProps) {
+  console.log(myShopData);
+
   return (
     <div className={cn("container")}>
       <div className={cn("registerContiner")}>

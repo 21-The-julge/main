@@ -8,12 +8,20 @@
 
 .notices {
   display: flex;
+  width: 74.2rem;
   flex-direction: column;
   gap: 4rem;
 }
 
+@include tablet {
+  .container {
+    max-width: 67.8rem;
+  }
+}
+
 @include mobile {
   .container {
+    max-width: 35.1rem;
     gap: 1.6rem;
   }
 }

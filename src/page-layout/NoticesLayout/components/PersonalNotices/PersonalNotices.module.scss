@@ -11,6 +11,10 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    @include tablet {
+      width: 67.8rem;
+    }
   }
 
   .heading {
@@ -26,6 +30,10 @@
       @include sopoqa-20-700;
 
       margin-bottom: 1.6rem;
+    }
+
+    .content {
+      width: 35.1rem;
     }
   }
 }

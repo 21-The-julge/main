@@ -1,0 +1,30 @@
+.modal {
+  width: 30rem;
+  height: 18.4rem;
+}
+
+@include tablet {
+  .button {
+    margin-top: 2.8rem;
+    max-width: none;
+    width: 100%;
+    &:disabled {
+      margin-top: 1.2rem;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}
+
+@include mobile {
+  .button {
+    margin-top: 1.2rem;
+    max-width: none;
+    width: 100%;
+    &:disabled {
+      margin-top: 1.2rem;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}

@@ -68,7 +68,7 @@ export default function PostNoticeLayout() {
       {isModalOpen && (
         <ConfirmModal
           className={cn("alertModal")}
-          message={error?.message ? "잘못된 요청입니다." : "프로필이 동록되었습니다."}
+          message={error?.message ? "잘못된 요청입니다." : "프로필이 등록되었습니다."}
           onClick={handleConfirmButtonClick}
         />
       )}

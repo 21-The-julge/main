@@ -69,7 +69,7 @@ export default function RegisterMyShopLayout() {
   const handleClickConfirm = async () => {
     await shopDataMutate();
     setShopId(shopData); // shopId 저장해야함 -> 수정 필요
-    router.push("/my-shop");
+    router.push("/shops");
   };
 
   const handleOnchangeShopName = (e: ChangeEvent<HTMLInputElement>) => {

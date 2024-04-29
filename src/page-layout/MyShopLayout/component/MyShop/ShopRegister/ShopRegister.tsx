@@ -11,7 +11,7 @@ export default function ShopRegister() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/register-my-shop");
+    router.push("shops/register-my-shop");
   };
 
   return (

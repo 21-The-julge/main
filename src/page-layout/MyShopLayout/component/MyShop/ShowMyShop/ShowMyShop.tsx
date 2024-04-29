@@ -1,5 +1,4 @@
 import { ROUTE } from "@/common/constants/index";
-import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import classNames from "classnames/bind";
 import styles from "@/page-layout/MyShopLayout/component/MyShop/ShowMyShop/ShowMyshop.module.scss";
 
@@ -18,11 +17,10 @@ interface ShowMyShopProps {
 }
 
 export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
-  const { shopId } = useUserDataStore();
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push(`${ROUTE.MYSHOP}/${shopId}`);
+    router.push(`${ROUTE.MYSHOP}/edit-my-shop`);
   };
 
   const handleRegisterClick = () => {

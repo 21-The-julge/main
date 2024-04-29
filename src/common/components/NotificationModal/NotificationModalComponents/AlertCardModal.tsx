@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import classNames from "classnames/bind";
 import IC_CLOSE from "@/images/ic_close.svg";
-import GetAlertCardModalData from "@/shared/hooks/getAlertCardModalData";
+import useGetAlertCardModalData from "@/shared/hooks/useGetAlertCardModalData";
 import CreateCards from "./CreateCards";
 import styles from "./AlertCardModal.module.scss";
 
@@ -14,7 +14,7 @@ interface AlertModalProps {
 
 export default function AlertCardModal({ onToggleModal, alertCount }: AlertModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { hasNotification, items } = GetAlertCardModalData();
+  const { hasNotification, items } = useGetAlertCardModalData();
 
   useEffect(() => {
     const handleMouseOver = () => {

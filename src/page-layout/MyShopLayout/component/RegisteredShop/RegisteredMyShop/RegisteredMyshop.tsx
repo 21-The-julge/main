@@ -5,7 +5,7 @@ import { ApiResponse, Item } from "@/shared/apis/apiType";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-import { useGetShopNoticesData } from "@/shared/apis/api-hooks/useNotices";
+import { useInfinityQuery } from "@/shared/apis/api-hooks/useNotices";
 
 import PostContainer from "./PostContainer/PostContainer";
 import Registser from "../Register/Register";
@@ -15,7 +15,7 @@ const cn = classNames.bind(styles);
 export default function RegistseredMyShop({ shopId }: { shopId: string }) {
   const [lastRef, inView] = useInView();
 
-  const { shopNoticeData, hasNextPage, fetchNextPage } = useGetShopNoticesData({ shopId });
+  const { shopNoticeData, hasNextPage, fetchNextPage } = useInfinityQuery({ shopId });
 
   useEffect(() => {
     if (inView && hasNextPage) {

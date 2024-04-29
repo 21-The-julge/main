@@ -5,7 +5,7 @@ import IC_CLOSE from "@/images/ic_close.svg";
 
 import ConfirmModal from "@/common/components/Modal/ConfirmModal/ConfirmModal";
 import { usePutNoticeData, useGetSpecificShopNoticeData } from "@/shared/apis/api-hooks/useNotices";
-import GetUserData from "@/shared/hooks/getUserData";
+import useGetId from "@/shared/hooks/useGetId";
 import PostNoticeEditForm from "./components/PostNoticeEditForm";
 
 import styles from "./PostNoticeEditLayout.module.scss";
@@ -16,7 +16,7 @@ export default function PostNoticeLayout() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { shopId, noticeId } = GetUserData();
+  const { shopId, noticeId } = useGetId();
 
   const { data } = useGetSpecificShopNoticeData({ shopId, noticeId });
 

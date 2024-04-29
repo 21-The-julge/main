@@ -1,10 +1,18 @@
 export interface RegisterdShop {
   lastRef: (node?: Element | null | undefined) => void;
-  myShopData: ApiData[];
+  noticeData?: {
+    items: ApiData[];
+  };
 }
 
 export interface ApiData {
-  item: Item;
+  item: {
+    id: string;
+    hourlyPay: number;
+    startsAt: string;
+    workhour: number;
+    closed: boolean;
+  };
 }
 
 export interface Item extends CommonData {

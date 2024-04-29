@@ -15,7 +15,7 @@ export default function PostNoticeLayout() {
   const { shopId } = GetUserData();
 
   const onClose = () => {
-    router.push(`/shops/${shopId}`);
+    router.push("/shops");
   };
 
   return (

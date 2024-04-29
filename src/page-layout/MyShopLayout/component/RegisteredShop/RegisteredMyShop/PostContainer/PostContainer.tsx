@@ -1,4 +1,5 @@
 import { ApiData } from "@/page-layout/MyShopLayout/type";
+import Link from "next/link";
 
 import { Post } from "@/shared/components";
 import PostSkeleton from "@/shared/components/Post/Skeleton/PostSkeleton";
@@ -8,24 +9,23 @@ import styles from "@/shared/components/Post/Skeleton/PostSkeleton.module.scss";
 
 interface PostContainerProps {
   myShopData: ApiData;
+  shopId: string;
 }
 const cn = classNames.bind(styles);
 
-export default function PostContainer({ myShopData }: PostContainerProps) {
+export default function PostContainer({ myShopData, shopId }: PostContainerProps) {
   if (myShopData?.item?.startsAt === undefined) {
     return <PostSkeleton className={cn("skeleton")} />;
   }
 
   return (
-    <Post
-      imageUrl={myShopData?.item?.imageUrl}
-      startsAt={myShopData?.item?.startsAt}
-      workhour={myShopData?.item?.workhour}
-      hourlyPay={myShopData?.item?.hourlyPay}
-      closed={myShopData?.item?.closed}
-      name={myShopData?.item?.name}
-      address={myShopData?.item?.address1}
-      originalHourlyPay={myShopData?.item?.originalHourlyPay}
-    />
+    <Link href={`shops/${shopId}/notices/${myShopData?.item?.id}`}>
+      <Post
+        startsAt={myShopData?.item?.startsAt}
+        workhour={myShopData?.item?.workhour}
+        hourlyPay={myShopData?.item?.hourlyPay}
+        closed={myShopData?.item?.closed}
+      />
+    </Link>
   );
 }

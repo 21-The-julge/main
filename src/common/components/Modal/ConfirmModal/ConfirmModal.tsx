@@ -1,10 +1,11 @@
 import classNames from "classnames/bind";
-import styles from "@/common/components/Modal/ConfirmModal/confirmModal.module.scss";
 import { useRef } from "react";
 
 import { Button } from "@/common/components";
 import useOutsideClick from "@/common/hooks/useOutsideClick";
 import Modal from "@/common/components/Modal/Modal";
+
+import styles from "@/common/components/Modal/ConfirmModal/confirmModal.module.scss";
 
 const cn = classNames.bind(styles);
 

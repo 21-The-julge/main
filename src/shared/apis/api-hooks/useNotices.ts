@@ -46,10 +46,10 @@ export function useGetShopNoticesData({ shopId, offset, limit }: GetShopNoticesD
 }
 
 // 3. 가게 공고 등록 POST 요청
-export function usePostNoticeData({ shopId, bodyData }: PostNoticeDataParams) {
+export function usePostNoticeData() {
   const { token } = useUserDataStore();
   const mutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ shopId, bodyData }: PostNoticeDataParams) => {
       const { data } = await axiosInstanceToken(token).post(`/shops/${shopId}/notices`, bodyData);
       return data;
     },

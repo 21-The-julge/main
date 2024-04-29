@@ -9,7 +9,6 @@ import useGetMessages from "@/page-layout/MyShopLayout/hooks/useGetShopData";
 import { Item } from "@/page-layout/MyShopLayout/type";
 import GetUserData from "@/shared/hooks/getUserData";
 import { useGetShopData } from "@/shared/apis/api-hooks";
-
 interface DataItem {
   item: Item;
 }
@@ -24,6 +23,7 @@ export default function MyShop() {
   const [array, setArray] = useState<DataArray>([]);
 
   const [ref, inView] = useInView();
+  // const { data: shopId } = useGetUserData(); // shop id 가져오는 훅
   const { data, fetchNextPage, hasNextPage } = useGetMessages();
   const registerdShopList = data?.pages;
 

@@ -59,8 +59,8 @@ export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField
           {...rest}
         />
         {unit && <SuffixUnit unit={unit} />}
+        {isError && <ErrorMessage message={errorMessage} />}
       </div>
-      {isError && <ErrorMessage message={errorMessage} />}
     </div>
   );
 });

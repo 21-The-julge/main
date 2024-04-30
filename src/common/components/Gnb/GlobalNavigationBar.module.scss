@@ -1,9 +1,11 @@
 .background {
   background-color: $color-white;
-
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   display: flex;
-  position: fixed;
   justify-content: center;
   z-index: $zindex-GNB;
 }

@@ -29,6 +29,7 @@ export default function PostNoticeForm({
   onOptionClick,
   inputValue,
 }: PostNoticeFormProps) {
+  console.log(inputValue);
   const disabled = ValidateInput({ inputValue });
 
   return (

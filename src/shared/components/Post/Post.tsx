@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 
 import classNames from "classnames/bind";
@@ -8,7 +9,6 @@ import addComma from "@/shared/components/Post/utils/addComma";
 
 import Clock from "@/images/ic_clock.svg";
 import Location from "@/images/ic_location.svg";
-import IcDefaultImage from "@/images/ic_default_image.svg";
 
 import { PostProps } from "@/page-layout/MyShopLayout/type";
 import NoticeMessage from "./NoticeMessage/NoticeMessage";
@@ -30,19 +30,24 @@ export default function Post({
   const endDate = new Date(startsAt);
   const isPast = currentDate > endDate;
 
+  const [isImgError, setIsImgError] = useState(false);
+
   return (
     <div className={cn("postContainer", { closed, isPast })}>
       <div className={cn("imgContainer")}>
         <NoticeMessage isPast={isPast} closed={closed} />
-        <Image
-          className={cn("img")}
-          src={imageUrl || IcDefaultImage}
-          alt="식당 공고"
-          fill
-          placeholder="blur"
-          sizes="(max-width: 757px) 145px, (max-width: 1024px) 300px, 300px"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
-        />
+        {imageUrl && (
+          <Image
+            className={cn("img")}
+            src={isImgError ? "/images/logo.svg" : imageUrl}
+            alt="식당 공고"
+            fill
+            placeholder="blur"
+            sizes="(max-width: 757px) 145px, (max-width: 1024px) 300px, 300px"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+            onError={() => setIsImgError(true)}
+          />
+        )}
       </div>
       <div className={cn("contentContainer")}>
         <div className={cn("restaurantContent")}>

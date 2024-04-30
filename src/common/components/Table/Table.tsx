@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { ReactNode } from "react";
-import styles from "./Table.module.scss";
+import styles from "./table.module.scss";
 
 interface TableProps {
   columns: {

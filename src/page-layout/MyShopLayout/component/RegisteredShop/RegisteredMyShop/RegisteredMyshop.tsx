@@ -16,6 +16,7 @@ export default function RegistseredMyShop({ shopId }: { shopId: string }) {
   const [lastRef, inView] = useInView();
 
   const { shopNoticeData, hasNextPage, fetchNextPage } = useInfinityQuery({ shopId });
+  const isShopNoticeData = shopNoticeData?.pages[0]?.count;
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -46,5 +47,5 @@ export default function RegistseredMyShop({ shopId }: { shopId: string }) {
       </div>
     </div>
   );
-  return shopNoticeData ? RegisteredMyShopComponent : <Registser />;
+  return isShopNoticeData ? RegisteredMyShopComponent : <Registser />;
 }

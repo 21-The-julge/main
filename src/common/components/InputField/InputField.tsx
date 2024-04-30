@@ -19,6 +19,7 @@ interface InputFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "s
   border?: "solid" | "none";
   className?: string;
   disabled?: boolean;
+  value?: string | number | readonly string[] | undefined;
 }
 
 export default forwardRef<HTMLInputElement, InputFieldProps>(function InputField(

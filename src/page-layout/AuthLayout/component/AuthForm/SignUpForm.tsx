@@ -59,7 +59,6 @@ export default function SignUpForm() {
       },
       onError: (error: Error) => {
         const axiosError = error as AxiosError;
-
         if (axiosError.response) {
           const errorMessage = (axiosError.response.data as { message?: string }).message;
           setAlertMessage(errorMessage || "회원가입에 실패 하였습니다.");

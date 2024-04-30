@@ -9,12 +9,15 @@ const cn = classNames.bind(styles);
 
 interface AlertModalProps {
   onToggleModal: () => void;
-  alertCount: number;
+  alertData: {
+    count: number;
+    items: object[];
+  };
 }
 
-export default function AlertCardModal({ onToggleModal, alertCount }: AlertModalProps) {
+export default function AlertCardModal({ onToggleModal, alertData }: AlertModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const { hasNotification, items } = useGetAlertCardModalData();
+  const { items } = useGetAlertCardModalData();
 
   useEffect(() => {
     const handleMouseOver = () => {
@@ -39,25 +42,23 @@ export default function AlertCardModal({ onToggleModal, alertCount }: AlertModal
       }
     };
   }, []);
-  if (!hasNotification) {
-    return null;
-  }
 
   return (
     <div className={cn("container")} ref={modalRef}>
       <div className={cn("notification")}>
-        <div>알림 {alertCount}개</div> <IcClose className={cn("icon")} fill="#000" onClick={onToggleModal} />
+        <div>알림 {alertData?.count}개</div> <IcClose className={cn("icon")} fill="#000" onClick={onToggleModal} />
       </div>
       <div className={cn("contents")}>
-        {items.map(({ id, shop, notice, createdAt, result }) => (
-          <CreateCards
-            key={id}
-            name={shop.item.name}
-            startsAt={notice.item.startsAt}
-            createdAt={createdAt}
-            result={result}
-          />
-        ))}
+        {alertData?.count > 0 &&
+          items.map(({ id, shop, notice, createdAt, result }) => (
+            <CreateCards
+              key={id}
+              name={shop.item.name}
+              startsAt={notice.item.startsAt}
+              createdAt={createdAt}
+              result={result}
+            />
+          ))}
       </div>
     </div>
   );

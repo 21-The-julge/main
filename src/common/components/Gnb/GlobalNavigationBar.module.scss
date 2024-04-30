@@ -6,6 +6,7 @@
   right: 0;
   width: 100%;
   display: flex;
+  position: fixed;
   justify-content: center;
   z-index: $zindex-GNB;
 }
@@ -17,7 +18,7 @@
   display: grid;
   grid-template-columns: 11.2rem 1fr 1fr;
   align-items: center;
-  position: sticky;
+
   top: 0;
   left: 0;
   right: 0;

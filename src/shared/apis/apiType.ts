@@ -65,6 +65,7 @@ export interface Item {
     startsAt: string;
     workhour: number;
     closed: boolean;
+    imageUrl: string;
   };
 }
 

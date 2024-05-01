@@ -12,6 +12,7 @@ export interface ApiData {
     startsAt: string;
     workhour: number;
     closed: boolean;
+    imageUrl: string;
   };
 }
 

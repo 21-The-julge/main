@@ -44,7 +44,7 @@ export default function NoticeDetailInfo({ shopId, noticeId, myNotice }: NoticeD
             <NoticeMessage isPast={isPast} closed={noticeDetailData?.closed} />
             <Image
               className={cn("img")}
-              src={isImgError ? "/images/logo.svg" : noticeDetailData?.shop?.item.imageUrl}
+              src={isImgError ? "/images/ic_logo.svg" : noticeDetailData?.shop?.item.imageUrl}
               alt="내 가게"
               fill
               priority

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import IcLogo from "@/images/ic_logo.svg";
 
 import classNames from "classnames/bind";
 import styles from "@/shared/components/Post/Post.module.scss";
@@ -36,17 +37,17 @@ export default function Post({
     <div className={cn("postContainer", { closed, isPast })}>
       <div className={cn("imgContainer")}>
         <NoticeMessage isPast={isPast} closed={closed} />
-        {imageUrl && (
+        {imageUrl && !isImgError ? (
           <Image
             className={cn("img")}
-            src={isImgError ? "/images/logo.svg" : imageUrl}
+            src={imageUrl}
             alt="식당 공고"
-            fill
-            placeholder="blur"
-            sizes="(max-width: 757px) 145px, (max-width: 1024px) 300px, 300px"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+            width={300}
+            height={300}
             onError={() => setIsImgError(true)}
           />
+        ) : (
+          <IcLogo className={cn("img")} alt="식당 공고" />
         )}
       </div>
       <div className={cn("contentContainer")}>

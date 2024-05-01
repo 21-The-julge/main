@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { ROUTE } from "@/common/constants";
 import { SignUpForm } from "@/page-layout/AuthLayout/component";
-import ThejulgeLogo from "@/images/logo.svg";
+import IcLogo from "@/images/ic_logo.svg";
 
 import styles from "./SignUpPage.module.scss";
 
@@ -19,7 +19,7 @@ export default function SignUpPage() {
   return (
     <main className={cn("signUpPage")}>
       <Link className={cn("logoBox")} href={ROUTE.HOME}>
-        <ThejulgeLogo width={248} height={45} />
+        <IcLogo width={248} height={45} />
       </Link>
       <SignUpForm />
       <div className={cn("textBox")}>

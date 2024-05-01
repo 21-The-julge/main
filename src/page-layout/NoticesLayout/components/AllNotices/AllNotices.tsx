@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 
@@ -21,7 +21,6 @@ const cn = classNames.bind(styles);
 
 export default function AllNotices() {
   const router = useRouter();
-
   const { pathname, query } = router;
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -36,6 +35,22 @@ export default function AllNotices() {
 
   const handleOpen = (state: boolean) => {
     setIsFilterOpen(state);
+  };
+
+  const handlePageClick = (page: number) => {
+    setPage(page);
+
+    const offset = (page - 1) * 6;
+
+    setFilters((prev) => ({
+      ...prev,
+      offset: `${offset}`,
+    }));
+
+    router.push({
+      pathname,
+      query: { ...filters, offset },
+    });
   };
 
   const handleFilter = (filter: Partial<FilterValue>) => {
@@ -69,21 +84,6 @@ export default function AllNotices() {
       query: { ...filters, sort },
     });
   };
-
-  useEffect(() => {
-    const offset = (currentPage - 1) * 6;
-
-    setFilters((prev) => ({
-      ...prev,
-      offset: `${offset}`,
-    }));
-
-    router.push({
-      pathname,
-      query: { ...filters, offset },
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
 
   if (isPending) {
     return <Skeleton isAllNotice />;
@@ -119,7 +119,7 @@ export default function AllNotices() {
       ) : (
         <div className={cn("notices")}>
           <NoticeList notices={posts} />
-          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={handlePageClick} />
         </div>
       )}
     </div>

@@ -76,6 +76,7 @@ export interface ApiResponse {
   pageParams: [number];
   pages: Items[];
   items: Item[];
+  count: number;
 }
 
 export interface GetSpecificShopNoticeDataParams {

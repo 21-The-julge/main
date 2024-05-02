@@ -212,7 +212,7 @@ export default function EditMyShopLayout() {
           <div className={cn("imgContainer")}>
             <p className={cn("imgTitle")}>가게 이미지</p>
             <div className={cn("imgBox")}>
-              {img && <Image className={cn("img", { data })} src={img} alt="이미지 미리보기" />}
+              {img && <Image className={cn("img", { data })} fill src={img} alt="이미지 미리보기" />}
               <label className={cn("inputLabel", { data })} htmlFor="file">
                 <div className={cn("imgAddContainer")}>
                   <IcCamera width={32} height={32} fill="#FFFFFF" />

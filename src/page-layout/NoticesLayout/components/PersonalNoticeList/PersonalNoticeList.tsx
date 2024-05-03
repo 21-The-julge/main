@@ -1,16 +1,12 @@
 import Link from "next/link";
-import classNames from "classnames/bind";
 
 import { Post } from "@/shared/components";
 
 import useUserDataStore from "@/shared/hooks/useUserDataStore";
 import useGetAllNotices from "@/shared/hooks/useGetAllNotices";
 
+import DragSlider from "../DragSlider";
 import Skeleton from "../NoticesSkeleton";
-
-import styles from "./PersonalNoticeList.module.scss";
-
-const cn = classNames.bind(styles);
 
 export default function PersonalNoticeList() {
   const address = useUserDataStore((state) => state.address) ?? "";
@@ -36,7 +32,7 @@ export default function PersonalNoticeList() {
   }
 
   return (
-    <div className={cn("slider")}>
+    <DragSlider>
       {notices.map((notice) => {
         const { noticeId, shopId, imageUrl, startsAt, workhour, hourlyPay, closed, name, address1, originalHourlyPay } =
           notice;
@@ -58,6 +54,6 @@ export default function PersonalNoticeList() {
           </div>
         );
       })}
-    </div>
+    </DragSlider>
   );
 }

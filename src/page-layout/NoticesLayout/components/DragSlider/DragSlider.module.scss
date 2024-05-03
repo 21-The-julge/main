@@ -5,6 +5,16 @@
   gap: 1rem;
   overflow-x: auto;
 
+  &:active {
+    cursor: grabbing;
+  }
+
+  div {
+    :active {
+      cursor: grabbing;
+    }
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }

@@ -16,12 +16,13 @@ export default function DragSlider({ children }: PropsWithChildren) {
 
   const throttle = (func: () => void, delay: number) => {
     let timer;
-    if (!timer) {
-      timer = setTimeout(() => {
-        timer = null;
-        func();
-      }, delay);
-    }
+
+    if (timer) return;
+
+    timer = setTimeout(() => {
+      timer = null;
+      func();
+    }, delay);
   };
 
   const preventEventEffects = useCallback((e: Event) => {

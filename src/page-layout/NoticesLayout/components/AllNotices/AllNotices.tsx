@@ -19,7 +19,7 @@ import styles from "./AllNotices.module.scss";
 
 const cn = classNames.bind(styles);
 
-const NUMBER_PER_PAGE = 6;
+const COUNT_PER_PAGE = 6;
 
 export default function AllNotices() {
   const router = useRouter();
@@ -28,11 +28,11 @@ export default function AllNotices() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState(query);
 
-  const { data, error, isPending, isError } = useGetAllNotices({ limit: NUMBER_PER_PAGE, ...router.query });
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: COUNT_PER_PAGE, ...router.query });
 
   const [currentPage, totalPages, setPage] = usePaginationProps({
     totalDataCount: data?.count ?? 0,
-    itemsPageCount: NUMBER_PER_PAGE,
+    itemsPageCount: COUNT_PER_PAGE,
   });
 
   const handleOpen = (state: boolean) => {
@@ -42,11 +42,11 @@ export default function AllNotices() {
   const handlePageClick = (page: number) => {
     setPage(page);
 
-    const offset = (page - 1) * NUMBER_PER_PAGE;
+    const offset = (page - 1) * COUNT_PER_PAGE;
 
     setFilters((prev) => ({
       ...prev,
-      offset: `${offset}`,
+      offset: offset.toString(),
     }));
 
     router.push({

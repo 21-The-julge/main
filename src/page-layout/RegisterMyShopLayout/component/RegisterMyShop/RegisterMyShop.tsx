@@ -36,12 +36,12 @@ type ShopInfo = z.infer<typeof schema>;
 export default function RegisterMyShopLayout() {
   const router = useRouter();
 
-  const [img, setImg] = useState<string>("");
-  const imgRef = useRef<HTMLInputElement>(null);
+  const [img, setImg] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [address1Value, setAddress1Value] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const { mutate: postPresignedURL } = usePostPresignedURL();
   const { mutate: postShopInfo } = usePostShopData();

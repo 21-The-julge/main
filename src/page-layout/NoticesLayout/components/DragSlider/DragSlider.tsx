@@ -5,6 +5,8 @@ import styles from "./DragSlider.module.scss";
 
 const cn = classNames.bind(styles);
 
+const DRAG_DIFF = 5;
+
 export default function DragSlider({ children }: PropsWithChildren) {
   const slideRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +66,7 @@ export default function DragSlider({ children }: PropsWithChildren) {
     const childNodes = Array.from(slideRef.current?.childNodes || []);
     const dragDiff = Math.abs(startX - endX);
 
-    if (dragDiff > 8) {
+    if (dragDiff > DRAG_DIFF) {
       childNodes.forEach((child) => {
         child.addEventListener("click", preventEventEffects);
       });

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 
@@ -19,23 +19,40 @@ import styles from "./AllNotices.module.scss";
 
 const cn = classNames.bind(styles);
 
+const COUNT_PER_PAGE = 6;
+
 export default function AllNotices() {
   const router = useRouter();
-
   const { pathname, query } = router;
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState(query);
 
-  const { data, error, isPending, isError } = useGetAllNotices({ limit: 6, ...router.query });
+  const { data, error, isPending, isError } = useGetAllNotices({ limit: COUNT_PER_PAGE, ...router.query });
 
   const [currentPage, totalPages, setPage] = usePaginationProps({
     totalDataCount: data?.count ?? 0,
-    itemsPageCount: 6,
+    itemsPageCount: COUNT_PER_PAGE,
   });
 
   const handleOpen = (state: boolean) => {
     setIsFilterOpen(state);
+  };
+
+  const handlePageClick = (page: number) => {
+    setPage(page);
+
+    const offset = (page - 1) * COUNT_PER_PAGE;
+
+    setFilters((prev) => ({
+      ...prev,
+      offset: offset.toString(),
+    }));
+
+    router.push({
+      pathname,
+      query: { ...filters, offset },
+    });
   };
 
   const handleFilter = (filter: Partial<FilterValue>) => {
@@ -69,21 +86,6 @@ export default function AllNotices() {
       query: { ...filters, sort },
     });
   };
-
-  useEffect(() => {
-    const offset = (currentPage - 1) * 6;
-
-    setFilters((prev) => ({
-      ...prev,
-      offset: `${offset}`,
-    }));
-
-    router.push({
-      pathname,
-      query: { ...filters, offset },
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
 
   if (isPending) {
     return <Skeleton isAllNotice />;
@@ -119,7 +121,7 @@ export default function AllNotices() {
       ) : (
         <div className={cn("notices")}>
           <NoticeList notices={posts} />
-          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={setPage} />
+          <Pagination currentPage={currentPage} totalPage={totalPages} onPageClick={handlePageClick} />
         </div>
       )}
     </div>

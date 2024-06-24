@@ -71,7 +71,7 @@ export default function EditMyShopLayout() {
 
   const handleClickConfirm = async () => {
     await shopDataMutate();
-    router.push("/my-shop");
+    router.push("/shops");
   };
 
   const handleOnchangeShopName = (e: ChangeEvent<HTMLInputElement>) => {

@@ -35,7 +35,7 @@ export default function ShowMyShop({ myShopData }: ShowMyShopProps) {
         {myShopData?.imageUrl && (
           <Image
             fill
-            src={isImgError ? "/images/logo.svg" : myShopData?.imageUrl}
+            src={isImgError ? "/images/ic_logo.svg" : myShopData?.imageUrl}
             alt="내 가게"
             sizes="(max-width: 757px) 303px, (max-width: 1024px) 632px, 539px"
             onError={() => setIsImgError(true)}

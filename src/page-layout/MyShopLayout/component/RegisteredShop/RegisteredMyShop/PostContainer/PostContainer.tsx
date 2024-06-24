@@ -25,6 +25,7 @@ export default function PostContainer({ myShopData, shopId }: PostContainerProps
         workhour={myShopData?.item?.workhour}
         hourlyPay={myShopData?.item?.hourlyPay}
         closed={myShopData?.item?.closed}
+        imageUrl={myShopData?.item?.imageUrl}
       />
     </Link>
   );

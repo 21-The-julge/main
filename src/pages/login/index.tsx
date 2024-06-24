@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { ROUTE } from "@/common/constants";
 import { SignInForm } from "@/page-layout/AuthLayout/component";
-import ThejulgeLogo from "@/images/logo.svg";
+import IcLogo from "@/images/ic_logo.svg";
 
 import styles from "./SignInPage.module.scss";
 
@@ -13,7 +13,7 @@ export default function SignInPage() {
   return (
     <main className={cn("signInPage")}>
       <Link className={cn("logoBox")} href={ROUTE.HOME}>
-        <ThejulgeLogo width={248} height={45} />
+        <IcLogo width={248} height={45} />
       </Link>
       <SignInForm />
       <div className={cn("textBox")}>

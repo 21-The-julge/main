@@ -7,7 +7,7 @@ import classNames from "classnames/bind";
 import { ROUTE } from "@/common/constants";
 import { InputField } from "@/common/components";
 
-import LOGO from "@/images/logo.svg";
+import IcLogo from "@/images/ic_logo.svg";
 
 import styles from "./GlobalNavigationBar.module.scss";
 
@@ -35,7 +35,7 @@ export default function Gnb() {
     <div className={cn("background")}>
       <div className={cn("container")}>
         <Link href={ROUTE.HOME}>
-          <LOGO className={cn("logo", "item")} />
+          <IcLogo className={cn("logo", "item")} />
         </Link>
 
         <form onSubmit={handleSubmit(onSubmit)} className={cn("search", "item")}>

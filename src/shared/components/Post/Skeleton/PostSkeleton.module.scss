@@ -5,11 +5,6 @@
   width: 31.2rem;
   height: 34.9rem;
 
-  @include tablet {
-    width: 33.2rem;
-    height: 35.9rem;
-  }
-
   @include mobile {
     width: 17.1rem;
     height: 26.1rem;
